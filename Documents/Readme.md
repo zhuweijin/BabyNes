@@ -45,9 +45,9 @@
 
 * Utils
 
-* NSUtil 基本的实用函数，大部分都是 static inline 的，用了 class 来包装（实际上是用来区别命名空间，只是没有直接用 namespace 而已）这些功能需要 Object C++ 特性支持，使用 .mm 为扩展名才能使用其中的函数。
+	* NSUtil 基本的实用函数，大部分都是 static inline 的，用了 class 来包装（实际上是用来区别命名空间，只是没有直接用 namespace 而已）这些功能需要 Object C++ 特性支持，使用 .mm 为扩展名才能使用其中的函数。
 
-* UIUtil 是 UI 相关的实用函数，和 NSUtil 类似。
+	* UIUtil 是 UI 相关的实用函数，和 NSUtil 类似。
  
 * Views 通用视图
 	
@@ -65,17 +65,17 @@
 
 * 语言字符串文件：*.string
 
-另有一个 GenString 小程序，可以自动从所有源代码中提取语言字符串，生成英文、简体中文、繁体中文的语言文件，请在代码中使用 NSLocalizedString(@"Chinese"，@"中文") 来标记语言字符串）
+	另有一个 GenString 小程序，可以自动从所有源代码中提取语言字符串，生成英文、简体中文、繁体中文的语言文件，请在代码中使用 NSLocalizedString(@"Chinese"，@"中文") 来标记语言字符串）
 
 * 程序内用到的资产文件目录：Assets
 
-所有程序内用到的非特定命名的资源文件的放在这个目录中，比如图片或其他程序用到的资源，只要直接在 Finder 中放入次文件夹即可，不需要在 Xcode 中添加了。
+	所有程序内用到的非特定命名的资源文件的放在这个目录中，比如图片或其他程序用到的资源，只要直接在 Finder 中放入次文件夹即可，不需要在 Xcode 中添加了。
 
-代码中使用 UIUtil::Image(图片名) 来使用图片文件（其中图片只需要提供 @2x 即可，自动能支持非 retina 的）；非图片文件使用 NSUtil::AssetPath(文件名) 来获取文件路径。
+	代码中使用 UIUtil::Image(图片名) 来使用图片文件（其中图片只需要提供 @2x 即可，自动能支持非 retina 的）；非图片文件使用 NSUtil::AssetPath(文件名) 来获取文件路径。
 
 ##4. Documents 是程序文档
 
-    Xcode 仲可以直接看到，带不会编译到最终结果中。
+	Xcode 仲可以直接看到，带不会编译到最终结果中。
 
 ##5. Frameworks
 
