@@ -20,14 +20,14 @@
 
 * Base 目录中的 Conroller 是基类，派生结构如下：
 
-      BaseController （页面基类，实现了页面统计等常规页面逻辑）
-       |<-TableController （列表页面） 
-       |    |<-PullTableController（下拉列表，支持数据装载器）
-       |         |<-PagingTableController （带分页功能）
-       |
-       |<-WizardController （提供众多的快速添加UI元素的方法） 
-            |<-AutoWizardController（自动隐藏键盘、键盘弹出隐藏时自动滚动界面到合适位置、自动下一个输入项）
-                 |<-PullWizardController （支持下拉数据装载器）
+			BaseController （页面基类，实现了页面统计等常规页面逻辑）
+			  |<-TableController （列表页面） 
+			  |    |<-PullTableController（下拉列表，支持数据装载器）
+			  |         |<-PagingTableController （带分页功能）
+			  |
+			  |<-WizardController （提供众多的快速添加UI元素的方法） 
+			      |<-AutoWizardController（自动隐藏键盘、键盘弹出隐藏时自动滚动界面到合适位置、自动下一个输入项）
+			          |<-PullWizardController （支持下拉数据装载器）
 
 * 其它的页面 Controller 都派生自以上的其中一个 Controller。其中重复性条目多的页面可从 TableController 或其子类中继承；重复条目有限的页面可以从 WizardController或其子类继承，在 loadPage 中实现添加 UI 元素即可。
 
