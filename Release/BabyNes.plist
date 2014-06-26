@@ -25,13 +25,11 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.celeware.BabyNes</string>
+				<string>com.BabyNes</string>
 				<key>bundle-version</key>
-				<string>1.0.1</string>
+				<string>1.0.3</string>
 				<key>kind</key>
 				<string>software</string>
-				<key>subtitle</key>
-				<string>BabyNes</string>
 				<key>title</key>
 				<string>BabyNes</string>
 			</dict>
