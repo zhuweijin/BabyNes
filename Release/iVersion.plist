@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>1.0.1</key>
-	<string>First Release</string>
+	<string>第一个版本</string>
+	<key>1.0.4</key>
+	<string>实现主界面框架</string>
 </dict>
 </plist>

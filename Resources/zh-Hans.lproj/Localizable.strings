@@ -64,11 +64,11 @@
 /* Download */
 "Download" = "立即下载";
 
-/* Enter phone number */
-"Enter phone number" = "请输入手机号码";
-
 /* Error */
 "Error" = "错误";
+
+/* Exit */
+"Exit" = "退出";
 
 /* Failed */
 "Failed" = "失败";
@@ -109,6 +109,9 @@
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
 
+/* Media */
+"Media" = "媒体中心";
+
 /* Never */
 "Never" = "从未";
 
@@ -130,6 +133,9 @@
 /* Please setup your email account first. */
 "Please setup your email account first." = "请先设置您的邮件账户。";
 
+/* Products */
+"Products" = "产品介绍";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
@@ -138,9 +144,6 @@
 
 /* p_m */
 "p_m" = "下午";
-
-/* Regiter Account */
-"Regiter Account" = "注册帐号";
 
 /* Release to refresh... */
 "Release to refresh..." = "松开立即更新⋯";
@@ -154,11 +157,11 @@
 /* Remind Me Later */
 "Remind Me Later" = "以后再说";
 
-/* Reset Password */
-"Reset Password" = "重置密码";
-
 /* Retry */
 "Retry" = "重试";
+
+/* Sale */
+"Sale" = "购买产品";
 
 /* Sales Login */
 "Sales Login" = "促销员登录";
@@ -187,8 +190,8 @@
 /* Share */
 "Share" = "分享";
 
-/* Tel */
-"Tel" = "手机号";
+/* SR Center */
+"SR Center" = "SR管理";
 
 /* Today */
 "Today" = "今天";

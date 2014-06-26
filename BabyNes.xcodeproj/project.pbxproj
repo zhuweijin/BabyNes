@@ -608,6 +608,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 246A31BC18682C2D00903EF4 /* Build configuration list for PBXNativeTarget "BabyNes" */;
 			buildPhases = (
+				242F9484195C447C00371697 /* Generate Localized String */,
 				246A334D18687AD100903EF4 /* Refresh Version Stamp */,
 				246A318C18682C2D00903EF4 /* Sources */,
 				246A318D18682C2D00903EF4 /* Frameworks */,
@@ -673,6 +674,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		242F9484195C447C00371697 /* Generate Localized String */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Localized String";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$GCC_GENERATE_DEBUGGING_SYMBOLS\" == \"NO\" ]; then\n\t$PROJECT_DIR/Resources/GenString\nfi\n";
+		};
 		246A334D18687AD100903EF4 /* Refresh Version Stamp */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

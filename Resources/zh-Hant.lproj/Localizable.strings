@@ -64,11 +64,11 @@
 /* Download */
 "Download" = "立即下載";
 
-/* Enter phone number */
-"Enter phone number" = "請輸入手機號碼";
-
 /* Error */
 "Error" = "錯誤";
+
+/* Exit */
+"Exit" = "退出";
 
 /* Failed */
 "Failed" = "失敗";
@@ -109,6 +109,9 @@
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
 
+/* Media */
+"Media" = "媒體中心";
+
 /* Never */
 "Never" = "從未";
 
@@ -130,6 +133,9 @@
 /* Please setup your email account first. */
 "Please setup your email account first." = "請先設置您的郵件賬戶。";
 
+/* Products */
+"Products" = "產品介紹";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
@@ -138,9 +144,6 @@
 
 /* p_m */
 "p_m" = "下午";
-
-/* Regiter Account */
-"Regiter Account" = "註冊帳號";
 
 /* Release to refresh... */
 "Release to refresh..." = "鬆開立即更新⋯";
@@ -154,11 +157,11 @@
 /* Remind Me Later */
 "Remind Me Later" = "以後再說";
 
-/* Reset Password */
-"Reset Password" = "重置密碼";
-
 /* Retry */
 "Retry" = "重試";
+
+/* Sale */
+"Sale" = "購買產品";
 
 /* Sales Login */
 "Sales Login" = "促銷員登錄";
@@ -187,8 +190,8 @@
 /* Share */
 "Share" = "分享";
 
-/* Tel */
-"Tel" = "手機號";
+/* SR Center */
+"SR Center" = "SR管理";
 
 /* Today */
 "Today" = "今天";

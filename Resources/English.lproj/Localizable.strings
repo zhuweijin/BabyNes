@@ -64,11 +64,11 @@
 /* Download */
 "Download" = "Download";
 
-/* Enter phone number */
-"Enter phone number" = "Enter phone number";
-
 /* Error */
 "Error" = "Error";
+
+/* Exit */
+"Exit" = "Exit";
 
 /* Failed */
 "Failed" = "Failed";
@@ -109,6 +109,9 @@
 /* Long Long Before */
 "Long Long Before" = "Long Long Before";
 
+/* Media */
+"Media" = "Media";
+
 /* Never */
 "Never" = "Never";
 
@@ -130,6 +133,9 @@
 /* Please setup your email account first. */
 "Please setup your email account first." = "Please setup your email account first.";
 
+/* Products */
+"Products" = "Products";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
 
@@ -138,9 +144,6 @@
 
 /* p_m */
 "p_m" = "p_m";
-
-/* Regiter Account */
-"Regiter Account" = "Regiter Account";
 
 /* Release to refresh... */
 "Release to refresh..." = "Release to refresh...";
@@ -154,11 +157,11 @@
 /* Remind Me Later */
 "Remind Me Later" = "Remind Me Later";
 
-/* Reset Password */
-"Reset Password" = "Reset Password";
-
 /* Retry */
 "Retry" = "Retry";
+
+/* Sale */
+"Sale" = "Sale";
 
 /* Sales Login */
 "Sales Login" = "Sales Login";
@@ -187,8 +190,8 @@
 /* Share */
 "Share" = "Share";
 
-/* Tel */
-"Tel" = "Tel";
+/* SR Center */
+"SR Center" = "SR Center";
 
 /* Today */
 "Today" = "Today";
