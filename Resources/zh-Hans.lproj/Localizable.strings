@@ -22,8 +22,20 @@
 /* %dm */
 "%dm" = "%d米";
 
+/* About */
+"About" = "关于";
+
+/* Add Buyer */
+"Add Buyer" = "添加顾客";
+
 /* After Tomorrow */
 "After Tomorrow" = "后天";
+
+/* Are you sure to clear cache? */
+"Are you sure to clear cache?" = "你确定要清除网络缓存吗？";
+
+/* Are you sure to logout? */
+"Are you sure to logout?" = "你要退出当前账户吗?";
 
 /* a_m */
 "a_m" = "上午";
@@ -36,6 +48,15 @@
 
 /* Cancel */
 "Cancel" = "取消";
+
+/* Clean */
+"Clean" = "清除";
+
+/* Clean Cache */
+"Clean Cache" = "清除缓存";
+
+/* Cleansed */
+"Cleansed" = "已清除";
 
 /* Copied */
 "Copied" = "已拷贝";
@@ -91,6 +112,9 @@
 /* Ignore */
 "Ignore" = "忽略";
 
+/* Introduce */
+"Introduce" = "产品介绍";
+
 /* Last Updated: %@ */
 "Last Updated: %@" = "最近更新：%@";
 
@@ -106,11 +130,20 @@
 /* Login */
 "Login" = "登录";
 
+/* Logout */
+"Logout" = "安全退出";
+
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
 
 /* Media */
 "Media" = "媒体中心";
+
+/* Mobile */
+"Mobile" = "手机号";
+
+/* Network Cache */
+"Network Cache" = "网络缓存";
 
 /* Never */
 "Never" = "从未";
@@ -133,8 +166,8 @@
 /* Please setup your email account first. */
 "Please setup your email account first." = "请先设置您的邮件账户。";
 
-/* Products */
-"Products" = "产品介绍";
+/* Product                     Price         Quantity */
+"Product                     Price         Quantity" = "产品                              价格           数量";
 
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
@@ -144,6 +177,9 @@
 
 /* p_m */
 "p_m" = "下午";
+
+/* Rate Me */
+"Rate Me" = "给个好评";
 
 /* Release to refresh... */
 "Release to refresh..." = "松开立即更新⋯";
@@ -159,9 +195,6 @@
 
 /* Retry */
 "Retry" = "重试";
-
-/* Sale */
-"Sale" = "购买产品";
 
 /* Sales Login */
 "Sales Login" = "促销员登录";
@@ -190,8 +223,17 @@
 /* Share */
 "Share" = "分享";
 
+/* Shop */
+"Shop" = "网上商店";
+
+/* Shopping Cart */
+"Shopping Cart" = "购物车";
+
 /* SR Center */
 "SR Center" = "SR管理";
+
+/* Sum $%.2f Quantity %d */
+"Sum $%.2f Quantity %d" = "总计：￥%.2f   数量：%d";
 
 /* Today */
 "Today" = "今天";
@@ -201,6 +243,9 @@
 
 /* Version %@ */
 "Version %@" = "版本 %@";
+
+/* Version %@ %@© %@ */
+"Version %@ %@© %@" = "版本 %@ %@© %@";
 
 /* Yesterday */
 "Yesterday" = "昨天";

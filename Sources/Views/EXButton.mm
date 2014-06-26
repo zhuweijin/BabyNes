@@ -74,7 +74,7 @@
 + (id)minorButtonWithTitle:(NSString *)title width:(CGFloat)width
 {
 	UIButton *button = [self buttonWithTitle:title name:@"Minor" width:width];
-	[button setTitleColor:[UIColor colorWithRed:0x66/255.0 green:0x88/255.0 blue:0xBB/255.0 alpha:1] forState:UIControlStateNormal];
+	//[button setTitleColor:[UIColor colorWithRed:0x66/255.0 green:0x88/255.0 blue:0xBB/255.0 alpha:1] forState:UIControlStateNormal];
 	return button;
 }
 

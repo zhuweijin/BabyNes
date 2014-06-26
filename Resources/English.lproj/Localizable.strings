@@ -22,8 +22,20 @@
 /* %dm */
 "%dm" = "%dm";
 
+/* About */
+"About" = "About";
+
+/* Add Buyer */
+"Add Buyer" = "Add Buyer";
+
 /* After Tomorrow */
 "After Tomorrow" = "After Tomorrow";
+
+/* Are you sure to clear cache? */
+"Are you sure to clear cache?" = "Are you sure to clear cache?";
+
+/* Are you sure to logout? */
+"Are you sure to logout?" = "Are you sure to logout?";
 
 /* a_m */
 "a_m" = "a_m";
@@ -36,6 +48,15 @@
 
 /* Cancel */
 "Cancel" = "Cancel";
+
+/* Clean */
+"Clean" = "Clean";
+
+/* Clean Cache */
+"Clean Cache" = "Clean Cache";
+
+/* Cleansed */
+"Cleansed" = "Cleansed";
 
 /* Copied */
 "Copied" = "Copied";
@@ -91,6 +112,9 @@
 /* Ignore */
 "Ignore" = "Ignore";
 
+/* Introduce */
+"Introduce" = "Introduce";
+
 /* Last Updated: %@ */
 "Last Updated: %@" = "Last Updated: %@";
 
@@ -106,11 +130,20 @@
 /* Login */
 "Login" = "Login";
 
+/* Logout */
+"Logout" = "Logout";
+
 /* Long Long Before */
 "Long Long Before" = "Long Long Before";
 
 /* Media */
 "Media" = "Media";
+
+/* Mobile */
+"Mobile" = "Mobile";
+
+/* Network Cache */
+"Network Cache" = "Network Cache";
 
 /* Never */
 "Never" = "Never";
@@ -133,8 +166,8 @@
 /* Please setup your email account first. */
 "Please setup your email account first." = "Please setup your email account first.";
 
-/* Products */
-"Products" = "Products";
+/* Product                     Price         Quantity */
+"Product                     Price         Quantity" = "Product                     Price         Quantity";
 
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
@@ -144,6 +177,9 @@
 
 /* p_m */
 "p_m" = "p_m";
+
+/* Rate Me */
+"Rate Me" = "Rate Me";
 
 /* Release to refresh... */
 "Release to refresh..." = "Release to refresh...";
@@ -159,9 +195,6 @@
 
 /* Retry */
 "Retry" = "Retry";
-
-/* Sale */
-"Sale" = "Sale";
 
 /* Sales Login */
 "Sales Login" = "Sales Login";
@@ -190,8 +223,17 @@
 /* Share */
 "Share" = "Share";
 
+/* Shop */
+"Shop" = "Shop";
+
+/* Shopping Cart */
+"Shopping Cart" = "Shopping Cart";
+
 /* SR Center */
 "SR Center" = "SR Center";
+
+/* Sum $%.2f Quantity %d */
+"Sum $%.2f Quantity %d" = "Sum $%.2f Quantity %d";
 
 /* Today */
 "Today" = "Today";
@@ -201,6 +243,9 @@
 
 /* Version %@ */
 "Version %@" = "Version %@";
+
+/* Version %@ %@© %@ */
+"Version %@ %@© %@" = "Version %@ %@© %@";
 
 /* Yesterday */
 "Yesterday" = "Yesterday";
