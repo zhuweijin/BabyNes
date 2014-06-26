@@ -68,7 +68,7 @@
 		}
 		{
 			_doneButton = [UIButton buttonWithTitle:NSLocalizedString(@"Login", @"登录") name:@"Push" width:85];
-			_doneButton.enabled = NO;
+			//TODO:_doneButton.enabled = NO;
 			_doneButton.center = CGPointMake(CGRectGetMaxX(_passwordField.frame) - 85/2, _rememberButton.center.y);
 			[_doneButton addTarget:self action:@selector(doneButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 			[_loginPane addSubview:_doneButton];
