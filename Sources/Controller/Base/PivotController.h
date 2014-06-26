@@ -8,7 +8,7 @@
 {
 @private
 	UIView *_tabBar;
-	UIImageView *_tabHeader;
+	UIView *_tabHeader;
 
 	NSUInteger _selectedIndex;
 	NSArray *_viewControllers;

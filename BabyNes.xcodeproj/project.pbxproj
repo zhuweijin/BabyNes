@@ -491,22 +491,22 @@
 		24259F01194AB539000FF8A9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				242F9450195BEB0700371697 /* PivotController.h */,
-				242F9451195BEB0700371697 /* PivotController.mm */,
-				24259F02194AB539000FF8A9 /* AutoWizardController.h */,
-				24259F03194AB539000FF8A9 /* AutoWizardController.mm */,
 				24259F04194AB539000FF8A9 /* BaseController.h */,
 				24259F05194AB539000FF8A9 /* BaseController.mm */,
-				24259F06194AB539000FF8A9 /* PagingTableController.h */,
-				24259F07194AB539000FF8A9 /* PagingTableController.mm */,
-				24259F08194AB539000FF8A9 /* PullTableController.h */,
-				24259F09194AB539000FF8A9 /* PullTableController.mm */,
-				24259F0A194AB539000FF8A9 /* PullWizardController.h */,
-				24259F0B194AB539000FF8A9 /* PullWizardController.mm */,
+				242F9450195BEB0700371697 /* PivotController.h */,
+				242F9451195BEB0700371697 /* PivotController.mm */,
 				24259F0C194AB539000FF8A9 /* TableController.h */,
 				24259F0D194AB539000FF8A9 /* TableController.mm */,
+				24259F08194AB539000FF8A9 /* PullTableController.h */,
+				24259F09194AB539000FF8A9 /* PullTableController.mm */,
+				24259F06194AB539000FF8A9 /* PagingTableController.h */,
+				24259F07194AB539000FF8A9 /* PagingTableController.mm */,
 				24259F0E194AB539000FF8A9 /* WizardController.h */,
 				24259F0F194AB539000FF8A9 /* WizardController.mm */,
+				24259F02194AB539000FF8A9 /* AutoWizardController.h */,
+				24259F03194AB539000FF8A9 /* AutoWizardController.mm */,
+				24259F0A194AB539000FF8A9 /* PullWizardController.h */,
+				24259F0B194AB539000FF8A9 /* PullWizardController.mm */,
 			);
 			path = Base;
 			sourceTree = "<group>";

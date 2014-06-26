@@ -28,18 +28,22 @@
 	[super viewDidLoad];
 	
 	self.view.backgroundColor = UIUtil::Color(235, 238, 250);
+	if (UIUtil::IsOS7())
+	{
+		self.automaticallyAdjustsScrollViewInsets = NO;
+	}
 	
 	//
-	CGRect bounds = self.view.bounds;
 	CGFloat tabBarHeight = 44;
 	
 	CGRect frame = CGRectMake(0, (UIUtil::IsOS7() ? 22 : 0), 1024, tabBarHeight);
 	_tabBar = [[UIView alloc] initWithFrame:frame];
 
 	frame.origin.y += tabBarHeight;
-	frame.size.height = bounds.size.height - frame.origin.y;
+	frame.size.height = 768 - 66;
 	_scrollView = [[PredictScrollView alloc] initWithFrame:frame];
 	_scrollView.directionalLockEnabled = YES;
+	_scrollView.bounces = NO;
 	//_scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_scrollView.delegate2 = self;
 	_scrollView.backgroundColor = UIUtil::Color(241, 242, 245);
@@ -51,12 +55,14 @@
 	[self.view addSubview:_tabBar];
 
 	//
-	UIImage *tabHeaderImage = UIUtil::ImageWithColor(117, 114, 184, 1, CGSizeMake(125, 2));	//UIUtil::Image(@"TabHeader");
-	frame = CGRectMake((1024 - tabHeaderImage.size.width * _viewControllers.count) / 2, tabBarHeight - tabHeaderImage.size.height - 6, tabHeaderImage.size.width, tabHeaderImage.size.height);
-	_tabHeader = [[UIImageView alloc] initWithFrame:frame];
-	_tabHeader.image = tabHeaderImage;//[tabHeaderImage stretchableImageWithLeftCapWidth:(tabHeaderImage.size.width / 2) topCapHeight:(tabHeaderImage.size.height / 2)];
+	//UIImage *tabHeaderImage = UIUtil::ImageWithColor(117, 114, 184, 1, CGSizeMake(125, 2));	//UIUtil::Image(@"TabHeader");
+	//frame = CGRectMake((1024 - tabHeaderImage.size.width * _viewControllers.count) / 2, tabBarHeight - tabHeaderImage.size.height - 6, tabHeaderImage.size.width, tabHeaderImage.size.height);
+	//_tabHeader = [[UIImageView alloc] initWithFrame:frame];
+	//_tabHeader.image = tabHeaderImage;//[tabHeaderImage stretchableImageWithLeftCapWidth:(tabHeaderImage.size.width / 2) topCapHeight:(tabHeaderImage.size.height / 2)];
 
 	//
+	frame.size.width = 126;
+	frame.origin.x = (1024 - frame.size.width * _viewControllers.count) / 2;
 	frame.origin.y = 0;
 	frame.size.height = 44;
 	for (NSUInteger i = 0; i < _viewControllers.count; i++)
@@ -77,7 +83,10 @@
 		//[self onTabButton:button];
 	}
 	
+	_tabHeader = [[UIView alloc] initWithFrame:CGRectZero];
+	_tabHeader.backgroundColor = UIUtil::Color(117, 114, 184);
 	[_tabBar addSubview:_tabHeader];
+	_selectedIndex = -1;
 }
 
 // Called when the view is about to made visible.
@@ -130,26 +139,38 @@
 //
 - (void)scrollView:(PredictScrollView *)scrollView scrollToPage:(NSUInteger)index
 {
+	if (_selectedIndex != -1)
+	{
+		UIButton *oldButton = (UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex];
+		[oldButton setTitleColor:UIUtil::Color(60,60,60) forState:UIControlStateNormal];
+
+		UIViewController *controller = [_viewControllers objectAtIndex:_selectedIndex];
+		[controller viewWillDisappear:YES];
+		[controller viewDidDisappear:YES];
+
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.4];
+	}
+	
+	UIButton *curButton = (UIButton *)[_tabBar viewWithTag:kTabButonTag + index];
+	[curButton setTitleColor:UIUtil::Color(117, 114, 184) forState:UIControlStateNormal];
+
 	//
-	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];
-	CGRect frame = _tabHeader.frame;
-	frame.origin.x = (1024 - frame.size.width * _viewControllers.count) / 2 + index * frame.size.width;
+	CGRect frame, buttonFrame = curButton.frame;
+	frame.size = [curButton.currentTitle sizeWithFont:curButton.titleLabel.font];
+	frame.origin.y = (buttonFrame.size.height - frame.size.height) / 2 + frame.size.height + 2;
+	frame.size.height = 2;
+	frame.origin.x = buttonFrame.origin.x + (buttonFrame.size.width - frame.size.width) / 2;
 	_tabHeader.frame = frame;
-	[UIView commitAnimations];
+	
+	if (_selectedIndex != -1)
+	{
+		[UIView commitAnimations];
+	}
 
 	//
-	UIViewController *controller = [_viewControllers objectAtIndex:_selectedIndex];
-	[controller viewWillDisappear:YES];
-	[controller viewDidDisappear:YES];
-
-	[(UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex] setTitleColor:UIUtil::Color(60,60,60) forState:UIControlStateNormal];
-	
 	_selectedIndex = index;
-	
-	[(UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex] setTitleColor:UIUtil::Color(117, 114, 184) forState:UIControlStateNormal];
-	
-	controller = [_viewControllers objectAtIndex:_selectedIndex];
+	UIViewController *controller = [_viewControllers objectAtIndex:_selectedIndex];
 	[controller viewWillAppear:YES];
 	[controller viewDidAppear:YES];
 }
