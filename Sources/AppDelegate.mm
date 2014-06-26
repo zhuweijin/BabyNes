@@ -1,6 +1,6 @@
 
 #import "AppDelegate.h"
-#import "LoginController.h"
+#import "RootController.h"
 
 //
 @implementation AppDelegate
@@ -19,9 +19,9 @@
 	
 	// Create controller
 	// TODO: Remove navigation controller
-	UIViewController *controller = [[LoginController alloc] init];
+	UIViewController *controller = [[RootController alloc] init];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
-	//navigator.navigationBarHidden = YES;
+	navigator.navigationBarHidden = YES;
 
 	// Show main view
 	_window.rootViewController = navigator;

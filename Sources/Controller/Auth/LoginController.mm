@@ -56,6 +56,7 @@
 		frame.origin.y = 160;
 		{
 			_passwordField = [[InputBox alloc] initWithFrame:frame iconName:@"PassIcon"];
+			_passwordField.secureTextEntry = YES;
 			[_passwordField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
 			[_loginPane addSubview:_passwordField];
 		}
@@ -114,11 +115,11 @@
 }
 
 // Called when the view is about to made visible.
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	[self.navigationController setNavigationBarHidden:YES];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//	[super viewWillAppear:animated];
+//	[self.navigationController setNavigationBarHidden:YES];
+//}
 
 //
 - (void)viewDidAppear:(BOOL)animated
@@ -133,13 +134,13 @@
 											 selector:@selector(keyboardWillHide:)
 												 name:UIKeyboardWillHideNotification
 											   object:nil];
-#define _HAS_PENDING_OPERATION
+//#define _HAS_PENDING_OPERATION
 #ifdef _HAS_PENDING_OPERATION
 	[self.view toastWithLoading].center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height * 3 / 4);
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^()
 				   {
 					   // TODO: 如果有网络请求
-					   [NSThread sleepForTimeInterval:2];
+					   [NSThread sleepForTimeInterval:1.6];
 					   
 					   dispatch_async(dispatch_get_main_queue(), ^()
 									  {
@@ -157,7 +158,7 @@
 {
 	[super viewWillDisappear:animated];
 	
-	[self.navigationController setNavigationBarHidden:NO animated:YES];
+	//[self.navigationController setNavigationBarHidden:NO animated:YES];
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];

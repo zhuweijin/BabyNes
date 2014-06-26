@@ -7,6 +7,8 @@
 - (id)initWithFrame:(CGRect)frame iconName:(NSString *)iconName
 {
 	self = [super initWithFrame:frame];
+	self.autocorrectionType = UITextAutocorrectionTypeNo;
+	self.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.background = UIUtil::StretchableImage(UIUtil::Image(@"InputBox"));
 	self.leftView = [[UIImageView alloc] initWithImage:UIUtil::Image(iconName)];
 	self.leftViewMode = UITextFieldViewModeAlways;

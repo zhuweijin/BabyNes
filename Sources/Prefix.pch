@@ -45,7 +45,7 @@
 //#import "CacheImageView.h"
 //#import "KBCustomTextField.h"
 //#import "SegmentLabel.h"
-//#import "PredictScrollView.h"
+#import "PredictScrollView.h"
 #import "ODRefreshControl.h"
 
 // Controller

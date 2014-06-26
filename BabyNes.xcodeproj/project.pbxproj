@@ -64,7 +64,6 @@
 		24259F38194AB539000FF8A9 /* PullWizardController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F0B194AB539000FF8A9 /* PullWizardController.mm */; };
 		24259F39194AB539000FF8A9 /* TableController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F0D194AB539000FF8A9 /* TableController.mm */; };
 		24259F3A194AB539000FF8A9 /* WizardController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F0F194AB539000FF8A9 /* WizardController.mm */; };
-		24259F3B194AB539000FF8A9 /* NavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F11194AB539000FF8A9 /* NavigationController.mm */; };
 		24259F3C194AB539000FF8A9 /* RootController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F13194AB539000FF8A9 /* RootController.mm */; };
 		24259F3D194AB539000FF8A9 /* SettingController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F15194AB539000FF8A9 /* SettingController.mm */; };
 		24259F3E194AB539000FF8A9 /* AutoPullDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F18194AB539000FF8A9 /* AutoPullDataLoader.mm */; };
@@ -79,6 +78,7 @@
 		24259F47194AB539000FF8A9 /* SelectPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F2C194AB539000FF8A9 /* SelectPicker.mm */; };
 		24259F48194AB539000FF8A9 /* SelectSheet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F2E194AB539000FF8A9 /* SelectSheet.mm */; };
 		24259F49194AB539000FF8A9 /* WizardCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259F30194AB539000FF8A9 /* WizardCell.mm */; };
+		242F9452195BEB0700371697 /* PivotController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9451195BEB0700371697 /* PivotController.mm */; };
 		246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319318682C2D00903EF4 /* Foundation.framework */; };
 		246A319618682C2D00903EF4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319518682C2D00903EF4 /* CoreGraphics.framework */; };
 		246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319718682C2D00903EF4 /* UIKit.framework */; };
@@ -214,8 +214,6 @@
 		24259F0D194AB539000FF8A9 /* TableController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TableController.mm; sourceTree = "<group>"; };
 		24259F0E194AB539000FF8A9 /* WizardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardController.h; sourceTree = "<group>"; };
 		24259F0F194AB539000FF8A9 /* WizardController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizardController.mm; sourceTree = "<group>"; };
-		24259F10194AB539000FF8A9 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
-		24259F11194AB539000FF8A9 /* NavigationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NavigationController.mm; sourceTree = "<group>"; };
 		24259F12194AB539000FF8A9 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
 		24259F13194AB539000FF8A9 /* RootController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootController.mm; sourceTree = "<group>"; };
 		24259F14194AB539000FF8A9 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
@@ -245,6 +243,8 @@
 		24259F2E194AB539000FF8A9 /* SelectSheet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SelectSheet.mm; sourceTree = "<group>"; };
 		24259F2F194AB539000FF8A9 /* WizardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardCell.h; sourceTree = "<group>"; };
 		24259F30194AB539000FF8A9 /* WizardCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizardCell.mm; sourceTree = "<group>"; };
+		242F9450195BEB0700371697 /* PivotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PivotController.h; sourceTree = "<group>"; };
+		242F9451195BEB0700371697 /* PivotController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PivotController.mm; sourceTree = "<group>"; };
 		246A319018682C2D00903EF4 /* BabyNes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyNes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246A319318682C2D00903EF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		246A319518682C2D00903EF4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -471,8 +471,6 @@
 			children = (
 				24259EFC194AB539000FF8A9 /* Auth */,
 				24259F01194AB539000FF8A9 /* Base */,
-				24259F10194AB539000FF8A9 /* NavigationController.h */,
-				24259F11194AB539000FF8A9 /* NavigationController.mm */,
 				24259F12194AB539000FF8A9 /* RootController.h */,
 				24259F13194AB539000FF8A9 /* RootController.mm */,
 				24259F14194AB539000FF8A9 /* SettingController.h */,
@@ -493,6 +491,8 @@
 		24259F01194AB539000FF8A9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				242F9450195BEB0700371697 /* PivotController.h */,
+				242F9451195BEB0700371697 /* PivotController.mm */,
 				24259F02194AB539000FF8A9 /* AutoWizardController.h */,
 				24259F03194AB539000FF8A9 /* AutoWizardController.mm */,
 				24259F04194AB539000FF8A9 /* BaseController.h */,
@@ -715,7 +715,6 @@
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
 				24259EB2194AB36B000FF8A9 /* MessageComposer.mm in Sources */,
-				24259F3B194AB539000FF8A9 /* NavigationController.mm in Sources */,
 				24259F34194AB539000FF8A9 /* AutoWizardController.mm in Sources */,
 				24259ED0194AB36B000FF8A9 /* UMFeedbackViewController.mm in Sources */,
 				24259ECA194AB36B000FF8A9 /* UMContactViewController.m in Sources */,
@@ -762,6 +761,7 @@
 				24259EC3194AB36B000FF8A9 /* MWTapDetectingImageView.m in Sources */,
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
+				242F9452195BEB0700371697 /* PivotController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

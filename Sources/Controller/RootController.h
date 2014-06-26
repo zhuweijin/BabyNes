@@ -1,8 +1,8 @@
 
-#import "AutoWizardController.h"
+#import "PivotController.h"
 
 //
-@interface RootController : AutoWizardController
+@interface RootController : PivotController
 {
 }
 @end
