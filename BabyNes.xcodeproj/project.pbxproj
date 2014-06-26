@@ -486,11 +486,11 @@
 			children = (
 				242F9486195C6E7300371697 /* Auth */,
 				242F9489195C6E7300371697 /* Base */,
+				242F949E195C6E7300371697 /* Shop */,
 				242F949A195C6E7300371697 /* RootController.h */,
 				242F949B195C6E7300371697 /* RootController.mm */,
 				242F949C195C6E7300371697 /* SettingController.h */,
 				242F949D195C6E7300371697 /* SettingController.mm */,
-				242F949E195C6E7300371697 /* Shop */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
