@@ -134,7 +134,7 @@
 											 selector:@selector(keyboardWillHide:)
 												 name:UIKeyboardWillHideNotification
 											   object:nil];
-//#define _HAS_PENDING_OPERATION
+#define _HAS_PENDING_OPERATION
 #ifdef _HAS_PENDING_OPERATION
 	[self.view toastWithLoading].center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height * 3 / 4);
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^()
