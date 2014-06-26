@@ -22,6 +22,7 @@
 //}
 
 // Do additional setup after loading the view.
+#define kTabButonTag 12312
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -39,7 +40,7 @@
 	frame.size.height = bounds.size.height - frame.origin.y;
 	_scrollView = [[PredictScrollView alloc] initWithFrame:frame];
 	_scrollView.directionalLockEnabled = YES;
-	_scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	//_scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_scrollView.delegate2 = self;
 	_scrollView.backgroundColor = UIUtil::Color(241, 242, 245);
 	[self.view addSubview:_scrollView];
@@ -66,7 +67,8 @@
 		button.titleLabel.adjustsFontSizeToFitWidth = YES;
 		[button setTitle:controller.title forState:UIControlStateNormal];
 		[button setTitleColor:UIUtil::Color(60,60,60) forState:UIControlStateNormal];
-		button.tag = i;
+		[button setTitleColor:UIUtil::Color(117, 114, 184) forState:UIControlStateHighlighted];
+		button.tag = kTabButonTag + i;
 		[button addTarget:self action:@selector(onTabButton:) forControlEvents:UIControlEventTouchUpInside];
 		[_tabBar addSubview:button];
 	
@@ -141,7 +143,11 @@
 	[controller viewWillDisappear:YES];
 	[controller viewDidDisappear:YES];
 
+	[(UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex] setTitleColor:UIUtil::Color(60,60,60) forState:UIControlStateNormal];
+	
 	_selectedIndex = index;
+	
+	[(UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex] setTitleColor:UIUtil::Color(117, 114, 184) forState:UIControlStateNormal];
 	
 	controller = [_viewControllers objectAtIndex:_selectedIndex];
 	[controller viewWillAppear:YES];
@@ -156,7 +162,7 @@
 {
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.4];
-	_scrollView.currentPage = button.tag;
+	_scrollView.currentPage = button.tag - kTabButonTag;
 	[UIView commitAnimations];
 }
 

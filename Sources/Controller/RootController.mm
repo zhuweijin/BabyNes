@@ -45,7 +45,7 @@
 	[self.tabBar addSubview:menuButton];
 	
 	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
-	logoView.center = CGPointMake(45 + logoView.frame.size.width / 2, logoView.frame.size.height / 2);
+	logoView.frame = CGRectMake(45, 0, logoView.frame.size.width, logoView.frame.size.height);
 	[self.tabBar addSubview:logoView];
 
 	UIButton *exitButton = [UIButton buttonWithTitle:NSLocalizedString(@"Exit", @"退出") name:@"Push" width:85];
