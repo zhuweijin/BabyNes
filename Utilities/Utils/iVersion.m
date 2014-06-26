@@ -143,7 +143,7 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
         sharedInstance = [[iVersion alloc] init];
 #ifdef iVersionRemotePlistURL
 		iVersion.sharedInstance.remoteVersionsPlistURL = iVersionRemotePlistURL;
-		iVersion.sharedInstance.updateURL = [NSURL URLWithString:[@"itms-services://?action=download-manifest&url=%" stringByAppendingString:iVersionUpdateURL]];
+		iVersion.sharedInstance.updateURL = [NSURL URLWithString:[@"itms-services://?action=download-manifest&url=" stringByAppendingString:iVersionUpdateURL]];
 #endif
     }
     return sharedInstance;
