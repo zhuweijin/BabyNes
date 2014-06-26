@@ -14,8 +14,8 @@
 	UIViewController *controller1 = [[BaseController alloc] init];
 	UIViewController *controller3 = [[BaseController alloc] init];
 	UIViewController *controller4 = [[BaseController alloc] init];
-	controller1.title = NSLocalizedString(@"Products", @"产品介绍");
-	controller2.title = NSLocalizedString(@"Sale", @"购买产品");
+	controller1.title = NSLocalizedString(@"Shop", @"网上商店");
+	controller2.title = NSLocalizedString(@"Introduce", @"产品介绍");
 	controller3.title = NSLocalizedString(@"Media", @"媒体中心");
 	controller4.title = NSLocalizedString(@"SR Center", @"SR管理");
 	controller1.view.backgroundColor = UIColor.lightGrayColor;
