@@ -115,11 +115,13 @@
 }
 
 // Called when the view is about to made visible.
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//	[super viewWillAppear:animated];
-//	[self.navigationController setNavigationBarHidden:YES];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+#ifndef _CustomHeader
+	[self.navigationController setNavigationBarHidden:YES];
+#endif
+}
 
 //
 - (void)viewDidAppear:(BOOL)animated
@@ -157,9 +159,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	
-	//[self.navigationController setNavigationBarHidden:NO animated:YES];
-	
+#ifndef _CustomHeader
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
+#endif
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }

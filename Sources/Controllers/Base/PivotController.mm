@@ -21,6 +21,13 @@
 //{
 //}
 
+- (void)tt
+{
+	NSLog(@"%@", _tabBar);
+	_tabBar.frame = CGRectMake(0,0,1024,44);
+	NSLog(@"%@", _tabBar);
+}
+
 // Do additional setup after loading the view.
 #define kTabButonTag 12312
 - (void)viewDidLoad
@@ -36,10 +43,16 @@
 	//
 	CGFloat tabBarHeight = 44;
 	
-	CGRect frame = CGRectMake(0, (UIUtil::IsOS7() ? 22 : 0), 1024, tabBarHeight);
+	CGRect frame = CGRectMake(0, (
+#ifdef _CustomHeader
+								  UIUtil::IsOS7() ? 22 :
+#endif
+								  0), 1024, tabBarHeight);
 	_tabBar = [[UIView alloc] initWithFrame:frame];
 
+#ifdef _CustomHeader
 	frame.origin.y += tabBarHeight;
+#endif
 	frame.size.height = 768 - 66;
 	_scrollView = [[PredictScrollView alloc] initWithFrame:frame];
 	_scrollView.directionalLockEnabled = YES;
@@ -51,8 +64,13 @@
 
 	//
 	_tabBar.userInteractionEnabled = YES;
+#ifdef _CustomHeader
 	_tabBar.backgroundColor = UIUtil::Color(235, 238, 250);
 	[self.view addSubview:_tabBar];
+#else
+	self.navigationItem.titleView = _tabBar;
+#endif
+	[self performSelector:@selector(tt) withObject:nil afterDelay:2];
 
 	//
 	//UIImage *tabHeaderImage = UIUtil::ImageWithColor(117, 114, 184, 1, CGSizeMake(125, 2));	//UIUtil::Image(@"TabHeader");

@@ -2,7 +2,6 @@
 
 #import "BaseController.h"
 
-
 //
 @interface PivotController : BaseController <PredictScrollViewDelegate>
 {

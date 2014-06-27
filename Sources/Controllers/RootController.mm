@@ -40,6 +40,9 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+#ifndef _CustomHeader
+	self.navigationItem.hidesBackButton = YES;
+#endif
 	//self.view.backgroundColor = UIUtil::Color(239, 239, 244);
 	
 	UIButton *menuButton = [UIButton buttonWithTitle:nil name:@"Menu" width:45];
@@ -66,14 +69,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+#ifdef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
+#else
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
+#endif
 }
 
 // Called after the view was dismissed, covered or otherwise hidden.
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+#ifdef _CustomHeader
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
+#endif
 }
 
 #pragma Event methods

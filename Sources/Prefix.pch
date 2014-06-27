@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #endif
 
+//#define _CustomHeader
+
 // Target device family (enable only one flag)
 //#define _TARGET_IPHONE
 //#define _TARGET_IPAD

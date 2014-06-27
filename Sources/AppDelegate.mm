@@ -21,7 +21,23 @@
 	// TODO: Remove navigation controller
 	UIViewController *controller = [[LoginController alloc] init];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
+#ifdef _CustomHeader
 	navigator.navigationBarHidden = YES;
+#else
+	//navigator.navigationBar.translucent = NO;
+	[navigator.navigationBar setBackgroundImage:UIUtil::ImageWithColor(235, 238, 250) forBarMetrics:UIBarMetricsDefault];
+	if (!UIUtil::IsOS7())
+	{
+		navigator.navigationBar.shadowImage = UIUtil::ImageWithColor(163, 163, 163, 1, CGSizeMake(0.5, 0.5));//UIUtil::Image(@"NaviBar_");
+		navigator.navigationBar.titleTextAttributes = @
+		{
+		UITextAttributeFont: [UIFont systemFontOfSize:18],
+		UITextAttributeTextColor: UIUtil::Color(49, 49, 49),
+		UITextAttributeTextShadowColor: [UIColor clearColor],
+		UITextAttributeTextShadowOffset: [NSValue valueWithCGSize:CGSizeZero],
+		};
+	}
+#endif
 
 	// Show main view
 	_window.rootViewController = navigator;
