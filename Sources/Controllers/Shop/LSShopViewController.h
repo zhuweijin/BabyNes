@@ -13,8 +13,9 @@
 //#import "LSShopCartTableViewController.h"
 #import "CartTable.h"
 //#import "LSCustomerSearchViewController.h"
+#import "NewCustomerController.h"
 
-@interface LSShopViewController : UIViewController//AutoWizardController //
+@interface LSShopViewController :UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 
 
 @end
