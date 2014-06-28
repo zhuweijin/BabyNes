@@ -1,5 +1,6 @@
 
 #import "AppDelegate.h"
+#import "RootController.h"
 #import "LoginController.h"
 
 //
@@ -19,7 +20,7 @@
 	
 	// Create controller
 	// TODO: Remove navigation controller
-	UIViewController *controller = [[LoginController alloc] init];
+	UIViewController *controller = Settings::Get(kPassword) ? [[RootController alloc] init] : [[LoginController alloc] init];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
 #ifdef _CustomHeader
 	navigator.navigationBarHidden = YES;

@@ -87,12 +87,12 @@
 //
 - (void)showSubviews
 {
-	if (Settings::Get(kPassword))
-	{
-		UIViewController *controller = [[RootController alloc] init];
-		[self.navigationController setViewControllers:@[controller] animated:YES];
-		return;
-	}
+//	if (Settings::Get(kPassword))
+//	{
+//		UIViewController *controller = [[RootController alloc] init];
+//		[self.navigationController setViewControllers:@[controller] animated:YES];
+//		return;
+//	}
 	[UIView animateWithDuration:0.5 animations:^()
 	 {
 		 _logoView.center = CGPointMake(self.view.bounds.size.width / 2, _logoView.frame.size.height / 2);
