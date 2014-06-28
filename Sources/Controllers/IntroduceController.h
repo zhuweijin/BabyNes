@@ -1,10 +1,8 @@
 
-#import "BaseController.h"
-#import "CacheDataLoader.h"
+#import "DataController.h"
 
 //
-@interface IntroduceController : BaseController <DataLoaderDelegate>
+@interface IntroduceController : DataController
 {
-	CacheDataLoader *_loader;
 }
 @end

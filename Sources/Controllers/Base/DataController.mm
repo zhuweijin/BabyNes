@@ -1,7 +1,7 @@
 
-#import "IntroduceController.h"
+#import "DataController.h"
 
-@implementation IntroduceController
+@implementation DataController
 
 #pragma mark Generic methods
 
@@ -9,13 +9,8 @@
 - (id)init
 {
 	self = [super init];
-	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
-	_loader.service = @"http://uniquebaby.duapp.com/babynesios/admin/api/product_test.php";
-	_loader.params = @
-	{
-		@"act": @"sync_product",
-		//@"version": @"1000000",
-	};
+	_loader = [[CacheDataLoader alloc] init];
+	_loader.delegate = self;
 	return self;
 }
 
@@ -28,10 +23,11 @@
 //}
 
 // Do additional setup after loading the view.
-//- (void)viewDidLoad
-//{
-//	[super viewDidLoad];
-//}
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	[_loader loadBegin];
+}
 
 // Called after the view controller's view is released and set to nil.
 //- (void)viewDidUnload
@@ -58,5 +54,11 @@
 {
 	_Log(@"%@", loader.dict);
 }
+
+// TODO
+//- (void)loadNotification
+//{
+//	[_loader loadBegin];
+//}
 
 @end
