@@ -254,7 +254,7 @@
 			 @"act": @"promotor_login",
 			 @"username": _usernameField.text,
 			 @"password": _passwordField.text,
-			 @"uuid": @"7A626E32-D9F8-4BEF-859F-852071CE0001",
+			 @"uuid": /*SystemUtil::SN()*/@"7A626E32-D9F8-4BEF-859F-852071CE0001",
 		 };
 		 [DataLoader loadWithService:@"http://uniquebaby.duapp.com/babynesios/admin/api/access_test.php" params:params completion:^(DataLoader *loader)
 		  {

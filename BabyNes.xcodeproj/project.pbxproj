@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24259EB2194AB36B000FF8A9 /* MessageComposer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E25194AB36B000FF8A9 /* MessageComposer.mm */; };
 		24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E27194AB36B000FF8A9 /* MoviePlayer.mm */; };
-		24259EB4194AB36B000FF8A9 /* NullController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E29194AB36B000FF8A9 /* NullController.mm */; };
 		24259EB5194AB36B000FF8A9 /* ShareComposer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E2B194AB36B000FF8A9 /* ShareComposer.mm */; };
 		24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E2D194AB36B000FF8A9 /* WebController.mm */; };
 		24259EBE194AB36B000FF8A9 /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24259E3F194AB36B000FF8A9 /* Main.m */; };
@@ -38,16 +36,12 @@
 		24259ED7194AB36B000FF8A9 /* SettingUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E7B194AB36B000FF8A9 /* SettingUtil.mm */; };
 		24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E7E194AB36B000FF8A9 /* SystemUtil.mm */; };
 		24259ED9194AB36B000FF8A9 /* UIUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E80194AB36B000FF8A9 /* UIUtil.mm */; };
-		24259EDA194AB36B000FF8A9 /* AnimatableLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E83194AB36B000FF8A9 /* AnimatableLabel.mm */; };
 		24259EDB194AB36B000FF8A9 /* CacheImageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E85194AB36B000FF8A9 /* CacheImageView.mm */; };
-		24259EDC194AB36B000FF8A9 /* CopyableLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E87194AB36B000FF8A9 /* CopyableLabel.mm */; };
 		24259EDD194AB36B000FF8A9 /* CurrencyField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E89194AB36B000FF8A9 /* CurrencyField.mm */; };
 		24259EDE194AB36B000FF8A9 /* KBAutoScrollView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E8B194AB36B000FF8A9 /* KBAutoScrollView.mm */; };
 		24259EDF194AB36B000FF8A9 /* KBCustomTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E8D194AB36B000FF8A9 /* KBCustomTextField.mm */; };
-		24259EE0194AB36B000FF8A9 /* NullView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E8F194AB36B000FF8A9 /* NullView.mm */; };
 		24259EE1194AB36B000FF8A9 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 24259E91194AB36B000FF8A9 /* ODRefreshControl.m */; };
 		24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E93194AB36B000FF8A9 /* PredictScrollView.mm */; };
-		24259EE3194AB36B000FF8A9 /* PullView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E95194AB36B000FF8A9 /* PullView.mm */; };
 		24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E97194AB36B000FF8A9 /* SegmentLabel.mm */; };
 		24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E99194AB36B000FF8A9 /* ToastView.mm */; };
 		24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24259E9B194AB36B000FF8A9 /* TouchView.mm */; };
@@ -72,11 +66,8 @@
 		242F94F2195C6E7300371697 /* LSShopMonoTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94B0195C6E7300371697 /* LSShopMonoTableViewCell.mm */; };
 		242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94B2195C6E7300371697 /* LSShopViewController.mm */; };
 		242F94F4195C6E7300371697 /* MonoTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94B4195C6E7300371697 /* MonoTable.mm */; };
-		242F94FE195C6E7300371697 /* AutoPullDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C2195C6E7300371697 /* AutoPullDataLoader.mm */; };
 		242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C4195C6E7300371697 /* CacheDataLoader.mm */; };
-		242F9500195C6E7300371697 /* CityLocater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C6195C6E7300371697 /* CityLocater.mm */; };
 		242F9501195C6E7300371697 /* DataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C8195C6E7300371697 /* DataLoader.mm */; };
-		242F9502195C6E7300371697 /* NearLocater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CA195C6E7300371697 /* NearLocater.mm */; };
 		242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CC195C6E7300371697 /* PullDataLoader.mm */; };
 		242F9504195C6E7300371697 /* EXButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CF195C6E7300371697 /* EXButton.mm */; };
 		242F9505195C6E7300371697 /* InputBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D1195C6E7300371697 /* InputBox.mm */; };
@@ -85,6 +76,7 @@
 		242F9508195C6E7300371697 /* SelectSheet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D7195C6E7300371697 /* SelectSheet.mm */; };
 		242F9509195C6E7300371697 /* WizardCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D9195C6E7300371697 /* WizardCell.mm */; };
 		2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2441003B195EE99700CEF5C9 /* IntroduceController.mm */; };
+		2441003E195EF08100CEF5C9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2441003D195EF08100CEF5C9 /* IOKit.framework */; };
 		246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319318682C2D00903EF4 /* Foundation.framework */; };
 		246A319618682C2D00903EF4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319518682C2D00903EF4 /* CoreGraphics.framework */; };
 		246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319718682C2D00903EF4 /* UIKit.framework */; };
@@ -109,12 +101,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24259E24194AB36B000FF8A9 /* MessageComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComposer.h; sourceTree = "<group>"; };
-		24259E25194AB36B000FF8A9 /* MessageComposer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageComposer.mm; sourceTree = "<group>"; };
 		24259E26194AB36B000FF8A9 /* MoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviePlayer.h; sourceTree = "<group>"; };
 		24259E27194AB36B000FF8A9 /* MoviePlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoviePlayer.mm; sourceTree = "<group>"; };
-		24259E28194AB36B000FF8A9 /* NullController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullController.h; sourceTree = "<group>"; };
-		24259E29194AB36B000FF8A9 /* NullController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NullController.mm; sourceTree = "<group>"; };
 		24259E2A194AB36B000FF8A9 /* ShareComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareComposer.h; sourceTree = "<group>"; };
 		24259E2B194AB36B000FF8A9 /* ShareComposer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShareComposer.mm; sourceTree = "<group>"; };
 		24259E2C194AB36B000FF8A9 /* WebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebController.h; sourceTree = "<group>"; };
@@ -172,26 +160,18 @@
 		24259E7E194AB36B000FF8A9 /* SystemUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SystemUtil.mm; sourceTree = "<group>"; };
 		24259E7F194AB36B000FF8A9 /* UIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtil.h; sourceTree = "<group>"; };
 		24259E80194AB36B000FF8A9 /* UIUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIUtil.mm; sourceTree = "<group>"; };
-		24259E82194AB36B000FF8A9 /* AnimatableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatableLabel.h; sourceTree = "<group>"; };
-		24259E83194AB36B000FF8A9 /* AnimatableLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AnimatableLabel.mm; sourceTree = "<group>"; };
 		24259E84194AB36B000FF8A9 /* CacheImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheImageView.h; sourceTree = "<group>"; };
 		24259E85194AB36B000FF8A9 /* CacheImageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CacheImageView.mm; sourceTree = "<group>"; };
-		24259E86194AB36B000FF8A9 /* CopyableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyableLabel.h; sourceTree = "<group>"; };
-		24259E87194AB36B000FF8A9 /* CopyableLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CopyableLabel.mm; sourceTree = "<group>"; };
 		24259E88194AB36B000FF8A9 /* CurrencyField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyField.h; sourceTree = "<group>"; };
 		24259E89194AB36B000FF8A9 /* CurrencyField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CurrencyField.mm; sourceTree = "<group>"; };
 		24259E8A194AB36B000FF8A9 /* KBAutoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBAutoScrollView.h; sourceTree = "<group>"; };
 		24259E8B194AB36B000FF8A9 /* KBAutoScrollView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KBAutoScrollView.mm; sourceTree = "<group>"; };
 		24259E8C194AB36B000FF8A9 /* KBCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBCustomTextField.h; sourceTree = "<group>"; };
 		24259E8D194AB36B000FF8A9 /* KBCustomTextField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KBCustomTextField.mm; sourceTree = "<group>"; };
-		24259E8E194AB36B000FF8A9 /* NullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullView.h; sourceTree = "<group>"; };
-		24259E8F194AB36B000FF8A9 /* NullView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NullView.mm; sourceTree = "<group>"; };
 		24259E90194AB36B000FF8A9 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		24259E91194AB36B000FF8A9 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		24259E92194AB36B000FF8A9 /* PredictScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredictScrollView.h; sourceTree = "<group>"; };
 		24259E93194AB36B000FF8A9 /* PredictScrollView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PredictScrollView.mm; sourceTree = "<group>"; };
-		24259E94194AB36B000FF8A9 /* PullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullView.h; sourceTree = "<group>"; };
-		24259E95194AB36B000FF8A9 /* PullView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullView.mm; sourceTree = "<group>"; };
 		24259E96194AB36B000FF8A9 /* SegmentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentLabel.h; sourceTree = "<group>"; };
 		24259E97194AB36B000FF8A9 /* SegmentLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SegmentLabel.mm; sourceTree = "<group>"; };
 		24259E98194AB36B000FF8A9 /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
@@ -242,16 +222,10 @@
 		242F94B2195C6E7300371697 /* LSShopViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSShopViewController.mm; sourceTree = "<group>"; };
 		242F94B3195C6E7300371697 /* MonoTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonoTable.h; sourceTree = "<group>"; };
 		242F94B4195C6E7300371697 /* MonoTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonoTable.mm; sourceTree = "<group>"; };
-		242F94C1195C6E7300371697 /* AutoPullDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPullDataLoader.h; sourceTree = "<group>"; };
-		242F94C2195C6E7300371697 /* AutoPullDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AutoPullDataLoader.mm; sourceTree = "<group>"; };
 		242F94C3195C6E7300371697 /* CacheDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheDataLoader.h; sourceTree = "<group>"; };
 		242F94C4195C6E7300371697 /* CacheDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CacheDataLoader.mm; sourceTree = "<group>"; };
-		242F94C5195C6E7300371697 /* CityLocater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityLocater.h; sourceTree = "<group>"; };
-		242F94C6195C6E7300371697 /* CityLocater.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CityLocater.mm; sourceTree = "<group>"; };
 		242F94C7195C6E7300371697 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLoader.h; sourceTree = "<group>"; };
 		242F94C8195C6E7300371697 /* DataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataLoader.mm; sourceTree = "<group>"; };
-		242F94C9195C6E7300371697 /* NearLocater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearLocater.h; sourceTree = "<group>"; };
-		242F94CA195C6E7300371697 /* NearLocater.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NearLocater.mm; sourceTree = "<group>"; };
 		242F94CB195C6E7300371697 /* PullDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullDataLoader.h; sourceTree = "<group>"; };
 		242F94CC195C6E7300371697 /* PullDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullDataLoader.mm; sourceTree = "<group>"; };
 		242F94CE195C6E7300371697 /* EXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXButton.h; sourceTree = "<group>"; };
@@ -268,6 +242,7 @@
 		242F94D9195C6E7300371697 /* WizardCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizardCell.mm; sourceTree = "<group>"; };
 		2441003A195EE99700CEF5C9 /* IntroduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceController.h; sourceTree = "<group>"; };
 		2441003B195EE99700CEF5C9 /* IntroduceController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceController.mm; sourceTree = "<group>"; };
+		2441003D195EF08100CEF5C9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		246A319018682C2D00903EF4 /* BabyNes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyNes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246A319318682C2D00903EF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		246A319518682C2D00903EF4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -309,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2441003E195EF08100CEF5C9 /* IOKit.framework in Frameworks */,
 				246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */,
 				246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */,
 				246A319618682C2D00903EF4 /* CoreGraphics.framework in Frameworks */,
@@ -345,12 +321,8 @@
 		24259E23194AB36B000FF8A9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				24259E24194AB36B000FF8A9 /* MessageComposer.h */,
-				24259E25194AB36B000FF8A9 /* MessageComposer.mm */,
 				24259E26194AB36B000FF8A9 /* MoviePlayer.h */,
 				24259E27194AB36B000FF8A9 /* MoviePlayer.mm */,
-				24259E28194AB36B000FF8A9 /* NullController.h */,
-				24259E29194AB36B000FF8A9 /* NullController.mm */,
 				24259E2A194AB36B000FF8A9 /* ShareComposer.h */,
 				24259E2B194AB36B000FF8A9 /* ShareComposer.mm */,
 				24259E2C194AB36B000FF8A9 /* WebController.h */,
@@ -440,26 +412,18 @@
 		24259E81194AB36B000FF8A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				24259E82194AB36B000FF8A9 /* AnimatableLabel.h */,
-				24259E83194AB36B000FF8A9 /* AnimatableLabel.mm */,
 				24259E84194AB36B000FF8A9 /* CacheImageView.h */,
 				24259E85194AB36B000FF8A9 /* CacheImageView.mm */,
-				24259E86194AB36B000FF8A9 /* CopyableLabel.h */,
-				24259E87194AB36B000FF8A9 /* CopyableLabel.mm */,
 				24259E88194AB36B000FF8A9 /* CurrencyField.h */,
 				24259E89194AB36B000FF8A9 /* CurrencyField.mm */,
 				24259E8A194AB36B000FF8A9 /* KBAutoScrollView.h */,
 				24259E8B194AB36B000FF8A9 /* KBAutoScrollView.mm */,
 				24259E8C194AB36B000FF8A9 /* KBCustomTextField.h */,
 				24259E8D194AB36B000FF8A9 /* KBCustomTextField.mm */,
-				24259E8E194AB36B000FF8A9 /* NullView.h */,
-				24259E8F194AB36B000FF8A9 /* NullView.mm */,
 				24259E90194AB36B000FF8A9 /* ODRefreshControl.h */,
 				24259E91194AB36B000FF8A9 /* ODRefreshControl.m */,
 				24259E92194AB36B000FF8A9 /* PredictScrollView.h */,
 				24259E93194AB36B000FF8A9 /* PredictScrollView.mm */,
-				24259E94194AB36B000FF8A9 /* PullView.h */,
-				24259E95194AB36B000FF8A9 /* PullView.mm */,
 				24259E96194AB36B000FF8A9 /* SegmentLabel.h */,
 				24259E97194AB36B000FF8A9 /* SegmentLabel.mm */,
 				24259E98194AB36B000FF8A9 /* ToastView.h */,
@@ -569,16 +533,10 @@
 		242F94C0195C6E7300371697 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				242F94C1195C6E7300371697 /* AutoPullDataLoader.h */,
-				242F94C2195C6E7300371697 /* AutoPullDataLoader.mm */,
 				242F94C3195C6E7300371697 /* CacheDataLoader.h */,
 				242F94C4195C6E7300371697 /* CacheDataLoader.mm */,
-				242F94C5195C6E7300371697 /* CityLocater.h */,
-				242F94C6195C6E7300371697 /* CityLocater.mm */,
 				242F94C7195C6E7300371697 /* DataLoader.h */,
 				242F94C8195C6E7300371697 /* DataLoader.mm */,
-				242F94C9195C6E7300371697 /* NearLocater.h */,
-				242F94CA195C6E7300371697 /* NearLocater.mm */,
 				242F94CB195C6E7300371697 /* PullDataLoader.h */,
 				242F94CC195C6E7300371697 /* PullDataLoader.mm */,
 			);
@@ -627,6 +585,7 @@
 		246A319218682C2D00903EF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2441003D195EF08100CEF5C9 /* IOKit.framework */,
 				246A319318682C2D00903EF4 /* Foundation.framework */,
 				246A319718682C2D00903EF4 /* UIKit.framework */,
 				246A319518682C2D00903EF4 /* CoreGraphics.framework */,
@@ -815,8 +774,6 @@
 				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
-				24259EB2194AB36B000FF8A9 /* MessageComposer.mm in Sources */,
-				242F94FE195C6E7300371697 /* AutoPullDataLoader.mm in Sources */,
 				24259ED0194AB36B000FF8A9 /* UMFeedbackViewController.mm in Sources */,
 				24259ECA194AB36B000FF8A9 /* UMContactViewController.m in Sources */,
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,
@@ -832,32 +789,25 @@
 				24259EC5194AB36B000FF8A9 /* MWZoomingScrollView.m in Sources */,
 				242F94F4195C6E7300371697 /* MonoTable.mm in Sources */,
 				24259ECC194AB36B000FF8A9 /* UMEGORefreshTableHeaderView.m in Sources */,
-				24259EE3194AB36B000FF8A9 /* PullView.mm in Sources */,
 				24E88BF2195DA645007478B3 /* LSComboBox.mm in Sources */,
 				242F94E3195C6E7300371697 /* RootController.mm in Sources */,
 				242F9501195C6E7300371697 /* DataLoader.mm in Sources */,
 				24259ED9194AB36B000FF8A9 /* UIUtil.mm in Sources */,
-				24259EE0194AB36B000FF8A9 /* NullView.mm in Sources */,
-				242F9502195C6E7300371697 /* NearLocater.mm in Sources */,
 				24259EED194AB36B000FF8A9 /* ioapi.c in Sources */,
 				24259EB5194AB36B000FF8A9 /* ShareComposer.mm in Sources */,
 				24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */,
 				24259EBE194AB36B000FF8A9 /* Main.m in Sources */,
 				24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
-				24259EDC194AB36B000FF8A9 /* CopyableLabel.mm in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
 				24259F31194AB539000FF8A9 /* AppDelegate.mm in Sources */,
-				24259EDA194AB36B000FF8A9 /* AnimatableLabel.mm in Sources */,
 				242F9504195C6E7300371697 /* EXButton.mm in Sources */,
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
 				24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
-				242F9500195C6E7300371697 /* CityLocater.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
-				24259EB4194AB36B000FF8A9 /* NullController.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
 				242F94E2195C6E7300371697 /* WizardController.mm in Sources */,

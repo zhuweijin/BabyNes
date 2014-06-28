@@ -35,7 +35,7 @@
 #import "SettingUtil.h"
 #import "StatCenter.h"
 #import "NetworkUtil.h"
-//#import "SystemUtil.h"
+#import "SystemUtil.h"
 #endif
 
 // View
