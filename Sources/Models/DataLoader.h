@@ -12,7 +12,7 @@
 #define kAuthConsumerSecret		@"XXX"
 
 #define kUsername				@"Username"
-#define kPassword				@"Password"
+#define kAccessToken				@"Password"
 #define kLogoutNotification		@"LogoutNotification"
 
 // Data error

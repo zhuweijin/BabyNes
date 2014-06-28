@@ -21,13 +21,6 @@
 //{
 //}
 
-- (void)tt
-{
-	NSLog(@"%@", _tabBar);
-	_tabBar.frame = CGRectMake(0,0,1024,44);
-	NSLog(@"%@", _tabBar);
-}
-
 // Do additional setup after loading the view.
 #define kTabButonTag 12312
 - (void)viewDidLoad
@@ -49,7 +42,7 @@
 #endif
 								  0), 1024, tabBarHeight);
 	_tabBar = [[UIView alloc] initWithFrame:frame];
-
+	
 #ifdef _CustomHeader
 	frame.origin.y += tabBarHeight;
 #endif
@@ -61,7 +54,7 @@
 	_scrollView.delegate2 = self;
 	_scrollView.backgroundColor = UIUtil::Color(241, 242, 245);
 	[self.view addSubview:_scrollView];
-
+	
 	//
 	_tabBar.userInteractionEnabled = YES;
 #ifdef _CustomHeader
@@ -70,14 +63,13 @@
 #else
 	self.navigationItem.titleView = _tabBar;
 #endif
-	[self performSelector:@selector(tt) withObject:nil afterDelay:2];
-
+	
 	//
 	//UIImage *tabHeaderImage = UIUtil::ImageWithColor(117, 114, 184, 1, CGSizeMake(125, 2));	//UIUtil::Image(@"TabHeader");
 	//frame = CGRectMake((1024 - tabHeaderImage.size.width * _viewControllers.count) / 2, tabBarHeight - tabHeaderImage.size.height - 6, tabHeaderImage.size.width, tabHeaderImage.size.height);
 	//_tabHeader = [[UIImageView alloc] initWithFrame:frame];
 	//_tabHeader.image = tabHeaderImage;//[tabHeaderImage stretchableImageWithLeftCapWidth:(tabHeaderImage.size.width / 2) topCapHeight:(tabHeaderImage.size.height / 2)];
-
+	
 	//
 	frame.size.width = 126;
 	frame.origin.x = (1024 - frame.size.width * _viewControllers.count) / 2;
@@ -95,9 +87,9 @@
 		button.tag = kTabButonTag + i;
 		[button addTarget:self action:@selector(onTabButton:) forControlEvents:UIControlEventTouchUpInside];
 		[_tabBar addSubview:button];
-	
+		
 		frame.origin.x += frame.size.width;
-
+		
 		//[self onTabButton:button];
 	}
 	
@@ -111,13 +103,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-
+	
 	if (_scrollView.numberOfPages == 0)
 	{
 		_scrollView.numberOfPages = _viewControllers.count;
 		_scrollView.currentPage = _selectedIndex;
 	}
-
+	
 	[[_viewControllers objectAtIndex:_selectedIndex] viewWillAppear:animated];
 }
 
@@ -139,7 +131,7 @@
 {
 	[super didReceiveMemoryWarning];
 	[_viewControllers makeObjectsPerformSelector:@selector(didReceiveMemoryWarning)];
-
+	
 	[_scrollView freePages:YES];
 }
 
@@ -161,18 +153,18 @@
 	{
 		UIButton *oldButton = (UIButton *)[_tabBar viewWithTag:kTabButonTag + _selectedIndex];
 		[oldButton setTitleColor:UIUtil::Color(60,60,60) forState:UIControlStateNormal];
-
+		
 		UIViewController *controller = [_viewControllers objectAtIndex:_selectedIndex];
 		[controller viewWillDisappear:YES];
 		[controller viewDidDisappear:YES];
-
+		
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:0.4];
 	}
 	
 	UIButton *curButton = (UIButton *)[_tabBar viewWithTag:kTabButonTag + index];
 	[curButton setTitleColor:UIUtil::Color(117, 114, 184) forState:UIControlStateNormal];
-
+	
 	//
 	CGRect frame, buttonFrame = curButton.frame;
 	frame.size = [curButton.currentTitle sizeWithFont:curButton.titleLabel.font];
@@ -185,7 +177,7 @@
 	{
 		[UIView commitAnimations];
 	}
-
+	
 	//
 	_selectedIndex = index;
 	UIViewController *controller = [_viewControllers objectAtIndex:_selectedIndex];

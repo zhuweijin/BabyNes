@@ -87,7 +87,7 @@
 //
 - (void)showSubviews
 {
-//	if (Settings::Get(kPassword))
+//	if (Settings::Get(kAccessToken))
 //	{
 //		UIViewController *controller = [[RootController alloc] init];
 //		[self.navigationController setViewControllers:@[controller] animated:YES];
@@ -260,7 +260,7 @@
 		  {
 			  if (loader.error != DataLoaderNoError)
 			  {
-				  Settings::Save(kPassword);
+				  Settings::Save(kAccessToken);
 				  [UIView animateWithDuration:0.3 animations:^()
 				   {
 					   _loginPane.center = CGPointMake(self.view.bounds.size.width / 2, _loginPane.center.y);
@@ -279,7 +279,7 @@
 			  DataLoader.accessToken = loader.dict[@"token"];
 			  if (_rememberButton.selected)
 			  {
-				  Settings::Save(kPassword, DataLoader.accessToken);
+				  Settings::Save(kAccessToken, DataLoader.accessToken);
 			  }
 			  UIViewController *controller = [[RootController alloc] init];
 			  [self.navigationController setViewControllers:@[controller] animated:YES];

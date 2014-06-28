@@ -28,7 +28,7 @@
 //
 - (BOOL)needLogin
 {
-	return _needAuth && (!Settings::Get(kUsername) || !Settings::Get(kPassword));
+	return _needAuth && (!Settings::Get(kUsername) || !Settings::Get(kAccessToken));
 }
 
 //

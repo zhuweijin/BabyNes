@@ -22,7 +22,7 @@
 	controller4.title = NSLocalizedString(@"SR Center", @"SR管理");
 	controller3.view.backgroundColor = UIColor.blueColor;
 	controller4.view.backgroundColor = UIColor.yellowColor;
-
+	
 	self.viewControllers = @[controller1, controller2, controller3, controller4];
 	return self;
 }
@@ -51,7 +51,7 @@
 	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
 	logoView.frame = CGRectMake(45, 0, logoView.frame.size.width, logoView.frame.size.height);
 	[self.tabBar addSubview:logoView];
-
+	
 	UIButton *exitButton = [UIButton minorButtonWithTitle:NSLocalizedString(@"Exit", @"退出") width:85];
 	exitButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 85/2, self.tabBar.frame.size.height / 2);
 	[exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -96,7 +96,7 @@
 //
 - (void)exitButtonClicked:(UIButton *)sender
 {
-	Settings::Save(kPassword);
+	Settings::Save(kAccessToken);
 	UIViewController *controller = [[LoginController alloc] init];
 	[self.navigationController setViewControllers:@[controller] animated:NO];
 }

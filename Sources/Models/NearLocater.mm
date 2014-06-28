@@ -68,7 +68,7 @@
 	
 #define _UpdateLocation
 #ifdef _UpdateLocation
-	if (Settings::Get(kPassword))
+	if (Settings::Get(kAccessToken))
 	{
 		[DataLoader loadWithService:@"/api/user/updateUserPosition.json"
 							 params:@{

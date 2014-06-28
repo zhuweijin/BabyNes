@@ -16,8 +16,7 @@
 	_loader.params = @
 	{
 		@"act": @"sync_product",
-		@"token": @"6ddb918df8d95a93988ba9e4b02f3646053a4ec08",
-		@"version": @"1000000",
+		//@"version": @"1000000",
 	};
 	return self;
 }
@@ -60,7 +59,7 @@
 //
 - (void)loadEnded:(DataLoader *)loader
 {
-	
+	_Log(@"%@", loader.dict);
 }
 
 // TODO
