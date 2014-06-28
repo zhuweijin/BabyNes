@@ -50,6 +50,7 @@
 		CGRect frame = {(_loginPane.frame.size.width - 273) / 2, 96, 273, 38};
 		{
 			_usernameField = [[InputBox alloc] initWithFrame:frame iconName:@"UserIcon"];
+			_usernameField.text = Settings::Get(kUsername);
 			[_usernameField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
 			[_loginPane addSubview:_usernameField];
 		}
@@ -68,7 +69,7 @@
 		}
 		{
 			_doneButton = [UIButton buttonWithTitle:NSLocalizedString(@"Login", @"登录") width:85];
-			//TODO:_doneButton.enabled = NO;
+			_doneButton.enabled = NO;
 			_doneButton.center = CGPointMake(CGRectGetMaxX(_passwordField.frame) - 85/2, _rememberButton.center.y);
 			[_doneButton addTarget:self action:@selector(doneButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 			[_loginPane addSubview:_doneButton];
@@ -86,10 +87,16 @@
 //
 - (void)showSubviews
 {
+	if (Settings::Get(kPassword))
+	{
+		UIViewController *controller = [[RootController alloc] init];
+		[self.navigationController setViewControllers:@[controller] animated:YES];
+		return;
+	}
 	[UIView animateWithDuration:0.5 animations:^()
 	 {
 		 _logoView.center = CGPointMake(self.view.bounds.size.width / 2, _logoView.frame.size.height / 2);
-		 _loginPane.alpha = 1;
+		  _loginPane.alpha = 1;
 		 _footView.alpha = 1;
 	 } completion:^(BOOL finished)
 	 {
@@ -136,7 +143,7 @@
 											 selector:@selector(keyboardWillHide:)
 												 name:UIKeyboardWillHideNotification
 											   object:nil];
-//#define _HAS_PENDING_OPERATION
+	//#define _HAS_PENDING_OPERATION
 #ifdef _HAS_PENDING_OPERATION
 	[self.view toastWithLoading].center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height * 3 / 4);
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^()
@@ -237,31 +244,48 @@
 - (void)doneAction
 {
 	Settings::Set(kUsername, _usernameField.text);
-	Settings::EncryptSet(kPassword, _passwordField.text);
-	
-	//_lastButton.enabled = NO;
-	//	[DataLoader loadWithService:nil params:nil completion:^(DataLoader *loader)
-	//	 {
-	//		 if (loader.error != DataLoaderNoError)
-	//		 {
-	//			 Settings::Save(kPassword);
-	//			 if (loader.error == DataLoaderPasswordError)
-	//			 {
-	//				 _passwordField.text = nil;
-	//				 [self updateDoneButton];
-	//				 [_passwordField becomeFirstResponder];
-	//			 }
-	//			 else
-	//			 {
-	//				 _lastButton.enabled = YES;
-	//			 }
-	//			 return;
-	//		 }
-	
-	Settings::Save();
-	UIViewController *controller = [[RootController alloc] init];
-	[self.navigationController setViewControllers:@[controller] animated:YES];
-	//	 }];
+	[UIView animateWithDuration:0.3 animations:^()
+	 {
+		 _loginPane.center = CGPointMake(-_loginPane.frame.size.width / 2, _loginPane.center.y);
+	 } completion:^(BOOL finished)
+	 {
+		 NSDictionary *params = @
+		 {
+			 @"act": @"promotor_login",
+			 @"username": _usernameField.text,
+			 @"password": _passwordField.text,
+			 @"uuid": @"7A626E32-D9F8-4BEF-859F-852071CE0001",
+		 };
+		 [DataLoader loadWithService:@"http://uniquebaby.duapp.com/babynesios/admin/api/access_test.php" params:params completion:^(DataLoader *loader)
+		  {
+			  if (loader.error != DataLoaderNoError)
+			  {
+				  Settings::Save(kPassword);
+				  [UIView animateWithDuration:0.3 animations:^()
+				   {
+					   _loginPane.center = CGPointMake(self.view.bounds.size.width / 2, _loginPane.center.y);
+				   } completion:^(BOOL finished)
+				   {
+					   if (loader.error == DataLoaderPasswordError)
+					   {
+						   _passwordField.text = nil;
+						   [self updateDoneButton];
+						   [_passwordField becomeFirstResponder];
+					   }
+				   }];
+				  return;
+			  }
+			  
+			  DataLoader.accessToken = loader.dict[@"token"];
+			  if (_rememberButton.selected)
+			  {
+				  Settings::Save(kPassword, DataLoader.accessToken);
+			  }
+			  UIViewController *controller = [[RootController alloc] init];
+			  [self.navigationController setViewControllers:@[controller] animated:YES];
+		  }];
+		 
+	 }];
 }
 
 @end

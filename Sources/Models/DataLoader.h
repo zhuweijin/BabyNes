@@ -13,7 +13,7 @@
 
 #define kUsername				@"Username"
 #define kPassword				@"Password"
-#define kLogoutNotification			@"LogoutNotification"
+#define kLogoutNotification		@"LogoutNotification"
 
 // Data error
 typedef enum
@@ -22,7 +22,6 @@ typedef enum
 	DataLoaderNoChange,
 	DataLoaderDataError,
 	DataLoaderNetworkError,
-	DataLoaderLocationError,
 	DataLoaderNoError = 99999,
 	DataLoaderNotLogin = 10002,
 	DataLoaderPasswordError = 40006,
@@ -78,8 +77,8 @@ DataLoaderError;
 + (void)login;		// 注销并显示登录界面
 + (void)logout;		// 注销
 + (BOOL)isLogon;	// 是否已登录
-+ (int)self_id;
-+ (NSString *)access_token;
++ (NSString *)accessToken;
++ (void)setAccessToken:(NSString *)accessToken;
 
 //
 - (BOOL)loadBegin;		// 刷新

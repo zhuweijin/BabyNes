@@ -110,31 +110,30 @@ static ErrorAlertView *_alertView = nil;
 
 #pragma mark Auth methods
 
-static int _self_id = nil;
-static NSString *_access_token = nil;
+static NSString *_accessToken = nil;
+
 //
-+ (int)self_id
++ (void)setAccessToken:(NSString *)accessToken
 {
-	return _self_id;
+	_accessToken = accessToken;
 }
 
 //
-+ (NSString *)access_token
++ (NSString *)accessToken
 {
-	return _access_token;
+	return _accessToken;
 }
 
 //
 + (BOOL)isLogon
 {
-	return _access_token != nil;
+	return _accessToken != nil;
 }
 
 //
 + (void)logout
 {
-	_self_id = nil;
-	_access_token = nil;
+	_accessToken = nil;
 	Settings::Save(kPassword);
 	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];
 }
@@ -189,13 +188,12 @@ static NSString *_access_token = nil;
 {
 	const static NSString *c_strings[] =
 	{
-		@"尚未初始化",
-		@"数据无变化",
-		@"数据服务错误",
-		@"网络连接不给力啊",
-		@"定位不成功\n请检查 系统设置->隐私->位置 中已经开启定位功能",
+		NSLocalizedString(@"Not initialized", @"尚未初始化"),
+		NSLocalizedString(@"No change", @"数据无变化"),
+		NSLocalizedString(@"Data error", @"数据服务错误"),
+		NSLocalizedString(@"Network error", @"网络连接不给力啊"),
 	};
-	return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:@"未知错误，代码：%d", _error];
+	return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
 }
 
 #pragma mark Data loading methods
@@ -248,42 +246,6 @@ static NSString *_access_token = nil;
 //
 - (id)loadDoing
 {
-	// 登录
-	if (_access_token == nil || _service == nil)
-	{
-		NSString *username = Settings::Get(kUsername);
-		NSString *password = Settings::DecryptGet(kPassword);
-		if (username && password)
-		{
-			NSDictionary *dict = [DataLoader login:username password:password];
-			if ([dict isKindOfClass:[NSDictionary class]])
-			{
-				_error = (DataLoaderError)[dict[@"code"] intValue];
-				if (_error == DataLoaderNoError)
-				{
-					_self_id = [dict[@"user"][@"userId"] intValue];
-					_access_token = dict[@"access_token"];
-					dict = [dict objectForKey:@"user"];
-					if (_service == nil) return dict;
-				}
-				else
-				{
-					return dict;
-				}
-			}
-			else
-			{
-				_error = DataLoaderNetworkError;
-				return dict;
-			}
-		}
-		else if (_service == nil)
-		{
-			_error = DataLoaderNoData;
-			return nil;
-		}
-	}
-	
 	// 装载数据并解析
 	NSDictionary *dict = nil;
 	NSData *data = [self loadData];
@@ -292,10 +254,10 @@ static NSString *_access_token = nil;
 		dict = [self parseData:data];
 		if ([dict isKindOfClass:[NSDictionary class]])
 		{
-			_error = (DataLoaderError)[dict[@"code"] intValue];
+			_error = [dict[@"success"] boolValue] ? DataLoaderNoError : DataLoaderDataError;
 			if (_error == DataLoaderNoError)
 			{
-				dict = [dict objectForKey:@"data"];
+				dict = [dict objectForKey:@"result"];
 				if (_checkChange && [_dict isEqualToDictionary:dict])
 				{
 					_error = DataLoaderNoChange;
@@ -318,8 +280,7 @@ static NSString *_access_token = nil;
 //
 - (NSData *)loadData
 {
-	NSString *access_token = _access_token ? [kAuthConsumerKey stringByAppendingString:_access_token] : kAuthConsumerKey;
-	NSString *url = [NSString stringWithFormat:@"%@?access_token=%@", kServiceUrl(_service), access_token];
+	NSString *url = _service;
 	return [_delegate respondsToSelector:@selector(loadData: url:)] ? [_delegate loadData:self url:url] : [self loadData:url];
 }
 

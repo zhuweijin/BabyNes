@@ -97,6 +97,7 @@
 //
 - (void)exitButtonClicked:(UIButton *)sender
 {
+	Settings::Save(kPassword);
 	UIViewController *controller = [[LoginController alloc] init];
 	[self.navigationController setViewControllers:@[controller] animated:NO];
 }
