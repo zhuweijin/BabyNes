@@ -20,7 +20,7 @@
 //
 - (NSDate *)date
 {
-	return self.date ? self.date : Settings::Get(self.stampKey);
+	return super.date ? super.date : Settings::Get(self.stampKey);
 }
 
 //

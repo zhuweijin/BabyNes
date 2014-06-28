@@ -1,5 +1,5 @@
 
-#define _CacheDataLoaderWithPullSupport
+//#define _CacheDataLoaderWithPullSupport
 #ifdef _CacheDataLoaderWithPullSupport
 #import "PullDataLoader.h"
 #define _CacheDataParentLoader PullDataLoader

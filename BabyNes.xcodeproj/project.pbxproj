@@ -84,6 +84,7 @@
 		242F9507195C6E7300371697 /* SelectPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D5195C6E7300371697 /* SelectPicker.mm */; };
 		242F9508195C6E7300371697 /* SelectSheet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D7195C6E7300371697 /* SelectSheet.mm */; };
 		242F9509195C6E7300371697 /* WizardCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D9195C6E7300371697 /* WizardCell.mm */; };
+		2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2441003B195EE99700CEF5C9 /* IntroduceController.mm */; };
 		246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319318682C2D00903EF4 /* Foundation.framework */; };
 		246A319618682C2D00903EF4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319518682C2D00903EF4 /* CoreGraphics.framework */; };
 		246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319718682C2D00903EF4 /* UIKit.framework */; };
@@ -265,6 +266,8 @@
 		242F94D7195C6E7300371697 /* SelectSheet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SelectSheet.mm; sourceTree = "<group>"; };
 		242F94D8195C6E7300371697 /* WizardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardCell.h; sourceTree = "<group>"; };
 		242F94D9195C6E7300371697 /* WizardCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizardCell.mm; sourceTree = "<group>"; };
+		2441003A195EE99700CEF5C9 /* IntroduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceController.h; sourceTree = "<group>"; };
+		2441003B195EE99700CEF5C9 /* IntroduceController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceController.mm; sourceTree = "<group>"; };
 		246A319018682C2D00903EF4 /* BabyNes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyNes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246A319318682C2D00903EF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		246A319518682C2D00903EF4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -506,6 +509,8 @@
 				24E88BED195DA645007478B3 /* NewCustomer */,
 				242F949A195C6E7300371697 /* RootController.h */,
 				242F949B195C6E7300371697 /* RootController.mm */,
+				2441003A195EE99700CEF5C9 /* IntroduceController.h */,
+				2441003B195EE99700CEF5C9 /* IntroduceController.mm */,
 				242F949C195C6E7300371697 /* SettingController.h */,
 				242F949D195C6E7300371697 /* SettingController.mm */,
 			);
@@ -805,6 +810,7 @@
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
 				242F9508195C6E7300371697 /* SelectSheet.mm in Sources */,
+				2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */,
 				24259EC6194AB36B000FF8A9 /* SDWebImageDecoder.m in Sources */,
 				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
