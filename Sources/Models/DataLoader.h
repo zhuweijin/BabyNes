@@ -1,12 +1,12 @@
 
 #define TEST
 #ifdef TEST
-#define kServerUrl				@"http://api.apple.com"
+#define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #else
-#define kServerUrl				@"http://test.apple.com"
+#define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #endif
 
-#define kServiceUrl(s)			[kServerUrl stringByAppendingString:s]
+#define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
 
 #define kAuthConsumerKey		@"XXX"
 #define kAuthConsumerSecret		@"XXX"
@@ -22,9 +22,10 @@ typedef enum
 	DataLoaderNoChange,
 	DataLoaderDataError,
 	DataLoaderNetworkError,
-	DataLoaderNoError = 99999,
-	DataLoaderNotLogin = 10002,
-	DataLoaderPasswordError = 40006,
+	DataLoaderNoError = 200,
+	DataLoaderDeviceError = 403,
+	DataLoaderUserError = 404,
+	DataLoaderPassError = 405,
 }
 DataLoaderError;
 

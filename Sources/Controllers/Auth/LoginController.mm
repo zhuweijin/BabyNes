@@ -251,12 +251,11 @@
 	 {
 		 NSDictionary *params = @
 		 {
-			 @"act": @"promotor_login",
 			 @"username": _usernameField.text,
 			 @"password": _passwordField.text,
 			 @"uuid": /*SystemUtil::SN()*/@"7A626E32-D9F8-4BEF-859F-852071CE0001",
 		 };
-		 [DataLoader loadWithService:@"http://uniquebaby.duapp.com/babynesios/admin/api/access_test.php" params:params completion:^(DataLoader *loader)
+		 [DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
 		  {
 			  if (loader.error != DataLoaderNoError)
 			  {
@@ -266,7 +265,7 @@
 					   _loginPane.center = CGPointMake(self.view.bounds.size.width / 2, _loginPane.center.y);
 				   } completion:^(BOOL finished)
 				   {
-					   if (loader.error == DataLoaderPasswordError)
+					   if (loader.error == DataLoaderPassError)
 					   {
 						   _passwordField.text = nil;
 						   [self updateDoneButton];

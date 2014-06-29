@@ -254,10 +254,10 @@ static NSString *_accessToken = nil;
 		dict = [self parseData:data];
 		if ([dict isKindOfClass:[NSDictionary class]])
 		{
-			_error = [dict[@"success"] boolValue] ? DataLoaderNoError : DataLoaderDataError;
+			_error = (DataLoaderError)[dict[@"CODE"] intValue];
 			if (_error == DataLoaderNoError)
 			{
-				dict = [dict objectForKey:@"result"];
+				dict = [dict objectForKey:@"DATA"];
 				if (_checkChange && [_dict isEqualToDictionary:dict])
 				{
 					_error = DataLoaderNoChange;
@@ -280,7 +280,7 @@ static NSString *_accessToken = nil;
 //
 - (NSData *)loadData
 {
-	NSString *url = _service;
+	NSString *url = kServiceUrl(_service);
 	return [_delegate respondsToSelector:@selector(loadData: url:)] ? [_delegate loadData:self url:url] : [self loadData:url];
 }
 
@@ -324,11 +324,11 @@ static NSString *_accessToken = nil;
 	{
 		self.dict = dict;
 	}
-	else if (_error == DataLoaderNotLogin/*NEXT:后置判断往前移动，弹出登录回来后继续Loading，同时增加needAuth前置处理*/)
+	else if (_error == DataLoaderUserError)
 	{
 		[DataLoader login];
 	}
-	else if (_error == DataLoaderPasswordError)
+	else if (_error == DataLoaderPassError)
 	{
 		[DataLoader logout];
 	}
@@ -373,7 +373,7 @@ static NSString *_accessToken = nil;
 		// 处理错误
 		StatEvent(@"error", (NSString *)[NSString stringWithFormat:@"%d", _error]);
 		
-		NSString *error = [dict objectForKey:@"info"];
+		NSString *error = [dict objectForKey:@"INFO"];
 		if (error.length == 0) error = self.errorString;
 		
 		[self loadError:error];
@@ -390,7 +390,7 @@ static NSString *_accessToken = nil;
 			return;
 		}
 	}
-	if (_error == DataLoaderNotLogin)
+	if (_error == DataLoaderUserError || _error == DataLoaderPassError)
 	{
 		[ToastView toastWithError:error];
 	}

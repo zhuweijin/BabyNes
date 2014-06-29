@@ -10,12 +10,7 @@
 {
 	self = [super init];
 	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
-	_loader.service = @"http://uniquebaby.duapp.com/babynesios/admin/api/product_test.php";
-	_loader.params = @
-	{
-		@"act": @"sync_product",
-		//@"version": @"1000000",
-	};
+	_loader.service = @"pdt_classify";
 	return self;
 }
 

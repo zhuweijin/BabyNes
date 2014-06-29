@@ -141,7 +141,7 @@
 	//sscrollView.pullView.stampLabel.text = self.stamp;
 	[_refreshControl performSelector:@selector(endRefreshing) withObject:nil afterDelay:0.5];
 	
-	if (self.error == DataLoaderNotLogin)
+	if (self.error == DataLoaderUserError || self.error == DataLoaderPassError)
 	{
 		_needAuth = YES;
 		_disableShowLoginOnce = YES;
