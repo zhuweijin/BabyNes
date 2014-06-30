@@ -1,6 +1,3 @@
-/* %.0lfkm */
-"%.0lfkm" = "%.0lfkm";
-
 /* %d Days Before */
 "%d Days Before" = "%d Days Before";
 
@@ -18,9 +15,6 @@
 
 /* %d Years Before */
 "%d Years Before" = "%d Years Before";
-
-/* %dm */
-"%dm" = "%dm";
 
 /* * City: */
 "* City:" = "* City:";
@@ -141,6 +135,9 @@
 
 /* Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@ */
 "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@" = "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@";
+
+/* Data error */
+"Data error" = "Data error";
 
 /* Day */
 "Day" = "Day";
@@ -280,6 +277,9 @@
 /* Network Cache */
 "Network Cache" = "Network Cache";
 
+/* Network error */
+"Network error" = "Network error";
+
 /* Never */
 "Never" = "Never";
 
@@ -298,8 +298,14 @@
 /* Nickname */
 "Nickname" = "Nickname";
 
+/* No change */
+"No change" = "No change";
+
 /* Not found */
 "Not found" = "Not found";
+
+/* Not initialized */
+"Not initialized" = "Not initialized";
 
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "Not sought yet\nMaybe you can invite one.";
@@ -432,6 +438,9 @@
 
 /* Tomorrow */
 "Tomorrow" = "Tomorrow";
+
+/* Uknown error: %d */
+"Uknown error: %d" = "Uknown error: %d";
 
 /* Username */
 "Username" = "Username";

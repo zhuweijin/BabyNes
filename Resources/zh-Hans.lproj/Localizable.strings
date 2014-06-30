@@ -1,6 +1,3 @@
-/* %.0lfkm */
-"%.0lfkm" = "%.0lf公里";
-
 /* %d Days Before */
 "%d Days Before" = "%d天前";
 
@@ -18,9 +15,6 @@
 
 /* %d Years Before */
 "%d Years Before" = "%d年前";
-
-/* %dm */
-"%dm" = "%d米";
 
 /* * City: */
 "* City:" = "* 城市：";
@@ -141,6 +135,9 @@
 
 /* Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@ */
 "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@" = "顾客信息：\n%@ 手机号：%@\n宝宝生日：%@";
+
+/* Data error */
+"Data error" = "数据服务错误";
 
 /* Day */
 "Day" = "日";
@@ -280,6 +277,9 @@
 /* Network Cache */
 "Network Cache" = "网络缓存";
 
+/* Network error */
+"Network error" = "网络连接不给力啊";
+
 /* Never */
 "Never" = "从未";
 
@@ -298,8 +298,14 @@
 /* Nickname */
 "Nickname" = "昵称";
 
+/* No change */
+"No change" = "数据无变化";
+
 /* Not found */
 "Not found" = "没有找到该顾客";
+
+/* Not initialized */
+"Not initialized" = "尚未初始化";
 
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "没有找到\n可以新建顾客账户";
@@ -432,6 +438,9 @@
 
 /* Tomorrow */
 "Tomorrow" = "明天";
+
+/* Uknown error: %d */
+"Uknown error: %d" = "未知错误，代码：%d";
 
 /* Username */
 "Username" = "用户名";

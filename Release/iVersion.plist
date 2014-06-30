@@ -10,5 +10,7 @@
 	<string>整合第一个页面</string>
 	<key>1.0.9</key>
 	<string>新增招募顾客页面</string>
+	<key>1.0.11</key>
+	<string>完善登录逻辑；产品介绍页面雏形。</string>
 </dict>
 </plist>
