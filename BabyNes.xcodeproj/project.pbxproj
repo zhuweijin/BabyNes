@@ -78,6 +78,7 @@
 		2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2441003B195EE99700CEF5C9 /* IntroduceController.mm */; };
 		2441003E195EF08100CEF5C9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2441003D195EF08100CEF5C9 /* IOKit.framework */; };
 		24410041195EF50400CEF5C9 /* DataController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24410040195EF50400CEF5C9 /* DataController.mm */; };
+		24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24410074196107FD00CEF5C9 /* IntroduceItemView.mm */; };
 		246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319318682C2D00903EF4 /* Foundation.framework */; };
 		246A319618682C2D00903EF4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319518682C2D00903EF4 /* CoreGraphics.framework */; };
 		246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A319718682C2D00903EF4 /* UIKit.framework */; };
@@ -246,6 +247,8 @@
 		2441003D195EF08100CEF5C9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		2441003F195EF50400CEF5C9 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		24410040195EF50400CEF5C9 /* DataController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataController.mm; sourceTree = "<group>"; };
+		24410073196107FD00CEF5C9 /* IntroduceItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceItemView.h; sourceTree = "<group>"; };
+		24410074196107FD00CEF5C9 /* IntroduceItemView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceItemView.mm; sourceTree = "<group>"; };
 		246A319018682C2D00903EF4 /* BabyNes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyNes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246A319318682C2D00903EF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		246A319518682C2D00903EF4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -551,6 +554,8 @@
 		242F94CD195C6E7300371697 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24410073196107FD00CEF5C9 /* IntroduceItemView.h */,
+				24410074196107FD00CEF5C9 /* IntroduceItemView.mm */,
 				242F94CE195C6E7300371697 /* EXButton.h */,
 				242F94CF195C6E7300371697 /* EXButton.mm */,
 				242F94D0195C6E7300371697 /* InputBox.h */,
@@ -804,6 +809,7 @@
 				24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */,
 				24259EBE194AB36B000FF8A9 /* Main.m in Sources */,
 				24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */,
+				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
 				24259F31194AB539000FF8A9 /* AppDelegate.mm in Sources */,

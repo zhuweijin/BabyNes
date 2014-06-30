@@ -1,5 +1,6 @@
 
 #import "IntroduceController.h"
+#import "IntroduceItemView.h"
 
 @implementation IntroduceController
 
@@ -55,39 +56,29 @@
 	scrollView.backgroundColor = UIUtil::Color(242,244,246);
 	[contentView addSubview:scrollView];
 	
-	const CGFloat thumbSize = 120; /*TODO*/
-	CGFloat gap = (ceil(1024 * 2 / 3) - 3 * thumbSize) / 4;
-	CGRect frame = {gap, gap, thumbSize, thumbSize};
+	CGFloat width = ceil((1024 * 2 / 3) / 3);
+	CGRect frame = {0, 0, width, width};
 	NSUInteger i = 0;
 	for (NSDictionary *item in dict[@"capsule"])	// TODO: 解析
 	{
-		CacheImageView *imageView = [[CacheImageView alloc] initWithFrame:frame];
-		imageView.contentMode = UIViewContentModeScaleAspectFit;
-		imageView.cacheImageUrl = item[@"image"];
-		[scrollView addSubview:imageView];
-
-		imageView.backgroundColor = UIUtil::Color(239, 239, 241);
-		imageView.clipsToBounds = YES;
-		imageView.layer.cornerRadius = 4;
-		imageView.layer.borderWidth = 1;
-		imageView.layer.borderColor = UIUtil::Color(220,220,220).CGColor;
+		IntroduceItemView *view = [[IntroduceItemView alloc] initWithFrame:frame dict:item];
+		view.tag = i;
+		UIUtil::AddTapGesture(view, self, @selector(itemClicked:));
+		[scrollView addSubview:view];
 		
-		imageView.tag = i;
-		imageView.userInteractionEnabled = YES;
-		UIUtil::AddTapGesture(imageView, self, @selector(itemClicked:));
-
+		//
 		if (++i % 3 == 0)
 		{
-			frame.origin.x = gap;
-			frame.origin.y += frame.size.width + gap;
+			frame.origin.x = 0;
+			frame.origin.y += frame.size.width;
 		}
 		else
 		{
-			frame.origin.x += frame.size.width + gap;
+			frame.origin.x += frame.size.width;
 		}
 	}
 	
-	scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+	//scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
 }
 
 //
