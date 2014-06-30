@@ -6,11 +6,20 @@
 #pragma mark Generic methods
 
 // Constructor
-- (id)init
+- (id)initWithService:(NSString *)service params:(NSDictionary *)params
 {
 	self = [super init];
 	_loader = [[CacheDataLoader alloc] init];
 	_loader.delegate = self;
+	_loader.service = service;
+	_loader.params = params;
+	return self;
+}
+
+//
+- (id)initWithService:(NSString *)service
+{
+	self = [self initWithService:service params:nil];
 	return self;
 }
 
@@ -53,6 +62,21 @@
 - (void)loadEnded:(DataLoader *)loader
 {
 	_Log(@"%@", loader.dict);
+	if (loader.error == DataLoaderNoError)
+	{
+		[_contentView removeFromSuperview];
+		
+		_contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+		_contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		[self.view addSubview:_contentView];
+		[self loadContentView:_contentView withDict:loader.dict];
+	}
+}
+
+//
+- (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
+{
+	
 }
 
 // TODO

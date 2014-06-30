@@ -44,7 +44,7 @@
 //#import "TouchView.h"
 //#import "NRGridView.h"
 //#import "TabStripView.h"
-//#import "CacheImageView.h"
+#import "CacheImageView.h"
 //#import "KBCustomTextField.h"
 //#import "SegmentLabel.h"
 #import "PredictScrollView.h"
