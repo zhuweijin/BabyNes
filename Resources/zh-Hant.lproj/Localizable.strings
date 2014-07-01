@@ -259,6 +259,9 @@
 /* Province */
 "Province" = "省份";
 
+/* Province first */
+"Province first" = "未選擇省份";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 

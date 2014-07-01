@@ -259,6 +259,9 @@
 /* Province */
 "Province" = "Province";
 
+/* Province first */
+"Province first" = "Province first";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
 
