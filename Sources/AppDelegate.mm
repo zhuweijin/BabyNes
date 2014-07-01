@@ -3,6 +3,15 @@
 #import "RootController.h"
 #import "LoginController.h"
 
+#if defined(DEBUG) || defined(TEST)
+@implementation NSURLRequest (IgnoreSSL)
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+{
+	return YES;
+}
+@end
+#endif
+
 //
 @implementation AppDelegate
 
