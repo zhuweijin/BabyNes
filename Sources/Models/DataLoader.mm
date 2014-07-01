@@ -287,6 +287,7 @@ static NSString *_accessToken = nil;
 //
 - (NSData *)loadData:(NSString *)url
 {
+    //_Log(@"DataLoader loadData url=%@",url);
 	NSError *error = nil;
 	NSURLResponse *response = nil;
 	id params = [_params isKindOfClass:[NSDictionary class]] ? NSUtil::URLQuery((NSDictionary *)_params) : _params;
@@ -294,7 +295,7 @@ static NSString *_accessToken = nil;
 	{
 		params = [NSString stringWithFormat:@"token=%@&%@", _accessToken, params];
 	}
-	_Log(@"%@%@", url, params ? [@"&" stringByAppendingString:params] : @"");
+	_Log(@"DataLoader loadData url&param -> %@?%@", url, params ? [@"&" stringByAppendingString:params] : @"");
 	NSData *post = [params dataUsingEncoding:NSUTF8StringEncoding];
 	NSData *data = HttpUtil::HttpData(url, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
 	if (data == nil)

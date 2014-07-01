@@ -100,6 +100,12 @@
 		24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BEF195DA645007478B3 /* LSNewCustomer_BabyCell.mm */; };
 		24E88BF6195DA645007478B3 /* NewCustomerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BF1195DA645007478B3 /* NewCustomerController.mm */; };
 		24FC734E195AAF16000F8F7F /* DefaultPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24FC734D195AAF16000F8F7F /* DefaultPad@2x.png */; };
+		2F12923D19628B9F00F271AA /* LSDeviceInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923819628B9F00F271AA /* LSDeviceInfo.mm */; };
+		2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923A19628B9F00F271AA /* LSRegularReporter.mm */; };
+		2F12923F19628B9F00F271AA /* Reachability.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923C19628B9F00F271AA /* Reachability.mm */; };
+		2F12924219629B8D00F271AA /* SecureUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F12924119629B8D00F271AA /* SecureUDID.m */; };
+		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
+		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -283,6 +289,18 @@
 		24E88BF0195DA645007478B3 /* NewCustomerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCustomerController.h; sourceTree = "<group>"; };
 		24E88BF1195DA645007478B3 /* NewCustomerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NewCustomerController.mm; sourceTree = "<group>"; };
 		24FC734D195AAF16000F8F7F /* DefaultPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultPad@2x.png"; sourceTree = "<group>"; };
+		2F12923719628B9F00F271AA /* LSDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDeviceInfo.h; sourceTree = "<group>"; };
+		2F12923819628B9F00F271AA /* LSDeviceInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDeviceInfo.mm; sourceTree = "<group>"; };
+		2F12923919628B9F00F271AA /* LSRegularReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRegularReporter.h; sourceTree = "<group>"; };
+		2F12923A19628B9F00F271AA /* LSRegularReporter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSRegularReporter.mm; sourceTree = "<group>"; };
+		2F12923B19628B9F00F271AA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2F12923C19628B9F00F271AA /* Reachability.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Reachability.mm; sourceTree = "<group>"; };
+		2F12924019629B8D00F271AA /* SecureUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecureUDID.h; sourceTree = "<group>"; };
+		2F12924119629B8D00F271AA /* SecureUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureUDID.m; sourceTree = "<group>"; };
+		2F54FFF71961763C0093028E /* ProductEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductEntity.h; path = Entity/ProductEntity.h; sourceTree = "<group>"; };
+		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
+		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
+		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +559,8 @@
 		242F94C0195C6E7300371697 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F12923619628B9F00F271AA /* REPORT */,
+				2F54FFFA196176410093028E /* Entity */,
 				242F94C3195C6E7300371697 /* CacheDataLoader.h */,
 				242F94C4195C6E7300371697 /* CacheDataLoader.mm */,
 				242F94C7195C6E7300371697 /* DataLoader.h */,
@@ -647,6 +667,32 @@
 				24E88BF1195DA645007478B3 /* NewCustomerController.mm */,
 			);
 			path = NewCustomer;
+			sourceTree = "<group>";
+		};
+		2F12923619628B9F00F271AA /* REPORT */ = {
+			isa = PBXGroup;
+			children = (
+				2F12924019629B8D00F271AA /* SecureUDID.h */,
+				2F12924119629B8D00F271AA /* SecureUDID.m */,
+				2F12923719628B9F00F271AA /* LSDeviceInfo.h */,
+				2F12923819628B9F00F271AA /* LSDeviceInfo.mm */,
+				2F12923919628B9F00F271AA /* LSRegularReporter.h */,
+				2F12923A19628B9F00F271AA /* LSRegularReporter.mm */,
+				2F12923B19628B9F00F271AA /* Reachability.h */,
+				2F12923C19628B9F00F271AA /* Reachability.mm */,
+			);
+			path = REPORT;
+			sourceTree = "<group>";
+		};
+		2F54FFFA196176410093028E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				2F54FFF71961763C0093028E /* ProductEntity.h */,
+				2F54FFF81961763C0093028E /* ProductEntity.mm */,
+				2F54FFFB19617E3B0093028E /* CartEntity.h */,
+				2F54FFFC19617E3B0093028E /* CartEntity.mm */,
+			);
+			name = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -758,6 +804,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */,
 				24259ED7194AB36B000FF8A9 /* SettingUtil.mm in Sources */,
 				24259EDB194AB36B000FF8A9 /* CacheImageView.mm in Sources */,
 				242F94E1195C6E7300371697 /* TableController.mm in Sources */,
@@ -767,12 +814,14 @@
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
 				242F9507195C6E7300371697 /* SelectPicker.mm in Sources */,
 				242F94E4195C6E7300371697 /* SettingController.mm in Sources */,
+				2F12923F19628B9F00F271AA /* Reachability.mm in Sources */,
 				24259ED3194AB36B000FF8A9 /* iVersion.m in Sources */,
 				24259EDD194AB36B000FF8A9 /* CurrencyField.mm in Sources */,
 				242F94DA195C6E7300371697 /* LoginController.mm in Sources */,
 				242F94DF195C6E7300371697 /* PullTableController.mm in Sources */,
 				24259ED6194AB36B000FF8A9 /* NullObject.mm in Sources */,
 				242F9506195C6E7300371697 /* SelectBox.mm in Sources */,
+				2F12923D19628B9F00F271AA /* LSDeviceInfo.mm in Sources */,
 				24259EDE194AB36B000FF8A9 /* KBAutoScrollView.mm in Sources */,
 				24259EE1194AB36B000FF8A9 /* ODRefreshControl.m in Sources */,
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
@@ -789,6 +838,7 @@
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,
 				24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
+				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
 				242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */,
 				242F94DD195C6E7300371697 /* PagingTableController.mm in Sources */,
 				24259EEE194AB36B000FF8A9 /* unzip.c in Sources */,
@@ -819,6 +869,7 @@
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
+				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
@@ -828,6 +879,7 @@
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,
 				24E88BF6195DA645007478B3 /* NewCustomerController.mm in Sources */,
 				242F94F0195C6E7300371697 /* CartTable.mm in Sources */,
+				2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

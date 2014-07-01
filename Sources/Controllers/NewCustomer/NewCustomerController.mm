@@ -12,14 +12,31 @@
 
 @property NSArray * provinces_array;
 @property NSArray * cities_array;
+@property NSDictionary * province_city_dict;
+
+@property CGFloat baby_cells_top;
+@property CGFloat baby_cell_height;
 
 @end
 
 @implementation NewCustomerController
 
--(void)designView{
+// Constructor
+- (id)init
+{
+	self = [super initWithService:@"ls_location"];
+	//self.title = NSLocalizedString(@"Introduce", @"产品介绍");
+    
+    self.baby_cells_top=160.0;
+    self.baby_cell_height=180.0;
+    
+	return self;
+}
+
+- (void)designView{
+    
     self.baby_cells=[[NSMutableArray alloc]init];
-    LSNewCustomer_BabyCell * first=[[LSNewCustomer_BabyCell alloc]initWithFrame:CGRectMake(0, 0, 500, 140) withinController:self];
+    LSNewCustomer_BabyCell * first=[[LSNewCustomer_BabyCell alloc]initWithFrame:CGRectMake(0, 0, 500, self.baby_cell_height) withinController:self];
     //[first initDate];
     [self.baby_cells addObject:first];
     
@@ -55,7 +72,7 @@
     //[self.InfoScrollView setScrollIndicatorInsets:(UIEdgeInsetsMake(5, 5, 5, 5))];
     [self.view addSubview:self.InfoScrollView];
     
-    self.theCustomerLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, 0, 120, 30)];
+    self.theCustomerLabel=[[UILabel alloc]initWithFrame:CGRectMake(30, 0, 200, 30)];
     [self.theCustomerLabel setText:NSLocalizedString(@"About Customer:", @"顾客信息：")];
     [self.theCustomerLabel setFont:[UIFont systemFontOfSize:19]];
     //[self.theCustomerLabel setTextColor:[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]];
@@ -160,33 +177,48 @@
 
 -(void)refreshBabiesViews{
     NSLog(@"refreshBabiesViews array=[%@]",self.baby_cells);
-    [self.InfoScrollView setContentSize: CGSizeMake(580, 180+140*[self.baby_cells count])];
+    [self.InfoScrollView setContentSize: CGSizeMake(580, self.baby_cells_top+self.baby_cell_height*[self.baby_cells count])];
     for (int i=0; i<[self.baby_cells count]; i++) {
         LSNewCustomer_BabyCell*cell=[self.baby_cells objectAtIndex:i];
         [cell removeFromSuperview];
         if([self.baby_cells count]>1)
             cell.theBabyLabel.text=[NSString stringWithFormat: NSLocalizedString(@"For Baby [%d]:", @"第%d个宝宝信息："),(i+1)];
-        [cell setFrame:CGRectMake(0,180+140*i, 500, 140)];
+        [cell setFrame:CGRectMake(0,self.baby_cells_top+self.baby_cell_height*i, 500, self.baby_cell_height)];
         [self.InfoScrollView addSubview:cell];
     }
+}
+
+- (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
+    _Log(@"NewCustomerController loadContentView - -");
+    
+    //_Log(@"get locations [%@]",dict);
+    self.provinces_array=[dict objectForKey:@"provinces"];
+    self.province_city_dict=[dict objectForKey:@"cities"];
+    self.cities_array=@[];//@[NSLocalizedString(@"Province first", @"未选择省份")];
+    
+    [self.theProvinceCB reloadDataForSelection:     self.provinces_array     ];
+    [self.theCityCB     reloadDataForSelection:     self.cities_array     ];
+    
+    [contentView setFrame:CGRectZero];
+    //[self designView:contentView];
 }
 
 -(void)provinceChanged:(id)sender{
     NSString * v=self.theProvinceCB.value_string;
     NSLog(@"provinceChanged -> %@ !",v);
+    self.cities_array=[self.province_city_dict objectForKey:v];
     [self.theCityCB reloadDataForSelection:
      self.cities_array
-     //     [LSLocations getCityArray:v]
      ];
 }
 
 -(void)addBaby:(id)sender{
     NSLog(@"addBaby called");
-    LSNewCustomer_BabyCell * first=[[LSNewCustomer_BabyCell alloc]initWithFrame:CGRectMake(0, 0, 500, 140) withinController:self];
+    LSNewCustomer_BabyCell * first=[[LSNewCustomer_BabyCell alloc]initWithFrame:CGRectMake(0, 0, 500, self.baby_cell_height) withinController:self];
     //[first initDate];
     [self.baby_cells addObject:first];
     [self refreshBabiesViews];
-    [self.InfoScrollView scrollRectToVisible:CGRectMake(0,180-140+140*[self.baby_cells count], 500, 140) animated:YES];
+    [self.InfoScrollView scrollRectToVisible:CGRectMake(0,self.baby_cells_top-self.baby_cell_height+self.baby_cell_height*[self.baby_cells count], 500, self.baby_cell_height) animated:YES];
 }
 
 -(void)addCustomer:(id)sender{
@@ -242,8 +274,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.provinces_array=@[@"Zhejiang",@"Shanghai"];
-    self.cities_array=@[@"Hangzhou",@"Pudong"];
+    //self.provinces_array=@[@"Zhejiang",@"Shanghai"];
+    //self.cities_array=@[@"Hangzhou",@"Pudong"];
     
     [self designView];
 }

@@ -1,9 +1,13 @@
+#import "LSRegularReporter.h"
 
 //
 @interface AppDelegate : NSObject <UIApplicationDelegate>
 {
 }
 @property(nonatomic,strong) UIWindow *window;
+
+-(void)regularDeviceInfoReport:(NSTimer *)theTimer;
+
 @end
 
 // TODO:

@@ -10,11 +10,8 @@
 
 @interface LSShopViewController ()
 
-//@property LSShopMonoTableViewController * monoTable;
 @property MonoTable * monoTableView;
-//@property LSShopCartTableViewController * cartTable;
 @property CartTable * cartTableView;
-//@property LSCustomerSearchViewController * customerVC;
 
 @property UIImage * list_icon_image;
 @property UIImageView * list_icon_image_view;
@@ -33,106 +30,17 @@
 @property UIButton * the_order_confirm_button;
 
 
-
-@property UIView * container;
-@property UIView * container_2;
-
 @end
 
 @implementation LSShopViewController
 
-- (void)design_customer_search_area
+// Constructor
+- (id)init
 {
-    self.container_2=[[UIView alloc]initWithFrame:CGRectMake(570, 5, 450, 200)];
-    [self.container_2 setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.container_2];
-    
-    self.list_icon_image=UIUtil::Image(@"app/cart@2x.png");//[UIImage imageNamed:@"cart@2x.png"];
-    self.list_icon_image_view=[[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 30, 30)];
-    [self.list_icon_image_view setImage:self.list_icon_image];
-    [self.container_2 addSubview:self.list_icon_image_view];
-    
-    self.list_caption= [[UILabel alloc]initWithFrame:CGRectMake(60, 0, 200, 30)];
-    self.list_caption.text=NSLocalizedString(@"Shopping Cart", @"购物车");
-    [self.list_caption setFont: [UIFont systemFontOfSize:20]];
-    [self.container_2 addSubview:self.list_caption];
-    
-    self.list_header= [[UILabel alloc]initWithFrame:CGRectMake(90, 30, 380, 30)];
-    self.list_header.text=NSLocalizedString(@"Product                     Price         Quantity", @"产品                              价格           数量");
-    [self.list_header setFont: [UIFont systemFontOfSize:18]];
-    [self.container_2 addSubview:self.list_header];
-    
-    self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(20, 400, 400, 30)];
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),1111/100.0,3];
-    [self.sum_label setFont: [UIFont systemFontOfSize:20]];
-    [self.sum_label setTextAlignment:(NSTextAlignmentCenter)];
-    [self.container_2 addSubview:self.sum_label];
-    
-    
-    // Do any additional setup after loading the view.
-    self.container=[[UIView alloc]initWithFrame:CGRectMake(570, 450, 450, 400)];
-    [self.view setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.container];
-    
-    self.the_customer_icon=UIUtil::Image(@"app/icon-search@2x.png");//[UIImage imageNamed:@"app/icon-search@2x.png"];
-    self.the_customer_icon_view=[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
-    [self.the_customer_icon_view setImage:self.the_customer_icon];
-    [self.container addSubview:self.the_customer_icon_view];
-    
-    self.the_customer_seeking_label=[[UILabel alloc]initWithFrame:CGRectMake(50, 10,100, 30)];
-    [self.the_customer_seeking_label setFont: [UIFont systemFontOfSize:20]];
-    [self.the_customer_seeking_label setText:NSLocalizedString(@"Add Buyer", @"添加顾客")];
-    //[self.the_customer_seeking_label setText:@"Add Buyer"];
-    [self.the_customer_seeking_label setTextAlignment:(NSTextAlignmentCenter)];
-    [self.container addSubview:self.the_customer_seeking_label];
-    
-    self.the_customer_mobile_textfield = [[UITextField alloc]initWithFrame:CGRectMake(180, 10, 150, 30)];
-    [self.the_customer_mobile_textfield setPlaceholder:NSLocalizedString(@"Mobile", @"手机号")];
-    [self.the_customer_mobile_textfield setTextAlignment:(NSTextAlignmentLeft)];
-    [self.the_customer_mobile_textfield setKeyboardType:(UIKeyboardTypeNumberPad)];
-    [self.the_customer_mobile_textfield setBorderStyle:(UITextBorderStyleLine)];
-    [self.the_customer_mobile_textfield setDelegate:self];
-    [self.the_customer_mobile_textfield setReturnKeyType:(UIReturnKeySearch)];
-    [self.container addSubview:self.the_customer_mobile_textfield];
-    
-    self.the_customer_search_result=[[UILabel alloc]initWithFrame:CGRectMake(20, 40, 400, 100)];
-    [self.the_customer_search_result setText:@""
-     //NSLocalizedString(@"Not sought yet\nMaybe you can invite one.", @"没有找到\n可以新建顾客账户")
-     ];
-    [self.the_customer_search_result setLineBreakMode:(NSLineBreakByWordWrapping)];
-    [self.the_customer_search_result setNumberOfLines:0];
-    [self.container addSubview:self.the_customer_search_result];
-    
-    self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.the_customer_seek_button setFrame:CGRectMake(350, 10, 80, 30)];
-    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Seek", @"搜索")  forState:(UIControlStateNormal)];
-    self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.container addSubview:self.the_customer_seek_button];
-    
-    self.the_customer_new_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.the_customer_new_button setFrame:CGRectMake(280, 150, 150, 30)];
-    self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
-    [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.container addSubview:self.the_customer_new_button];
-   
-    self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    self.the_order_confirm_button.frame=CGRectMake(280, 150, 150, 30);
-    [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
-    [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.container addSubview:self.the_order_confirm_button];
-    [self.the_order_confirm_button setHidden:YES];
-    
+	self = [super initWithService:@"pdt_classify"];
+	//self.title = NSLocalizedString(@"Introduce", @"产品介绍");
+	return self;
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -150,27 +58,101 @@
 
 - (void)viewDidLoad
 {
+    _Log(@"LSShopViewController viewDidLoad");
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
     [self.view setFrame:CGRectMake(0, 60,1024, 708)];
-    [self.view setBackgroundColor:[UIColor redColor]];
+    //[self.view setBackgroundColor:[UIColor redColor]];
+    //[self.view setUserInteractionEnabled:YES];
     
-    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 5, 550, 670))  style:(UITableViewStylePlain)];
-    [self.monoTableView setDelegate:self.monoTableView];
-    [self.monoTableView setDataSource:self.monoTableView];
-    [self.monoTableView setRowHeight:70];
-    [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    [self.view addSubview:self.monoTableView];
+    self.list_icon_image=UIUtil::Image(@"app/cart@2x.png");//[UIImage imageNamed:@"cart@2x.png"];
+    self.list_icon_image_view=[[UIImageView alloc]initWithFrame:CGRectMake(580, 15, 30, 30)];
+    [self.list_icon_image_view setImage:self.list_icon_image];
+    [self.view addSubview:self.list_icon_image_view];
     
-    self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 75, 450, 300))  style:(UITableViewStylePlain)];
+    self.list_caption= [[UILabel alloc]initWithFrame:CGRectMake(630, 15, 200, 30)];
+    self.list_caption.text=NSLocalizedString(@"Shopping Cart", @"购物车");
+    [self.list_caption setFont: [UIFont systemFontOfSize:20]];
+    [self.view addSubview:self.list_caption];
+    
+    self.list_header= [[UILabel alloc]initWithFrame:CGRectMake(660, 50, 380, 30)];
+    self.list_header.text=NSLocalizedString(@"Product                     Price         Quantity", @"产品                              价格           数量");
+    [self.list_header setFont: [UIFont systemFontOfSize:18]];
+    [self.view addSubview:self.list_header];
+    
+    self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(590, 405, 400, 30)];
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),0/100.0,0];
+    [self.sum_label setFont: [UIFont systemFontOfSize:20]];
+    [self.sum_label setTextAlignment:(NSTextAlignmentCenter)];
+    [self.view addSubview:self.sum_label];
+    
+    
+    self.the_customer_icon=UIUtil::Image(@"app/icon-search@2x.png");//[UIImage imageNamed:@"app/icon-search@2x.png"];
+    self.the_customer_icon_view=[[UIImageView alloc] initWithFrame:CGRectMake(580, 460, 30, 30)];
+    [self.the_customer_icon_view setImage:self.the_customer_icon];
+    [self.view addSubview:self.the_customer_icon_view];
+    
+    self.the_customer_seeking_label=[[UILabel alloc]initWithFrame:CGRectMake(620, 460,100, 30)];
+    [self.the_customer_seeking_label setFont: [UIFont systemFontOfSize:20]];
+    [self.the_customer_seeking_label setText:NSLocalizedString(@"Add Buyer", @"添加顾客")];
+    //[self.the_customer_seeking_label setText:@"Add Buyer"];
+    [self.the_customer_seeking_label setTextAlignment:(NSTextAlignmentCenter)];
+    [self.view addSubview:self.the_customer_seeking_label];
+    
+    self.the_customer_mobile_textfield = [[UITextField alloc]initWithFrame:CGRectMake(750, 460, 150, 30)];
+    [self.the_customer_mobile_textfield setPlaceholder:NSLocalizedString(@"Mobile", @"手机号")];
+    [self.the_customer_mobile_textfield setTextAlignment:(NSTextAlignmentLeft)];
+    [self.the_customer_mobile_textfield setKeyboardType:(UIKeyboardTypeNumberPad)];
+    [self.the_customer_mobile_textfield setBorderStyle:(UITextBorderStyleLine)];
+    [self.the_customer_mobile_textfield setDelegate:self];
+    [self.the_customer_mobile_textfield setReturnKeyType:(UIReturnKeySearch)];
+    [self.view addSubview:self.the_customer_mobile_textfield];
+    
+    self.the_customer_search_result=[[UILabel alloc]initWithFrame:CGRectMake(590, 490, 400, 100)];
+    [self.the_customer_search_result setText:@""
+     //NSLocalizedString(@"Not sought yet\nMaybe you can invite one.", @"没有找到\n可以新建顾客账户")
+     ];
+    [self.the_customer_search_result setLineBreakMode:(NSLineBreakByWordWrapping)];
+    [self.the_customer_search_result setNumberOfLines:0];
+    [self.view addSubview:self.the_customer_search_result];
+    
+    self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.the_customer_seek_button setFrame:CGRectMake(920, 460, 80, 30)];
+    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Seek", @"搜索")  forState:(UIControlStateNormal)];
+    self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
+    self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.the_customer_seek_button];
+    
+    self.the_customer_new_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.the_customer_new_button setFrame:CGRectMake(850, 600, 150, 30)];
+    self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
+    self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
+    [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.the_customer_new_button];
+    
+    self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
+    self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    self.the_order_confirm_button.frame=CGRectMake(850, 600, 150, 30);
+    [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
+    [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.the_order_confirm_button];
+    [self.the_order_confirm_button setHidden:YES];
+
+    self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
     [self.cartTableView setDelegate:self.cartTableView];
     [self.cartTableView setDataSource:self.cartTableView];
     [self.cartTableView setRowHeight:50];
     [self.cartTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+    [self.cartTableView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.cartTableView];
     
-    [self design_customer_search_area];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -190,6 +172,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     }
 #endif
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -199,6 +183,8 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
 }
 
 
@@ -207,6 +193,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
+    _Log(@"LSShopViewcController loadContentView[%@] withDict[%@]",contentView,dict);
+    
+    if(self.monoTableView){
+        [self.monoTableView removeFromSuperview];
+        self.monoTableView = nil;
+    }
+    
+    [contentView setFrame:(CGRectMake(0, 0, 560, 680))];
+    
+    [ProductEntity updateProductDictionaryWithJSON:dict];
+    
+    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 15, 550, 670))  style:(UITableViewStylePlain)];
+    //[self.monoTableView setBackgroundColor:[UIColor greenColor]];
+    //[self.monoTableView setPdtArrayWithNSDic:dict];
+    [self.monoTableView setDelegate:self.monoTableView];
+    [self.monoTableView setDataSource:self.monoTableView];
+    [self.monoTableView setRowHeight:70];
+    [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
+    [contentView addSubview:self.monoTableView];
+    
+    //[self.monoTableView reloadData];
 }
 
 /*
@@ -269,6 +279,7 @@
 //
 - (void)keyboardWillShow:(NSNotification *)notification
 {
+    _Log(@"SHOP VC keyboardWillShow");
 	CGRect rect;
 	NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
 	[value getValue:&rect];
@@ -287,6 +298,7 @@
 //
 - (void)keyboardWillHide:(NSNotification *)notification
 {
+    _Log(@"SHOP VC keyboardWillHide");
 	CGRect rect;
 	NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
 	[value getValue:&rect];
@@ -316,12 +328,26 @@
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     _Log(@"alertView clickedButtonAtIndex %d",buttonIndex);
+    [self resetShopView];
 }
 
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
 // If not defined in the delegate, we simulate a click in the cancel button
 - (void)alertViewCancel:(UIAlertView *)alertView{
     _Log(@"alertViewCancel");
+    [self resetShopView];
 }
 
+-(void)dealCartChanged:(NSNotification*) notification{
+    _Log(@"SHOP VC dealCartChanged !");
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+}
+
+-(void)resetShopView{
+    [[CartEntity getDefaultCartEntity]  resetCart];
+    [self.the_customer_search_result setText:@""];
+    [self.the_customer_mobile_textfield setText:@""];
+    [self.the_customer_new_button setHidden:NO];
+    [self.the_order_confirm_button setHidden:YES];
+}
 @end

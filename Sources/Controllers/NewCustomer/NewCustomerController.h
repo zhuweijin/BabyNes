@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LSComboBox.h"
 #import "LSNewCustomer_BabyCell.h"
+#import "DataController.h"
 
-
-@interface NewCustomerController : UIViewController
+@interface NewCustomerController : DataController//UIViewController
 
 @property UIView * theTopLineView;
 @property UILabel * theTitleLabel;

@@ -3,6 +3,15 @@
 #import "RootController.h"
 #import "LoginController.h"
 
+#if defined(DEBUG) || defined(TEST)
+@implementation NSURLRequest (IgnoreSSL)
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+{
+	return YES;
+}
+@end
+#endif
+
 //
 @implementation AppDelegate
 
@@ -48,6 +57,9 @@
 	//UIUtil::ShowSplashView(navigator.view);
 	
 	StatStart();
+    
+    //Report Device Information Regularly
+    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
 
 	return YES;
 }
@@ -118,5 +130,9 @@
 //{
 //	return NO;
 //}
+
+-(void)regularDeviceInfoReport:(NSTimer *)theTimer{
+    [LSRegularReporter report];
+}
 
 @end
