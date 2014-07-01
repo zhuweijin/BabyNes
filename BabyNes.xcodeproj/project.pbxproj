@@ -106,6 +106,8 @@
 		2F12924219629B8D00F271AA /* SecureUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F12924119629B8D00F271AA /* SecureUDID.m */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
+		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
+		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -301,6 +303,10 @@
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
 		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
+		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
+		2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSNetAPIWorker.mm; sourceTree = "<group>"; };
+		2FF644CC1962FB0600A802A9 /* LSConnectionDelegater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionDelegater.h; sourceTree = "<group>"; };
+		2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSConnectionDelegater.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,6 +678,10 @@
 		2F12923619628B9F00F271AA /* REPORT */ = {
 			isa = PBXGroup;
 			children = (
+				2FF644CC1962FB0600A802A9 /* LSConnectionDelegater.h */,
+				2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */,
+				2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */,
+				2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */,
 				2F12924019629B8D00F271AA /* SecureUDID.h */,
 				2F12924119629B8D00F271AA /* SecureUDID.m */,
 				2F12923719628B9F00F271AA /* LSDeviceInfo.h */,
@@ -830,6 +840,7 @@
 				242F9508195C6E7300371697 /* SelectSheet.mm in Sources */,
 				2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */,
 				24259EC6194AB36B000FF8A9 /* SDWebImageDecoder.m in Sources */,
+				2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */,
 				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
@@ -869,6 +880,7 @@
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
+				2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */,
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
