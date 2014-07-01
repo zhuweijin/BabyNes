@@ -56,9 +56,12 @@
 
 -(void)loadCartMonoWithName:(NSString*)name andPrice:(int)cents andQuantity:(int)quantity andID:(int)mono_id{
     [self cleanOldView];
+    _Log(@"loadCartMonoWithName %@ ... with ID %d",name,mono_id);
+    //_Log(@"loadCartMonoWithNameAnd... cleaned");
     
     self.name= [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 220,40)];
     self.name.text=name;
+//    self.name.text=[name stringByAppendingFormat:@"-%d",mono_id ];
     //[self.name setTextAlignment:(NSTextAlignmentCenter)];
     [self addSubview:self.name];
     
@@ -72,14 +75,14 @@
     self.button_minus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_minus.titleLabel.textColor=[UIColor whiteColor];
     self.button_minus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    self.button_minus.frame=CGRectMake(325, 5, 30, 30);
+    self.button_minus.frame=CGRectMake(335, 5, 30, 30);
     [self.button_minus setTitle:@"-" forState:(UIControlStateNormal)];
     [self.button_minus setTag: mono_id];
     [self.button_minus addTarget:self action:@selector(cart_mono_minus:) forControlEvents:UIControlEventTouchUpInside];
     self.button_minus.titleEdgeInsets=UIEdgeInsetsMake(-5, 0, 0, 0);
     [self addSubview:self.button_minus];
     
-    self.quantity =[[UITextField alloc]initWithFrame:CGRectMake(355, 0, 40,40)];
+    self.quantity =[[UITextField alloc]initWithFrame:CGRectMake(365, 0, 40,40)];
     [self.quantity setBorderStyle:(UITextBorderStyleNone)];
     self.quantity.text=[NSString stringWithFormat:@"%d",quantity];
     [self.quantity setTextAlignment:(NSTextAlignmentCenter)];
@@ -90,7 +93,7 @@
     self.button_plus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_plus.titleLabel.textColor=[UIColor whiteColor];
     self.button_plus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    self.button_plus.frame=CGRectMake(395, 5, 30, 30);
+    self.button_plus.frame=CGRectMake(405, 5, 30, 30);
     [self.button_plus setTitle:@"+" forState:(UIControlStateNormal)];
     [self.button_plus setTag:mono_id];
     [self.button_plus addTarget:self action:@selector(cart_mono_plus:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,15 +105,9 @@
 
 -(void)cart_mono_minus:(id)sender{
     _Log(@"IN CELL cart_mono_minus[%d] called",[sender tag]);
-    if([self.quantity.text intValue]>1){
-        self.quantity.text=[NSString stringWithFormat:@"%d",[self.quantity.text intValue]-1];
-    }else{
-        //[self removeFromSuperview];
-    }
 }
 -(void)cart_mono_plus:(id)sender{
     _Log(@"IN CELL cart_mono_plus[%d] called",[sender tag]);
-    self.quantity.text=[NSString stringWithFormat:@"%d",[self.quantity.text intValue]+1];
 }
 
 

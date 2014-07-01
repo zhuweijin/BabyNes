@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LSShopMonoTableViewCell.h"
+#import "ProductEntity.h"
+#import "CartEntity.h"
 
 @interface MonoTable : UITableView <UITableViewDelegate,UITableViewDataSource>
-
+//@property NSMutableArray * pdtArray;
+//-(void)setPdtArrayWithNSDic:(NSDictionary*)dict;
 @end

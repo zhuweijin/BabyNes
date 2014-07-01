@@ -31,28 +31,62 @@
     // Configure the view for the selected state
 }
 
+-(void) loadProduct:(ProductEntity*) mono{
+    if(self.image || self.image_view || self.label){
+        //NSLog(@"LSMonoTableViewCell Loaded...PASSOVER");
+        
+        [self.image_view removeFromSuperview];
+        [self.label removeFromSuperview];
+        
+        self.image=nil;
+        self.image_view=nil;
+        self.label=nil;
+    }
+    self.image=UIUtil::Image(mono.product_image);
+    //NSLog(@"[loadMono] image name=%@ image=%@",image_name,self.image);
+    CGFloat ihDch=self.image.size.height/60;
+    self.image_view=[[UIImageView alloc]initWithFrame:CGRectMake(40+(60-self.image.size.width/ihDch), 5, self.image.size.width/ihDch, self.image.size.height/ihDch)];
+    [self.image_view setImage:self.image];
+    [self addSubview:self.image_view];
+    
+    self.label= [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 300, 40)];
+    self.label.text=mono.product_title;
+//    self.label.text=[[mono.product_title stringByAppendingString:@"-"] stringByAppendingFormat:@"%d",mono.product_id];
+    [self addSubview:self.label];
+    
+    [self setTag:mono.product_id];
+}
+/*
 -(void) loadMonoWithName:(NSString*)name andImageName:(NSString*)image_name{
     if(self.image
-       //|| self.imageView
+       || self.image_view
        || self.label){
         //NSLog(@"LSMonoTableViewCell Loaded...PASSOVER");
-        return;
+        
+        [self.image_view removeFromSuperview];
+        [self.label removeFromSuperview];
+        
+        self.image=nil;
+        self.image_view=nil;
+        self.label=nil;
     }
     
     //self.backgroundColor=[UIColor greenColor];
     
     //self.image=[UIImage imageNamed:image_name];
+    
     self.image=UIUtil::Image(image_name);
-    NSLog(@"[loadMono] image name=%@ image=%@",image_name,self.image);
+    //NSLog(@"[loadMono] image name=%@ image=%@",image_name,self.image);
     CGFloat ihDch=self.image.size.height/60;
-    //self.imageView=[[UIImageView alloc]initWithFrame:CGRectMake(40+(60-self.image.size.width/ihDch), 5, self.image.size.width/ihDch, self.image.size.height/ihDch)];
-    [self.imageView setFrame:CGRectMake(40+(60-self.image.size.width/ihDch), 5, self.image.size.width/ihDch, self.image.size.height/ihDch)];
-    [self.imageView setImage:self.image];
-    //[self addSubview:self.image_view];
+    self.image_view=[[UIImageView alloc]initWithFrame:CGRectMake(40+(60-self.image.size.width/ihDch), 5, self.image.size.width/ihDch, self.image.size.height/ihDch)];
+    //[self.imageView setFrame:CGRectMake(40+(60-self.image.size.width/ihDch), 5, self.image.size.width/ihDch, self.image.size.height/ihDch)];
+    //[self.imageView setImage:self.image];
+    [self.image_view setImage:self.image];
+    [self addSubview:self.image_view];
     
     self.label= [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 300, 40)];
     self.label.text=name;
     [self addSubview:self.label];
 }
-
+*/
 @end

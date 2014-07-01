@@ -7,7 +7,9 @@
 //
 
 //#import <UIKit/UIKit.h>
-#import "AutoWizardController.h"
+//#import "AutoWizardController.h"
+
+#import "DataController.h"
 //#import "LSShopMonoTableViewController.h"
 #import "MonoTable.h"
 //#import "LSShopCartTableViewController.h"
@@ -15,7 +17,10 @@
 //#import "LSCustomerSearchViewController.h"
 #import "NewCustomerController.h"
 
-@interface LSShopViewController :UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
+#import "CartEntity.h"
+
+@interface LSShopViewController :  DataController//UIViewController
+<UITextFieldDelegate,UIAlertViewDelegate>
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LSShopCartTableViewCell.h"
+#import "CartEntity.h"
 
 @interface CartTable : UITableView <UITableViewDelegate,UITableViewDataSource>
 

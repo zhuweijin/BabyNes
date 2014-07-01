@@ -8,6 +8,7 @@
 // Constructor
 - (id)initWithService:(NSString *)service params:(NSDictionary *)params
 {
+    _Log(@"DataController initWithService[%@] params[%@] called",service,params);
 	self = [super init];
 	_loader = [[CacheDataLoader alloc] init];
 	_loader.delegate = self;
@@ -19,6 +20,7 @@
 //
 - (id)initWithService:(NSString *)service
 {
+    _Log(@"DataController initWithService[%@] called",service);
 	self = [self initWithService:service params:nil];
 	return self;
 }
@@ -61,7 +63,7 @@
 //
 - (void)loadEnded:(DataLoader *)loader
 {
-	_Log(@"%@", loader.dict);
+	_Log(@"load Ended with Dict [%@]", loader.dict);
 	if (loader.error == DataLoaderNoError)
 	{
 		[_contentView removeFromSuperview];

@@ -37,21 +37,6 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*Sex of baby:";
 
-/* 13-24 Month Standard 8 Oz */
-"13-24 Month Standard 8 Oz" = "13-24 Month Standard 8 Oz";
-
-/* 25-36 Month Standard 8 Oz */
-"25-36 Month Standard 8 Oz" = "25-36 Month Standard 8 Oz";
-
-/* 3-6 Month Big 7 Oz */
-"3-6 Month Big 7 Oz" = "3-6 Month Big 7 Oz";
-
-/* 3-6 Month Standard 6 Oz */
-"3-6 Month Standard 6 Oz" = "3-6 Month Standard 6 Oz";
-
-/* 7-12 Month Standard 8 Oz */
-"7-12 Month Standard 8 Oz" = "7-12 Month Standard 8 Oz";
-
 /* About */
 "About" = "About";
 
@@ -72,9 +57,6 @@
 
 /* After Tomorrow */
 "After Tomorrow" = "After Tomorrow";
-
-/* AnyShop */
-"AnyShop" = "AnyShop";
 
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "Are you sure to clear cache?";
@@ -127,9 +109,6 @@
 /* Could not open */
 "Could not open" = "Could not open";
 
-/* Could not send SMS on this device. */
-"Could not send SMS on this device." = "Could not send SMS on this device.";
-
 /* Create */
 "Create" = "Create";
 
@@ -166,18 +145,6 @@
 /* Failed */
 "Failed" = "Failed";
 
-/* Failed to send email. */
-"Failed to send email." = "Failed to send email.";
-
-/* Failed to send login data */
-"Failed to send login data" = "Failed to send login data";
-
-/* Failed to send login data, please check your network status. */
-"Failed to send login data, please check your network status." = "Failed to send login data, please check your network status.";
-
-/* Failed to send SMS. */
-"Failed to send SMS." = "Failed to send SMS.";
-
 /* Feedback */
 "Feedback" = "Feedback";
 
@@ -187,35 +154,14 @@
 /* Fill in the Contact2 */
 "Fill in the Contact2" = "Fill in the Contact2";
 
-/* First Month Big 4 Oz */
-"First Month Big 4 Oz" = "First Month Big 4 Oz";
-
-/* First Month Standard 3 Oz */
-"First Month Standard 3 Oz" = "First Month Standard 3 Oz";
-
 /* For Baby [%d]: */
 "For Baby [%d]:" = "For Baby [%d]:";
-
-/* Forget Password */
-"Forget Password" = "Forget Password";
 
 /* Girl */
 "Girl" = "Girl";
 
-/* Give password here */
-"Give password here" = "Give password here";
-
-/* Give username here */
-"Give username here" = "Give username here";
-
-/* Guest */
-"Guest" = "Guest";
-
 /* Ignore */
 "Ignore" = "Ignore";
-
-/* Incorrect Identity Input */
-"Incorrect Identity Input" = "Incorrect Identity Input";
 
 /* Introduce */
 "Introduce" = "Introduce";
@@ -235,26 +181,11 @@
 /* Login */
 "Login" = "Login";
 
-/* Login Failed */
-"Login Failed" = "Login Failed";
-
-/* Login Request Failed */
-"Login Request Failed" = "Login Request Failed";
-
-/* Logined failed! */
-"Logined failed!" = "Logined failed!";
-
-/* Logined successfully */
-"Logined successfully" = "Logined successfully";
-
 /* Logout */
 "Logout" = "Logout";
 
 /* Long Long Before */
 "Long Long Before" = "Long Long Before";
-
-/* Machine */
-"Machine" = "Machine";
 
 /* Media */
 "Media" = "Media";
@@ -313,9 +244,6 @@
 /* OK */
 "OK" = "OK";
 
-/* Online Shop */
-"Online Shop" = "Online Shop";
-
 /* Open with Safari */
 "Open with Safari" = "Open with Safari";
 
@@ -325,23 +253,8 @@
 /* Order Confirmed */
 "Order Confirmed" = "Order Confirmed";
 
-/* Password */
-"Password" = "Password";
-
-/* Please setup your email account first. */
-"Please setup your email account first." = "Please setup your email account first.";
-
-/* Please wait */
-"Please wait" = "Please wait";
-
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "Product                     Price         Quantity";
-
-/* Products */
-"Products" = "Products";
-
-/* Promotor Login */
-"Promotor Login" = "Promotor Login";
 
 /* Province */
 "Province" = "Province";
@@ -349,17 +262,11 @@
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
 
-/* Pull down to refresh... */
-"Pull down to refresh..." = "Pull down to refresh...";
-
 /* p_m */
 "p_m" = "p_m";
 
 /* Rate Me */
 "Rate Me" = "Rate Me";
-
-/* Release to refresh... */
-"Release to refresh..." = "Release to refresh...";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "Release_to_refresh";
@@ -385,26 +292,14 @@
 /* Saving */
 "Saving" = "Saving";
 
-/* Second Month Big 6 Oz */
-"Second Month Big 6 Oz" = "Second Month Big 6 Oz";
-
-/* Second Month Standard 5 Oz */
-"Second Month Standard 5 Oz" = "Second Month Standard 5 Oz";
-
 /* Seek */
 "Seek" = "Seek";
 
 /* Send */
 "Send" = "Send";
 
-/* Send SMS successfully. */
-"Send SMS successfully." = "Send SMS successfully.";
-
 /* Send via Email */
 "Send via Email" = "Send via Email";
-
-/* Server Down. */
-"Server Down." = "Server Down.";
 
 /* Settings */
 "Settings" = "Settings";
@@ -420,9 +315,6 @@
 
 /* Shopping Cart */
 "Shopping Cart" = "Shopping Cart";
-
-/* Soothe Standard 7 Oz */
-"Soothe Standard 7 Oz" = "Soothe Standard 7 Oz";
 
 /* SR Center */
 "SR Center" = "SR Center";
@@ -442,20 +334,11 @@
 /* Uknown error: %d */
 "Uknown error: %d" = "Uknown error: %d";
 
-/* Username */
-"Username" = "Username";
-
 /* Version %@ */
 "Version %@" = "Version %@";
 
 /* Version %@ %@© %@ */
 "Version %@ %@© %@" = "Version %@ %@© %@";
-
-/* Waiting for authority information from server... */
-"Waiting for authority information from server..." = "Waiting for authority information from server...";
-
-/* Wrong Username-Password Pair! */
-"Wrong Username-Password Pair!" = "Wrong Username-Password Pair!";
 
 /* Year */
 "Year" = "Year";

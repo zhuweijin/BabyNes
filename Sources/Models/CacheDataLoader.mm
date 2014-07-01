@@ -41,16 +41,19 @@
 //
 - (NSData *)loadData
 {
+    _Log(@"CacheDataLoader loadData called");
 	NSData *data;
 	NSString *cache = self.cachePath;
 	if (_online)
 	{
 		data = [super loadData];
 		[data writeToFile:cache atomically:YES];
+        _Log(@"CacheDataLoader loadData online done data=[%@] written to cache[%@]",data,cache);
 	}
 	else
 	{
 		data = [NSData dataWithContentsOfFile:cache];
+        _Log(@"CacheDataLoader loadData offline done data=[%@] from cache[%@]",data,cache);
 	}
 	return data;
 }

@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductEntity.h"
+#import "CartEntity.h"
 
 @interface LSShopMonoTableViewCell : UITableViewCell
 
 @property UIImage * image;
-//@property UIImageView * image_view;
+@property UIImageView * image_view;
 @property UILabel * label;
 
-//-(void) loadMono:(LSMonoInfo*) mono;
--(void) loadMonoWithName:(NSString*)name andImageName:(NSString*)image_name;
+-(void) loadProduct:(ProductEntity*) mono;
+//-(void) loadMonoWithName:(NSString*)name andImageName:(NSString*)image_name;
+
 
 @end

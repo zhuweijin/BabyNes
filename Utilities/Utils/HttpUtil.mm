@@ -3,7 +3,8 @@
 #import "UIUtil.h"
 #import "HttpUtil.h"
 
-#ifdef TEST
+//#ifdef TEST
+#if defined(DEBUG) || defined(TEST)
 @implementation NSURLRequest (IgnoreSSL)
 + (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
 {
