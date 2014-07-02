@@ -4,5 +4,6 @@
 //
 @interface IntroduceController : DataController
 {
+	UIView *_itemPane;
 }
 @end
