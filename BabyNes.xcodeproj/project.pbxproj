@@ -68,7 +68,6 @@
 		242F94F4195C6E7300371697 /* MonoTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94B4195C6E7300371697 /* MonoTable.mm */; };
 		242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C4195C6E7300371697 /* CacheDataLoader.mm */; };
 		242F9501195C6E7300371697 /* DataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C8195C6E7300371697 /* DataLoader.mm */; };
-		242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CC195C6E7300371697 /* PullDataLoader.mm */; };
 		242F9504195C6E7300371697 /* EXButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CF195C6E7300371697 /* EXButton.mm */; };
 		242F9505195C6E7300371697 /* InputBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D1195C6E7300371697 /* InputBox.mm */; };
 		242F9506195C6E7300371697 /* SelectBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D3195C6E7300371697 /* SelectBox.mm */; };
@@ -238,8 +237,6 @@
 		242F94C4195C6E7300371697 /* CacheDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CacheDataLoader.mm; sourceTree = "<group>"; };
 		242F94C7195C6E7300371697 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLoader.h; sourceTree = "<group>"; };
 		242F94C8195C6E7300371697 /* DataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataLoader.mm; sourceTree = "<group>"; };
-		242F94CB195C6E7300371697 /* PullDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullDataLoader.h; sourceTree = "<group>"; };
-		242F94CC195C6E7300371697 /* PullDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullDataLoader.mm; sourceTree = "<group>"; };
 		242F94CE195C6E7300371697 /* EXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXButton.h; sourceTree = "<group>"; };
 		242F94CF195C6E7300371697 /* EXButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EXButton.mm; sourceTree = "<group>"; };
 		242F94D0195C6E7300371697 /* InputBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBox.h; sourceTree = "<group>"; };
@@ -581,8 +578,6 @@
 				242F94C4195C6E7300371697 /* CacheDataLoader.mm */,
 				242F94C7195C6E7300371697 /* DataLoader.h */,
 				242F94C8195C6E7300371697 /* DataLoader.mm */,
-				242F94CB195C6E7300371697 /* PullDataLoader.h */,
-				242F94CC195C6E7300371697 /* PullDataLoader.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -862,7 +857,6 @@
 				24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
-				242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */,
 				242F94DD195C6E7300371697 /* PagingTableController.mm in Sources */,
 				24259EEE194AB36B000FF8A9 /* unzip.c in Sources */,
 				24259EDF194AB36B000FF8A9 /* KBCustomTextField.mm in Sources */,
