@@ -59,42 +59,45 @@
     _Log(@"loadCartMonoWithName %@ ... with ID %d",name,mono_id);
     //_Log(@"loadCartMonoWithNameAnd... cleaned");
     
-    self.name= [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 210,40)];
+    self.name= [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 210,40)];
     self.name.text=name;
 //    self.name.text=[name stringByAppendingFormat:@"-%d",mono_id ];
     //[self.name setTextAlignment:(NSTextAlignmentCenter)];
     [self addSubview:self.name];
     
-    self.price= [[UILabel alloc]initWithFrame:CGRectMake(220, 10, 90,40)];
+    self.price= [[UILabel alloc]initWithFrame:CGRectMake(220, 5, 90,40)];
     [self.price setTextAlignment:(NSTextAlignmentRight)];
     NSString * hk=[NSString stringWithFormat:@"$%.2f",cents/100.0];
     NSString * cn=[NSString stringWithFormat:@"￥%.2f",cents/100.0];
     self.price.text=NSLocalizedString(hk,cn);
     [self addSubview:self.price];
     
-    self.button_minus=[UIButton buttonWithType:UIButtonTypeCustom];
+    //self.button_minus=[UIButton buttonWithType:UIButtonTypeCustom];
+    self.button_minus=[[UIButton alloc]initWithFrame:CGRectMake(325, 5, 40, 40)];
+    //self.button_minus.frame=CGRectMake(325, 10, 40, 40);
     self.button_minus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_minus.titleLabel.textColor=[UIColor whiteColor];
     self.button_minus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    self.button_minus.frame=CGRectMake(325, 10, 40, 40);
     [self.button_minus setTitle:@"-" forState:(UIControlStateNormal)];
     [self.button_minus setTag: mono_id];
     [self.button_minus addTarget:self action:@selector(cart_mono_minus:) forControlEvents:UIControlEventTouchUpInside];
     self.button_minus.titleEdgeInsets=UIEdgeInsetsMake(-5, 0, 0, 0);
     [self addSubview:self.button_minus];
     
-    self.quantity =[[UITextField alloc]initWithFrame:CGRectMake(365, 10, 40,40)];
+    self.quantity =[[UITextField alloc]initWithFrame:CGRectMake(365, 5, 40,40)];
     [self.quantity setBorderStyle:(UITextBorderStyleNone)];
     self.quantity.text=[NSString stringWithFormat:@"%d",quantity];
     [self.quantity setTextAlignment:(NSTextAlignmentCenter)];
     [self.quantity setEnabled:NO];
     [self addSubview:self.quantity];
     
-    self.button_plus=[UIButton buttonWithType:UIButtonTypeCustom];
+    //self.button_plus=[UIButton buttonWithType:UIButtonTypeCustom];
+    //self.button_plus.frame=CGRectMake(405, 10, 40, 40);
+    self.button_plus=[[UIButton alloc]initWithFrame:CGRectMake(405, 5, 40, 40)];
     self.button_plus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_plus.titleLabel.textColor=[UIColor whiteColor];
     self.button_plus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    self.button_plus.frame=CGRectMake(405, 10, 40, 40);
+    
     [self.button_plus setTitle:@"+" forState:(UIControlStateNormal)];
     [self.button_plus setTag:mono_id];
     [self.button_plus addTarget:self action:@selector(cart_mono_plus:) forControlEvents:UIControlEventTouchUpInside];

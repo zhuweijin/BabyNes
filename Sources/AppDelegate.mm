@@ -59,7 +59,7 @@
 	StatStart();
     
     //Report Device Information Regularly
-    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
 
 	return YES;
 }

@@ -16,6 +16,9 @@
 +(CartEntity*)getDefaultCartEntity;
 -(void)resetCart;
 
+-(int)currentQuantityOfProductID:(int)pid;
+-(int)currentArrayIndexOfProductID:(int)pid;
+
 -(void)addToCart:(int)product_id withQuantity:(int)number;
 
 -(int)getTotalQuantity;

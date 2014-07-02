@@ -29,6 +29,7 @@
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
 
+//@property CacheImageView * civ;
 
 @end
 
@@ -144,7 +145,7 @@
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_order_confirm_button];
     [self.the_order_confirm_button setHidden:YES];
-
+    
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
     [self.cartTableView setDelegate:self.cartTableView];
     [self.cartTableView setDataSource:self.cartTableView];
@@ -240,7 +241,7 @@
     if([self.the_customer_mobile_textfield.text longLongValue]>13500000000){
         found=YES;
         [self.the_customer_search_result setText:[NSString stringWithFormat:
-         NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
+                                                  NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
                                                   @"Mr Wakayama",
                                                   self.the_customer_mobile_textfield.text,
                                                   @"2014-01-01"
@@ -347,9 +348,132 @@
 
 -(void)dealMonoCellSelected:(NSNotification *)notification{
     _Log(@"SHOP VC dealMonoCellSelected !");
-    _Log(@"Notification[%@] with[%@]",[notification name],[(ProductEntity*)[notification object] product_image]);
+    
+    double whole_animation_duration=1.0;
+    
+    CacheImageView * civ= [notification.object objectForKey:@"civ"];
+    CGRect originalCIVFrame=civ.frame;
+    CGRect civBigFrame=civ.frame;
+    civBigFrame.origin.x-=civBigFrame.size.width/2;
+    civBigFrame.origin.y-=civBigFrame.size.height/2;
+    civBigFrame.size.width*=2;
+    civBigFrame.size.height*=2;
+    CGRect civToFrame=civ.frame;
+    civToFrame=self.list_icon_image_view.frame;
+    [self.view addSubview:civ];
+    
+    ProductEntity* pe= [notification.object objectForKey:@"pe"];
+    
+    [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+        [civ setFrame:civBigFrame];
+        //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+            [civ setFrame:civToFrame];
+            //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+        } completion:^(BOOL finished) {
+            [civ removeFromSuperview];
+            [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+        }];
+    }];
+    if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
+        _Log(@"Should do CartItem Insert Animation");
+        CGRect cartItemFromFrame=originalCIVFrame;
+        
+        cartItemFromFrame.size.width=450;
+        cartItemFromFrame.size.height=50;
+        
+        CGRect cartItemToFrame=cartItemFromFrame;
+        
+        cartItemFromFrame.origin.x+=80;
+        
+        int row_count=[self.cartTableView tableView:self.cartTableView numberOfRowsInSection:0];
+        _Log(@"dealMonoCellSelected row_count in cart tale is %d",row_count);
+        CGFloat offset=5*50;
+        if(row_count<6){
+            offset=row_count*50;
+        }
+        
+        cartItemToFrame.origin.x=self.cartTableView.frame.origin.x;
+        cartItemToFrame.origin.y=self.cartTableView.frame.origin.y+offset;
+        
+        //使底部显现
+        //[self.cartTableView scrollRectToVisible:CGRectMake(0, (row_count+1) * self.cartTableView.rowHeight, cartItemToFrame.size.width, 53) animated:YES];
+        
+        LSShopCartTableViewCell * cell=[[LSShopCartTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"CartCell"];
+        [cell loadCartMonoWithName:pe.product_title andPrice:pe.product_price_cents andQuantity:pe.quantity andID:pe.product_id];
+        cell.frame=cartItemFromFrame;
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        //[cell setHighlighted:YES animated:YES];
+        [self.view addSubview:cell];
+        [UIView animateWithDuration:whole_animation_duration animations:^{
+            if(row_count>=6){
+                [self.cartTableView setContentOffset:CGPointMake(0, 50*(row_count-5))];
+            }
+            cell.frame=cartItemToFrame;
+            cell.backgroundColor = [UIColor yellowColor];
+        } completion:^(BOOL finished) {
+            [cell removeFromSuperview];
+        }];
+    }else{
+        NSNumber *index_NS=[notification.object objectForKey:@"inCart"];
+        int index=[index_NS intValue];
+        _Log(@"Seek existed index:[%d]",index);
+        if(index>=0){
+            if(self.cartTableView.contentOffset.y>=50*(index-5) && self.cartTableView.contentOffset.y<=50*(index)){
+                _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+                UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                _Log(@"Seek existed cell:[%@]",cell);
+                cell.backgroundColor=[UIColor yellowColor];
+                [UIView animateWithDuration:whole_animation_duration animations:^{
+                    
+                    if(index>5){
+                        [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                    }else{
+                        [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                    }
+                    
+                    cell.backgroundColor=[UIColor whiteColor];
+                } completion:^(BOOL finished) {
+                    // [cell setHighlighted:YES animated:YES];
+                }];
+            }else{
+                _Log(@"SHOULD NOT BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+                [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+                    
+                    if(index>5){
+                        [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                    }else{
+                        [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                    }
+                } completion:^(BOOL finished) {
+                    UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                    _Log(@"Seek existed cell:[%@]",cell);
+                    cell.backgroundColor=[UIColor yellowColor];
+                    [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+                        
+                        if(index>5){
+                            [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                        }else{
+                            [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                        }
+                        
+                        cell.backgroundColor=[UIColor whiteColor];
+                    } completion:^(BOOL finished) {
+                        //
+                    }];
+                }];
+            }
+        }
+    }
 }
-
+/*
+ -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context{
+ if(self.civ){
+ //[self.civ removeFromSuperview];
+ }
+ }
+ */
 -(void)resetShopView{
     [[CartEntity getDefaultCartEntity]  resetCart];
     [self.the_customer_search_result setText:@""];

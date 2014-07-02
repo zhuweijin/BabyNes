@@ -57,9 +57,26 @@
 {
     NSLog(@"第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
     ProductEntity*pe=[[ProductEntity getProductArray]objectAtIndex:indexPath.row];
-    [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-    //UIUtil::ShowAlert([NSString stringWithFormat:@"Title=%@ PID=%d",pe.product_title, pe.product_id]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:pe];
+    
+    //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+    
+    //Only Icon of product do animation
+    int no=[tableView.visibleCells indexOfObject:[tableView cellForRowAtIndexPath:indexPath]];
+    CGRect civFrame;//=[[tableView cellForRowAtIndexPath:indexPath] frame];
+    civFrame.origin.x=[self frame].origin.x+40;
+    civFrame.origin.y+=70*no+5;//+[self frame].origin.y;
+    civFrame.size.width=80;
+    civFrame.size.height=60;
+    _Log(@"civFrame %f,%f,%f,%f",civFrame.origin.x,civFrame.origin.y,civFrame.size.width,civFrame.size.height);
+    CacheImageView * civ=[[CacheImageView alloc]initWithFrame:civFrame];//CGRectMake(40,5,80,60)
+    [civ setCacheImageUrl:[pe product_image]];
+    
+    NSDictionary * anime_dict=@{@"civ":civ,
+                                @"pe":pe,
+                                @"inCart":[NSNumber numberWithInt: [[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]]]
+                                };
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:anime_dict];
 }
 
 
