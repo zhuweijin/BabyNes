@@ -61,6 +61,8 @@
     //Report Device Information Regularly
     [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
 
+     [(SinriUIApplication *)application resetIdleTimer];
+    
 	return YES;
 }
 

@@ -110,6 +110,7 @@
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
 		2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D01963FDF500A802A9 /* LSBaby.mm */; };
 		2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D21963FDF500A802A9 /* LSCustomer.mm */; };
+		2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -313,6 +314,8 @@
 		2FF644D01963FDF500A802A9 /* LSBaby.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSBaby.mm; path = Entity/LSBaby.mm; sourceTree = "<group>"; };
 		2FF644D11963FDF500A802A9 /* LSCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSCustomer.h; path = Entity/LSCustomer.h; sourceTree = "<group>"; };
 		2FF644D21963FDF500A802A9 /* LSCustomer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSCustomer.mm; path = Entity/LSCustomer.mm; sourceTree = "<group>"; };
+		2FF644D5196448EE00A802A9 /* SinriUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriUIApplication.h; sourceTree = "<group>"; };
+		2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SinriUIApplication.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +498,8 @@
 				242F9485195C6E7300371697 /* Controllers */,
 				242F94C0195C6E7300371697 /* Models */,
 				242F94CD195C6E7300371697 /* Views */,
+				2FF644D5196448EE00A802A9 /* SinriUIApplication.h */,
+				2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
+				2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */,
 				2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */,
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,

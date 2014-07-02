@@ -1,4 +1,5 @@
 #import "LSRegularReporter.h"
+#import "SinriUIApplication.h"
 
 //
 @interface AppDelegate : NSObject <UIApplicationDelegate>
