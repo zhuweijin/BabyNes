@@ -50,6 +50,7 @@
 	_scrollView = [[PredictScrollView alloc] initWithFrame:frame];
 	_scrollView.directionalLockEnabled = YES;
 	_scrollView.bounces = NO;
+	_scrollView.scrollEnabled = NO;
 	//_scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_scrollView.delegate2 = self;
 	_scrollView.backgroundColor = UIUtil::Color(241, 242, 245);

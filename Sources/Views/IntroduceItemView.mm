@@ -20,7 +20,7 @@
 	imageFrame.size.height = kThumbImageHeight;
 	
 	//
-	CacheImageView *imageView = [[CacheImageView alloc] initWithFrame:imageFrame];
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
 	imageView.contentMode = UIViewContentModeScaleAspectFit;
 	imageView.cacheImageUrl = dict[@"image"];
 	[self addSubview:imageView];

@@ -61,9 +61,10 @@
 	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
 	for (NSDictionary *cate in dict[@"category"])
 	{
-		UIButton *button = [[UIButton alloc] initWithFrame:frame];
+		UIButton *button = [[CacheImageButton alloc] initWithFrame:frame];
 		button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
 		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		button.cacheImageUrl = cate[@"image"];
 		[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
 		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
 		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
@@ -95,7 +96,7 @@
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
-			CGFloat width = ceil((1024 * 2 / 3) / 3);
+			CGFloat width = ceil(frame.size.width / 3);
 			CGRect frame = {0, 0, width, width};
 			NSUInteger i = 0;
 			for (NSDictionary *item in _loader.dict[cate[@"value"]])	// TODO: 解析
