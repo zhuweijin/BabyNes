@@ -94,6 +94,8 @@
 		246A334718683DBF00903EF4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A334618683DBF00903EF4 /* SystemConfiguration.framework */; };
 		246A334918683DE000903EF4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A334818683DE000903EF4 /* MessageUI.framework */; };
 		246A334B18683DF300903EF4 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 246A334A18683DF300903EF4 /* MediaPlayer.framework */; };
+		249A1E091963C1D2006C55C8 /* MaterialController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 249A1E081963C1D2006C55C8 /* MaterialController.mm */; };
+		249A1E0C1963C2A3006C55C8 /* MessageController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 249A1E0B1963C2A3006C55C8 /* MessageController.mm */; };
 		24E88BF2195DA645007478B3 /* LSComboBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BE8195DA645007478B3 /* LSComboBox.mm */; };
 		24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BEA195DA645007478B3 /* LSComboBoxCell.mm */; };
 		24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BEC195DA645007478B3 /* LSTabButton.mm */; };
@@ -280,6 +282,10 @@
 		246A334618683DBF00903EF4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		246A334818683DE000903EF4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		246A334A18683DF300903EF4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		249A1E071963C1D2006C55C8 /* MaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialController.h; sourceTree = "<group>"; };
+		249A1E081963C1D2006C55C8 /* MaterialController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MaterialController.mm; sourceTree = "<group>"; };
+		249A1E0A1963C2A3006C55C8 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		249A1E0B1963C2A3006C55C8 /* MessageController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageController.mm; sourceTree = "<group>"; };
 		24E88BE7195DA645007478B3 /* LSComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSComboBox.h; sourceTree = "<group>"; };
 		24E88BE8195DA645007478B3 /* LSComboBox.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSComboBox.mm; sourceTree = "<group>"; };
 		24E88BE9195DA645007478B3 /* LSComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSComboBoxCell.h; sourceTree = "<group>"; };
@@ -505,6 +511,10 @@
 				242F949B195C6E7300371697 /* RootController.mm */,
 				2441003A195EE99700CEF5C9 /* IntroduceController.h */,
 				2441003B195EE99700CEF5C9 /* IntroduceController.mm */,
+				249A1E071963C1D2006C55C8 /* MaterialController.h */,
+				249A1E081963C1D2006C55C8 /* MaterialController.mm */,
+				249A1E0A1963C2A3006C55C8 /* MessageController.h */,
+				249A1E0B1963C2A3006C55C8 /* MessageController.mm */,
 				242F949C195C6E7300371697 /* SettingController.h */,
 				242F949D195C6E7300371697 /* SettingController.mm */,
 			);
@@ -819,6 +829,7 @@
 				24259EDB194AB36B000FF8A9 /* CacheImageView.mm in Sources */,
 				242F94E1195C6E7300371697 /* TableController.mm in Sources */,
 				242F94F1195C6E7300371697 /* LSShopCartTableViewCell.mm in Sources */,
+				249A1E0C1963C2A3006C55C8 /* MessageController.mm in Sources */,
 				24259EC1194AB36B000FF8A9 /* MWPhoto.mm in Sources */,
 				242F94F2195C6E7300371697 /* LSShopMonoTableViewCell.mm in Sources */,
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
@@ -844,6 +855,7 @@
 				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
+				249A1E091963C1D2006C55C8 /* MaterialController.mm in Sources */,
 				24259ED0194AB36B000FF8A9 /* UMFeedbackViewController.mm in Sources */,
 				24259ECA194AB36B000FF8A9 /* UMContactViewController.m in Sources */,
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,

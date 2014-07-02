@@ -38,7 +38,7 @@
 - (id)init
 {
 	self = [super initWithService:@"pdt_classify"];
-	//self.title = NSLocalizedString(@"Introduce", @"产品介绍");
+	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
 	return self;
 }
 
