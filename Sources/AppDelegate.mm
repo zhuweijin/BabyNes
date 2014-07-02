@@ -118,6 +118,7 @@
 // There is a significant change in the time.
 //- (void)applicationSignificantTimeChange:(UIApplication *)application
 //{
+//    _Log(@"AppDelegate applicationSignificantTimeChange !");
 //}
 
 // The application receives a memory warning from the system.

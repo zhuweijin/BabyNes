@@ -51,11 +51,17 @@
 	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
 	logoView.frame = CGRectMake(45, 0, logoView.frame.size.width, logoView.frame.size.height);
 	[self.tabBar addSubview:logoView];
-	
+    
+    UIButton *newCustomerButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"New Customer", @"招募顾客") width:120];
+	newCustomerButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 120/2, self.tabBar.frame.size.height / 2);
+	[newCustomerButton addTarget:self action:@selector(newCustomerButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+	[self.tabBar addSubview:newCustomerButton];
+	/*
 	UIButton *exitButton = [UIButton minorButtonWithTitle:NSLocalizedString(@"Exit", @"退出") width:85];
 	exitButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 85/2, self.tabBar.frame.size.height / 2);
 	[exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:exitButton];
+     */
 }
 
 // Called after the view controller's view is released and set to nil.
@@ -99,6 +105,22 @@
 	Settings::Save(kAccessToken);
 	UIViewController *controller = [[LoginController alloc] init];
 	[self.navigationController setViewControllers:@[controller] animated:NO];
+}
+
+-(void)newCustomerButtonClicked:(UIButton*)sender{
+    _Log(@"ROOT newCustomerButtonClicked called");
+    NewCustomerController * nc=[[NewCustomerController alloc]init];
+    //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
+    [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
+    [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+    [self presentViewController:nc animated:YES completion:^{
+        _Log(@"ROOT NewCustomerVC presented");
+    }];
+    CGRect frame=nc.view.frame;
+    //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
+    frame.size.height=500;
+    //frame.size.width+=100;
+    [nc.view.superview setFrame:frame];
 }
 
 @end
