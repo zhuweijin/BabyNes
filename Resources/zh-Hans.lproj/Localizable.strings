@@ -55,6 +55,9 @@
 /* Address */
 "Address" = "地址";
 
+/* Address is empty */
+"Address is empty" = "地址未填写";
+
 /* After Tomorrow */
 "After Tomorrow" = "后天";
 
@@ -73,6 +76,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "第%d个宝宝的生日未填写完整";
+
 /* Boy */
 "Boy" = "男";
 
@@ -81,6 +87,9 @@
 
 /* City */
 "City" = "城市";
+
+/* City is empty */
+"City is empty" = "城市未填写";
 
 /* Clean */
 "Clean" = "清除";
@@ -133,8 +142,14 @@
 /* Email */
 "Email" = "电子邮件";
 
+/* Email is not correct */
+"Email is not correct" = "电子邮件地址未填写正确";
+
 /* Email: */
 "Email:" = "电子邮箱：";
+
+/* EN */
+"EN" = "CN";
 
 /* Error */
 "Error" = "错误";
@@ -193,6 +208,12 @@
 /* Mobile */
 "Mobile" = "手机号";
 
+/* Mobile is empty */
+"Mobile is empty" = "手机号未填写";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "手机号未填写正确";
+
 /* Month */
 "Month" = "月";
 
@@ -205,6 +226,9 @@
 /* Name */
 "Name" = "姓名";
 
+/* Name is empty */
+"Name is empty" = "姓名未填写";
+
 /* Network Cache */
 "Network Cache" = "网络缓存";
 
@@ -213,6 +237,9 @@
 
 /* Never */
 "Never" = "从未";
+
+/* Never registered */
+"Never registered" = "没有记录";
 
 /* New Customer */
 "New Customer" = "招募顾客";
@@ -228,6 +255,9 @@
 
 /* Nickname */
 "Nickname" = "昵称";
+
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
 
 /* No change */
 "No change" = "数据无变化";
@@ -262,6 +292,9 @@
 /* Province first */
 "Province first" = "未选择省份";
 
+/* Province is empty */
+"Province is empty" = "省份未填写";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
@@ -270,6 +303,9 @@
 
 /* Rate Me */
 "Rate Me" = "给个好评";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "成功注册为[%@]";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "松开即可刷新...";
@@ -310,6 +346,9 @@
 /* Sex */
 "Sex" = "性别";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "第%d个宝宝的性别未填写";
+
 /* Share */
 "Share" = "分享";
 
@@ -327,6 +366,9 @@
 
 /* Title */
 "Title" = "称呼";
+
+/* Title is empty */
+"Title is empty" = "称呼未填写";
 
 /* Today */
 "Today" = "今天";
@@ -354,4 +396,7 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的订单已经确认。";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^1[\\d]{10}$";
 

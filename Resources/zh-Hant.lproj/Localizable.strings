@@ -55,6 +55,9 @@
 /* Address */
 "Address" = "地址";
 
+/* Address is empty */
+"Address is empty" = "地址未填寫";
+
 /* After Tomorrow */
 "After Tomorrow" = "後天";
 
@@ -73,6 +76,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "第%d個寶寶的生日未填寫完整";
+
 /* Boy */
 "Boy" = "男";
 
@@ -81,6 +87,9 @@
 
 /* City */
 "City" = "城市";
+
+/* City is empty */
+"City is empty" = "城市未填寫";
 
 /* Clean */
 "Clean" = "清除";
@@ -133,8 +142,14 @@
 /* Email */
 "Email" = "電子郵件";
 
+/* Email is not correct */
+"Email is not correct" = "電子郵件地址未填寫正確";
+
 /* Email: */
 "Email:" = "電子郵箱：";
+
+/* EN */
+"EN" = "CN";
 
 /* Error */
 "Error" = "錯誤";
@@ -193,6 +208,12 @@
 /* Mobile */
 "Mobile" = "手機號";
 
+/* Mobile is empty */
+"Mobile is empty" = "手機號未填寫";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "手機號未填寫正確";
+
 /* Month */
 "Month" = "月";
 
@@ -205,6 +226,9 @@
 /* Name */
 "Name" = "姓名";
 
+/* Name is empty */
+"Name is empty" = "姓名未填寫";
+
 /* Network Cache */
 "Network Cache" = "網絡緩存";
 
@@ -213,6 +237,9 @@
 
 /* Never */
 "Never" = "從未";
+
+/* Never registered */
+"Never registered" = "沒有記錄";
 
 /* New Customer */
 "New Customer" = "招募顧客";
@@ -228,6 +255,9 @@
 
 /* Nickname */
 "Nickname" = "昵稱";
+
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "第%d個寶寶的昵稱未填寫";
 
 /* No change */
 "No change" = "數據無變化";
@@ -262,6 +292,9 @@
 /* Province first */
 "Province first" = "未選擇省份";
 
+/* Province is empty */
+"Province is empty" = "省份未填寫";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
@@ -270,6 +303,9 @@
 
 /* Rate Me */
 "Rate Me" = "給個好評";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "成功註冊為[%@]";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "鬆開即可刷新...";
@@ -310,6 +346,9 @@
 /* Sex */
 "Sex" = "性別";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "第%d個寶寶的性別未填寫";
+
 /* Share */
 "Share" = "分享";
 
@@ -327,6 +366,9 @@
 
 /* Title */
 "Title" = "稱呼";
+
+/* Title is empty */
+"Title is empty" = "稱呼未填寫";
 
 /* Today */
 "Today" = "今天";
@@ -354,4 +396,7 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的訂單已經確認。";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^1[\\d]{10}$";
 

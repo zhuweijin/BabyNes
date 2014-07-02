@@ -55,6 +55,9 @@
 /* Address */
 "Address" = "Address";
 
+/* Address is empty */
+"Address is empty" = "Address is empty";
+
 /* After Tomorrow */
 "After Tomorrow" = "After Tomorrow";
 
@@ -73,6 +76,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "Before Yesterday";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "Birthday is not completed yet for No.%d baby";
+
 /* Boy */
 "Boy" = "Boy";
 
@@ -81,6 +87,9 @@
 
 /* City */
 "City" = "City";
+
+/* City is empty */
+"City is empty" = "City is empty";
 
 /* Clean */
 "Clean" = "Clean";
@@ -133,8 +142,14 @@
 /* Email */
 "Email" = "Email";
 
+/* Email is not correct */
+"Email is not correct" = "Email is not correct";
+
 /* Email: */
 "Email:" = "Email:";
+
+/* EN */
+"EN" = "EN";
 
 /* Error */
 "Error" = "Error";
@@ -193,6 +208,12 @@
 /* Mobile */
 "Mobile" = "Mobile";
 
+/* Mobile is empty */
+"Mobile is empty" = "Mobile is empty";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "Mobile is not correct";
+
 /* Month */
 "Month" = "Month";
 
@@ -205,6 +226,9 @@
 /* Name */
 "Name" = "Name";
 
+/* Name is empty */
+"Name is empty" = "Name is empty";
+
 /* Network Cache */
 "Network Cache" = "Network Cache";
 
@@ -213,6 +237,9 @@
 
 /* Never */
 "Never" = "Never";
+
+/* Never registered */
+"Never registered" = "Never registered";
 
 /* New Customer */
 "New Customer" = "New Customer";
@@ -228,6 +255,9 @@
 
 /* Nickname */
 "Nickname" = "Nickname";
+
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "Nickname of Baby is not completed yet for No.%d baby";
 
 /* No change */
 "No change" = "No change";
@@ -262,6 +292,9 @@
 /* Province first */
 "Province first" = "Province first";
 
+/* Province is empty */
+"Province is empty" = "Province is empty";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
 
@@ -270,6 +303,9 @@
 
 /* Rate Me */
 "Rate Me" = "Rate Me";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "Registered as [%@]";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "Release_to_refresh";
@@ -310,6 +346,9 @@
 /* Sex */
 "Sex" = "Sex";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "Sex of Baby is not completed yet for No.%d baby";
+
 /* Share */
 "Share" = "Share";
 
@@ -327,6 +366,9 @@
 
 /* Title */
 "Title" = "Title";
+
+/* Title is empty */
+"Title is empty" = "Title is empty";
 
 /* Today */
 "Today" = "Today";
@@ -354,4 +396,7 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "Your order has been confirmed.";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^[569][\\d]{7}$";
 

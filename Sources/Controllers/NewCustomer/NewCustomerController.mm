@@ -123,7 +123,7 @@
     [self.theProvinceCB addTarget:self action:@selector(provinceChanged:) forControlEvents:UIControlEventEditingDidEnd];
     [self.InfoScrollView addSubview:self.theProvinceCB];
     
-    self.theCityCB=[[LSComboBox alloc]initWithFrame:CGRectMake(240, 70, 100, 30) withinController:self withData:
+    self.theCityCB=[[LSComboBox alloc]initWithFrame:CGRectMake(230, 70, 110, 30) withinController:self withData:
                     self.cities_array
                     //                    [LSLocations getCityArray:self.theProvinceCB.value_string]
                                        withSetsumei:NSLocalizedString(@"City", @"城市")];
@@ -223,30 +223,37 @@
 
 -(void)addCustomer:(id)sender{
     NSLog(@"addCustomer called");
-    /*
-     LSCustomer * cc=[LSCustomer getCurrentCustomer];
-     
-     [cc setTheTitle:self.theTitleCB.value_string];
-     [cc setTheName:self.theCustomerNameLabel.text];
-     [cc setTheProvince:self.theProvinceCB.value_string];
-     [cc setTheCity:self.theCityCB.value_string];
-     [cc setTheAddress:self.theAddressTextfield.text];
-     [cc setTheMobile:self.theMobileTextfield.text];
-     [cc setTheEmail:self.theEmailTextfield.text];
-     
-     for (LSNewCustomer_BabyCell* cell in self.baby_cells) {
-     LSBaby * baby=[[LSBaby alloc]init];
-     [baby setThe_birth_day:[cell.theBabyBirthday_Day.value_string intValue]];
-     [baby setThe_birth_month:[cell.theBabyBirthday_Month.value_string intValue]];
-     [baby setThe_birth_year:[cell.theBabyBirthday_Year.value_string intValue]];
-     [baby setThe_nick:cell.theBaby_Nick.text];
-     [baby setThe_sex:cell.theBaby_Sex.value_string];
-     [cc addOneBaby:baby];
-     }
-     NSString* result=[cc createCustomer];
-     [cc reset];
-     */
-    [self closeView:sender];
+    
+    LSCustomer * cc=[LSCustomer newCustomer];
+    
+    [cc setTheTitle:self.theTitleCB.value_string];
+    [cc setTheName:self.theUserNameTextfield.text];
+    [cc setTheProvince:self.theProvinceCB.value_string];
+    [cc setTheCity:self.theCityCB.value_string];
+    [cc setTheAddress:self.theAddressTextfield.text];
+    [cc setTheMobile:self.theMobileTextfield.text];
+    [cc setTheEmail:self.theEmailTextfield.text];
+    
+    for (LSNewCustomer_BabyCell* cell in self.baby_cells) {
+        LSBaby * baby=[[LSBaby alloc]init];
+        _Log(@"FOR BABY:%@-%@-%@ / %d-%d-%d nick[%@] sex[%@]",cell.theBabyBirthday_Year.value_string,cell.theBabyBirthday_Month.value_string,cell.theBabyBirthday_Day.value_string,[cell.theBabyBirthday_Year.value_string intValue],[cell.theBabyBirthday_Month.value_string intValue],[cell.theBabyBirthday_Day.value_string intValue],cell.theBaby_Nick.text,cell.theBaby_Sex.value_string);
+        [baby setThe_birth_day:[cell.theBabyBirthday_Day.value_string intValue]];
+        [baby setThe_birth_month:[cell.theBabyBirthday_Month.value_string intValue]];
+        [baby setThe_birth_year:[cell.theBabyBirthday_Year.value_string intValue]];
+        [baby setThe_nick:cell.theBaby_Nick.text];
+        [baby setThe_sex:cell.theBaby_Sex.value_string];
+        
+        _Log(@"baby before add  %d-%d-%d %@/%@",baby.the_birth_year,baby.the_birth_month,baby.the_birth_day,baby.the_sex,baby.the_nick);
+        
+        [cc addOneBaby:baby];
+    }
+    NSString* result=[cc createCustomer];
+//    [cc reset];
+    if(result!=nil){
+        UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
+        [self closeView:sender];
+    }
 }
 
 -(void)closeView:(id)sender{

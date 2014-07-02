@@ -10,6 +10,7 @@
 #import "LSComboBox.h"
 #import "LSNewCustomer_BabyCell.h"
 #import "DataController.h"
+#import "LSCustomer.h"
 
 @interface NewCustomerController : DataController//UIViewController
 
