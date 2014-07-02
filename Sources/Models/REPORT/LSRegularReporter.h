@@ -13,9 +13,11 @@
 //#import "LSUserModel.h"
 #import "DataLoader.h"
 //#import "LSNetAPIWorker.h"
+//#import "LSConnectionDelegater.h"
+#import "LSNetAPIWorker.h"
 
 
-@interface LSRegularReporter : NSObject < NSURLConnectionDelegate
+@interface LSRegularReporter : LSConnectionDelegater < NSURLConnectionDelegate
 //, NSURLConnectionDownloadDelegate
 , NSURLConnectionDataDelegate>
 

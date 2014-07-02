@@ -147,6 +147,8 @@
 		 button.alpha = 1;
 		 button.frame = frame;
 	 }];
+    
+    [self check_cache_files];
 }
 
 //
@@ -162,6 +164,19 @@
 	 {
 		 [sender removeFromSuperview];
 	 }];
+}
+
+-(void) check_cache_files{
+    _Log(@"check_cache_files");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);//NSCachesDirectory//NSDocumentDirectory
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"documentsDirectory%@",documentsDirectory);
+    NSFileManager *fileManage = [NSFileManager defaultManager];
+    NSString *myDirectory = documentsDirectory;//[documentsDirectory stringByAppendingPathComponent:@"Caches"];
+    NSArray *file = [fileManage subpathsOfDirectoryAtPath: myDirectory error:nil];
+    NSLog(@"file in [%@] %@", myDirectory,file);
+    NSArray *files = [fileManage subpathsAtPath: myDirectory ];
+    NSLog(@"%@",files);
 }
 
 @end

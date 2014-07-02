@@ -55,17 +55,54 @@ static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/devi
     NSString* param=NSUtil::URLQuery(dict);
     
     NSLog(@"[LSUserModel]doLoginWork:URL=%@ param=%@",ReportURL,param);
-    NSError *error = nil;
-    NSURLResponse *response = nil;
-    NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
-    NSData* return_data = HttpUtil::HttpData(ReportURL, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
-    NSString * return_data_string= [[NSString alloc] initWithData:return_data  encoding:NSUTF8StringEncoding];
+    //NSError *error = nil;
+    //NSURLResponse *response = nil;
+    //NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
+    //NSData* return_data = HttpUtil::HttpData(ReportURL, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
+    //NSString * return_data_string= [[NSString alloc] initWithData:return_data  encoding:NSUTF8StringEncoding];
     
-    //LSNetAPIWorker* worker=[[LSNetAPIWorker alloc]init];
+    LSNetAPIWorker* worker=[[LSNetAPIWorker alloc]init];
     
-    //BOOL done= [worker doAsyncAPIRequestByURL:URL withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
+    BOOL done= [worker doAsyncAPIRequestByURL:ReportURL withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
     
-    NSLog(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%@ response=[%@]",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,return_data_string,response);
+    NSLog(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
+}
+
+- (BOOL)connection:(NSURLConnection *)connection
+canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+	return [protectionSpace.authenticationMethod
+			isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection
+didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	if ([challenge.protectionSpace.authenticationMethod
+		 isEqualToString:NSURLAuthenticationMethodServerTrust])
+	{
+		// we only trust our own domain
+		if ([challenge.protectionSpace.host isEqualToString:[LSNetAPIWorker getTrustHost]])
+		{
+			NSURLCredential *credential =
+            [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+			[challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
+		}
+	}
+    
+	[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    _Log(@"Regular Report didReceiveResponse [%@]",response);
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+     _Log(@"Regular Report didReceiveData [%@]",data);
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    _Log(@"Regular Report didFailWithError [%@]",error);
 }
 
 @end
