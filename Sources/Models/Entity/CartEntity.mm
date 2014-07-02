@@ -59,7 +59,7 @@ static CartEntity * defaultCartEntity=nil;
             }
             
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
     }
 }
 
@@ -81,6 +81,6 @@ static CartEntity * defaultCartEntity=nil;
 
 -(void)testChange{
     _Log(@"testChange called");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
 }
 @end

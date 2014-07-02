@@ -322,8 +322,8 @@
 /* SR Center */
 "SR Center" = "SR管理";
 
-/* Sum $%.2f Quantity %d */
-"Sum $%.2f Quantity %d" = "總計：￥%.2f   數量：%d";
+/* Sum $%.2f     Quantity %d */
+"Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
 
 /* Title */
 "Title" = "稱呼";

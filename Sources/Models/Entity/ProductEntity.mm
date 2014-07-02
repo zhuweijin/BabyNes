@@ -28,7 +28,7 @@ static NSArray * product_array;
                 NSString * good_name=[pdt_good objectForKey:@"name"];
                 NSString * good_image_url=[pdt_good objectForKey:@"image"];
                 
-                good_image_url= [@"ShopImage/" stringByAppendingString:[good_image_url lastPathComponent]];
+                //good_image_url= [@"ShopImage/" stringByAppendingString:[good_image_url lastPathComponent]];
                 
                 for (id pdt_item in [pdt_good objectForKey:@"products"] ) {
                     NSString*pid=[pdt_item objectForKey:@"pid"];

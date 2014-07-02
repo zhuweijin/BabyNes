@@ -322,8 +322,8 @@
 /* SR Center */
 "SR Center" = "SR Center";
 
-/* Sum $%.2f Quantity %d */
-"Sum $%.2f Quantity %d" = "Sum $%.2f Quantity %d";
+/* Sum $%.2f     Quantity %d */
+"Sum $%.2f     Quantity %d" = "Sum $%.2f     Quantity %d";
 
 /* Title */
 "Title" = "Title";

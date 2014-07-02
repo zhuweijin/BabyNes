@@ -59,6 +59,7 @@
     ProductEntity*pe=[[ProductEntity getProductArray]objectAtIndex:indexPath.row];
     [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
     //UIUtil::ShowAlert([NSString stringWithFormat:@"Title=%@ PID=%d",pe.product_title, pe.product_id]);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:pe];
 }
 
 

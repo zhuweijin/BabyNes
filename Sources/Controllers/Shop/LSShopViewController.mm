@@ -82,7 +82,7 @@
     [self.view addSubview:self.list_header];
     
     self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(590, 405, 400, 30)];
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),0/100.0,0];
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),0/100.0,0];
     [self.sum_label setFont: [UIFont systemFontOfSize:20]];
     [self.sum_label setTextAlignment:(NSTextAlignmentCenter)];
     [self.view addSubview:self.sum_label];
@@ -174,6 +174,7 @@
 #endif
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -185,6 +186,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
 }
 
 
@@ -340,7 +342,12 @@
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"SHOP VC dealCartChanged !");
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+}
+
+-(void)dealMonoCellSelected:(NSNotification *)notification{
+    _Log(@"SHOP VC dealMonoCellSelected !");
+    _Log(@"Notification[%@] with[%@]",[notification name],[(ProductEntity*)[notification object] product_image]);
 }
 
 -(void)resetShopView{
