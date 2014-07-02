@@ -4,6 +4,5 @@
 //
 @interface MaterialController : DataController
 {
-	UIView *_itemPane;
 }
 @end
