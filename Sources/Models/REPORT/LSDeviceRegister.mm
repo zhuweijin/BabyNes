@@ -10,7 +10,7 @@
 
 @implementation LSDeviceRegister
 
-static NSString * DeviceRegisterURL=@"https://172.16.0.143:233/babynesios/admin/api/device_details.php";
+static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/api/device_details.php";
 
 +(BOOL)doDeviceRegister{
     LSDeviceRegister * dr=[[LSDeviceRegister alloc]init];

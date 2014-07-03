@@ -113,6 +113,7 @@
 		2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */; };
 		2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */; };
 		2FF644DC1965070300A802A9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF644DB1965070300A802A9 /* CoreTelephony.framework */; };
+		2FF644DF1965214800A802A9 /* PRMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644DE1965214800A802A9 /* PRMoviePlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -321,6 +322,8 @@
 		2FF644D81964F1F600A802A9 /* LSDeviceRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDeviceRegister.h; sourceTree = "<group>"; };
 		2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDeviceRegister.mm; sourceTree = "<group>"; };
 		2FF644DB1965070300A802A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2FF644DD1965214800A802A9 /* PRMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRMoviePlayer.h; sourceTree = "<group>"; };
+		2FF644DE1965214800A802A9 /* PRMoviePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRMoviePlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +527,8 @@
 				2441003B195EE99700CEF5C9 /* IntroduceController.mm */,
 				242F949C195C6E7300371697 /* SettingController.h */,
 				242F949D195C6E7300371697 /* SettingController.mm */,
+				2FF644DD1965214800A802A9 /* PRMoviePlayer.h */,
+				2FF644DE1965214800A802A9 /* PRMoviePlayer.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
 				2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */,
 				24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */,
+				2FF644DF1965214800A802A9 /* PRMoviePlayer.m in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,

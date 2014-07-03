@@ -4,6 +4,7 @@
 #import "SettingController.h"
 #import "LSShopViewController.h"
 #import "IntroduceController.h"
+#import "MoviePlayer.h"
 
 @implementation RootController
 
@@ -16,7 +17,7 @@
 	UIViewController *controller1 = [[LSShopViewController alloc] init];
 	UIViewController *controller2 = [[IntroduceController alloc] init];
 	UIViewController *controller3 = [[BaseController alloc] init];
-	UIViewController *controller4 = [[BaseController alloc] init];
+	UIViewController *controller4 =[[BaseController alloc] init];
 	controller1.title = NSLocalizedString(@"Shop", @"网上商店");
 	controller3.title = NSLocalizedString(@"Media", @"媒体中心");
 	controller4.title = NSLocalizedString(@"SR Center", @"SR管理");

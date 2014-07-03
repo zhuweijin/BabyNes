@@ -10,6 +10,15 @@
 
 @implementation SinriUIApplication
 
+-(NSString*)getPRURL{
+    return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
+}
+
+-(void)registerEndPRNotificationReceiver{
+    _is_playing=NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_EXIT:) name:@"PR_EXIT" object:nil];
+}
+
 -(NSTimeInterval)maxIdleTime{
     return 5*60;
 }
@@ -21,8 +30,9 @@
     if ([allTouches count] > 0) {
         // allTouchescount 似乎只会是 1, 因此 anyObject 总是可用的
         UITouchPhase phase =((UITouch *)[allTouches anyObject]).phase;
-        if (phase ==UITouchPhaseBegan || phase == UITouchPhaseEnded)
-            [self resetIdleTimer];
+        if (phase ==UITouchPhaseBegan || phase == UITouchPhaseEnded){
+            if(!_is_playing)[self resetIdleTimer];
+        }
     }
 }
 
@@ -36,9 +46,28 @@
 
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
-    UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
+    //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
+    [self loadPR];
 }
 
+-(void) loadPR{
+    self.OriginalWindow=[self keyWindow];
+    self.PRWindow=[[UIWindow alloc] initWithFrame:UIUtil::ScreenBounds()];
+    PRMoviePlayer * mp=[[PRMoviePlayer alloc]initWithURL:[NSURL URLWithString:[self getPRURL]]];
+    
+    [self.PRWindow setRootViewController:mp];
+    [self.PRWindow makeKeyAndVisible];
+    
+    _is_playing=YES;
+}
 
+-(void)unloadPR{
+    [self.OriginalWindow makeKeyAndVisible];
+    self.PRWindow=nil;
+    _is_playing=NO;
+}
+-(void)PR_EXIT:(id)sender{
+    [self unloadPR];
+}
 
 @end

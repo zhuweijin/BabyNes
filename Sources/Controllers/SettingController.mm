@@ -105,6 +105,11 @@
 - (void)logoutButtonClicked:(id)sender
 {
 	UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
+    
+    //LOG OUT by Sinri
+    Settings::Save(kAccessToken);
+	UIViewController *controller = [[LoginController alloc] init];
+	[self.navigationController setViewControllers:@[controller] animated:NO];
 }
 
 //

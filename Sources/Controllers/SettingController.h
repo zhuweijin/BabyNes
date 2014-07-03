@@ -1,5 +1,6 @@
 
 #import "WizardController.h"
+#import "LoginController.h"
 
 //
 @interface SettingController : WizardController

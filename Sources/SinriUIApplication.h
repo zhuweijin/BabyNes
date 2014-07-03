@@ -7,11 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PRMoviePlayer.h"
 
 @interface SinriUIApplication : UIApplication
 //maxIdleTime 和 idleTimer
 @property NSTimer * idleTimer;
 -(NSTimeInterval)maxIdleTime;
+
+-(void)registerEndPRNotificationReceiver;
+
+@property BOOL is_playing;
+
+@property UIWindow * PRWindow;
+@property UIWindow * OriginalWindow;
+
+-(void) loadPR;
+-(void) unloadPR;
 
 /**
  * Resets the idle timer to its initial state. This method gets called

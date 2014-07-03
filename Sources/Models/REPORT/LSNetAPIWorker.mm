@@ -10,7 +10,7 @@
 
 @implementation LSNetAPIWorker
 
-static NSString* trust_host=@"172.16.0.143";
+static NSString* trust_host=@"172.16.0.186";
 
 @synthesize resultDictionary;
 @synthesize resultArray;
