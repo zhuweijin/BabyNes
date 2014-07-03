@@ -40,13 +40,19 @@ static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/devi
     long boot_time_second=[LSDeviceInfo bootTimeInSeconds];
     NSString* AT=DataLoader.accessToken; //[[LSUserModel getCurrentUser] accessToken];
     if(AT==nil)AT=@"Unlogined";
+    
+    NSNumber * num = [[NSUserDefaults standardUserDefaults]objectForKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+    if(num==nil){
+        num=[NSNumber numberWithLong:-1];
+    }
+    
     NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
                         @"update_status",@"act",
                         AT,@"token",
                         [NSString stringWithFormat:@"%d",bs_p],@"is_plugin",
                         [NSString stringWithFormat:@"%d",level],@"battery_level",
                         [NSString stringWithFormat:@"%ld",boot_time_second],@"bootBefore",
-                        @"Unknown",@"lastClean",
+                        num,@"lastClean",
                         [NSString stringWithFormat:@"%d",net_state],@"net",
                         SUUID,@"SUUID",
                         nil

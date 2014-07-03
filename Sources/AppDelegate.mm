@@ -67,6 +67,8 @@
     
     //_Log(@"LOG %@",[LSDeviceInfo check_all]);
     
+    //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    
 	return YES;
 }
 

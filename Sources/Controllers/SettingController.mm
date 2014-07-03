@@ -125,6 +125,13 @@
 		UIButton *button = (UIButton *)cell.accessoryView;
 		[button setTitle:NSLocalizedString(@"Cleansed", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
+        
+        //Log time for cleaning cache
+        long time;
+        NSDate *fromdate=[NSDate date];
+        time=(long)[fromdate timeIntervalSince1970];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+        
 		return;
 	}
 	
