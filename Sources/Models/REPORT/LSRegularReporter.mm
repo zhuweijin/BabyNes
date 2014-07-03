@@ -8,7 +8,7 @@
 
 #import "LSRegularReporter.h"
 
-static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/device_info.php";
+static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/device_status.php";
 
 @implementation LSRegularReporter
 

@@ -63,6 +63,8 @@
 
      [(SinriUIApplication *)application resetIdleTimer];
     
+    _Log(@"LOG %@",[LSDeviceInfo check_all]);
+    
 	return YES;
 }
 

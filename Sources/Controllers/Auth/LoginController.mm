@@ -87,16 +87,16 @@
 //
 - (void)showSubviews
 {
-//	if (Settings::Get(kAccessToken))
-//	{
-//		UIViewController *controller = [[RootController alloc] init];
-//		[self.navigationController setViewControllers:@[controller] animated:YES];
-//		return;
-//	}
+    //	if (Settings::Get(kAccessToken))
+    //	{
+    //		UIViewController *controller = [[RootController alloc] init];
+    //		[self.navigationController setViewControllers:@[controller] animated:YES];
+    //		return;
+    //	}
 	[UIView animateWithDuration:0.5 animations:^()
 	 {
 		 _logoView.center = CGPointMake(self.view.bounds.size.width / 2, _logoView.frame.size.height / 2);
-		  _loginPane.alpha = 1;
+         _loginPane.alpha = 1;
 		 _footView.alpha = 1;
 	 } completion:^(BOOL finished)
 	 {
@@ -280,6 +280,19 @@
 			  {
 				  Settings::Save(kAccessToken, DataLoader.accessToken);
 			  }
+              
+              //DO REGISTER
+              
+              if([_usernameField.text isEqualToString:@"admin"]){
+                  BOOL registered_device=[LSDeviceRegister doDeviceRegister];
+                  if(!registered_device){
+                      UIUtil::ShowAlert(NSLocalizedString(@"Register or update device information failed!", @"登记或更新设备失败！"));
+                      _Log(@"Register or update device information failed!");
+                  }else{
+                      _Log(@"registered_device");
+                  }
+              }
+              
 			  UIViewController *controller = [[RootController alloc] init];
 			  [self.navigationController setViewControllers:@[controller] animated:YES];
 		  }];

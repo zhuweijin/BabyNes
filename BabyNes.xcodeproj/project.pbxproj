@@ -111,6 +111,8 @@
 		2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D01963FDF500A802A9 /* LSBaby.mm */; };
 		2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D21963FDF500A802A9 /* LSCustomer.mm */; };
 		2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */; };
+		2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */; };
+		2FF644DC1965070300A802A9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF644DB1965070300A802A9 /* CoreTelephony.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -316,6 +318,9 @@
 		2FF644D21963FDF500A802A9 /* LSCustomer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSCustomer.mm; path = Entity/LSCustomer.mm; sourceTree = "<group>"; };
 		2FF644D5196448EE00A802A9 /* SinriUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriUIApplication.h; sourceTree = "<group>"; };
 		2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SinriUIApplication.mm; sourceTree = "<group>"; };
+		2FF644D81964F1F600A802A9 /* LSDeviceRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDeviceRegister.h; sourceTree = "<group>"; };
+		2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDeviceRegister.mm; sourceTree = "<group>"; };
+		2FF644DB1965070300A802A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FF644DC1965070300A802A9 /* CoreTelephony.framework in Frameworks */,
 				2441003E195EF08100CEF5C9 /* IOKit.framework in Frameworks */,
 				246A319818682C2D00903EF4 /* UIKit.framework in Frameworks */,
 				246A319418682C2D00903EF4 /* Foundation.framework in Frameworks */,
@@ -632,6 +638,7 @@
 		246A319218682C2D00903EF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FF644DB1965070300A802A9 /* CoreTelephony.framework */,
 				2441003D195EF08100CEF5C9 /* IOKit.framework */,
 				246A319318682C2D00903EF4 /* Foundation.framework */,
 				246A319718682C2D00903EF4 /* UIKit.framework */,
@@ -701,6 +708,8 @@
 				2F12923A19628B9F00F271AA /* LSRegularReporter.mm */,
 				2F12923B19628B9F00F271AA /* Reachability.h */,
 				2F12923C19628B9F00F271AA /* Reachability.mm */,
+				2FF644D81964F1F600A802A9 /* LSDeviceRegister.h */,
+				2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */,
 			);
 			path = REPORT;
 			sourceTree = "<group>";
@@ -904,6 +913,7 @@
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
 				242F94E2195C6E7300371697 /* WizardController.mm in Sources */,
+				2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */,
 				24259EC3194AB36B000FF8A9 /* MWTapDetectingImageView.m in Sources */,
 				242F9505195C6E7300371697 /* InputBox.mm in Sources */,
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,

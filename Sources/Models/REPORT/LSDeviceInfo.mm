@@ -7,9 +7,85 @@
 //
 
 #import "LSDeviceInfo.h"
+//AppStore 无法通过的私有API，用于解决获取iPad的卡号 BUT DISAPPEARED since iOS7
+//extern NSString *CTSettingCopyMyPhoneNumber();
 
 @implementation LSDeviceInfo
+
++(NSString*) check_all{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *result_machine = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    NSString *result_sysname = [NSString stringWithCString:systemInfo.sysname encoding:NSUTF8StringEncoding];
+    NSString *result_nodename = [NSString stringWithCString:systemInfo.nodename encoding:NSUTF8StringEncoding];
+    NSString *result_release = [NSString stringWithCString:systemInfo.release encoding:NSUTF8StringEncoding];
+    NSString *result_version = [NSString stringWithCString:systemInfo.version encoding:NSUTF8StringEncoding];
+    
+    NSString*appBundleID=[[iVersion sharedInstance] applicationBundleID];
+    NSString*appVerion=[[iVersion sharedInstance] applicationVersion];
+    NSString*appVerionDetails=[[iVersion sharedInstance] versionDetails];
+    NSString*appCountry=[[iVersion sharedInstance] appStoreCountry];
+    
+    NSString*my_number=[LSDeviceInfo myNumber];
+    NSString*my_location=[LSDeviceInfo myLocation];
+    
+    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@",result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location];
+    return  result;
+}
+
 #pragma mark - Info for device
+
+//AppStore 无法通过的私有API，用于解决获取iPad的卡号
++(NSString *)myNumber{
+    return @"Unknown";
+    //return CTSettingCopyMyPhoneNumber();
+}
+
++(NSString*) myLocation{
+    NSLocale *currentUsersLocale = [NSLocale currentLocale];
+    NSString* localIdentifier = [currentUsersLocale localeIdentifier];
+    NSLog(@"Current Locale: %@", localIdentifier);
+    NSString* region = nil;
+    //ISO 3166 国家编码http://zh.wikipedia.org/zh-cn/ISO_3166-1
+    NSArray* codes = [NSLocale ISOCountryCodes];
+    
+    BOOL findCountry = NO;
+    NSRange range = [localIdentifier  rangeOfString:@"_"];
+    NSString* contry  = nil;
+    if(range.location !=NSNotFound)
+    {
+        contry = [localIdentifier substringFromIndex:(range.location+range.length)];
+        NSLog(@"contry:%@",contry);
+        
+        
+        NSUInteger idx = NSUIntegerMax;
+        idx = [codes indexOfObject:contry];
+        if(idx < [codes count])
+        {
+            findCountry = YES;
+        }
+    }
+    if(findCountry)
+    {
+        NSLog(@"contry is %@",contry);
+        if([[contry uppercaseString] isEqualToString:@"HK"]||
+           [[contry uppercaseString] isEqualToString:@"MO"]||
+           [[contry uppercaseString] isEqualToString:@"TW"])
+        {
+            contry = @"CN";
+        }
+        region = contry;
+    }
+    else
+    {
+        region = @"未知";
+    }
+    return region;
+}
+
++ (NSString *)identifierForVendor{
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+}
 
 + (NSDictionary *)infoForDevice {
     NSString *device = [LSDeviceInfo platformType];

@@ -13,8 +13,14 @@
 
 #import "SecureUDID.h"
 
+#import "iVersion.h"
+
 @interface LSDeviceInfo : NSObject
 #pragma HardWare
+
++(NSString*) check_all;
+
++ (NSString *)identifierForVendor;
 
 /*!
  Check the device model
@@ -169,6 +175,10 @@
 + (long)bootTimeInSeconds;
 
 +(NSString*) device_sn;
+
++(NSString *)myNumber;
+
++(NSString*) myLocation;
 
 #pragma hardware over
 

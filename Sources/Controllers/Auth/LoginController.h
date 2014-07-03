@@ -1,5 +1,6 @@
 
 #import "BaseController.h"
+#import "LSDeviceRegister.h"
 
 //
 @interface LoginController : BaseController
