@@ -25,7 +25,7 @@ static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/
     self.ipad_number=@"Unknown";//UNKNOWN
     self.manufacturer_id=@"Unknown";//UNKNOWN
     self.os_version=[NSString stringWithFormat:@"%@ %@",[LSDeviceInfo systemName],[LSDeviceInfo systemVersion]];//systemVersion
-    self.model=[LSDeviceInfo deviceModel];//deviceModel
+    self.model=[LSDeviceInfo deviceModelOriginal];//deviceModel
     self.app_version=[[iVersion sharedInstance] applicationVersion];//iVerion
     self.app_name=@"BabyNes POS";//iVersion
     self.language=NSLocalizedString(@"EN", @"CN");//CN/EN
@@ -54,7 +54,7 @@ static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/
     
     NSString* param=NSUtil::URLQuery(dict);
     
-    NSLog(@"LSDeviceRegister postDeviceDetails:URL=%@ param=%@",DeviceRegisterURL,param);
+    _Log(@"LSDeviceRegister postDeviceDetails:URL=%@ param=%@",DeviceRegisterURL,param);
     NSError *error = nil;
     NSURLResponse *response = nil;
     NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];

@@ -21,8 +21,10 @@
 @property UIWindow * PRWindow;
 @property UIWindow * OriginalWindow;
 
--(void) loadPR;
+-(void) loadPR:(NSString*)url;
 -(void) unloadPR;
+//-(void)PR_EXIT:(NSNotification*)notification;
+//-(void)PR_CALLED:(NSNotification*)notification;
 
 /**
  * Resets the idle timer to its initial state. This method gets called

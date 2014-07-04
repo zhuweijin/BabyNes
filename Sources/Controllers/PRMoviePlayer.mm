@@ -10,24 +10,52 @@
 
 @interface PRMoviePlayer ()
 
-+(NSString*)get_PR_Movie_URL;
+//+(NSString*)get_PR_Movie_URL;
 
 @end
 
 @implementation PRMoviePlayer
-
+/*
 +(NSString*)get_PR_Movie_URL{
     return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
 }
+*/
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithURL:(NSURL *)URL
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+	_URL = URL;
+	return self = [super init];
 }
+
+-(id)initWithPath:(NSString *)path{
+    if([path hasPrefix:@"http"]){
+        _URL=[[NSURL alloc]initWithString:path];
+    }else{
+        _URL=[[NSURL alloc]initFileURLWithPath:path];
+    }
+    return self=[super init];
+}
+
+- (void)loadView
+{
+	[super loadView];
+	self.view.backgroundColor = [UIColor blackColor];
+	
+	//[self RemoveCacheInTemp];
+	
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+	
+	_player = [[MPMoviePlayerController alloc] initWithContentURL:_URL];
+        
+    
+	if (UIUtil::SystemVersion() >= 3.2)
+	{
+		[self.view addSubview:_player.view];
+		_player.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+		_player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	}
+}
+
 
 - (void)viewDidLoad
 {

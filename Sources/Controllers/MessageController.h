@@ -2,7 +2,7 @@
 #import "DataController.h"
 
 //
-@interface IntroduceController : DataController
+@interface MessageController : DataController
 {
 	UIView *_itemPane;
 }

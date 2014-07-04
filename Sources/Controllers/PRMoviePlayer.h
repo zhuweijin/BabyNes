@@ -10,4 +10,5 @@
 
 @interface PRMoviePlayer : MoviePlayer
 @property UIButton * endPR;
+-(id)initWithPath:(NSString *)path;
 @end

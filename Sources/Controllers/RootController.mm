@@ -5,6 +5,8 @@
 #import "LSShopViewController.h"
 #import "IntroduceController.h"
 #import "MoviePlayer.h"
+#import "MaterialController.h"
+#import "MessageController.h"
 
 @implementation RootController
 
@@ -14,17 +16,12 @@
 - (id)init
 {
 	self = [super init];
-	UIViewController *controller1 = [[LSShopViewController alloc] init];
-	UIViewController *controller2 = [[IntroduceController alloc] init];
-	UIViewController *controller3 = [[BaseController alloc] init];
-	UIViewController *controller4 =[[BaseController alloc] init];
-	controller1.title = NSLocalizedString(@"Shop", @"网上商店");
-	controller3.title = NSLocalizedString(@"Media", @"媒体中心");
-	controller4.title = NSLocalizedString(@"SR Center", @"SR管理");
-	controller3.view.backgroundColor = UIColor.blueColor;
-	controller4.view.backgroundColor = UIColor.yellowColor;
-	
-	self.viewControllers = @[controller1, controller2, controller3, controller4];
+	self.viewControllers = @[
+							 [[LSShopViewController alloc] init],
+							 [[IntroduceController alloc] init],
+                             [[MaterialController alloc] init],
+							 [[MessageController alloc] init],
+							 ];
 	return self;
 }
 

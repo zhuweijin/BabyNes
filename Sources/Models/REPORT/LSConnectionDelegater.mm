@@ -18,7 +18,7 @@
         self.resultArray=[[NSMutableArray alloc]init];
         // Process the array
         for (id item in categories) {
-            NSLog(@"ARRAY item=%@",item);
+            //_Log(@"ARRAY item=%@",item);
             [self.resultArray addObject:item];
         }
         return YES;
@@ -34,7 +34,7 @@
         self.resultDictionary=[[NSMutableDictionary alloc]init];
         // Process the array
         for (id item in categories) {
-            NSLog(@"DIC item=%@",item);
+            //_Log(@"DIC item=%@",item);
             [self.resultDictionary addObject:[item valueForKey:@"user_name"]];
         }
         return YES;

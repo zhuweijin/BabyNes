@@ -75,7 +75,6 @@
 		242F9507195C6E7300371697 /* SelectPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D5195C6E7300371697 /* SelectPicker.mm */; };
 		242F9508195C6E7300371697 /* SelectSheet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D7195C6E7300371697 /* SelectSheet.mm */; };
 		242F9509195C6E7300371697 /* WizardCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D9195C6E7300371697 /* WizardCell.mm */; };
-		2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2441003B195EE99700CEF5C9 /* IntroduceController.mm */; };
 		2441003E195EF08100CEF5C9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2441003D195EF08100CEF5C9 /* IOKit.framework */; };
 		24410041195EF50400CEF5C9 /* DataController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24410040195EF50400CEF5C9 /* DataController.mm */; };
 		24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24410074196107FD00CEF5C9 /* IntroduceItemView.mm */; };
@@ -113,7 +112,14 @@
 		2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D6196448EE00A802A9 /* SinriUIApplication.mm */; };
 		2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */; };
 		2FF644DC1965070300A802A9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF644DB1965070300A802A9 /* CoreTelephony.framework */; };
-		2FF644DF1965214800A802A9 /* PRMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644DE1965214800A802A9 /* PRMoviePlayer.m */; };
+		2FF644DF1965214800A802A9 /* PRMoviePlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644DE1965214800A802A9 /* PRMoviePlayer.mm */; };
+		2FF644E219659AFD00A802A9 /* MaterialController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644E119659AFD00A802A9 /* MaterialController.mm */; };
+		2FF644E519659C6200A802A9 /* MessageController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644E419659C6200A802A9 /* MessageController.mm */; };
+		2FF644E81965A44D00A802A9 /* IntroduceController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644E71965A44D00A802A9 /* IntroduceController.mm */; };
+		2FF644EB19663E3400A802A9 /* MeterialImageItemView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644EA19663E3400A802A9 /* MeterialImageItemView.mm */; };
+		2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644ED19663E9D00A802A9 /* MeterialVideoItemView.mm */; };
+		2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644F019667DB200A802A9 /* FileDownloader.mm */; };
+		2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,8 +262,6 @@
 		242F94D7195C6E7300371697 /* SelectSheet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SelectSheet.mm; sourceTree = "<group>"; };
 		242F94D8195C6E7300371697 /* WizardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardCell.h; sourceTree = "<group>"; };
 		242F94D9195C6E7300371697 /* WizardCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizardCell.mm; sourceTree = "<group>"; };
-		2441003A195EE99700CEF5C9 /* IntroduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceController.h; sourceTree = "<group>"; };
-		2441003B195EE99700CEF5C9 /* IntroduceController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceController.mm; sourceTree = "<group>"; };
 		2441003D195EF08100CEF5C9 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		2441003F195EF50400CEF5C9 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		24410040195EF50400CEF5C9 /* DataController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataController.mm; sourceTree = "<group>"; };
@@ -323,7 +327,21 @@
 		2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDeviceRegister.mm; sourceTree = "<group>"; };
 		2FF644DB1965070300A802A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2FF644DD1965214800A802A9 /* PRMoviePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PRMoviePlayer.h; sourceTree = "<group>"; };
-		2FF644DE1965214800A802A9 /* PRMoviePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PRMoviePlayer.m; sourceTree = "<group>"; };
+		2FF644DE1965214800A802A9 /* PRMoviePlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PRMoviePlayer.mm; sourceTree = "<group>"; };
+		2FF644E019659AFD00A802A9 /* MaterialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialController.h; sourceTree = "<group>"; };
+		2FF644E119659AFD00A802A9 /* MaterialController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MaterialController.mm; sourceTree = "<group>"; };
+		2FF644E319659C6200A802A9 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		2FF644E419659C6200A802A9 /* MessageController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageController.mm; sourceTree = "<group>"; };
+		2FF644E61965A44D00A802A9 /* IntroduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceController.h; sourceTree = "<group>"; };
+		2FF644E71965A44D00A802A9 /* IntroduceController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceController.mm; sourceTree = "<group>"; };
+		2FF644E919663E3400A802A9 /* MeterialImageItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterialImageItemView.h; sourceTree = "<group>"; };
+		2FF644EA19663E3400A802A9 /* MeterialImageItemView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MeterialImageItemView.mm; sourceTree = "<group>"; };
+		2FF644EC19663E9D00A802A9 /* MeterialVideoItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterialVideoItemView.h; sourceTree = "<group>"; };
+		2FF644ED19663E9D00A802A9 /* MeterialVideoItemView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MeterialVideoItemView.mm; sourceTree = "<group>"; };
+		2FF644EF19667DB200A802A9 /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
+		2FF644F019667DB200A802A9 /* FileDownloader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileDownloader.mm; sourceTree = "<group>"; };
+		2FF644F219668EFB00A802A9 /* DialogUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogUIAlertView.h; sourceTree = "<group>"; };
+		2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUIAlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +534,12 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
+				2FF644E71965A44D00A802A9 /* IntroduceController.mm */,
+				2FF644E319659C6200A802A9 /* MessageController.h */,
+				2FF644E419659C6200A802A9 /* MessageController.mm */,
+				2FF644E019659AFD00A802A9 /* MaterialController.h */,
+				2FF644E119659AFD00A802A9 /* MaterialController.mm */,
 				242F9486195C6E7300371697 /* Auth */,
 				242F9489195C6E7300371697 /* Base */,
 				242F949E195C6E7300371697 /* Shop */,
@@ -523,12 +547,10 @@
 				24E88BED195DA645007478B3 /* NewCustomer */,
 				242F949A195C6E7300371697 /* RootController.h */,
 				242F949B195C6E7300371697 /* RootController.mm */,
-				2441003A195EE99700CEF5C9 /* IntroduceController.h */,
-				2441003B195EE99700CEF5C9 /* IntroduceController.mm */,
 				242F949C195C6E7300371697 /* SettingController.h */,
 				242F949D195C6E7300371697 /* SettingController.mm */,
 				2FF644DD1965214800A802A9 /* PRMoviePlayer.h */,
-				2FF644DE1965214800A802A9 /* PRMoviePlayer.m */,
+				2FF644DE1965214800A802A9 /* PRMoviePlayer.mm */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -595,6 +617,8 @@
 				242F94C8195C6E7300371697 /* DataLoader.mm */,
 				242F94CB195C6E7300371697 /* PullDataLoader.h */,
 				242F94CC195C6E7300371697 /* PullDataLoader.mm */,
+				2FF644EF19667DB200A802A9 /* FileDownloader.h */,
+				2FF644F019667DB200A802A9 /* FileDownloader.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -604,6 +628,10 @@
 			children = (
 				24410073196107FD00CEF5C9 /* IntroduceItemView.h */,
 				24410074196107FD00CEF5C9 /* IntroduceItemView.mm */,
+				2FF644E919663E3400A802A9 /* MeterialImageItemView.h */,
+				2FF644EA19663E3400A802A9 /* MeterialImageItemView.mm */,
+				2FF644EC19663E9D00A802A9 /* MeterialVideoItemView.h */,
+				2FF644ED19663E9D00A802A9 /* MeterialVideoItemView.mm */,
 				242F94CE195C6E7300371697 /* EXButton.h */,
 				242F94CF195C6E7300371697 /* EXButton.mm */,
 				242F94D0195C6E7300371697 /* InputBox.h */,
@@ -683,6 +711,8 @@
 				24E88BEA195DA645007478B3 /* LSComboBoxCell.mm */,
 				24E88BEB195DA645007478B3 /* LSTabButton.h */,
 				24E88BEC195DA645007478B3 /* LSTabButton.mm */,
+				2FF644F219668EFB00A802A9 /* DialogUIAlertView.h */,
+				2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -850,6 +880,7 @@
 				242F94F1195C6E7300371697 /* LSShopCartTableViewCell.mm in Sources */,
 				24259EC1194AB36B000FF8A9 /* MWPhoto.mm in Sources */,
 				242F94F2195C6E7300371697 /* LSShopMonoTableViewCell.mm in Sources */,
+				2FF644EB19663E3400A802A9 /* MeterialImageItemView.mm in Sources */,
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
 				242F9507195C6E7300371697 /* SelectPicker.mm in Sources */,
 				242F94E4195C6E7300371697 /* SettingController.mm in Sources */,
@@ -863,12 +894,13 @@
 				2F12923D19628B9F00F271AA /* LSDeviceInfo.mm in Sources */,
 				24259EDE194AB36B000FF8A9 /* KBAutoScrollView.mm in Sources */,
 				24259EE1194AB36B000FF8A9 /* ODRefreshControl.m in Sources */,
+				2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */,
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
 				242F9508195C6E7300371697 /* SelectSheet.mm in Sources */,
-				2441003C195EE99700CEF5C9 /* IntroduceController.mm in Sources */,
 				24259EC6194AB36B000FF8A9 /* SDWebImageDecoder.m in Sources */,
+				2FF644E81965A44D00A802A9 /* IntroduceController.mm in Sources */,
 				2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */,
 				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
@@ -900,6 +932,7 @@
 				24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */,
 				24259EBE194AB36B000FF8A9 /* Main.m in Sources */,
 				24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */,
+				2FF644E519659C6200A802A9 /* MessageController.mm in Sources */,
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
@@ -908,7 +941,7 @@
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
 				2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */,
 				24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */,
-				2FF644DF1965214800A802A9 /* PRMoviePlayer.m in Sources */,
+				2FF644DF1965214800A802A9 /* PRMoviePlayer.mm in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
@@ -925,8 +958,11 @@
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,
 				24E88BF6195DA645007478B3 /* NewCustomerController.mm in Sources */,
 				242F94F0195C6E7300371697 /* CartTable.mm in Sources */,
+				2FF644E219659AFD00A802A9 /* MaterialController.mm in Sources */,
 				2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */,
+				2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
+				2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

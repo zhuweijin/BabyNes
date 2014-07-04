@@ -137,7 +137,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"[self.theArray count]=%d",[self.theArray count]);
+    //_Log(@"[self.theArray count]=%d",[self.theArray count]);
     return [self.theArray count];
 }
 
@@ -151,7 +151,7 @@
     static NSString *CellIdentifier = @"CBTypeCell";
     LSComboBoxCell *cell =(LSComboBoxCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
-        //NSLog(@"cell is nil for row %d",row);
+        //_Log(@"cell is nil for row %d",row);
         cell = [[LSComboBoxCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -165,7 +165,7 @@
 /*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"CB第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
+    _Log(@"CB第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
     [self.theTextfield setText:[self.theArray objectAtIndex:indexPath.row]];
     [self.theList setHidden:YES];
     [self.theArrowButton setBackgroundImage:[UIImage imageNamed:@"arrow_down@2x.png"] forState:UIControlStateNormal];
@@ -173,7 +173,7 @@
 */
 -(void)select_item:(id)sender{
     int tag=[sender tag];
-    //NSLog(@"select_item tag=[%d]", tag);
+    //_Log(@"select_item tag=[%d]", tag);
     [self.theTextfield setText:[self.theArray objectAtIndex:tag]];
     [self.theList setHidden:YES];
     [self.theList removeFromSuperview];
@@ -185,7 +185,7 @@
 }
 
 -(void)arrowButtonGo:(id)sender{
-    //NSLog(@"LSComboBox showList called");
+    //_Log(@"LSComboBox showList called");
     if([self.theList isHidden]){
         [self.theList setHidden:NO];
         [self.superview addSubview: self.theList];

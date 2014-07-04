@@ -55,7 +55,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
+    _Log(@"MonoTable 第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
     ProductEntity*pe=[[ProductEntity getProductArray]objectAtIndex:indexPath.row];
     
     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];

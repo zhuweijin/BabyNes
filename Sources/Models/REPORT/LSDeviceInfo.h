@@ -10,7 +10,7 @@
 #include <sys/utsname.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
-
+#import "Reachability.h"
 #import "SecureUDID.h"
 
 #import "iVersion.h"
@@ -179,6 +179,11 @@
 +(NSString *)myNumber;
 
 +(NSString*) myLocation;
+
++(NSString *)deviceModelDesc;
++(NSString *)deviceModelOriginal;
+
++(NetworkStatus)currentNetworkType;
 
 #pragma hardware over
 

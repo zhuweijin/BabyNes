@@ -17,6 +17,7 @@
 -(void)registerEndPRNotificationReceiver{
     _is_playing=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_EXIT:) name:@"PR_EXIT" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_CALLED:) name:@"PR_CALLED" object:nil];
 }
 
 -(NSTimeInterval)maxIdleTime{
@@ -47,13 +48,14 @@
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
     //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
-    [self loadPR];
+    [self loadPR:nil];
 }
 
--(void) loadPR{
+-(void) loadPR:(NSString*)url{
     self.OriginalWindow=[self keyWindow];
     self.PRWindow=[[UIWindow alloc] initWithFrame:UIUtil::ScreenBounds()];
-    PRMoviePlayer * mp=[[PRMoviePlayer alloc]initWithURL:[NSURL URLWithString:[self getPRURL]]];
+    if(url==nil)url=[self getPRURL];
+    PRMoviePlayer * mp=[[PRMoviePlayer alloc]initWithPath:url];
     
     [self.PRWindow setRootViewController:mp];
     [self.PRWindow makeKeyAndVisible];
@@ -66,8 +68,16 @@
     self.PRWindow=nil;
     _is_playing=NO;
 }
--(void)PR_EXIT:(id)sender{
-    [self unloadPR];
+-(void)PR_EXIT:(NSNotification*)notification{
+    if(self.PRWindow){
+        [self unloadPR];
+    }
+}
+
+-(void)PR_CALLED:(NSNotification*)notification{
+    NSString * final_video_url=notification.object;
+    _Log(@"PR_CALLED for [%@]",final_video_url);
+    [self loadPR:final_video_url];
 }
 
 @end

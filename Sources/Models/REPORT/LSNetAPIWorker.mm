@@ -34,7 +34,8 @@ static NSString* trust_host=@"172.16.0.186";
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     NSData * data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSLog(@"doAPIRequestByURL [%@][%@] receive [%@]",URL,parameterString,data);
+    //_Log(@"doAPIRequestByURL [%@][%@] receive [%@]",URL,parameterString,data);
+    _Log(@"doAPIRequestByURL [%@][%@] received data",URL,parameterString);
     self.resultData=data;
     return YES;
 }
@@ -55,27 +56,28 @@ static NSString* trust_host=@"172.16.0.186";
     [request setHTTPBody:postData];
     //[request setCachePolicy:NSURLRequestUseProtocolCachePolicy]; // 设置缓存策略
     [request setTimeoutInterval:30]; // 设置超时
-    
-    NSLog(@"[REQUEST-HEADER] count=%i",[[request allHTTPHeaderFields] count]);
+    /*
+    _Log(@"[REQUEST-HEADER] count=%i",[[request allHTTPHeaderFields] count]);
     for(id key in [[request allHTTPHeaderFields] allKeys]){
-        NSLog(@"[REQUEST-HEADER] %@=%@",key,[[request allHTTPHeaderFields] valueForKey:key]);
+        _Log(@"[REQUEST-HEADER] %@=%@",key,[[request allHTTPHeaderFields] valueForKey:key]);
     }
-    NSLog(@"[REQUEST-HEADER] URL=%@ param=%@[%@]",URL,postData,parameterString);
-    
+    _Log(@"[REQUEST-HEADER] URL=%@ param=%@[%@]",URL,postData,parameterString);
+    */
     resultData=[[NSMutableData alloc] initWithData:nil];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
     if (connection == nil) {
-        NSLog(@"doAsyncAPIRequestByURL Failed to create connection");
+        _Log(@"doAsyncAPIRequestByURL Failed to create connection");
         return NO;
     }else{
         [delegate setConnection:connection];
+        _Log(@"doAsyncAPIRequestByURL did create connection");
         return YES;
     }
 }
 
 -(BOOL)doAPIRequestForJSONByURL:(NSString*)URL{
-    NSLog(@"URL=%@",URL);
+    //_Log(@"URL=%@",URL);
     //NSString * URL=@"http://localhost/leqee/BNTest/api.php";
     int HTTP_TIMEOUT=30;
     
@@ -98,20 +100,20 @@ static NSString* trust_host=@"172.16.0.186";
     //    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningRequest:nil error:nil];
     
     NSData * data=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSLog(@"receive %@",data);
+    //_Log(@"receive %@",data);
     //NSDictionary *
     resultDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     /*
-    if(resultDictionary==nil)NSLog(@"get nil");
+    if(resultDictionary==nil)_Log(@"get nil");
     else{
-        NSLog(@"BP-1");
+        _Log(@"BP-1");
         NSArray * keyarray=[resultDictionary allKeys];
-        NSLog(@"BP-2");
+        _Log(@"BP-2");
         for (NSString * key in keyarray) {
-            NSLog(@"%@=%@\n",key,[resultDictionary valueForKey:key]);
+            _Log(@"%@=%@\n",key,[resultDictionary valueForKey:key]);
         }
     }
-    NSLog(@"error=%@",[resultDictionary valueForKey:@"error"]);
+    _Log(@"error=%@",[resultDictionary valueForKey:@"error"]);
     return resultDictionary;
     */
     if(resultDictionary!=nil)return YES;
@@ -120,7 +122,7 @@ static NSString* trust_host=@"172.16.0.186";
 
 -(BOOL)doURLSessionRequest:(NSString *)URL{
     NSURLSessionDataTask* task= [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:URL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"doURLSessionRequest for URL[%@] complete data=[%@] response=[%@] error=[%@]",URL,data,[response debugDescription],[error debugDescription]);
+        _Log(@"doURLSessionRequest for URL[%@] complete data=[%@] response=[%@] error=[%@]",URL,data,[response debugDescription],[error debugDescription]);
         resultDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     }];
     [task resume];

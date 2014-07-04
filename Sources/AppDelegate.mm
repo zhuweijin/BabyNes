@@ -61,11 +61,12 @@
     [(SinriUIApplication *)application registerEndPRNotificationReceiver];
     
     //Report Device Information Regularly
+    [LSRegularReporter report];
     [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
 
      [(SinriUIApplication *)application resetIdleTimer];
     
-    //_Log(@"LOG %@",[LSDeviceInfo check_all]);
+    _Log(@"LOG %@",[LSDeviceInfo check_all]);
     
     //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     

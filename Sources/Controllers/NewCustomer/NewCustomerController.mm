@@ -176,7 +176,7 @@
 }
 
 -(void)refreshBabiesViews{
-    NSLog(@"refreshBabiesViews array=[%@]",self.baby_cells);
+    _Log(@"refreshBabiesViews array=[%@]",self.baby_cells);
     [self.InfoScrollView setContentSize: CGSizeMake(580, self.baby_cells_top+self.baby_cell_height*[self.baby_cells count])];
     for (int i=0; i<[self.baby_cells count]; i++) {
         LSNewCustomer_BabyCell*cell=[self.baby_cells objectAtIndex:i];
@@ -205,7 +205,7 @@
 
 -(void)provinceChanged:(id)sender{
     NSString * v=self.theProvinceCB.value_string;
-    NSLog(@"provinceChanged -> %@ !",v);
+    //_Log(@"provinceChanged -> %@ !",v);
     self.cities_array=[self.province_city_dict objectForKey:v];
     [self.theCityCB reloadDataForSelection:
      self.cities_array
@@ -213,7 +213,7 @@
 }
 
 -(void)addBaby:(id)sender{
-    NSLog(@"addBaby called");
+    _Log(@"addBaby called");
     LSNewCustomer_BabyCell * first=[[LSNewCustomer_BabyCell alloc]initWithFrame:CGRectMake(0, 0, 500, self.baby_cell_height) withinController:self];
     //[first initDate];
     [self.baby_cells addObject:first];
@@ -222,7 +222,7 @@
 }
 
 -(void)addCustomer:(id)sender{
-    NSLog(@"addCustomer called");
+    _Log(@"addCustomer called");
     
     LSCustomer * cc=[LSCustomer newCustomer];
     
@@ -257,7 +257,7 @@
 }
 
 -(void)closeView:(id)sender{
-    NSLog(@"closeView called");
+    _Log(@"closeView called");
     //[self sendAction:@selector(customer_create_hide:) to:self.superview forEvent:UIControlEventTouchUpInside];
     //[self.theController receive_event:sender forEventDescription:@"close_new_customer_apply_view" withNSString:@""];
     //[self.theController popoverModeViewOff];

@@ -103,6 +103,9 @@
 /* Close */
 "Close" = "取消创建";
 
+/* Continue to view */
+"Continue to view" = "继续观看";
+
 /* Copied */
 "Copied" = "已拷贝";
 
@@ -202,8 +205,11 @@
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
 
-/* Media */
-"Media" = "媒体中心";
+/* Material */
+"Material" = "媒介中心";
+
+/* Message Center */
+"Message Center" = "消息中心";
 
 /* Mobile */
 "Mobile" = "手机号";
@@ -283,6 +289,9 @@
 /* Order Confirmed */
 "Order Confirmed" = "订单确认";
 
+/* Paid Network Warning */
+"Paid Network Warning" = "付费网络提醒";
+
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "产品                              价格           数量";
 
@@ -303,6 +312,9 @@
 
 /* Rate Me */
 "Rate Me" = "给个好评";
+
+/* Register or update device information failed! */
+"Register or update device information failed!" = "登记或更新设备失败！";
 
 /* Registered as [%@] */
 "Registered as [%@]" = "成功注册为[%@]";
@@ -358,8 +370,8 @@
 /* Shopping Cart */
 "Shopping Cart" = "购物车";
 
-/* SR Center */
-"SR Center" = "SR管理";
+/* Sorry but there is not network available. */
+"Sorry but there is not network available." = "抱歉，目前无可用网络。";
 
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "总计：￥%.2f       数量：%d";
@@ -390,6 +402,9 @@
 
 /* Yesterday */
 "Yesterday" = "昨天";
+
+/* You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue. */
+"You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue." = "目前您处在非Wi-Fi网络环境，下载可能会产生额外费用。您可以取消以避免下载引起的流量费用。";
 
 /* Your contact information */
 "Your contact information" = "您的联系方式";

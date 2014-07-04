@@ -182,13 +182,13 @@
     _Log(@"check_cache_files");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);//NSCachesDirectory//NSDocumentDirectory
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"documentsDirectory%@",documentsDirectory);
+    _Log(@"documentsDirectory%@",documentsDirectory);
     NSFileManager *fileManage = [NSFileManager defaultManager];
     NSString *myDirectory = documentsDirectory;//[documentsDirectory stringByAppendingPathComponent:@"Caches"];
     NSArray *file = [fileManage subpathsOfDirectoryAtPath: myDirectory error:nil];
-    NSLog(@"file in [%@] %@", myDirectory,file);
+    _Log(@"file in [%@] %@", myDirectory,file);
     NSArray *files = [fileManage subpathsAtPath: myDirectory ];
-    NSLog(@"%@",files);
+    _Log(@"%@",files);
 }
 
 @end
