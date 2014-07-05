@@ -67,7 +67,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
+    _Log(@"第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
 }
 
 

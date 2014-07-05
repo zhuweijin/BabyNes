@@ -29,6 +29,7 @@
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
 
+//@property CacheImageView * civ;
 
 @end
 
@@ -37,9 +38,9 @@
 // Constructor
 - (id)init
 {
-	self = [super initWithService:@"pdt_classify"];
-	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
-	return self;
+    self = [super initWithService:@"pdt_classify"];
+    self.title = NSLocalizedString(@"Shop", @"网上商店");
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -82,7 +83,7 @@
     [self.view addSubview:self.list_header];
     
     self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(590, 405, 400, 30)];
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),0/100.0,0];
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),0/100.0,0];
     [self.sum_label setFont: [UIFont systemFontOfSize:20]];
     [self.sum_label setTextAlignment:(NSTextAlignmentCenter)];
     [self.view addSubview:self.sum_label];
@@ -144,7 +145,7 @@
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_order_confirm_button];
     [self.the_order_confirm_button setHidden:YES];
-
+    
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
     [self.cartTableView setDelegate:self.cartTableView];
     [self.cartTableView setDataSource:self.cartTableView];
@@ -158,13 +159,13 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWillShow:)
-												 name:UIKeyboardWillShowNotification
-											   object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(keyboardWillHide:)
-												 name:UIKeyboardWillHideNotification
-											   object:nil];
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     // 键盘高度变化通知，ios5.0新增的
 #ifdef __IPHONE_5_0
     float version = [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -174,17 +175,21 @@
 #endif
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
-	
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
 }
 
 
@@ -238,7 +243,7 @@
     if([self.the_customer_mobile_textfield.text longLongValue]>13500000000){
         found=YES;
         [self.the_customer_search_result setText:[NSString stringWithFormat:
-         NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
+                                                  NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
                                                   @"Mr Wakayama",
                                                   self.the_customer_mobile_textfield.text,
                                                   @"2014-01-01"
@@ -280,33 +285,33 @@
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     _Log(@"SHOP VC keyboardWillShow");
-	CGRect rect;
-	NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-	[value getValue:&rect];
+    CGRect rect;
+    NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [value getValue:&rect];
     rect=[self.view convertRect:rect fromView:nil];
     //_Log(@"rect=[%f] value rect=[%f]",rect.origin.y,[value CGRectValue].origin.y);
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
-	[UIView setAnimationCurve:(UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] intValue]];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+    [UIView setAnimationCurve:(UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] intValue]];
     
     [self.view setFrame:CGRectMake(0, 0-rect.size.height,1024, 708)];
-   	[UIView commitAnimations];
+    [UIView commitAnimations];
 }
 
 //
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     _Log(@"SHOP VC keyboardWillHide");
-	CGRect rect;
-	NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-	[value getValue:&rect];
-	
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
-	[UIView setAnimationCurve:(UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] intValue]];
+    CGRect rect;
+    NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [value getValue:&rect];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+    [UIView setAnimationCurve:(UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] intValue]];
     
     [self.view setFrame:CGRectMake(0, 0,1024, 708)];
     [UIView commitAnimations];
@@ -340,7 +345,149 @@
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"SHOP VC dealCartChanged !");
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f Quantity %d", @"总计：￥%.2f   数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+}
+
+-(void)dealMonoCellSelected:(NSNotification *)notification{
+    _Log(@"SHOP VC dealMonoCellSelected !");
+    
+    double whole_animation_duration=0.4;
+    
+    CacheImageView * civ= [notification.object objectForKey:@"civ"];
+    CGRect originalCIVFrame=civ.frame;
+    ProductEntity* pe= [notification.object objectForKey:@"pe"];
+    
+    /*
+     CGRect civBigFrame=civ.frame;
+     civBigFrame.origin.x-=civBigFrame.size.width/2;
+     civBigFrame.origin.y-=civBigFrame.size.height/2;
+     civBigFrame.size.width*=2;
+     civBigFrame.size.height*=2;
+     CGRect civToFrame=civ.frame;
+     civToFrame=self.list_icon_image_view.frame;
+     [self.view addSubview:civ];
+     
+     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+     [civ setFrame:civBigFrame];
+     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+     } completion:^(BOOL finished) {
+     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+     [civ setFrame:civToFrame];
+     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+     } completion:^(BOOL finished) {
+     [civ removeFromSuperview];
+     [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+     }];
+     }];
+     */
+    if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
+        _Log(@"Should do CartItem Insert Animation");
+        CGRect cartItemFromFrame=originalCIVFrame;
+        
+        cartItemFromFrame.size.width=450;
+        cartItemFromFrame.size.height=50;
+        
+        CGRect cartItemToFrame=cartItemFromFrame;
+        
+        cartItemFromFrame.origin.x+=80;
+        
+        int row_count=[self.cartTableView tableView:self.cartTableView numberOfRowsInSection:0];
+        _Log(@"dealMonoCellSelected row_count in cart tale is %d",row_count);
+        CGFloat offset=5*50;
+        if(row_count<6){
+            offset=row_count*50;
+        }
+        
+        cartItemToFrame.origin.x=self.cartTableView.frame.origin.x;
+        cartItemToFrame.origin.y=self.cartTableView.frame.origin.y+offset;
+        LSShopCartTableViewCell * cell=[[LSShopCartTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"CartCell"];
+        [cell loadCartMonoWithName:pe.product_title andPrice:pe.product_price_cents andQuantity:pe.quantity andID:pe.product_id];
+        cell.frame=cartItemFromFrame;
+        [cell setBackgroundColor:[UIColor whiteColor]];
+        [self.view addSubview:cell];
+        [UIView animateWithDuration:whole_animation_duration animations:^{
+            if(row_count>=6){
+                [self.cartTableView setContentOffset:CGPointMake(0, 50*(row_count-5))];
+            }
+            cell.frame=cartItemToFrame;
+            cell.backgroundColor = [UIColor yellowColor];
+        } completion:^(BOOL finished) {
+            [cell removeFromSuperview];
+            [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+        }];
+    }else{
+        NSNumber *index_NS=[notification.object objectForKey:@"inCart"];
+        int index=[index_NS intValue];
+        _Log(@"Seek existed index:[%d]",index);
+        if(index>=0){
+            if(self.cartTableView.contentOffset.y>=50*(index-5) && self.cartTableView.contentOffset.y<=50*(index)){
+                _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+                UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                _Log(@"Seek existed cell:[%@]",cell);
+                cell.backgroundColor=[UIColor yellowColor];
+                [UIView animateWithDuration:whole_animation_duration animations:^{
+                    
+                    if(index>5){
+                        [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                    }else{
+                        [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                    }
+                    
+                    cell.backgroundColor=[UIColor whiteColor];
+                } completion:^(BOOL finished) {
+                    [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                }];
+            }else{
+                _Log(@"SHOULD NOT BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+                [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+                    
+                    if(index>5){
+                        [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                    }else{
+                        [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                    }
+                } completion:^(BOOL finished) {
+                    UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                    _Log(@"Seek existed cell:[%@]",cell);
+                    cell.backgroundColor=[UIColor yellowColor];
+                    [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+                        
+                        if(index>5){
+                            [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                        }else{
+                            [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                        }
+                        
+                        cell.backgroundColor=[UIColor whiteColor];
+                    } completion:^(BOOL finished) {
+                        [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                    }];
+                }];
+            }
+        }
+    }
+}
+
+-(void)UserRegistered:(NSNotification *) notification{
+    LSCustomer * cc=[LSCustomer getCurrentCustomer];
+    NSString * baby_info=NSLocalizedString(@"Never registered", @"没有记录");
+    if(cc && cc.theBabies && [cc.theBabies count]>0){
+        LSBaby*baby=[cc.theBabies objectAtIndex:0];
+        baby_info=[NSString stringWithFormat:@"%d-%d-%d",baby.the_birth_year,baby.the_birth_month,baby.the_birth_day];
+    }
+    NSString* customer_namae=@"Unknown";
+    if([NSLocalizedString(@"EN", @"CN") isEqualToString:@"EN"]){
+        customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theTitle,cc.theName];
+    }else{
+        customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theName,cc.theTitle];
+    }
+    [self.the_customer_search_result setText:
+     [NSString stringWithFormat:
+      NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
+      customer_namae,
+      cc.theMobile,
+      baby_info
+      ]];
 }
 
 -(void)resetShopView{

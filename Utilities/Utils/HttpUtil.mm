@@ -21,7 +21,7 @@ NSData *HttpUtil::DownloadData(NSString *url, NSString *to, DownloadMode mode)
 	{
 		return [NSData dataWithContentsOfFile:to];
 	}
-	
+	_Log(@"SINRI DEBUG HttpUtil::DownloadData url=[%@], to=[%@]",url,to);
 	//UIUtil::ShowNetworkIndicator(YES);
 	NSError *error = nil;
 	NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] options:((mode == DownloadCheckOnline) ? 0 : NSUncachedRead) error:&error];
@@ -34,6 +34,8 @@ NSData *HttpUtil::DownloadData(NSString *url, NSString *to, DownloadMode mode)
 NSData *HttpUtil::HttpData(NSString *url, NSData *post, NSURLRequestCachePolicy cachePolicy, NSURLResponse **response, NSError **error, NSString *contentType)
 {
 	//UIUtil::ShowNetworkIndicator(YES);
+    
+    _Log(@"SINRI DEBUG HttpUtil::HttpData url=[%@]",url);
 	
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]cachePolicy:cachePolicy timeoutInterval:30];
 	if (post)

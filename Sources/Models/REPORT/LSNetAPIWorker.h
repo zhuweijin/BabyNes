@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SecureUDID.h"
+//#import "SecureUDID.h"
 #import "LSConnectionDelegater.h"
+#import "LSDeviceInfo.h"
+#import "DialogUIAlertView.h"
 //#import "LSPromotorLoginConnectionDelegate.h"
 
 // return the unique device ID; it is cached because accessing this object is expensive

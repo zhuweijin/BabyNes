@@ -15,7 +15,7 @@
         [self.btn removeFromSuperview];
         self.btn=nil;
     }
-    NSLog(@"LSComboBoxCell load With...%d/%@",tag,text);
+    _Log(@"LSComboBoxCell load With...%d/%@",tag,text);
     self.btn=[UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.btn setTag:tag];
     [self.btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
@@ -35,7 +35,7 @@
         [self setAlpha:0.8];
         
         self.btn=nil;
-        NSLog(@"LSComboBoxCell initWith...%d/%@",tag,text);
+        _Log(@"LSComboBoxCell initWith...%d/%@",tag,text);
         self.btn=[UIButton buttonWithType:(UIButtonTypeCustom)];
         [self.btn setTag:tag];
         [self.btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
@@ -66,7 +66,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    //NSLog(@"LSComboBoxCell selected");
+    //_Log(@"LSComboBoxCell selected");
     // Configure the view for the selected state
 }
 

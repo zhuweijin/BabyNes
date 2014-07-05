@@ -105,6 +105,11 @@
 - (void)logoutButtonClicked:(id)sender
 {
 	UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
+    
+    //LOG OUT by Sinri
+    Settings::Save(kAccessToken);
+	UIViewController *controller = [[LoginController alloc] init];
+	[self.navigationController setViewControllers:@[controller] animated:NO];
 }
 
 //
@@ -120,6 +125,13 @@
 		UIButton *button = (UIButton *)cell.accessoryView;
 		[button setTitle:NSLocalizedString(@"Cleansed", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
+        
+        //Log time for cleaning cache
+        long time;
+        NSDate *fromdate=[NSDate date];
+        time=(long)[fromdate timeIntervalSince1970];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+        
 		return;
 	}
 	
@@ -170,13 +182,13 @@
     _Log(@"check_cache_files");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);//NSCachesDirectory//NSDocumentDirectory
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"documentsDirectory%@",documentsDirectory);
+    _Log(@"documentsDirectory%@",documentsDirectory);
     NSFileManager *fileManage = [NSFileManager defaultManager];
     NSString *myDirectory = documentsDirectory;//[documentsDirectory stringByAppendingPathComponent:@"Caches"];
     NSArray *file = [fileManage subpathsOfDirectoryAtPath: myDirectory error:nil];
-    NSLog(@"file in [%@] %@", myDirectory,file);
+    _Log(@"file in [%@] %@", myDirectory,file);
     NSArray *files = [fileManage subpathsAtPath: myDirectory ];
-    NSLog(@"%@",files);
+    _Log(@"%@",files);
 }
 
 @end

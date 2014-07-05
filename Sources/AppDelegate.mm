@@ -58,36 +58,51 @@
 	
 	StatStart();
     
+    [(SinriUIApplication *)application registerEndPRNotificationReceiver];
+    
     //Report Device Information Regularly
-    [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
+    [LSRegularReporter report];
+    [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
 
+     [(SinriUIApplication *)application resetIdleTimer];
+    
+    _Log(@"LOG %@",[LSDeviceInfo check_all]);
+    
+    //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    
 	return YES;
 }
 
 // The application is about to terminate.
-//- (void)applicationWillTerminate:(UIApplication *)application
-//{
-//}
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    _Log(@"AppDelegate applicationWillTerminate");
+}
 
 // Tells the delegate that the application is about to become inactive.
-//- (void)applicationWillResignActive:(UIApplication *)application
-//{
-//}
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    _Log(@"AppDelegate applicationWillResignActive");
+}
 
 // The application has become active.
-//- (void)applicationDidBecomeActive:(UIApplication *)application
-//{
-//}
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    _Log(@"AppDelegate applicationDidBecomeActive");
+    [(SinriUIApplication *)application resetIdleTimer];
+}
 
 // Tells the delegate that the application is about to enter the foreground.
-//- (void)applicationWillEnterForeground:(UIApplication *)application
-//{
-//}
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    _Log(@"AppDelegate applicationWillEnterForeground");
+}
 
 // Tells the delegate that the application is now in the background.
-//- (void)applicationDidEnterBackground:(UIApplication *)application
-//{
-//}
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    _Log(@"AppDelegate applicationDidEnterBackground");
+}
 
 
 #pragma mark Managing Status Bar Changes
@@ -118,6 +133,7 @@
 // There is a significant change in the time.
 //- (void)applicationSignificantTimeChange:(UIApplication *)application
 //{
+//    _Log(@"AppDelegate applicationSignificantTimeChange !");
 //}
 
 // The application receives a memory warning from the system.

@@ -1,6 +1,7 @@
 
 #import "BaseController.h"
 #import "CacheDataLoader.h"
+#import "FileDownloader.h"
 
 //
 @interface DataController : BaseController <DataLoaderDelegate>

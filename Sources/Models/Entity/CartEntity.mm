@@ -30,6 +30,25 @@ static CartEntity * defaultCartEntity=nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
 }
 
+-(int)currentQuantityOfProductID:(int)pid{
+    for (ProductEntity * pe in self.cart_array) {
+        if([pe product_id]==pid){
+            return [pe product_id];
+        }
+    }
+    return 0;
+}
+
+-(int)currentArrayIndexOfProductID:(int)pid{
+    for (int i=0;i< [self.cart_array count]; i++) {
+        ProductEntity * pe= [self.cart_array objectAtIndex:i];
+        if([pe product_id]==pid){
+            return i;
+        }
+    }
+    return -1;
+}
+
 -(void)addToCart:(int)product_id withQuantity:(int)number{
     _Log(@"Cart addToCart[%d] with %d",product_id,number);
     if(number==0){
@@ -59,7 +78,7 @@ static CartEntity * defaultCartEntity=nil;
             }
             
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
     }
 }
 
@@ -81,6 +100,6 @@ static CartEntity * defaultCartEntity=nil;
 
 -(void)testChange{
     _Log(@"testChange called");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
 }
 @end

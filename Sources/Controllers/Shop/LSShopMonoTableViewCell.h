@@ -12,8 +12,10 @@
 
 @interface LSShopMonoTableViewCell : UITableViewCell
 
-@property UIImage * image;
-@property UIImageView * image_view;
+//@property UIImage * image;
+//@property UIImageView * image_view;
+
+@property CacheImageView * image_view;
 @property UILabel * label;
 
 -(void) loadProduct:(ProductEntity*) mono;

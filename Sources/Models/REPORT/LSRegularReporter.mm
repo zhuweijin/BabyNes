@@ -8,7 +8,7 @@
 
 #import "LSRegularReporter.h"
 
-static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/device_info.php";
+static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/device_status.php";
 
 @implementation LSRegularReporter
 
@@ -18,9 +18,9 @@ static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/devi
     NSInteger level=[LSDeviceInfo batteryLevel];
     NSString* SUUID=[LSDeviceInfo device_sn];//SystemUtil::SN();//[LSUserModel device_sn];
     _Log(@"REPORT-SUUID=%@",SUUID);
-    Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
-    NSInteger net_state=-1;
-    switch ([r currentReachabilityStatus]) {
+    //Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
+    NSInteger net_state=-1;//[r currentReachabilityStatus]
+    switch ([LSDeviceInfo currentNetworkType]) {
         case NotReachable:
             // 没有网络连接
             //stateInfo=[stateInfo stringByAppendingString:@"No web connection"];
@@ -40,13 +40,19 @@ static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/devi
     long boot_time_second=[LSDeviceInfo bootTimeInSeconds];
     NSString* AT=DataLoader.accessToken; //[[LSUserModel getCurrentUser] accessToken];
     if(AT==nil)AT=@"Unlogined";
+    
+    NSNumber * num = [[NSUserDefaults standardUserDefaults]objectForKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+    if(num==nil){
+        num=[NSNumber numberWithLong:-1];
+    }
+    
     NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
                         @"update_status",@"act",
                         AT,@"token",
                         [NSString stringWithFormat:@"%d",bs_p],@"is_plugin",
                         [NSString stringWithFormat:@"%d",level],@"battery_level",
                         [NSString stringWithFormat:@"%ld",boot_time_second],@"bootBefore",
-                        @"Unknown",@"lastClean",
+                        num,@"lastClean",
                         [NSString stringWithFormat:@"%d",net_state],@"net",
                         SUUID,@"SUUID",
                         nil
@@ -54,7 +60,7 @@ static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/devi
     
     NSString* param=NSUtil::URLQuery(dict);
     
-    NSLog(@"[LSUserModel]doLoginWork:URL=%@ param=%@",ReportURL,param);
+    _Log(@"[LSUserModel]doLoginWork:URL=%@ param=%@",ReportURL,param);
     //NSError *error = nil;
     //NSURLResponse *response = nil;
     //NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
@@ -65,7 +71,7 @@ static NSString * ReportURL=@"https://172.16.0.143:233/babynesios/admin/api/devi
     
     BOOL done= [worker doAsyncAPIRequestByURL:ReportURL withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
     
-    NSLog(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
+    _Log(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
 }
 
 - (BOOL)connection:(NSURLConnection *)connection

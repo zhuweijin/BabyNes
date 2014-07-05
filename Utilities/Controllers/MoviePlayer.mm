@@ -19,7 +19,7 @@
 	{
 		if (!_playerRemoved) 
 		{
-			[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+			//[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
 		}
 
 		[_player stop];
@@ -73,7 +73,7 @@
 //
 -(void)videoPlayFinished:(NSNotification *)notification
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
     
 	_playerRemoved = YES;
 	
