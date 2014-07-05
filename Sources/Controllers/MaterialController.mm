@@ -121,6 +121,8 @@ static int MonoNumberInRow=4;
 	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
     cate_id=sender.tag;
     
+    _Log(@"Material dict=[%@] cate=[%@] cate_id=[%d]",_loader.dict,cate,cate_id);
+    
 	if (cate[@"VIEW"] == nil)
 	{
         //_Log(@"cateButtonClicked CATE=[%@]",cate);
