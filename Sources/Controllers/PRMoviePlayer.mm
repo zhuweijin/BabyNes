@@ -9,8 +9,6 @@
 #import "PRMoviePlayer.h"
 
 @interface PRMoviePlayer ()
-
-//+(NSString*)get_PR_Movie_URL;
 @property UINavigationBar *navigationBar;
 @property UINavigationItem *theNavigationItem;
 @property UIBarButtonItem *leftButton;
@@ -19,11 +17,6 @@
 @end
 
 @implementation PRMoviePlayer
-/*
- +(NSString*)get_PR_Movie_URL{
- return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
- }
- */
 
 - (id)initWithURL:(NSURL *)URL
 {
@@ -59,7 +52,6 @@
 	
 	_player = [[MPMoviePlayerController alloc] initWithContentURL:_URL];
     
-    //[_player setControlStyle:(MPMovieControlStyleFullscreen)];
     [_player setControlStyle:(MPMovieControlStyleDefault)];
 	if (UIUtil::SystemVersion() >= 3.2)
 	{
@@ -73,9 +65,10 @@
     //创建一个导航栏集合
     _theNavigationItem = [[UINavigationItem alloc] initWithTitle:nil];
     //创建一个左边按钮
-    _leftButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"返回")  style:(UIBarButtonItemStylePlain) target:self action:@selector(clickBackButton:)];
-    //UIImage * back_icon = UIUtil::Image(@"app/goback@2x.png");
-    //_leftButton = [[UIBarButtonItem alloc] initWithImage:back_icon style:(UIBarButtonItemStylePlain) target:self action:@selector(clickBackButton:)];
+    //_leftButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"返回")  style:(UIBarButtonItemStylePlain) target:self action:@selector(clickBackButton:)];
+    UIImage * back_icon = UIUtil::Image(@"app/goback@2x.png");
+    _leftButton = [[UIBarButtonItem alloc] initWithImage:back_icon style:(UIBarButtonItemStyleBordered) target:self action:@selector(clickBackButton:)];
+    
     //创建一个右边按钮
     //_rightButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Full Screen", @"全屏幕") style:UIBarButtonItemStyleDone target:self action:@selector(clickFullScreenButton:)];
     //设置导航栏内容
@@ -84,6 +77,7 @@
     [_navigationBar pushNavigationItem:_theNavigationItem animated:YES];
     
     //把左右两个按钮添加入导航栏集合中
+    //[_theNavigationItem setBackBarButtonItem:_leftButton];
     [_theNavigationItem setLeftBarButtonItem:_leftButton];
     //[_theNavigationItem setRightBarButtonItem:_rightButton];
     //把导航栏添加到视图中
@@ -152,7 +146,6 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exit_fullscreen_notified:) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(on_MPMoviePlayerPlaybackStateDidChangeNotification:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
     if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
         // iOS 7
         [self prefersStatusBarHidden];
@@ -162,7 +155,6 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-    //[[NSNotificationCenter defaultCenter]removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
     
 }
 
@@ -179,46 +171,6 @@
     //return YES;//隐藏为YES，显示为NO
 }
 
-/*
- -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
- _endPR=[UIButton buttonWithType:(UIButtonTypeRoundedRect)];//[[UIButton alloc]initWithFrame:CGRectMake(40, 40, 100, 50)];
- [_endPR setFrame:CGRectMake(40, 40, 120, 50)];
- [_endPR setBackgroundColor:[UIColor redColor]];
- [_endPR.titleLabel setFont:[UIFont systemFontOfSize:30]];
- [_endPR setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
- [_endPR setTitle:NSLocalizedString(@"Exit", @"退出") forState:(UIControlStateNormal)];
- [_endPR addTarget:self action:@selector(exit:) forControlEvents:(UIControlEventTouchUpInside)];
- [self.view addSubview:_endPR];
- [self.view bringSubviewToFront:_endPR];
- }
- 
- -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
- [self performSelector:@selector(killEndPR:) withObject:self afterDelay:5];
- }
- -(void)killEndPR:(id)sender{
- if(_endPR){
- [_endPR removeFromSuperview];
- }
- }
- 
- -(void)exit:(id)sender{
- _Log(@"PRMoviePlayer exit called");
- [_player stop];
- _player=nil;
- [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_EXIT" object:nil];
- [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
- }
- */
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 -(void)exit_fullscreen_notified:(NSNotification*)notification{
     _Log(@"exit_fullscreen_notified called");
@@ -226,32 +178,6 @@
     [self showNavBar:self];
     //}
 }
-/*
- -(void)exit_fullscreen_notified:(NSNotification*)notification{
- _Log(@"exit_fullscreen_notified");
- NSNumber *reason = [notification.userInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
- 
- if ([reason intValue] == MPMovieFinishReasonUserExited) {
- // Your done button action here
- _Log(@"MPMovieFinishReasonUserExited");
- }
- [_player stop];
- _player=nil;
- [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_EXIT" object:nil];
- 
- }
- 
- -(void)on_MPMoviePlayerPlaybackStateDidChangeNotification:(NSNotification*)notification{
- _Log(@"on_MPMoviePlayerPlaybackStateDidChangeNotification obj=%@",[notification.userInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey]);
- NSNumber *reason = [notification.userInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
- 
- if ([reason intValue] == MPMovieFinishReasonUserExited) {
- // Your done button action here
- _Log(@"MPMovieFinishReasonUserExited");
- }
- 
- }
- */
 
 -(void)clickBackButton:(id)sender{
     _Log(@"PRMoviePlayer clickBackButton called");

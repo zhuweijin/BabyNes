@@ -206,10 +206,11 @@ static int MonoNumberInRow=4;
 	//NSDictionary *item = _loader.dict[@"capsule"][sender.view.tag];
     int btn_tag = sender.view.tag;
     
+    NSString * file_name=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"name"];
     if(cate_id==0){
         //video
         NSString * file_url=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"file"];
-        NSString * file_name=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"name"];
+        
         
         NSString * cache_path = NSUtil::CacheUrlPath(file_url);
         NSString * final_video_url=nil;
@@ -243,7 +244,22 @@ static int MonoNumberInRow=4;
     }else if (cate_id==1){
         //image
         NSString * file_url=[[[_loader.dict objectForKey:@"picture"]objectAtIndex:btn_tag]objectForKey:@"file"];
-        UIUtil::ShowAlert([NSString stringWithFormat:@"Image btn_tag = %d - %d url=[%@]",cate_id,btn_tag,file_url]);
+        //UIUtil::ShowAlert([NSString stringWithFormat:@"Image btn_tag = %d - %d url=[%@]",cate_id,btn_tag,file_url]);
+        
+        NSString * cache_path = NSUtil::CacheUrlPath(file_url);
+        
+        UIImage *image = [UIImage imageWithContentsOfFile:cache_path];//[UIImage imageNamed:UIUtil::IsPad() ? @"DefaultPad" : (UIUtil::IsPhone5() ? @"Default-568h" : @"Default")];
+        NSDictionary * dict=@{@"file": image,
+                              @"name":file_name};
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_PHOTO_CALLED" object:dict];
+        /*
+        PRPhotoPlayer *pp =[[PRPhotoPlayer alloc]initWithImage:image withTitle:file_name];
+        [pp setModalPresentationStyle:(UIModalPresentationFullScreen)];
+        [pp setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+        [self presentViewController:pp animated:YES completion:^{
+            _Log(@"show pp done");
+        }];
+         */
     }
     
 }

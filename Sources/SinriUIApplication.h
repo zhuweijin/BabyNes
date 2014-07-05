@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PRMoviePlayer.h"
+#import "PRPhotoPlayer.h"
 
 @interface SinriUIApplication : UIApplication
 //maxIdleTime 和 idleTimer
@@ -19,7 +20,9 @@
 @property BOOL is_playing;
 
 @property UIWindow * PRWindow;
+@property UIWindow * PPWindow;
 @property UIWindow * OriginalWindow;
+@property UIWindow * OriginalWindow_PP;
 
 -(void) loadPR:(NSString*)url withTitle:(NSString *)title;
 -(void) unloadPR;

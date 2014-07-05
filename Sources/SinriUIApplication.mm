@@ -18,10 +18,12 @@
     _is_playing=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_EXIT:) name:@"PR_EXIT" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_CALLED:) name:@"PR_CALLED" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_PHOTO_EXIT:) name:@"PR_PHOTO_EXIT" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PR_PHOTO_CALLED:) name:@"PR_PHOTO_CALLED" object:nil];
 }
 
 -(NSTimeInterval)maxIdleTime{
-    return 60*2;
+    return 60*5;
 }
 
 - (void)sendEvent:(UIEvent *)event {
@@ -32,7 +34,7 @@
         // allTouchescount 似乎只会是 1, 因此 anyObject 总是可用的
         UITouchPhase phase =((UITouch *)[allTouches anyObject]).phase;
         if (phase ==UITouchPhaseBegan || phase == UITouchPhaseEnded){
-            if(!_is_playing)[self resetIdleTimer];
+            [self resetIdleTimer];
         }
     }
 }
@@ -48,7 +50,7 @@
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
     //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
-    [self loadPR:nil withTitle:nil];
+    if(!_is_playing)[self loadPR:nil withTitle:nil];
 }
 
 -(void) loadPR:(NSString*)url withTitle:(NSString *)title{
@@ -73,6 +75,7 @@
     [self setStatusBarHidden:NO withAnimation:(UIStatusBarAnimationSlide)];
     _is_playing=NO;
 }
+
 -(void)PR_EXIT:(NSNotification*)notification{
     if(self.PRWindow){
         [self unloadPR];
@@ -85,6 +88,44 @@
     NSString * name=[dict objectForKey:@"name"];
     _Log(@"PR_CALLED for [%@]",final_video_url);
     [self loadPR:final_video_url withTitle:name];
+}
+
+-(void) loadPR_PHOTO:(UIImage*)image withTitle:(NSString *)title{
+    self.OriginalWindow_PP=[self keyWindow];
+    self.PPWindow=[[UIWindow alloc] initWithFrame:UIUtil::ScreenBounds()];
+    //if(url==nil)url=[self getPRURL];
+    PRPhotoPlayer * pp=[[PRPhotoPlayer alloc]initWithImage:image withTitle:title];
+    
+    [self.PPWindow setRootViewController:pp];
+    [self.PPWindow makeKeyAndVisible];
+    
+    //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:(UIStatusBarAnimationSlide)];
+    [self setStatusBarHidden:YES withAnimation:(UIStatusBarAnimationSlide)];
+    
+    _is_playing=YES;
+}
+
+-(void)unloadPR_PHOTO{
+    [self.OriginalWindow_PP makeKeyAndVisible];
+    self.PPWindow=nil;
+    //[[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:(UIStatusBarAnimationSlide)];
+    [self setStatusBarHidden:NO withAnimation:(UIStatusBarAnimationSlide)];
+    _is_playing=NO;
+}
+
+-(void)PR_PHOTO_EXIT:(NSNotification*)notification{
+    if(self.PPWindow){
+        [self unloadPR_PHOTO];
+    }
+}
+
+-(void)PR_PHOTO_CALLED:(NSNotification*)notification{
+    NSDictionary * dict = notification.object;
+    //NSString * final_video_url=[dict objectForKey:@"file"];
+    UIImage * image=[dict objectForKey:@"file"];
+    NSString * name=[dict objectForKey:@"name"];
+    _Log(@"PR_CALLED for [%@]", name);
+    [self loadPR_PHOTO:image withTitle:name];
 }
 
 @end
