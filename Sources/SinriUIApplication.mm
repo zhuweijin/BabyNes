@@ -7,11 +7,13 @@
 //
 
 #import "SinriUIApplication.h"
+#import "ServerConfig.h"
 
 @implementation SinriUIApplication
 
 -(NSString*)getPRURL{
-    return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
+    //return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
+    return [[ServerConfig getServerConfig]getURL_idle_video];
 }
 
 -(void)registerEndPRNotificationReceiver{

@@ -104,6 +104,8 @@
 		2F12923F19628B9F00F271AA /* Reachability.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923C19628B9F00F271AA /* Reachability.mm */; };
 		2F12924219629B8D00F271AA /* SecureUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F12924119629B8D00F271AA /* SecureUDID.m */; };
 		2F2D54AC1967A8990050ACFA /* PRPhotoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */; };
+		2F2D54B21967E6210050ACFA /* SinriCacheImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B11967E6210050ACFA /* SinriCacheImageButton.m */; };
+		2F2D54B51967E8BF0050ACFA /* ServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B41967E8BF0050ACFA /* ServerConfig.m */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
@@ -312,6 +314,10 @@
 		2F12924119629B8D00F271AA /* SecureUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureUDID.m; sourceTree = "<group>"; };
 		2F2D54AA1967A8990050ACFA /* PRPhotoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PRPhotoPlayer.h; path = Sources/Controllers/PRPhotoPlayer.h; sourceTree = SOURCE_ROOT; };
 		2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PRPhotoPlayer.mm; path = Sources/Controllers/PRPhotoPlayer.mm; sourceTree = SOURCE_ROOT; };
+		2F2D54B01967E6210050ACFA /* SinriCacheImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinriCacheImageButton.h; sourceTree = "<group>"; };
+		2F2D54B11967E6210050ACFA /* SinriCacheImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinriCacheImageButton.m; sourceTree = "<group>"; };
+		2F2D54B31967E8BF0050ACFA /* ServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfig.h; sourceTree = "<group>"; };
+		2F2D54B41967E8BF0050ACFA /* ServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfig.m; sourceTree = "<group>"; };
 		2F54FFF71961763C0093028E /* ProductEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductEntity.h; path = Entity/ProductEntity.h; sourceTree = "<group>"; };
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
@@ -543,15 +549,15 @@
 				2FF644E419659C6200A802A9 /* MessageController.mm */,
 				2FF644E019659AFD00A802A9 /* MaterialController.h */,
 				2FF644E119659AFD00A802A9 /* MaterialController.mm */,
+				242F949A195C6E7300371697 /* RootController.h */,
+				242F949B195C6E7300371697 /* RootController.mm */,
+				242F949C195C6E7300371697 /* SettingController.h */,
+				242F949D195C6E7300371697 /* SettingController.mm */,
 				242F9486195C6E7300371697 /* Auth */,
 				242F9489195C6E7300371697 /* Base */,
 				242F949E195C6E7300371697 /* Shop */,
 				24E88BE6195DA645007478B3 /* Haguruma */,
 				24E88BED195DA645007478B3 /* NewCustomer */,
-				242F949A195C6E7300371697 /* RootController.h */,
-				242F949B195C6E7300371697 /* RootController.mm */,
-				242F949C195C6E7300371697 /* SettingController.h */,
-				242F949D195C6E7300371697 /* SettingController.mm */,
 				2F2D54AA1967A8990050ACFA /* PRPhotoPlayer.h */,
 				2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */,
 				2FF644DD1965214800A802A9 /* PRMoviePlayer.h */,
@@ -624,6 +630,8 @@
 				242F94CC195C6E7300371697 /* PullDataLoader.mm */,
 				2FF644EF19667DB200A802A9 /* FileDownloader.h */,
 				2FF644F019667DB200A802A9 /* FileDownloader.mm */,
+				2F2D54B31967E8BF0050ACFA /* ServerConfig.h */,
+				2F2D54B41967E8BF0050ACFA /* ServerConfig.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -718,6 +726,8 @@
 				24E88BEC195DA645007478B3 /* LSTabButton.mm */,
 				2FF644F219668EFB00A802A9 /* DialogUIAlertView.h */,
 				2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */,
+				2F2D54B01967E6210050ACFA /* SinriCacheImageButton.h */,
+				2F2D54B11967E6210050ACFA /* SinriCacheImageButton.m */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -916,6 +926,7 @@
 				2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */,
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,
 				24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */,
+				2F2D54B21967E6210050ACFA /* SinriCacheImageButton.m in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
 				242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */,
@@ -954,6 +965,7 @@
 				2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */,
 				2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */,
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
+				2F2D54B51967E8BF0050ACFA /* ServerConfig.m in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,

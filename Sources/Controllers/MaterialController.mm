@@ -80,11 +80,13 @@ static int MonoNumberInRow=4;
 {
     _Log(@"MeterialController loadContentView");
     
+    cateButtonDict=[[NSMutableDictionary alloc]init];
+    
     [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
     UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-	catePane.backgroundColor = UIColor.blackColor;//UIUtil::Color(224,228,222);
+	catePane.backgroundColor = [UIColor grayColor];//UIUtil::Color(224,228,222);
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;
@@ -92,30 +94,19 @@ static int MonoNumberInRow=4;
     CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
 	for (NSDictionary *cate in dict[@"category"])
 	{
-		/*
-        UIButton *button = [[CacheImageButton alloc] initWithFrame:frame];
-		button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-		button.cacheImageUrl = cate[@"image"];
-		[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
-		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
-		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
-		[catePane addSubview:button];
-		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-		button.tag = i++;
-        */
-        
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
         button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
 		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-		[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
-		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+		//[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
+		//[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
 		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
 		[catePane addSubview:button];
 		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 		button.tag = i++;
         
 		frame.origin.y += frame.size.height + 0.5;
+        
+        [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
 	[self cateButtonClicked:nil];
     cate_id=0;
@@ -129,6 +120,7 @@ static int MonoNumberInRow=4;
 	
 	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
     cate_id=sender.tag;
+    
 	if (cate[@"VIEW"] == nil)
 	{
         //_Log(@"cateButtonClicked CATE=[%@]",cate);
@@ -191,12 +183,26 @@ static int MonoNumberInRow=4;
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
 		cate[@"VIEW"] = _itemPane;
 	}
 	else
 	{
 		_itemPane = cate[@"VIEW"];
 	}
+    
+    _Log(@"cate btn dict= [%@]",cateButtonDict);
+
+    for (UIButton * btn in [cateButtonDict allValues]) {
+        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender.tag);
+        if(btn.tag==sender.tag){
+            btn.backgroundColor=UIUtil::Color(117, 114, 184) ;
+            [btn setHighlighted:YES];
+        }else{
+            btn.backgroundColor=UIUtil::Color(148, 189, 233);
+            [btn setHighlighted:NO];
+        }
+    }
     
 	[_contentView addSubview:_itemPane];
 }

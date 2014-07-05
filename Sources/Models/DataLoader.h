@@ -2,8 +2,10 @@
 #define TEST
 #ifdef TEST
 #define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
+//@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #else
 #define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
+//@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #endif
 
 #define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
