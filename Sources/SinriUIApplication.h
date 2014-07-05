@@ -21,7 +21,7 @@
 @property UIWindow * PRWindow;
 @property UIWindow * OriginalWindow;
 
--(void) loadPR:(NSString*)url;
+-(void) loadPR:(NSString*)url withTitle:(NSString *)title;
 -(void) unloadPR;
 //-(void)PR_EXIT:(NSNotification*)notification;
 //-(void)PR_CALLED:(NSNotification*)notification;

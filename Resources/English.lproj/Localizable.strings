@@ -43,6 +43,9 @@
 /* About Baby: */
 "About Baby:" = "About Baby:";
 
+/* About BabyNes */
+"About BabyNes" = "About BabyNes";
+
 /* About Customer: */
 "About Customer:" = "About Customer:";
 
@@ -174,6 +177,9 @@
 
 /* For Baby [%d]: */
 "For Baby [%d]:" = "For Baby [%d]:";
+
+/* Full Screen */
+"Full Screen" = "Full Screen";
 
 /* Girl */
 "Girl" = "Girl";

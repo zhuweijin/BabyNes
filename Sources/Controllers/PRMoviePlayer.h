@@ -8,7 +8,11 @@
 
 #import "MoviePlayer.h"
 
-@interface PRMoviePlayer : MoviePlayer
+@interface PRMoviePlayer : MoviePlayer{
+    //BOOL isClickedFullScreenButton;
+    BOOL is_show_status_bar;
+}
 @property UIButton * endPR;
--(id)initWithPath:(NSString *)path;
+@property NSString * theTitle;
+-(id)initWithPath:(NSString *)path withTitle:(NSString*)title;
 @end

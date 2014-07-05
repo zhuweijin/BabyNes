@@ -4,6 +4,7 @@
 #import "MeterialVideoItemView.h"
 
 static CGFloat CateItemWidth=200;//370;
+static int MonoNumberInRow=4;
 
 @implementation MaterialController
 
@@ -87,8 +88,8 @@ static CGFloat CateItemWidth=200;//370;
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;
-	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
-    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * 3)/[[dict objectForKey:@"category"] count]);
+	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/4);
+    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
 	for (NSDictionary *cate in dict[@"category"])
 	{
 		/*
@@ -137,7 +138,7 @@ static CGFloat CateItemWidth=200;//370;
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
-			CGFloat width = ceil(frame.size.width / 3);
+			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			CGRect frame = {0, 0, width, width};
 			NSUInteger i = 0;
 			for (NSDictionary *item in _loader.dict[cate[@"value"]])	// TODO: 解析
@@ -148,7 +149,7 @@ static CGFloat CateItemWidth=200;//370;
 				[_itemPane addSubview:view];
 				
 				//
-				if (++i % 3 == 0)
+				if (++i % MonoNumberInRow == 0)
 				{
 					frame.origin.x = 0;
 					frame.origin.y += frame.size.width;
@@ -158,14 +159,14 @@ static CGFloat CateItemWidth=200;//370;
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
 		}
 		else
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
-			CGFloat width = ceil(frame.size.width / 3);
+			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			CGRect frame = {0, 0, width, width};
 			NSUInteger i = 0;
 			for (NSDictionary *item in _loader.dict[cate[@"value"]])	// TODO: 解析
@@ -176,7 +177,7 @@ static CGFloat CateItemWidth=200;//370;
 				[_itemPane addSubview:view];
 				
 				//
-				if (++i % 3 == 0)
+				if (++i % MonoNumberInRow == 0)
 				{
 					frame.origin.x = 0;
 					frame.origin.y += frame.size.width;
@@ -186,7 +187,7 @@ static CGFloat CateItemWidth=200;//370;
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -208,6 +209,7 @@ static CGFloat CateItemWidth=200;//370;
     if(cate_id==0){
         //video
         NSString * file_url=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"file"];
+        NSString * file_name=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"name"];
         
         NSString * cache_path = NSUtil::CacheUrlPath(file_url);
         NSString * final_video_url=nil;
@@ -231,7 +233,9 @@ static CGFloat CateItemWidth=200;//370;
         }
         
         if(final_video_url!=nil){
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_CALLED" object:final_video_url];
+            NSDictionary * dict=@{@"file": final_video_url,
+                                  @"name":file_name};
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_CALLED" object:dict];
             _Log(@"Video btn_tag = %d - %d play net[%d] url=[%@]",cate_id,btn_tag,network_status,file_url);
         }else{
             _Log(@"Video btn_tag = %d - %d cancel net[%d] url=[%@]",cate_id,btn_tag,network_status,file_url);

@@ -43,6 +43,9 @@
 /* About Baby: */
 "About Baby:" = "宝宝信息：";
 
+/* About BabyNes */
+"About BabyNes" = "关于惠氏";
+
 /* About Customer: */
 "About Customer:" = "顾客信息：";
 
@@ -174,6 +177,9 @@
 
 /* For Baby [%d]: */
 "For Baby [%d]:" = "第%d个宝宝信息：";
+
+/* Full Screen */
+"Full Screen" = "全屏幕";
 
 /* Girl */
 "Girl" = "女";

@@ -21,7 +21,7 @@
 }
 
 -(NSTimeInterval)maxIdleTime{
-    return 5*60;
+    return 60*2;
 }
 
 - (void)sendEvent:(UIEvent *)event {
@@ -48,17 +48,20 @@
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
     //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
-    [self loadPR:nil];
+    [self loadPR:nil withTitle:nil];
 }
 
--(void) loadPR:(NSString*)url{
+-(void) loadPR:(NSString*)url withTitle:(NSString *)title{
     self.OriginalWindow=[self keyWindow];
     self.PRWindow=[[UIWindow alloc] initWithFrame:UIUtil::ScreenBounds()];
     if(url==nil)url=[self getPRURL];
-    PRMoviePlayer * mp=[[PRMoviePlayer alloc]initWithPath:url];
+    PRMoviePlayer * mp=[[PRMoviePlayer alloc]initWithPath:url withTitle:title];
     
     [self.PRWindow setRootViewController:mp];
     [self.PRWindow makeKeyAndVisible];
+    
+    //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:(UIStatusBarAnimationSlide)];
+    [self setStatusBarHidden:YES withAnimation:(UIStatusBarAnimationSlide)];
     
     _is_playing=YES;
 }
@@ -66,6 +69,8 @@
 -(void)unloadPR{
     [self.OriginalWindow makeKeyAndVisible];
     self.PRWindow=nil;
+    //[[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:(UIStatusBarAnimationSlide)];
+    [self setStatusBarHidden:NO withAnimation:(UIStatusBarAnimationSlide)];
     _is_playing=NO;
 }
 -(void)PR_EXIT:(NSNotification*)notification{
@@ -75,9 +80,11 @@
 }
 
 -(void)PR_CALLED:(NSNotification*)notification{
-    NSString * final_video_url=notification.object;
+    NSDictionary * dict = notification.object;
+    NSString * final_video_url=[dict objectForKey:@"file"];
+    NSString * name=[dict objectForKey:@"name"];
     _Log(@"PR_CALLED for [%@]",final_video_url);
-    [self loadPR:final_video_url];
+    [self loadPR:final_video_url withTitle:name];
 }
 
 @end
