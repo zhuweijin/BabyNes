@@ -37,26 +37,14 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*寶寶的性別：";
 
-/* 13-24 Month Standard 8 Oz */
-"13-24 Month Standard 8 Oz" = "13-24個月膠囊奶粉";
-
-/* 25-36 Month Standard 8 Oz */
-"25-36 Month Standard 8 Oz" = "25-36個月膠囊奶粉";
-
-/* 3-6 Month Big 7 Oz */
-"3-6 Month Big 7 Oz" = "3-6個月膠囊奶粉 7盎司";
-
-/* 3-6 Month Standard 6 Oz */
-"3-6 Month Standard 6 Oz" = "3-6個月膠囊奶粉 6盎司";
-
-/* 7-12 Month Standard 8 Oz */
-"7-12 Month Standard 8 Oz" = "7-12個月膠囊奶粉";
-
 /* About */
 "About" = "關於";
 
 /* About Baby: */
 "About Baby:" = "寶寶信息：";
+
+/* About BabyNes */
+"About BabyNes" = "關於惠氏";
 
 /* About Customer: */
 "About Customer:" = "顧客信息：";
@@ -70,11 +58,11 @@
 /* Address */
 "Address" = "地址";
 
+/* Address is empty */
+"Address is empty" = "地址未填寫";
+
 /* After Tomorrow */
 "After Tomorrow" = "後天";
-
-/* AnyShop */
-"AnyShop" = "任意店鋪";
 
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "你確定要清除網絡緩存嗎？";
@@ -91,6 +79,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "第%d個寶寶的生日未填寫完整";
+
 /* Boy */
 "Boy" = "男";
 
@@ -99,6 +90,9 @@
 
 /* City */
 "City" = "城市";
+
+/* City is empty */
+"City is empty" = "城市未填寫";
 
 /* Clean */
 "Clean" = "清除";
@@ -111,6 +105,9 @@
 
 /* Close */
 "Close" = "取消創建";
+
+/* Continue to view */
+"Continue to view" = "繼續觀看";
 
 /* Copied */
 "Copied" = "已拷貝";
@@ -126,9 +123,6 @@
 
 /* Could not open */
 "Could not open" = "無法打開";
-
-/* Could not send SMS on this device. */
-"Could not send SMS on this device." = "在此設備上無法發送短信。";
 
 /* Create */
 "Create" = "確認創建";
@@ -154,8 +148,14 @@
 /* Email */
 "Email" = "電子郵件";
 
+/* Email is not correct */
+"Email is not correct" = "電子郵件地址未填寫正確";
+
 /* Email: */
 "Email:" = "電子郵箱：";
+
+/* EN */
+"EN" = "CN";
 
 /* Error */
 "Error" = "錯誤";
@@ -166,18 +166,6 @@
 /* Failed */
 "Failed" = "失敗";
 
-/* Failed to send email. */
-"Failed to send email." = "發送郵件失敗。";
-
-/* Failed to send login data */
-"Failed to send login data" = "認證請求發送失敗";
-
-/* Failed to send login data, please check your network status. */
-"Failed to send login data, please check your network status." = "未能發送認證請求，請檢查網絡。";
-
-/* Failed to send SMS. */
-"Failed to send SMS." = "發送短信失敗。";
-
 /* Feedback */
 "Feedback" = "用戶反饋";
 
@@ -187,35 +175,17 @@
 /* Fill in the Contact2 */
 "Fill in the Contact2" = "請留下您的QQ，郵箱，電話等聯系方式";
 
-/* First Month Big 4 Oz */
-"First Month Big 4 Oz" = "第1個月膠囊奶粉 4盎司";
-
-/* First Month Standard 3 Oz */
-"First Month Standard 3 Oz" = "第1個月膠囊奶粉 3盎司";
-
 /* For Baby [%d]: */
 "For Baby [%d]:" = "第%d個寶寶信息：";
 
-/* Forget Password */
-"Forget Password" = "忘記密碼";
+/* Full Screen */
+"Full Screen" = "全屏幕";
 
 /* Girl */
 "Girl" = "女";
 
-/* Give password here */
-"Give password here" = "請輸入密碼";
-
-/* Give username here */
-"Give username here" = "請輸入用戶名";
-
-/* Guest */
-"Guest" = "遊客";
-
 /* Ignore */
 "Ignore" = "忽略";
-
-/* Incorrect Identity Input */
-"Incorrect Identity Input" = "用戶名和密碼不正確。";
 
 /* Introduce */
 "Introduce" = "產品介紹";
@@ -235,26 +205,11 @@
 /* Login */
 "Login" = "登錄";
 
-/* Login Failed */
-"Login Failed" = "認證失敗";
-
-/* Login Request Failed */
-"Login Request Failed" = "發送登錄請求失敗，請檢查網絡！";
-
-/* Logined failed! */
-"Logined failed!" = "登陸失敗";
-
-/* Logined successfully */
-"Logined successfully" = "登陸成功";
-
 /* Logout */
-"Logout" = "退出登錄";
+"Logout" = "安全退出";
 
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
-
-/* Machine */
-"Machine" = "奶粉機器";
 
 /* Material */
 "Material" = "媒介中心";
@@ -264,6 +219,12 @@
 
 /* Mobile */
 "Mobile" = "手機號";
+
+/* Mobile is empty */
+"Mobile is empty" = "手機號未填寫";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "手機號未填寫正確";
 
 /* Month */
 "Month" = "月";
@@ -277,6 +238,9 @@
 /* Name */
 "Name" = "姓名";
 
+/* Name is empty */
+"Name is empty" = "姓名未填寫";
+
 /* Network Cache */
 "Network Cache" = "網絡緩存";
 
@@ -285,6 +249,9 @@
 
 /* Never */
 "Never" = "從未";
+
+/* Never registered */
+"Never registered" = "沒有記錄";
 
 /* New Customer */
 "New Customer" = "招募顧客";
@@ -301,6 +268,9 @@
 /* Nickname */
 "Nickname" = "昵稱";
 
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "第%d個寶寶的昵稱未填寫";
+
 /* No change */
 "No change" = "數據無變化";
 
@@ -316,9 +286,6 @@
 /* OK */
 "OK" = "確定";
 
-/* Online Shop */
-"Online Shop" = "網上商店";
-
 /* Open with Safari */
 "Open with Safari" = "在 Safari 中打開";
 
@@ -328,23 +295,11 @@
 /* Order Confirmed */
 "Order Confirmed" = "訂單確認";
 
-/* Password */
-"Password" = "密碼";
-
-/* Please setup your email account first. */
-"Please setup your email account first." = "請先設置您的郵件賬戶。";
-
-/* Please wait */
-"Please wait" = "請等待";
+/* Paid Network Warning */
+"Paid Network Warning" = "付費網絡提醒";
 
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "產品                              價格           數量";
-
-/* Products */
-"Products" = "介紹產品";
-
-/* Promotor Login */
-"Promotor Login" = "導購員登錄";
 
 /* Province */
 "Province" = "省份";
@@ -352,11 +307,11 @@
 /* Province first */
 "Province first" = "未選擇省份";
 
+/* Province is empty */
+"Province is empty" = "省份未填寫";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
-
-/* Pull down to refresh... */
-"Pull down to refresh..." = "下拉可以更新⋯";
 
 /* p_m */
 "p_m" = "下午";
@@ -364,8 +319,11 @@
 /* Rate Me */
 "Rate Me" = "給個好評";
 
-/* Release to refresh... */
-"Release to refresh..." = "鬆開立即更新⋯";
+/* Register or update device information failed! */
+"Register or update device information failed!" = "登記或更新設備失敗！";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "成功註冊為[%@]";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "鬆開即可刷新...";
@@ -391,26 +349,14 @@
 /* Saving */
 "Saving" = "正在保存";
 
-/* Second Month Big 6 Oz */
-"Second Month Big 6 Oz" = "第2個月膠囊奶粉 6盎司";
-
-/* Second Month Standard 5 Oz */
-"Second Month Standard 5 Oz" = "第2個月膠囊奶粉 5盎司";
-
 /* Seek */
 "Seek" = "搜索";
 
 /* Send */
 "Send" = "發送";
 
-/* Send SMS successfully. */
-"Send SMS successfully." = "發送短信成功。";
-
 /* Send via Email */
 "Send via Email" = "發送郵件鏈接";
-
-/* Server Down. */
-"Server Down." = "服務器錯誤";
 
 /* Settings */
 "Settings" = "設置";
@@ -418,20 +364,29 @@
 /* Sex */
 "Sex" = "性別";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "第%d個寶寶的性別未填寫";
+
 /* Share */
 "Share" = "分享";
+
+/* Shop */
+"Shop" = "網上商店";
 
 /* Shopping Cart */
 "Shopping Cart" = "購物車";
 
-/* Soothe Standard 7 Oz */
-"Soothe Standard 7 Oz" = "Sooth";
+/* Sorry but there is not network available. */
+"Sorry but there is not network available." = "抱歉，目前無可用網絡。";
 
-/* Sum $%.2f Quantity %d */
-"Sum $%.2f Quantity %d" = "總計：￥%.2f   數量：%d";
+/* Sum $%.2f     Quantity %d */
+"Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
 
 /* Title */
 "Title" = "稱呼";
+
+/* Title is empty */
+"Title is empty" = "稱呼未填寫";
 
 /* Today */
 "Today" = "今天";
@@ -442,20 +397,11 @@
 /* Uknown error: %d */
 "Uknown error: %d" = "未知錯誤，代碼：%d";
 
-/* Username */
-"Username" = "用戶名";
-
 /* Version %@ */
 "Version %@" = "版本 %@";
 
 /* Version %@ %@© %@ */
 "Version %@ %@© %@" = "版本 %@ %@© %@";
-
-/* Waiting for authority information from server... */
-"Waiting for authority information from server..." = "認證請求發送完畢，等待認證";
-
-/* Wrong Username-Password Pair! */
-"Wrong Username-Password Pair!" = "用戶名和密碼有誤";
 
 /* Year */
 "Year" = "年份";
@@ -463,9 +409,15 @@
 /* Yesterday */
 "Yesterday" = "昨天";
 
+/* You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue. */
+"You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue." = "目前您處在非Wi-Fi網絡環境，下載可能會產生額外費用。您可以取消以避免下載引起的流量費用。";
+
 /* Your contact information */
 "Your contact information" = "您的聯系方式";
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的訂單已經確認。";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^1[\\d]{10}$";
 

@@ -52,6 +52,8 @@
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
 {
+    cateButtonDict=[[NSMutableDictionary alloc]init];
+    
 	UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIColor.blackColor;//UIUtil::Color(224,228,222);
@@ -61,20 +63,31 @@
 	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
 	for (NSDictionary *cate in dict[@"category"])
 	{
+        
 		UIButton *button = [[CacheImageButton alloc] initWithFrame:frame];
 		button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
 		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		button.cacheImageUrl = cate[@"image"];
-		[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
-		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+		//[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
+		//[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
 		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
 		[catePane addSubview:button];
 		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 		button.tag = i++;
-
+        
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中。。设置content是title和image一起变化
+        [button.imageView.layer setCornerRadius:CGRectGetHeight([button.imageView bounds]) / 2];
+        button.imageView.layer.masksToBounds = YES;
+        //然后再给图层添加一个有色的边框，类似qq空间头像那样
+        button.imageView.layer.borderWidth = 5;
+        button.imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+        button.imageView.layer.contents = (id) [button.imageView.image CGImage];
 		frame.origin.y += frame.size.height + 0.5;
+        
+        [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
 	[self cateButtonClicked:nil];
+    cate_id=0;
 }
 
 //
@@ -82,6 +95,8 @@
 {
 	[_itemPane removeFromSuperview];
 	
+    cate_id=sender.tag;
+    
 	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
 	if (cate[@"VIEW"] == nil)
 	{
@@ -128,6 +143,20 @@
 		_itemPane = cate[@"VIEW"];
 	}
 
+    _Log(@"cate btn dict= [%@]",cateButtonDict);
+    
+    for (UIButton * btn in [cateButtonDict allValues]) {
+        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender.tag);
+        if(btn.tag==sender.tag){
+            btn.backgroundColor=UIUtil::Color(117, 114, 184) ;
+            [btn setHighlighted:YES];
+        }else{
+            btn.backgroundColor=UIUtil::Color(148, 189, 233);
+            [btn setHighlighted:NO];
+        }
+    }
+
+    
 	[_contentView addSubview:_itemPane];
 }
 

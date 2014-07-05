@@ -104,7 +104,16 @@
 //
 - (void)logoutButtonClicked:(id)sender
 {
-	UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
+	//UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
+    
+    DialogUIAlertView * logout_dialog=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Logout", @"注销") message:NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?") cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"OK", @"确定")];
+    int result=[logout_dialog showDialog];
+    
+    if(result==1){
+        Settings::Save(kAccessToken);
+        UIViewController *controller = [[LoginController alloc] init];
+        [self.navigationController setViewControllers:@[controller] animated:NO];
+    }
 }
 
 //
@@ -131,13 +140,7 @@
 	}
 	
 	[DataLoader logout];
-	
-    //LOG OUT by Sinri
-    Settings::Save(kAccessToken);
-	UIViewController *controller = [[LoginController alloc] init];
-	[self.navigationController setViewControllers:@[controller] animated:NO];
-
-	//[self.navigationController popViewControllerAnimated:YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 //
