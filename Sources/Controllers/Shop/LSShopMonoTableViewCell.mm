@@ -32,6 +32,9 @@
 }
 
 -(void) loadProduct:(ProductEntity*) mono{
+    
+    _Log(@"MonoTableCell loadProduct mono[%d] pic=[%@]",mono.product_id,mono.product_image);
+    
     if(//self.image ||
        self.image_view ||
        self.label){

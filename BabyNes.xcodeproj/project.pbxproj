@@ -589,12 +589,12 @@
 				242F94AC195C6E7300371697 /* CartTable.mm */,
 				242F94AD195C6E7300371697 /* LSShopCartTableViewCell.h */,
 				242F94AE195C6E7300371697 /* LSShopCartTableViewCell.mm */,
+				242F94B3195C6E7300371697 /* MonoTable.h */,
+				242F94B4195C6E7300371697 /* MonoTable.mm */,
 				242F94AF195C6E7300371697 /* LSShopMonoTableViewCell.h */,
 				242F94B0195C6E7300371697 /* LSShopMonoTableViewCell.mm */,
 				242F94B1195C6E7300371697 /* LSShopViewController.h */,
 				242F94B2195C6E7300371697 /* LSShopViewController.mm */,
-				242F94B3195C6E7300371697 /* MonoTable.h */,
-				242F94B4195C6E7300371697 /* MonoTable.mm */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
