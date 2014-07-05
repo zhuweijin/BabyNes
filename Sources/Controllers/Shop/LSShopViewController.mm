@@ -221,7 +221,7 @@
     [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
     [contentView addSubview:self.monoTableView];
     
-    //[self.monoTableView reloadData];
+    [self.monoTableView reloadData];
 }
 
 /*

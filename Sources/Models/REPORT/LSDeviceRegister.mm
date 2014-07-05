@@ -7,10 +7,11 @@
 //
 
 #import "LSDeviceRegister.h"
+#import "ServerConfig.h"
 
 @implementation LSDeviceRegister
 
-static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/api/device_details.php";
+//static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/api/device_details.php";
 
 +(BOOL)doDeviceRegister{
     LSDeviceRegister * dr=[[LSDeviceRegister alloc]init];
@@ -54,11 +55,11 @@ static NSString * DeviceRegisterURL=@"https://172.16.0.186:233/babynesios/admin/
     
     NSString* param=NSUtil::URLQuery(dict);
     
-    _Log(@"LSDeviceRegister postDeviceDetails:URL=%@ param=%@",DeviceRegisterURL,param);
+    _Log(@"LSDeviceRegister postDeviceDetails:URL=%@ param=%@",[[ServerConfig getServerConfig]getURL_device_register],param);
     NSError *error = nil;
     NSURLResponse *response = nil;
     NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
-    NSData* return_data = HttpUtil::HttpData(DeviceRegisterURL, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
+    NSData* return_data = HttpUtil::HttpData([[ServerConfig getServerConfig]getURL_device_register], post, NSURLRequestReloadIgnoringCacheData, &response, &error);
     
     //TODO MAKE IT REAL
     

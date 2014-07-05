@@ -58,6 +58,9 @@
 /* About Baby: */
 "About Baby:" = "About Baby:";
 
+/* About BabyNes */
+"About BabyNes" = "About BabyNes";
+
 /* About Customer: */
 "About Customer:" = "About Customer:";
 
@@ -69,6 +72,9 @@
 
 /* Address */
 "Address" = "Address";
+
+/* Address is empty */
+"Address is empty" = "Address is empty";
 
 /* After Tomorrow */
 "After Tomorrow" = "After Tomorrow";
@@ -91,6 +97,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "Before Yesterday";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "Birthday is not completed yet for No.%d baby";
+
 /* Boy */
 "Boy" = "Boy";
 
@@ -99,6 +108,9 @@
 
 /* City */
 "City" = "City";
+
+/* City is empty */
+"City is empty" = "City is empty";
 
 /* Clean */
 "Clean" = "Clean";
@@ -111,6 +123,9 @@
 
 /* Close */
 "Close" = "Close";
+
+/* Continue to view */
+"Continue to view" = "Continue to view";
 
 /* Copied */
 "Copied" = "Copied";
@@ -154,8 +169,14 @@
 /* Email */
 "Email" = "Email";
 
+/* Email is not correct */
+"Email is not correct" = "Email is not correct";
+
 /* Email: */
 "Email:" = "Email:";
+
+/* EN */
+"EN" = "EN";
 
 /* Error */
 "Error" = "Error";
@@ -198,6 +219,9 @@
 
 /* Forget Password */
 "Forget Password" = "Forget Password";
+
+/* Full Screen */
+"Full Screen" = "Full Screen";
 
 /* Girl */
 "Girl" = "Girl";
@@ -265,6 +289,12 @@
 /* Mobile */
 "Mobile" = "Mobile";
 
+/* Mobile is empty */
+"Mobile is empty" = "Mobile is empty";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "Mobile is not correct";
+
 /* Month */
 "Month" = "Month";
 
@@ -277,6 +307,9 @@
 /* Name */
 "Name" = "Name";
 
+/* Name is empty */
+"Name is empty" = "Name is empty";
+
 /* Network Cache */
 "Network Cache" = "Network Cache";
 
@@ -285,6 +318,9 @@
 
 /* Never */
 "Never" = "Never";
+
+/* Never registered */
+"Never registered" = "Never registered";
 
 /* New Customer */
 "New Customer" = "New Customer";
@@ -300,6 +336,9 @@
 
 /* Nickname */
 "Nickname" = "Nickname";
+
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "Nickname of Baby is not completed yet for No.%d baby";
 
 /* No change */
 "No change" = "No change";
@@ -328,6 +367,9 @@
 /* Order Confirmed */
 "Order Confirmed" = "Order Confirmed";
 
+/* Paid Network Warning */
+"Paid Network Warning" = "Paid Network Warning";
+
 /* Password */
 "Password" = "Password";
 
@@ -352,6 +394,9 @@
 /* Province first */
 "Province first" = "Province first";
 
+/* Province is empty */
+"Province is empty" = "Province is empty";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
 
@@ -363,6 +408,12 @@
 
 /* Rate Me */
 "Rate Me" = "Rate Me";
+
+/* Register or update device information failed! */
+"Register or update device information failed!" = "Register or update device information failed!";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "Registered as [%@]";
 
 /* Release to refresh... */
 "Release to refresh..." = "Release to refresh...";
@@ -418,8 +469,14 @@
 /* Sex */
 "Sex" = "Sex";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "Sex of Baby is not completed yet for No.%d baby";
+
 /* Share */
 "Share" = "Share";
+
+/* Shop */
+"Shop" = "Shop";
 
 /* Shopping Cart */
 "Shopping Cart" = "Shopping Cart";
@@ -427,11 +484,20 @@
 /* Soothe Standard 7 Oz */
 "Soothe Standard 7 Oz" = "Soothe Standard 7 Oz";
 
+/* Sorry but there is not network available. */
+"Sorry but there is not network available." = "Sorry but there is not network available.";
+
+/* Sum $%.2f     Quantity %d */
+"Sum $%.2f     Quantity %d" = "Sum $%.2f     Quantity %d";
+
 /* Sum $%.2f Quantity %d */
 "Sum $%.2f Quantity %d" = "Sum $%.2f Quantity %d";
 
 /* Title */
 "Title" = "Title";
+
+/* Title is empty */
+"Title is empty" = "Title is empty";
 
 /* Today */
 "Today" = "Today";
@@ -463,9 +529,15 @@
 /* Yesterday */
 "Yesterday" = "Yesterday";
 
+/* You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue. */
+"You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue." = "You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue.";
+
 /* Your contact information */
 "Your contact information" = "Your contact information";
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "Your order has been confirmed.";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^[569][\\d]{7}$";
 

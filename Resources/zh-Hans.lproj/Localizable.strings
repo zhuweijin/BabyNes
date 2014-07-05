@@ -58,6 +58,9 @@
 /* About Baby: */
 "About Baby:" = "宝宝信息：";
 
+/* About BabyNes */
+"About BabyNes" = "关于惠氏";
+
 /* About Customer: */
 "About Customer:" = "顾客信息：";
 
@@ -69,6 +72,9 @@
 
 /* Address */
 "Address" = "地址";
+
+/* Address is empty */
+"Address is empty" = "地址未填写";
 
 /* After Tomorrow */
 "After Tomorrow" = "后天";
@@ -91,6 +97,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
+/* Birthday is not completed yet for No.%d baby */
+"Birthday is not completed yet for No.%d baby" = "第%d个宝宝的生日未填写完整";
+
 /* Boy */
 "Boy" = "男";
 
@@ -99,6 +108,9 @@
 
 /* City */
 "City" = "城市";
+
+/* City is empty */
+"City is empty" = "城市未填写";
 
 /* Clean */
 "Clean" = "清除";
@@ -111,6 +123,9 @@
 
 /* Close */
 "Close" = "取消创建";
+
+/* Continue to view */
+"Continue to view" = "继续观看";
 
 /* Copied */
 "Copied" = "已拷贝";
@@ -154,8 +169,14 @@
 /* Email */
 "Email" = "电子邮件";
 
+/* Email is not correct */
+"Email is not correct" = "电子邮件地址未填写正确";
+
 /* Email: */
 "Email:" = "电子邮箱：";
+
+/* EN */
+"EN" = "CN";
 
 /* Error */
 "Error" = "错误";
@@ -198,6 +219,9 @@
 
 /* Forget Password */
 "Forget Password" = "忘记密码";
+
+/* Full Screen */
+"Full Screen" = "全屏幕";
 
 /* Girl */
 "Girl" = "女";
@@ -265,6 +289,12 @@
 /* Mobile */
 "Mobile" = "手机号";
 
+/* Mobile is empty */
+"Mobile is empty" = "手机号未填写";
+
+/* Mobile is not correct */
+"Mobile is not correct" = "手机号未填写正确";
+
 /* Month */
 "Month" = "月";
 
@@ -277,6 +307,9 @@
 /* Name */
 "Name" = "姓名";
 
+/* Name is empty */
+"Name is empty" = "姓名未填写";
+
 /* Network Cache */
 "Network Cache" = "网络缓存";
 
@@ -285,6 +318,9 @@
 
 /* Never */
 "Never" = "从未";
+
+/* Never registered */
+"Never registered" = "没有记录";
 
 /* New Customer */
 "New Customer" = "招募顾客";
@@ -300,6 +336,9 @@
 
 /* Nickname */
 "Nickname" = "昵称";
+
+/* Nickname of Baby is not completed yet for No.%d baby */
+"Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
 
 /* No change */
 "No change" = "数据无变化";
@@ -328,6 +367,9 @@
 /* Order Confirmed */
 "Order Confirmed" = "订单确认";
 
+/* Paid Network Warning */
+"Paid Network Warning" = "付费网络提醒";
+
 /* Password */
 "Password" = "密码";
 
@@ -352,6 +394,9 @@
 /* Province first */
 "Province first" = "未选择省份";
 
+/* Province is empty */
+"Province is empty" = "省份未填写";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
@@ -363,6 +408,12 @@
 
 /* Rate Me */
 "Rate Me" = "给个好评";
+
+/* Register or update device information failed! */
+"Register or update device information failed!" = "登记或更新设备失败！";
+
+/* Registered as [%@] */
+"Registered as [%@]" = "成功注册为[%@]";
 
 /* Release to refresh... */
 "Release to refresh..." = "松开立即更新⋯";
@@ -418,8 +469,14 @@
 /* Sex */
 "Sex" = "性别";
 
+/* Sex of Baby is not completed yet for No.%d baby */
+"Sex of Baby is not completed yet for No.%d baby" = "第%d个宝宝的性别未填写";
+
 /* Share */
 "Share" = "分享";
+
+/* Shop */
+"Shop" = "网上商店";
 
 /* Shopping Cart */
 "Shopping Cart" = "购物车";
@@ -427,11 +484,20 @@
 /* Soothe Standard 7 Oz */
 "Soothe Standard 7 Oz" = "Sooth";
 
+/* Sorry but there is not network available. */
+"Sorry but there is not network available." = "抱歉，目前无可用网络。";
+
+/* Sum $%.2f     Quantity %d */
+"Sum $%.2f     Quantity %d" = "总计：￥%.2f       数量：%d";
+
 /* Sum $%.2f Quantity %d */
 "Sum $%.2f Quantity %d" = "总计：￥%.2f   数量：%d";
 
 /* Title */
 "Title" = "称呼";
+
+/* Title is empty */
+"Title is empty" = "称呼未填写";
 
 /* Today */
 "Today" = "今天";
@@ -463,9 +529,15 @@
 /* Yesterday */
 "Yesterday" = "昨天";
 
+/* You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue. */
+"You are not using Wi-Fi now, the download task would cause to addtional payment. Please decide if you still want to continue." = "目前您处在非Wi-Fi网络环境，下载可能会产生额外费用。您可以取消以避免下载引起的流量费用。";
+
 /* Your contact information */
 "Your contact information" = "您的联系方式";
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的订单已经确认。";
+
+/* ^[569][\\d]{7}$ */
+"^[569][\\d]{7}$" = "^1[\\d]{10}$";
 
