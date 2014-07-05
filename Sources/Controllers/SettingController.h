@@ -1,6 +1,7 @@
 
 #import "WizardController.h"
 #import "LoginController.h"
+#import "DialogUIAlertView.h"
 
 //
 @interface SettingController : WizardController

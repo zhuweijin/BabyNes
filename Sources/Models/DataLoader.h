@@ -1,10 +1,10 @@
 
 #define TEST
 #ifdef TEST
-#define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
+#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #else
-#define kServerUrl				@"http://uniquebaby.duapp.com/babynesios/admin/api"
+#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #endif
 

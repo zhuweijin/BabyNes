@@ -53,10 +53,7 @@
 		242F94DA195C6E7300371697 /* LoginController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9488195C6E7300371697 /* LoginController.mm */; };
 		242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F948B195C6E7300371697 /* AutoWizardController.mm */; };
 		242F94DC195C6E7300371697 /* BaseController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F948D195C6E7300371697 /* BaseController.mm */; };
-		242F94DD195C6E7300371697 /* PagingTableController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F948F195C6E7300371697 /* PagingTableController.mm */; };
 		242F94DE195C6E7300371697 /* PivotController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9491195C6E7300371697 /* PivotController.mm */; };
-		242F94DF195C6E7300371697 /* PullTableController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9493195C6E7300371697 /* PullTableController.mm */; };
-		242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9495195C6E7300371697 /* PullWizardController.mm */; };
 		242F94E1195C6E7300371697 /* TableController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9497195C6E7300371697 /* TableController.mm */; };
 		242F94E2195C6E7300371697 /* WizardController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F9499195C6E7300371697 /* WizardController.mm */; };
 		242F94E3195C6E7300371697 /* RootController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F949B195C6E7300371697 /* RootController.mm */; };
@@ -68,7 +65,6 @@
 		242F94F4195C6E7300371697 /* MonoTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94B4195C6E7300371697 /* MonoTable.mm */; };
 		242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C4195C6E7300371697 /* CacheDataLoader.mm */; };
 		242F9501195C6E7300371697 /* DataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94C8195C6E7300371697 /* DataLoader.mm */; };
-		242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CC195C6E7300371697 /* PullDataLoader.mm */; };
 		242F9504195C6E7300371697 /* EXButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94CF195C6E7300371697 /* EXButton.mm */; };
 		242F9505195C6E7300371697 /* InputBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D1195C6E7300371697 /* InputBox.mm */; };
 		242F9506195C6E7300371697 /* SelectBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 242F94D3195C6E7300371697 /* SelectBox.mm */; };
@@ -221,14 +217,8 @@
 		242F948B195C6E7300371697 /* AutoWizardController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AutoWizardController.mm; sourceTree = "<group>"; };
 		242F948C195C6E7300371697 /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		242F948D195C6E7300371697 /* BaseController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseController.mm; sourceTree = "<group>"; };
-		242F948E195C6E7300371697 /* PagingTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingTableController.h; sourceTree = "<group>"; };
-		242F948F195C6E7300371697 /* PagingTableController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PagingTableController.mm; sourceTree = "<group>"; };
 		242F9490195C6E7300371697 /* PivotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PivotController.h; sourceTree = "<group>"; };
 		242F9491195C6E7300371697 /* PivotController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PivotController.mm; sourceTree = "<group>"; };
-		242F9492195C6E7300371697 /* PullTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableController.h; sourceTree = "<group>"; };
-		242F9493195C6E7300371697 /* PullTableController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullTableController.mm; sourceTree = "<group>"; };
-		242F9494195C6E7300371697 /* PullWizardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullWizardController.h; sourceTree = "<group>"; };
-		242F9495195C6E7300371697 /* PullWizardController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullWizardController.mm; sourceTree = "<group>"; };
 		242F9496195C6E7300371697 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
 		242F9497195C6E7300371697 /* TableController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TableController.mm; sourceTree = "<group>"; };
 		242F9498195C6E7300371697 /* WizardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardController.h; sourceTree = "<group>"; };
@@ -251,8 +241,6 @@
 		242F94C4195C6E7300371697 /* CacheDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CacheDataLoader.mm; sourceTree = "<group>"; };
 		242F94C7195C6E7300371697 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLoader.h; sourceTree = "<group>"; };
 		242F94C8195C6E7300371697 /* DataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DataLoader.mm; sourceTree = "<group>"; };
-		242F94CB195C6E7300371697 /* PullDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullDataLoader.h; sourceTree = "<group>"; };
-		242F94CC195C6E7300371697 /* PullDataLoader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PullDataLoader.mm; sourceTree = "<group>"; };
 		242F94CE195C6E7300371697 /* EXButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXButton.h; sourceTree = "<group>"; };
 		242F94CF195C6E7300371697 /* EXButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EXButton.mm; sourceTree = "<group>"; };
 		242F94D0195C6E7300371697 /* InputBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputBox.h; sourceTree = "<group>"; };
@@ -584,14 +572,8 @@
 				242F948D195C6E7300371697 /* BaseController.mm */,
 				2441003F195EF50400CEF5C9 /* DataController.h */,
 				24410040195EF50400CEF5C9 /* DataController.mm */,
-				242F948E195C6E7300371697 /* PagingTableController.h */,
-				242F948F195C6E7300371697 /* PagingTableController.mm */,
 				242F9490195C6E7300371697 /* PivotController.h */,
 				242F9491195C6E7300371697 /* PivotController.mm */,
-				242F9492195C6E7300371697 /* PullTableController.h */,
-				242F9493195C6E7300371697 /* PullTableController.mm */,
-				242F9494195C6E7300371697 /* PullWizardController.h */,
-				242F9495195C6E7300371697 /* PullWizardController.mm */,
 				242F9496195C6E7300371697 /* TableController.h */,
 				242F9497195C6E7300371697 /* TableController.mm */,
 				242F9498195C6E7300371697 /* WizardController.h */,
@@ -626,8 +608,6 @@
 				242F94C4195C6E7300371697 /* CacheDataLoader.mm */,
 				242F94C7195C6E7300371697 /* DataLoader.h */,
 				242F94C8195C6E7300371697 /* DataLoader.mm */,
-				242F94CB195C6E7300371697 /* PullDataLoader.h */,
-				242F94CC195C6E7300371697 /* PullDataLoader.mm */,
 				2FF644EF19667DB200A802A9 /* FileDownloader.h */,
 				2FF644F019667DB200A802A9 /* FileDownloader.mm */,
 				2F2D54B31967E8BF0050ACFA /* ServerConfig.h */,
@@ -903,7 +883,6 @@
 				24259ED3194AB36B000FF8A9 /* iVersion.m in Sources */,
 				24259EDD194AB36B000FF8A9 /* CurrencyField.mm in Sources */,
 				242F94DA195C6E7300371697 /* LoginController.mm in Sources */,
-				242F94DF195C6E7300371697 /* PullTableController.mm in Sources */,
 				24259ED6194AB36B000FF8A9 /* NullObject.mm in Sources */,
 				242F9506195C6E7300371697 /* SelectBox.mm in Sources */,
 				2F12923D19628B9F00F271AA /* LSDeviceInfo.mm in Sources */,
@@ -917,7 +896,6 @@
 				24259EC6194AB36B000FF8A9 /* SDWebImageDecoder.m in Sources */,
 				2FF644E81965A44D00A802A9 /* IntroduceController.mm in Sources */,
 				2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */,
-				242F94E0195C6E7300371697 /* PullWizardController.mm in Sources */,
 				2F2D54AC1967A8990050ACFA /* PRPhotoPlayer.mm in Sources */,
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
@@ -929,8 +907,6 @@
 				2F2D54B21967E6210050ACFA /* SinriCacheImageButton.m in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
-				242F9503195C6E7300371697 /* PullDataLoader.mm in Sources */,
-				242F94DD195C6E7300371697 /* PagingTableController.mm in Sources */,
 				24259EEE194AB36B000FF8A9 /* unzip.c in Sources */,
 				24259EDF194AB36B000FF8A9 /* KBCustomTextField.mm in Sources */,
 				24410041195EF50400CEF5C9 /* DataController.mm in Sources */,
