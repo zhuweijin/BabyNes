@@ -417,8 +417,24 @@
 }
 
 +(NSString*) device_sn{
-    NSString *udid = [SecureUDID UDIDForDomain:@"erp.leqee.com" usingKey:@"BabyNesPOS"];
+    //NSString *udid =NSUtil::UUID();
+    //NSString *udid =SystemUtil::SN();
+    NSString *udid=[LSDeviceInfo getHexDevice_sn];
+    //NSString *udid = [SecureUDID UDIDForDomain:@"erp.leqee.com" usingKey:@"BabyNesPOS"];
     return udid;
+}
+
++(NSString*) getHexDevice_sn{
+    NSString* sn = SystemUtil::SN();
+    NSData * sn_data=[sn dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+    NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([sn_data length] * 2)];
+    const unsigned char *dataBuffer = (const unsigned char *)[sn_data bytes];
+    int i;
+    for (i = 0; i < [sn_data length]; ++i) {
+        [stringBuffer appendFormat:@"%02lX", (unsigned long)dataBuffer[i]];
+    }
+    NSString* sn_string=[stringBuffer copy];
+    return sn_string;
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "LSRegularReporter.h"
+#import "ServerConfig.h"
 
-static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/device_status.php";
+//static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/device_status.php";
 
 @implementation LSRegularReporter
 
@@ -60,7 +61,7 @@ static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/devi
     
     NSString* param=NSUtil::URLQuery(dict);
     
-    _Log(@"[LSUserModel]doLoginWork:URL=%@ param=%@",ReportURL,param);
+    //_Log(@"Device Regular Report:URL=%@ param=%@",[[ServerConfig getServerConfig]getURL_device_report],param);
     //NSError *error = nil;
     //NSURLResponse *response = nil;
     //NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
@@ -69,7 +70,7 @@ static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/devi
     
     LSNetAPIWorker* worker=[[LSNetAPIWorker alloc]init];
     
-    BOOL done= [worker doAsyncAPIRequestByURL:ReportURL withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
+    BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_device_report] withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
     
     _Log(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
 }
