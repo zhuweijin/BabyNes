@@ -10,6 +10,11 @@
 //
 - (void)setCacheImageUrl:(NSString *)cacheImageUrl
 {
+	if (cacheImageUrl == nil)
+	{
+		[(id<CacheImageProtocol>)self setImage:nil];
+		return;
+	}
 #ifdef _SizingImageUrl
 	CGRect frame = self.frame;
 	cacheImageUrl = _SizingImageUrl(cacheImageUrl, frame.size.width, frame.size.height);
