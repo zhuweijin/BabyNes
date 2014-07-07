@@ -99,7 +99,7 @@ static int MonoNumberInRow=4;
         button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
 		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		//[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
-		//[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
 		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
 		[catePane addSubview:button];
 		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -215,15 +215,13 @@ static int MonoNumberInRow=4;
 	//NSDictionary *item = _loader.dict[@"capsule"][sender.view.tag];
     int btn_tag = sender.view.tag;
     
-    NSString * file_name=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"name"];
+    
     if(cate_id==0){
         //video
         NSString * file_url=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"file"];
-        
-        
         NSString * cache_path = NSUtil::CacheUrlPath(file_url);
         NSString * final_video_url=nil;
-        
+        NSString * file_name=[[[_loader.dict objectForKey:@"video"]objectAtIndex:btn_tag] objectForKey:@"name"];
         // NotReachable = 0,ReachableViaWiFi,ReachableViaWWAN
         NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
         if(NSUtil::IsFileExist(cache_path)){

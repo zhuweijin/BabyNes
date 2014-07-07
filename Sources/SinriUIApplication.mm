@@ -122,11 +122,12 @@
 }
 
 -(void)PR_PHOTO_CALLED:(NSNotification*)notification{
+    _Log(@"PR_PHOTO_CALLED for dict[%@]", notification.object);
     NSDictionary * dict = notification.object;
     //NSString * final_video_url=[dict objectForKey:@"file"];
     UIImage * image=[dict objectForKey:@"file"];
     NSString * name=[dict objectForKey:@"name"];
-    _Log(@"PR_CALLED for [%@]", name);
+    _Log(@"PR_PHOTO_CALLED for [%@]", name);
     [self loadPR_PHOTO:image withTitle:name];
 }
 

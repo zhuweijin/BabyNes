@@ -106,6 +106,7 @@
     [self.the_customer_mobile_textfield setTextAlignment:(NSTextAlignmentLeft)];
     [self.the_customer_mobile_textfield setKeyboardType:(UIKeyboardTypeNumberPad)];
     [self.the_customer_mobile_textfield setBorderStyle:(UITextBorderStyleLine)];
+    [self.the_customer_mobile_textfield setBackgroundColor:[UIColor whiteColor]];
     [self.the_customer_mobile_textfield setDelegate:self];
     [self.the_customer_mobile_textfield setReturnKeyType:(UIReturnKeySearch)];
     [self.view addSubview:self.the_customer_mobile_textfield];
