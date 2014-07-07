@@ -1,6 +1,7 @@
 
 #import "IntroduceController.h"
 #import "IntroduceItemView.h"
+#import "IntroduceMonoDetailView.h"
 
 @implementation IntroduceController
 
@@ -164,7 +165,31 @@
 - (void)itemButtonClicked:(UITapGestureRecognizer *)sender
 {
 	NSDictionary *item = _loader.dict[@"capsule"][sender.view.tag];
-	UIUtil::ShowAlert(item.description);
+	_Log(@"Introduce Item Button Clicked --> dict=[%@]",item);
+    CGRect frame = _itemPane.frame;
+    [_itemPane removeFromSuperview];
+    UIScrollView * sv;
+    sv = [[UIScrollView alloc] initWithFrame:frame];
+    sv.backgroundColor = UIUtil::Color(242,244,246);//[UIColor redColor];
+    
+    
+    for (int i=0;i<[item[@"products"] count];i++){
+        id product=[item[@"products"] objectAtIndex:i];
+        CGRect subFrame=CGRectMake((frame.size.width)*i, 5, (frame.size.width), frame.size.height);
+        IntroduceMonoDetailView * dmv=[[IntroduceMonoDetailView alloc]initWithFrame:subFrame withPid:[product objectForKey:@"pid"]];
+        if(i%2==0){
+            [dmv setBackgroundColor:[UIColor whiteColor]];
+        }else{
+            [dmv setBackgroundColor:[UIColor colorWithWhite:50 alpha:0.8]];
+        }
+        [sv addSubview:dmv];
+    }
+    [sv setPagingEnabled:YES];
+    sv.contentSize = CGSizeMake(frame.size.width*[item[@"products"]count], sv.frame.size.height);
+    sv.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    _itemPane=sv;
+    [_contentView addSubview:_itemPane];
 }
 
 @end

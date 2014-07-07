@@ -29,6 +29,14 @@
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+    _Log(@"MonoCell setSelected=%d for cell[%@]",selected,self.label.text);
+    /*
+    if(selected){
+        [self setBackgroundColor:[UIColor yellowColor]];
+    }else{
+        [self setBackgroundColor:[UIColor whiteColor]];
+    }
+     */
 }
 
 -(void) loadProduct:(ProductEntity*) mono{
@@ -61,14 +69,15 @@
     //CGFloat ihDch=self.image_view.image.size.height/60;
     //_Log(@"image[%@]=[%@] ihDch=%f",mono.product_image,self.image_view.image,ihDch);
     //CGRect imageFrame=CGRectMake(40+(60-self.image_view.image.size.width/ihDch), 5, self.image_view.image.size.width/ihDch, self.image_view.image.size.height/ihDch);
-    CGRect imageFrame=CGRectMake(40,5,80,60);
+    CGRect imageFrame=CGRectMake(20,5,80,60);
     self.image_view.frame=imageFrame;
     
     
     
 	[self addSubview:self.image_view];
     
-    self.label= [[UILabel alloc] initWithFrame:CGRectMake(150, 10, 300, 40)];
+    self.label= [[UILabel alloc] initWithFrame:CGRectMake(120, 15, 350, 40)];
+    self.label.font=[UIFont systemFontOfSize:18];
     self.label.text=mono.product_title;
 //    self.label.text=[[mono.product_title stringByAppendingString:@"-"] stringByAppendingFormat:@"%d",mono.product_id];
     [self addSubview:self.label];

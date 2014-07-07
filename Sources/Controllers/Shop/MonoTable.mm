@@ -43,14 +43,15 @@
     LSShopMonoTableViewCell *cell = (LSShopMonoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         cell = [[LSShopMonoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if([ProductEntity getProductArray]){
         id mono_info=[[ProductEntity getProductArray] objectAtIndex:indexPath.row];
         [cell loadProduct:mono_info];
     }
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     return cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,52 +74,62 @@
     
     NSDictionary * anime_dict=@{@"civ":civ,
                                 @"pe":pe,
-                                @"inCart":[NSNumber numberWithInt: [[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]]]
+                                @"inCart":[NSNumber numberWithInt: [[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]]],
+                                @"monoIPInTable":indexPath
                                 };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:anime_dict];
+    /*
+    [UIView animateWithDuration:0.4 animations:^{
+        LSShopMonoTableViewCell * cell=(LSShopMonoTableViewCell*)[self cellForRowAtIndexPath:indexPath];
+        [cell setSelected:NO animated:YES];
+        _Log(@"MonoTable 0.4s Over cancel selection");
+    }];
+     */
+    [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
+
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 /*
--(void)setPdtArrayWithNSDic:(NSDictionary*)dict{
-    self.pdtArray=[[NSMutableArray alloc]init];
-    id dic_category = [dict objectForKey:@"category"];
-    _Log(@"setPdtArrayWithNSDic dic_category=[%@] class=[%@]",dic_category,[dic_category class]);
-    for(id category_item in dic_category){
-        NSString* category_key=[category_item objectForKey:@"value"];
-        id category_group=[dict objectForKey:category_key];
-        for(id pdt_good in category_group){
-            //_Log(@"setPdtArrayWithNSDic[%@][%@]=[%@]",category_key,[pdt_good objectForKey:@"name"],pdt_good);
-            NSString * good_name=[pdt_good objectForKey:@"name"];
-            NSString * good_image_url=[pdt_good objectForKey:@"image"];
-            
-            good_image_url= [@"ShopImage/" stringByAppendingString:[good_image_url lastPathComponent]];
-            
-            for (id pdt_item in [pdt_good objectForKey:@"products"] ) {
-                NSString*pid=[pdt_item objectForKey:@"pid"];
-                NSString*price=[pdt_item objectForKey:@"price"];
-                NSString*sku_no=[pdt_item objectForKey:@"sku_no"];
-                NSString*style=[pdt_item objectForKey:@"style"];
-                
-                NSString * product_name=[[good_name stringByAppendingString:@" "] stringByAppendingString:style];
-                
-                _Log(@"pdt: goods[%@] [%@-%@] pid=%@ price=%@ sku_no=%@ style=%@",product_name,good_name,good_image_url,pid,price,sku_no,style);
-                
-                ProductEntity * pe=[[ProductEntity alloc]initProductWithId:[pid intValue] withTitle:product_name withCents:(int)([price floatValue]*100) withMagentoID:sku_no withImageName:good_image_url];
-                [self.pdtArray addObject:pe];
-            }
-        }
-    }
-    [self reloadData];
-}
-*/
+ -(void)setPdtArrayWithNSDic:(NSDictionary*)dict{
+ self.pdtArray=[[NSMutableArray alloc]init];
+ id dic_category = [dict objectForKey:@"category"];
+ _Log(@"setPdtArrayWithNSDic dic_category=[%@] class=[%@]",dic_category,[dic_category class]);
+ for(id category_item in dic_category){
+ NSString* category_key=[category_item objectForKey:@"value"];
+ id category_group=[dict objectForKey:category_key];
+ for(id pdt_good in category_group){
+ //_Log(@"setPdtArrayWithNSDic[%@][%@]=[%@]",category_key,[pdt_good objectForKey:@"name"],pdt_good);
+ NSString * good_name=[pdt_good objectForKey:@"name"];
+ NSString * good_image_url=[pdt_good objectForKey:@"image"];
+ 
+ good_image_url= [@"ShopImage/" stringByAppendingString:[good_image_url lastPathComponent]];
+ 
+ for (id pdt_item in [pdt_good objectForKey:@"products"] ) {
+ NSString*pid=[pdt_item objectForKey:@"pid"];
+ NSString*price=[pdt_item objectForKey:@"price"];
+ NSString*sku_no=[pdt_item objectForKey:@"sku_no"];
+ NSString*style=[pdt_item objectForKey:@"style"];
+ 
+ NSString * product_name=[[good_name stringByAppendingString:@" "] stringByAppendingString:style];
+ 
+ _Log(@"pdt: goods[%@] [%@-%@] pid=%@ price=%@ sku_no=%@ style=%@",product_name,good_name,good_image_url,pid,price,sku_no,style);
+ 
+ ProductEntity * pe=[[ProductEntity alloc]initProductWithId:[pid intValue] withTitle:product_name withCents:(int)([price floatValue]*100) withMagentoID:sku_no withImageName:good_image_url];
+ [self.pdtArray addObject:pe];
+ }
+ }
+ }
+ [self reloadData];
+ }
+ */
 @end

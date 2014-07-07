@@ -358,29 +358,6 @@
     CGRect originalCIVFrame=civ.frame;
     ProductEntity* pe= [notification.object objectForKey:@"pe"];
     
-    /*
-     CGRect civBigFrame=civ.frame;
-     civBigFrame.origin.x-=civBigFrame.size.width/2;
-     civBigFrame.origin.y-=civBigFrame.size.height/2;
-     civBigFrame.size.width*=2;
-     civBigFrame.size.height*=2;
-     CGRect civToFrame=civ.frame;
-     civToFrame=self.list_icon_image_view.frame;
-     [self.view addSubview:civ];
-     
-     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-     [civ setFrame:civBigFrame];
-     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     } completion:^(BOOL finished) {
-     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-     [civ setFrame:civToFrame];
-     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     } completion:^(BOOL finished) {
-     [civ removeFromSuperview];
-     [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     }];
-     }];
-     */
     if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
         _Log(@"Should do CartItem Insert Animation");
         CGRect cartItemFromFrame=originalCIVFrame;
@@ -467,6 +444,7 @@
             }
         }
     }
+    
 }
 
 -(void)UserRegistered:(NSNotification *) notification{

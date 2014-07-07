@@ -20,7 +20,7 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
-           @"idle_video":@"video/video-4.mp4"
+           @"idle_video":@"PR/babynes.mp4"//@"video/video-4.mp4"
            };
     return self;
 }
