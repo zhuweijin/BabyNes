@@ -293,9 +293,10 @@ static NSString *_accessToken = nil;
 	id params = [_params isKindOfClass:[NSDictionary class]] ? NSUtil::URLQuery((NSDictionary *)_params) : _params;
 	if (_accessToken)
 	{
-		params = [NSString stringWithFormat:@"token=%@&%@", _accessToken, params];
+		NSString *token = [NSString stringWithFormat:@"token=%@", _accessToken];
+		params = params ? [NSString stringWithFormat:@"%@&%@", token, params] : token;
 	}
-	_Log(@"DataLoader loadData url&param -> %@?%@", url, params ? [@"&" stringByAppendingString:params] : @"");
+	_Log(@"DataLoader: curl -d \"%@\" %@", params, url);
 	NSData *post = [params dataUsingEncoding:NSUTF8StringEncoding];
 	NSData *data = HttpUtil::HttpData(url, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
 	if (data == nil)

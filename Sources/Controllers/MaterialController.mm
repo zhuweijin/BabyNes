@@ -2,6 +2,7 @@
 #import "MaterialController.h"
 #import "MeterialImageItemView.h"
 #import "MeterialVideoItemView.h"
+#import "MWPhotoBrowser.h"
 
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
@@ -249,27 +250,39 @@ static int MonoNumberInRow=4;
         }else{
             _Log(@"Video btn_tag = %d - %d cancel net[%d] url=[%@]",cate_id,btn_tag,network_status,file_url);
         }
-    }else if (cate_id==1){
-        //image
-        NSString * file_url=[[[_loader.dict objectForKey:@"picture"]objectAtIndex:btn_tag]objectForKey:@"file"];
-        //UIUtil::ShowAlert([NSString stringWithFormat:@"Image btn_tag = %d - %d url=[%@]",cate_id,btn_tag,file_url]);
-        
-        NSString * cache_path = NSUtil::CacheUrlPath(file_url);
-        
-        UIImage *image = [UIImage imageWithContentsOfFile:cache_path];//[UIImage imageNamed:UIUtil::IsPad() ? @"DefaultPad" : (UIUtil::IsPhone5() ? @"Default-568h" : @"Default")];
-        NSDictionary * dict=@{@"file": image,
-                              @"name":file_name};
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"PR_PHOTO_CALLED" object:dict];
-        /*
-        PRPhotoPlayer *pp =[[PRPhotoPlayer alloc]initWithImage:image withTitle:file_name];
-        [pp setModalPresentationStyle:(UIModalPresentationFullScreen)];
-        [pp setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
-        [self presentViewController:pp animated:YES completion:^{
-            _Log(@"show pp done");
-        }];
-         */
+    }else if (cate_id==1)
+	{
+		// Create browser
+		MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:(id<MWPhotoBrowserDelegate>)self];
+		browser.displayActionButton = YES;
+		//browser.wantsFullScreenLayout = NO;
+		[browser setInitialPageIndex:btn_tag];
+		
+		browser.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		UIUtil::PresentModalNavigationController(self, browser).navigationBar.translucent = YES;
     }
     
 }
+
+#pragma mark - MWPhotoBrowserDelegate
+
+//
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+	return [_loader.dict[@"image"] count];
+}
+
+//
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
+	NSString * url = _loader.dict[@"image"][index][@"file"];
+	return [MWPhoto photoWithUrl:url];
+}
+
+//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
+//	MWPhoto *photo = [self.photos objectAtIndex:index];
+//	MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+//	return [captionView autorelease];
+//}
 
 @end

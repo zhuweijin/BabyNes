@@ -3,16 +3,18 @@
 <plist version="1.0">
 <dict>
 	<key>1.0.1</key>
-	<string>第一个版本</string>
-	<key>1.0.4</key>
-	<string>实现主界面框架</string>
-	<key>1.0.8</key>
-	<string>整合第一个页面</string>
-	<key>1.0.9</key>
-	<string>新增招募顾客页面</string>
+	<string>第一个版本。</string>
 	<key>1.0.12</key>
 	<string>完善登录逻辑；产品介绍页面雏形。</string>
 	<key>1.0.15</key>
 	<string>完善网上商店页面；完善产品介绍页面。</string>
+	<key>1.0.4</key>
+	<string>实现主界面框架。</string>
+	<key>1.0.8</key>
+	<string>整合第一个页面。</string>
+	<key>1.0.9</key>
+	<string>新增招募顾客页面。</string>
+	<key>1.1.17</key>
+	<string>媒体中心；图片浏览器等。</string>
 </dict>
 </plist>
