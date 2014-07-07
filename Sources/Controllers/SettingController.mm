@@ -154,6 +154,11 @@
 	[button addTarget:self action:@selector(sloganButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	objc_setAssociatedObject(button, (__bridge void *)@"SENDER", sender, OBJC_ASSOCIATION_ASSIGN);
 	[self.view.window addSubview:button];
+
+	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+	{
+		button.layer.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180, 0, 0, 1);
+	}
 	
 	CGRect frame = button.frame;
 	button.frame = [self.view.window convertRect:sender.frame fromView:sender.superview];
