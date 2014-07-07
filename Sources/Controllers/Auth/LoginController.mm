@@ -253,7 +253,7 @@
 		 {
 			 @"username": _usernameField.text,
 			 @"password": _passwordField.text,
-			 @"uuid": /*[LSDeviceInfo device_sn],SystemUtil::SN()//*/@"7A626E32-D9F8-4BEF-859F-852071CE0001",
+			 @"uuid": [LSDeviceInfo device_sn],/*SystemUtil::SN()*//*@"7A626E32-D9F8-4BEF-859F-852071CE0001",*/
 		 };
 		 [DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
 		  {

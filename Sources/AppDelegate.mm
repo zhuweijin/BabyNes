@@ -84,6 +84,8 @@
     
     _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
     
+    _Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
+    
 	return YES;
 }
 

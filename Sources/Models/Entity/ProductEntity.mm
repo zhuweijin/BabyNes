@@ -64,7 +64,7 @@ static NSArray * product_array;
     }
     @catch (NSException *exception) {
         _Log(@"Update Product Dictionary Exception : %@",exception);
-        UIUtil::ShowAlert(NSLocalizedString(@"Failed to decode the date of products.", @"解析商品数据失败！"));
+        UIUtil::ShowAlert(NSLocalizedString(@"Failed to decode the data of products.", @"解析商品数据失败！"));
         return NO;
     }
     @finally {

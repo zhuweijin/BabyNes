@@ -14,8 +14,9 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 
 -(id)init{
     self=[super init];
-    dict=@{@"kServerUrl": @"http://uniquebaby.duapp.com/babynesios/admin/api",
-           //https://testbaby.i9i8.com/admin/api
+    dict=@{@"kServerUrl":
+               //@"http://uniquebaby.duapp.com/babynesios/admin/api",
+                @"https://testbaby.i9i8.com/admin/api",
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",

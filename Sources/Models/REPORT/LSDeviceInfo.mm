@@ -105,7 +105,8 @@
     uname(&systemInfo);
     NSString *result = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     NSString *type;
-    if ([result isEqualToString:@"i386"])           type = @"Simulator";
+    if ([result isEqualToString:@"i386"])           type = @"32-bit Simulator";
+    if ([result isEqualToString:@"x86_64"])         type = @"64-bit Simulator";
     if ([result isEqualToString:@"iPod1,1"])        type = @"iPod Touch";
     if ([result isEqualToString:@"iPod2,1"])        type = @"iPod Touch 2";
     if ([result isEqualToString:@"iPod3,1"])        type = @"iPod Touch 3";
@@ -418,8 +419,11 @@
 
 +(NSString*) device_sn{
     //NSString *udid =NSUtil::UUID();
-    //NSString *udid =SystemUtil::SN();
-    NSString *udid=[LSDeviceInfo getHexDevice_sn];
+    NSString *udid =SystemUtil::SN();
+    if([[LSDeviceInfo deviceModelOriginal] isEqualToString:@"i386"] || [[LSDeviceInfo deviceModelOriginal] isEqualToString:@"x86_64"]){
+        udid =NSUtil::MD5(udid);
+    }
+    //NSString *udid=[LSDeviceInfo getHexDevice_sn];
     //NSString *udid = [SecureUDID UDIDForDomain:@"erp.leqee.com" usingKey:@"BabyNesPOS"];
     return udid;
 }
