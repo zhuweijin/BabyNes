@@ -269,21 +269,14 @@ static int MonoNumberInRow=4;
 //
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
 {
-	return [_loader.dict[@"picture"] count];
+	return [_loader.dict[@"image"] count];
 }
 
 //
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
 {
-	if (index < [_loader.dict[@"picture"] count]) return nil;
-	
-	NSString * cachePath = _loader.dict[@"picture"][index][@"file"];
-	
-//	UIImage *image = [UIImage imageWithContentsOfFile:cache_path];//[UIImage imageNamed:UIUtil::IsPad() ? @"DefaultPad" : (UIUtil::IsPhone5() ? @"Default-568h" : @"Default")];
-//	NSDictionary * dict=@{@"file": image,
-//						  @"name":file_name};
-
-	return [MWPhoto photoWithUrl:cachePath];
+	NSString * url = _loader.dict[@"image"][index][@"file"];
+	return [MWPhoto photoWithUrl:url];
 }
 
 //- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
