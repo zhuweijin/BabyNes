@@ -187,6 +187,9 @@
 /* Failed */
 "Failed" = "失敗";
 
+/* Failed to decode the date of products. */
+"Failed to decode the date of products." = "解析商品數據失敗！";
+
 /* Failed to send email. */
 "Failed to send email." = "發送郵件失敗。";
 
