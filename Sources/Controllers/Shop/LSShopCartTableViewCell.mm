@@ -78,6 +78,7 @@
     self.button_minus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_minus.titleLabel.textColor=[UIColor whiteColor];
     self.button_minus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.button_minus setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.button_minus setTitle:@"-" forState:(UIControlStateNormal)];
     [self.button_minus setTag: mono_id];
     [self.button_minus addTarget:self action:@selector(cart_mono_minus:) forControlEvents:UIControlEventTouchUpInside];
@@ -97,7 +98,7 @@
     self.button_plus.titleLabel.font = [UIFont systemFontOfSize: 30.0];
     self.button_plus.titleLabel.textColor=[UIColor whiteColor];
     self.button_plus.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    
+    [self.button_plus setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.button_plus setTitle:@"+" forState:(UIControlStateNormal)];
     [self.button_plus setTag:mono_id];
     [self.button_plus addTarget:self action:@selector(cart_mono_plus:) forControlEvents:UIControlEventTouchUpInside];

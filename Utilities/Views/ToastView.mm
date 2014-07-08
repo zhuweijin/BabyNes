@@ -15,9 +15,11 @@
 		toastView = [[ToastView alloc] initWithTitle:title type:type];
 		toastView.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		toastView.tag = kToastViewTag;
-		toastView.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2 - 20);
+		//toastView.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2 - 20);
+        toastView.center = CGPointMake(self.window.frame.size.height / 2,  self.window.frame.size.width / 2);
 		[self addSubview:toastView];
 	}
+    _Log(@"ToastView toastWithTitle[%@] view=[%@]",title,toastView);
 	return toastView;
 }
 

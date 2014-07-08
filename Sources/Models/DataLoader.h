@@ -17,12 +17,13 @@
 #define kAccessToken				@"Password"
 #define kLogoutNotification		@"LogoutNotification"
 
-// Data error
+// Data error old
+/*
 typedef enum
 {
-	DataLoaderNoData,
-	DataLoaderNoChange,
-	DataLoaderDataError,
+	DataLoaderNoData=404,
+	DataLoaderNoChange=410,
+	DataLoaderDataError=500,
 	DataLoaderNetworkError,
 	DataLoaderNoError = 200,
 	DataLoaderDeviceError = 403,
@@ -30,6 +31,20 @@ typedef enum
 	DataLoaderPassError = 405,
 }
 DataLoaderError;
+ */
+
+//A new Error Code defined by Sinri Edogawa on 2014 July 8th.
+typedef enum {
+    DataLoaderNetworkError,
+    DataLoaderNoError=200,
+    DataLoaderTokenError=401,
+    DataLoaderIllegalDevice=403,
+    DataLoaderNotFound=404,
+    DataLoaderIdentificationError=405,
+    DataLoaderServerError=500,
+    DataLoaderEmpty=408,
+    DataLoaderNoChange=402,
+}DataLoaderError;
 
 
 // Data loader delegate

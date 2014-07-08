@@ -125,6 +125,7 @@
     self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_seek_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_customer_seek_button];
     
@@ -133,6 +134,7 @@
     self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_customer_new_button];
@@ -141,6 +143,7 @@
     self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_order_confirm_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.the_order_confirm_button.frame=CGRectMake(850, 600, 150, 30);
     [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];

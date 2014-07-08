@@ -3,6 +3,7 @@
 #import "MeterialImageItemView.h"
 #import "MeterialVideoItemView.h"
 #import "MWPhotoBrowser.h"
+#import "ServerConfig.h"
 
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
@@ -54,10 +55,22 @@ static int MonoNumberInRow=4;
 
 #pragma Event methods
 
+-(void)refreshIdlePRVideo:(BOOL)force_refresh{
+    NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
+    if(network_status==ReachableViaWiFi){
+        NSString*idle_video_url=[[ServerConfig getServerConfig]getURL_idle_video];
+        NSString * cache_path = NSUtil::CacheUrlPath(idle_video_url);
+        if(force_refresh || !NSUtil::IsFileExist(cache_path)){
+            _Log(@"refreshIdlePRVideo[%@]->[%@]",idle_video_url,cache_path);
+            [FileDownloader ariseNewDownloadTaskForURL:idle_video_url withAccessToken:[DataLoader accessToken]];
+        }
+    }
+   
+}
+
 -(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh{
     // NotReachable = 0,ReachableViaWiFi,ReachableViaWWAN
     NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
-    
     if(network_status==ReachableViaWiFi){
         for (NSDictionary *cate in dict[@"category"]){
             for (NSDictionary *item in dict[cate[@"value"]]){
@@ -82,7 +95,7 @@ static int MonoNumberInRow=4;
     _Log(@"MeterialController loadContentView");
     
     cateButtonDict=[[NSMutableDictionary alloc]init];
-    
+    [self refreshIdlePRVideo:NO];
     [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
     UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
@@ -236,7 +249,7 @@ static int MonoNumberInRow=4;
                 int ret =[the_WWAN_alertview showDialog];//cancel=0, continue=1
                 if(ret==1)final_video_url=file_url;
             }else{
-                UIUtil::ShowAlert(NSLocalizedString(@"Sorry but there is not network available.", @"抱歉，目前无可用网络。"));
+                UIUtil::ShowAlert(NSLocalizedString(@"Sorry but there is no network available.", @"抱歉，目前无可用网络。"));
             }
         }
         

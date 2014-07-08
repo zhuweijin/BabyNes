@@ -57,7 +57,7 @@
     
 	UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-	catePane.backgroundColor = UIColor.blackColor;//UIUtil::Color(224,228,222);
+	catePane.backgroundColor = UIUtil::Color(148, 189, 233);//UIUtil::Color(224,228,222);
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;

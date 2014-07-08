@@ -160,14 +160,26 @@
 /* Error */
 "Error" = "Error";
 
+/* Error in network connection. */
+"Error in network connection." = "Error in network connection.";
+
 /* Exit */
 "Exit" = "Exit";
+
+/* Fail to get expected result. */
+"Fail to get expected result." = "Fail to get expected result.";
 
 /* Failed */
 "Failed" = "Failed";
 
+/* Failed in examine the identification. */
+"Failed in examine the identification." = "Failed in examine the identification.";
+
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "Failed to decode the data of products.";
+
+/* Failed to load the details of the product. */
+"Failed to load the details of the product." = "Failed to load the details of the product.";
 
 /* Feedback */
 "Feedback" = "Feedback";
@@ -201,9 +213,6 @@
 
 /* Loading */
 "Loading" = "Loading";
-
-/* Loading, please retry later. */
-"Loading, please retry later." = "Loading, please retry later.";
 
 /* Loading... */
 "Loading..." = "Loading...";
@@ -307,6 +316,12 @@
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "Product                     Price         Quantity";
 
+/* Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@ */
+"Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@" = "Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@";
+
+/* Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@ */
+"Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@" = "Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@";
+
 /* Province */
 "Province" = "Province";
 
@@ -364,6 +379,12 @@
 /* Send via Email */
 "Send via Email" = "Send via Email";
 
+/* Server response with empty. */
+"Server response with empty." = "Server response with empty.";
+
+/* Server response with error. */
+"Server response with error." = "Server response with error.";
+
 /* Settings */
 "Settings" = "Settings";
 
@@ -382,11 +403,29 @@
 /* Shopping Cart */
 "Shopping Cart" = "Shopping Cart";
 
-/* Sorry but there is not network available. */
-"Sorry but there is not network available." = "Sorry but there is not network available.";
+/* Sorry but there is no network available. */
+"Sorry but there is no network available." = "Sorry but there is no network available.";
+
+/* Success */
+"Success" = "Success";
 
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "Sum $%.2f     Quantity %d";
+
+/* The identification information is not correct, please use the correct pair. */
+"The identification information is not correct, please use the correct pair." = "The identification information is not correct, please use the correct pair.";
+
+/* There is no need to update. */
+"There is no need to update." = "There is no need to update.";
+
+/* There is no user with this ID. */
+"There is no user with this ID." = "There is no user with this ID.";
+
+/* This device is not in the permitted list. */
+"This device is not in the permitted list." = "This device is not in the permitted list.";
+
+/* This device is not permitted. */
+"This device is not permitted." = "This device is not permitted.";
 
 /* Title */
 "Title" = "Title";
@@ -397,11 +436,20 @@
 /* Today */
 "Today" = "Today";
 
+/* Token has expired. */
+"Token has expired." = "Token has expired.";
+
 /* Tomorrow */
 "Tomorrow" = "Tomorrow";
 
 /* Uknown error: %d */
 "Uknown error: %d" = "Uknown error: %d";
+
+/* Unknown Error */
+"Unknown Error" = "Unknown Error";
+
+/* Unknown error. */
+"Unknown error." = "Unknown error.";
 
 /* Version %@ */
 "Version %@" = "Version %@";

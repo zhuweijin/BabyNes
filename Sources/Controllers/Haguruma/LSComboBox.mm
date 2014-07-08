@@ -65,7 +65,8 @@
     [self.theList setDataSource:self];
     [self.theList setRowHeight:self.upFrame.size.height];
     //[self.theList setUserInteractionEnabled:YES];
-    [self.theList setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+    [self.theList setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLineEtched)];
+    
     //[self addSubview:self.theList];
     [self.theList setHidden:YES];
     
@@ -153,27 +154,30 @@
     if (cell == nil){
         //_Log(@"cell is nil for row %d",row);
         cell = [[LSComboBoxCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     [cell loadforComboBox:self withTag:row withText:[self.theArray objectAtIndex:row] asFrame:self.cellButtonFrame];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     
     return cell;
     
 }
-/*
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     _Log(@"CB第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
     [self.theTextfield setText:[self.theArray objectAtIndex:indexPath.row]];
     [self.theList setHidden:YES];
     [self.theArrowButton setBackgroundImage:[UIImage imageNamed:@"arrow_down@2x.png"] forState:UIControlStateNormal];
+     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
+
 -(void)select_item:(id)sender{
     int tag=[sender tag];
-    //_Log(@"select_item tag=[%d]", tag);
+    _Log(@"select_item tag=[%d]", tag);
     [self.theTextfield setText:[self.theArray objectAtIndex:tag]];
     [self.theList setHidden:YES];
     [self.theList removeFromSuperview];
