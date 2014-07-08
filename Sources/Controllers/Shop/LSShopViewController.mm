@@ -57,6 +57,41 @@
     
 }
 
+-(void)addObservers{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    // 键盘高度变化通知，ios5.0新增的
+#ifdef __IPHONE_5_0
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version >= 5.0) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    }
+#endif
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
+    
+    _Log(@"LSShopVC addObservers");
+}
+-(void)removeObservers{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
+    
+    _Log(@"LSShopVC removeObservers");
+}
+
 - (void)viewDidLoad
 {
     _Log(@"LSShopViewController viewDidLoad");
@@ -162,38 +197,14 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    // 键盘高度变化通知，ios5.0新增的
-#ifdef __IPHONE_5_0
-    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (version >= 5.0) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    }
-#endif
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
+    [self removeObservers];
+    [self addObservers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
+    [self removeObservers];
 }
 
 
@@ -353,7 +364,7 @@
 }
 
 -(void)dealMonoCellSelected:(NSNotification *)notification{
-    _Log(@"SHOP VC dealMonoCellSelected !");
+    _Log(@"SHOP VC dealMonoCellSelected ! with obj=[%@]",notification.object);
     if([CartEntity getChangeState]){
         _Log(@"Cart doing");
     }else{

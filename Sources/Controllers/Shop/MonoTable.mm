@@ -75,7 +75,8 @@
     NSDictionary * anime_dict=@{@"civ":civ,
                                 @"pe":pe,
                                 @"inCart":[NSNumber numberWithInt: [[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]]],
-                                @"monoIPInTable":indexPath
+                                @"monoIPInTable":indexPath,
+                                @"timestamp":[NSDate date]
                                 };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:anime_dict];
