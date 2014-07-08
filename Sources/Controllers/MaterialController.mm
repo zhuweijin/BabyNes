@@ -100,12 +100,13 @@ static int MonoNumberInRow=4;
     
     UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-	catePane.backgroundColor = [UIColor grayColor];//UIUtil::Color(224,228,222);
+	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;
 	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/4);
-    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
+    //CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
+    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 1 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
 	for (NSDictionary *cate in dict[@"category"])
 	{
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
@@ -118,7 +119,8 @@ static int MonoNumberInRow=4;
 		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 		button.tag = i++;
         
-		frame.origin.y += frame.size.height + 0.5;
+		//frame.origin.y += frame.size.height + 0.5;
+        frame.origin.y += frame.size.height + 1;
         
         [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
@@ -141,7 +143,7 @@ static int MonoNumberInRow=4;
 	{
         //_Log(@"cateButtonClicked CATE=[%@]",cate);
 		CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width - CateItemWidth, _contentView.frame.size.height);
-		if ([cate[@"value"] isEqualToString:@"video"])//非常神奇的事情，有image的反而是视频。。这个预览。
+		if ([cate[@"value"] isEqualToString:@"video"])
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
@@ -195,7 +197,8 @@ static int MonoNumberInRow=4;
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
+             CGFloat gap=20;
+			((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

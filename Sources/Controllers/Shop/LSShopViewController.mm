@@ -189,7 +189,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
@@ -354,6 +354,11 @@
 
 -(void)dealMonoCellSelected:(NSNotification *)notification{
     _Log(@"SHOP VC dealMonoCellSelected !");
+    if([CartEntity getChangeState]){
+        _Log(@"Cart doing");
+    }else{
+        [CartEntity setChangeState:YES];
+    }
     
     double whole_animation_duration=0.4;
     
@@ -391,7 +396,7 @@
                 [self.cartTableView setContentOffset:CGPointMake(0, 50*(row_count-5))];
             }
             cell.frame=cartItemToFrame;
-            cell.backgroundColor = [UIColor yellowColor];
+            cell.backgroundColor = UIUtil::Color(235,238,250);//[UIColor yellowColor];
         } completion:^(BOOL finished) {
             [cell removeFromSuperview];
             [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
@@ -405,7 +410,7 @@
                 _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
                 UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                 _Log(@"Seek existed cell:[%@]",cell);
-                cell.backgroundColor=[UIColor yellowColor];
+                cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
                 [UIView animateWithDuration:whole_animation_duration animations:^{
                     
                     if(index>5){
@@ -430,7 +435,7 @@
                 } completion:^(BOOL finished) {
                     UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                     _Log(@"Seek existed cell:[%@]",cell);
-                    cell.backgroundColor=[UIColor yellowColor];
+                    cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
                     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
                         
                         if(index>5){

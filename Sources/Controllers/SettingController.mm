@@ -63,20 +63,24 @@
 						   width:56];
 	}
 	
-	if (DataLoader.isLogon)
-	{
-		//self.navigationItem.rightBarButtonItem = [UIBarButtonItem _buttonItemWithTitle: target:self action:@selector(logoutButtonClicked:)];
-		[self majorButtonWithTitle:NSLocalizedString(@"Logout", @"安全退出") action:@selector(logoutButtonClicked:)];
 		
-		if (!iPhone5) [self spaceWithHeight:-3];
-	}
-	
 	[self spaceWithHeight:kDefaultHeaderHeight];
 	{
-		[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"About", @"关于") detail:nil action:@selector(logoButtonClicked:)];
 	}
+    
+    [self spaceWithHeight:kDefaultHeaderHeight];
 	
+    if (DataLoader.isLogon)
+	{
+		//self.navigationItem.rightBarButtonItem = [UIBarButtonItem _buttonItemWithTitle: target:self action:@selector(logoutButtonClicked:)];
+		UIButton* logout_btn= [self majorButtonWithTitle:NSLocalizedString(@"Logout", @"安全退出") action:@selector(logoutButtonClicked:)];
+		[logout_btn setBackgroundImage:UIUtil::ImageWithColor(UIUtil::Color(156,153,190)) forState:(UIControlStateNormal)];
+		if (!iPhone5) [self spaceWithHeight:-3];
+	}
+
+    
 	if (!iPhone5) [self spaceWithHeight:-10];
 }
 
@@ -149,16 +153,34 @@
 	UIUtil::ShowStatusBar(NO, UIStatusBarAnimationSlide);
 	
 	UIImage *image = [UIImage imageNamed:UIUtil::IsPad() ? @"DefaultPad" : (UIUtil::IsPhone5() ? @"Default-568h" : @"Default")];
-	UIButton *button = [UIButton buttonWithImage:image];
+    UIButton *button = [UIButton buttonWithImage:image];
+    /*
+    UIImage *image =  UIUtil::Image(@"DefaultPadLogoShow");
+    UIButton *button=[UIButton buttonWithType:(UIButtonTypeCustom)];
+    CGRect turned_frame= self.view.window.frame;
+    turned_frame.size.width=self.view.window.frame.size.height;
+    turned_frame.size.height=self.view.window.frame.size.width;
+    [button setFrame:turned_frame];
+    [button setBackgroundImage:image forState:(UIControlStateNormal)];
+    */
 	[button setImage:image forState:UIControlStateHighlighted];
 	[button addTarget:self action:@selector(sloganButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	objc_setAssociatedObject(button, (__bridge void *)@"SENDER", sender, OBJC_ASSOCIATION_ASSIGN);
 	[self.view.window addSubview:button];
+    
+    _Log(@"logo button = %@",button);
 
+    
 	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
 	{
+        _Log(@"logoButtonClicked UIDeviceOrientationLandscapeRight Turn around the image");
 		button.layer.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180, 0, 0, 1);
+	}else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+	{
+        _Log(@"logoButtonClicked UIDeviceOrientationLandscapeLeft");
+		//button.layer.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180, 0, 0, 1);
 	}
+    
 	
 	CGRect frame = button.frame;
 	button.frame = [self.view.window convertRect:sender.frame fromView:sender.superview];
@@ -169,7 +191,7 @@
 		 button.frame = frame;
 	 }];
     
-    [self check_cache_files];
+    //[self check_cache_files];
 }
 
 //

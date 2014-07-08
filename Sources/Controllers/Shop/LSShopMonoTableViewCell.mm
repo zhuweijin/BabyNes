@@ -72,8 +72,6 @@
     CGRect imageFrame=CGRectMake(20,5,80,60);
     self.image_view.frame=imageFrame;
     
-    
-    
 	[self addSubview:self.image_view];
     
     self.label= [[UILabel alloc] initWithFrame:CGRectMake(120, 15, 350, 40)];

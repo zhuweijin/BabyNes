@@ -11,7 +11,7 @@
 {
 	self = [super initWithService:@"pdt_classify"];
 	_loader.jsonOptions = NSJSONReadingMutableContainers;
-	self.title = NSLocalizedString(@"Message Center", @"消息中心");
+	self.title = NSLocalizedString(@"SR Center", @"消息中心");
 	return self;
 }
 

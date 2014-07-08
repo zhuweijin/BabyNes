@@ -229,9 +229,6 @@
 /* Material */
 "Material" = "Material";
 
-/* Message Center */
-"Message Center" = "Message Center";
-
 /* Mobile */
 "Mobile" = "Mobile";
 
@@ -405,6 +402,9 @@
 
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "Sorry but there is no network available.";
+
+/* SR Center */
+"SR Center" = "SR Center";
 
 /* Success */
 "Success" = "Success";

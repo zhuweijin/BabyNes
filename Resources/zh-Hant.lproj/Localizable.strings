@@ -229,9 +229,6 @@
 /* Material */
 "Material" = "媒介中心";
 
-/* Message Center */
-"Message Center" = "消息中心";
-
 /* Mobile */
 "Mobile" = "手機號";
 
@@ -405,6 +402,9 @@
 
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "抱歉，目前無可用網絡。";
+
+/* SR Center */
+"SR Center" = "消息中心";
 
 /* Success */
 "Success" = "成功";

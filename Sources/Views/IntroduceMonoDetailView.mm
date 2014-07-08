@@ -50,10 +50,25 @@
 }
 
 -(void)loadProduct:(NSDictionary*)dict{
+    if(mono_info_label){
+        [mono_info_label removeFromSuperview];
+        mono_info_label = nil;
+    }
+    if(mono_image_view){
+        [mono_image_view removeFromSuperview];
+        mono_image_view=nil;
+    }
+    if(mono_detailed_image_view){
+        [mono_detailed_image_view removeFromSuperview];
+        mono_detailed_image_view=nil;
+    }
+    
+    
+    //self.backgroundColor=UIUtil::Color(242,244,246);
     
     NSString * info=[NSString stringWithFormat:
-                     //NSLocalizedString(@"Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@", @"产品名称： %@\nSKU 编号： %@\n净含量/规格： %@\n容量： %@\n产地: %@\n价格： %@"),
-                     NSLocalizedString(@"Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@", @"产品名称： %@\n\nSKU 编号： %@\n\n净含量/规格： %@\n\n容量： %@\n\n产地: %@\n\n价格： %@"),
+                     NSLocalizedString(@"Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@", @"产品名称： %@\nSKU 编号： %@\n净含量/规格： %@\n容量： %@\n产地: %@\n价格： %@"),
+                     //NSLocalizedString(@"Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@", @"产品名称： %@\n\nSKU 编号： %@\n\n净含量/规格： %@\n\n容量： %@\n\n产地: %@\n\n价格： %@"),
                      dict[@"product_name"],
                      dict[@"sku_number"],
                      dict[@"net_weight"],
@@ -61,22 +76,42 @@
                      dict[@"origin_place"],
                      dict[@"market_price"]
                      ];
+    //info=[info stringByAppendingString:@"\n\n\n\n\n11"];
     
     CGRect whole_frame=self.frame;
-    CGFloat small_image_width=75*4;
-    CGFloat small_image_height=75*3;
-    CGFloat big_image_width=whole_frame.size.width-20;
-    CGFloat big_image_height=(whole_frame.size.width-20)/4.0*3;
-    mono_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(5,5,small_image_width,small_image_height)];
-    mono_info_label=[[UILabel alloc]initWithFrame:CGRectMake(small_image_width+10,5,whole_frame.size.width-small_image_width-10,small_image_height)];
-    mono_detailed_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(5,small_image_height+10,big_image_width,big_image_height)];
+    CGFloat small_image_width=350*0.8;//75*4;
+    CGFloat small_image_height=250*0.8;//75*3;
+    CGFloat big_image_width=whole_frame.size.width-30;
+    CGFloat big_image_height=(whole_frame.size.width-30)/4.0*3;
+    mono_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(10,10,small_image_width,small_image_height)];
+    mono_info_label=[[UILabel alloc]initWithFrame:CGRectMake(small_image_width+10+10,10,whole_frame.size.width-small_image_width-10,small_image_height)];
+    mono_detailed_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(10,small_image_height+10+10,big_image_width,big_image_height)];
     //mono_detailed_image_view=[[CacheImageButton alloc]initWithFrame:CGRectMake(5,small_image_height+10,big_image_width,big_image_height)];
+    
     
     [mono_image_view setCacheImageUrl:dict[@"small_image"]];
     [mono_detailed_image_view setCacheImageUrl:dict[@"big_image"]];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    //paragraphStyle.lineHeightMultiple = 30.0f;
+    paragraphStyle.maximumLineHeight = 30.0f;
+    //paragraphStyle.minimumLineHeight = 30.0f;
+    paragraphStyle.lineSpacing=10.0f;
+    
+    //NSString *string = info;
+    NSDictionary *ats = @{
+                          //NSFontAttributeName : [UIFont fontWithName:@"DIN Medium" size:16.0f],
+                          NSParagraphStyleAttributeName : paragraphStyle,
+                          };
+    
+    mono_info_label.attributedText = [[NSAttributedString alloc] initWithString:info attributes:ats];//textview 设置行间距
+    
+    [mono_info_label setFont:[UIFont systemFontOfSize:15]];
     [mono_info_label setLineBreakMode:(NSLineBreakByCharWrapping)];
     [mono_info_label setNumberOfLines:0];
-    [mono_info_label setText:info];
+    //[mono_info_label setText:info];
+    //[mono_info_label setBackgroundColor:[UIColor redColor]];
+    
     /*
     [mono_detailed_image_view addTarget:self action:@selector(viewBigImage:) forControlEvents:(UIControlEventTouchDragInside)];
     */

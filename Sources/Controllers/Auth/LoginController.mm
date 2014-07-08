@@ -1,6 +1,7 @@
 
 #import "LoginController.h"
 #import "RootController.h"
+#import "CartEntity.h"
 
 @implementation LoginController
 
@@ -275,6 +276,8 @@
                      _Log(@"registered_device");
                  }
              }
+             
+             [[CartEntity getDefaultCartEntity]resetCart];
              
              UIViewController *controller = [[RootController alloc] init];
              [self.navigationController setViewControllers:@[controller] animated:YES];
