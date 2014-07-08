@@ -16,7 +16,8 @@
     CacheImageView * mono_image_view;
     CacheImageView * mono_detailed_image_view;
     //CacheImageButton * mono_detailed_image_view;
-    UILabel * mono_info_label;
+    //UILabel * mono_info_label;
+    UITextView *mono_text_view;
 }
 
 -(id)initWithFrame:(CGRect)frame withPid:(NSString*)pid;

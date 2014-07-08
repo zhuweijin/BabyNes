@@ -50,10 +50,12 @@
 }
 
 -(void)loadProduct:(NSDictionary*)dict{
+    /*
     if(mono_info_label){
         [mono_info_label removeFromSuperview];
         mono_info_label = nil;
     }
+     */
     if(mono_image_view){
         [mono_image_view removeFromSuperview];
         mono_image_view=nil;
@@ -62,6 +64,11 @@
         [mono_detailed_image_view removeFromSuperview];
         mono_detailed_image_view=nil;
     }
+    if(mono_text_view){
+        [mono_text_view removeFromSuperview];
+        mono_text_view=nil;
+    }
+    
     
     
     //self.backgroundColor=UIUtil::Color(242,244,246);
@@ -84,25 +91,28 @@
     CGFloat big_image_width=whole_frame.size.width-30;
     CGFloat big_image_height=(whole_frame.size.width-30)/4.0*3;
     mono_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(10,10,small_image_width,small_image_height)];
-    mono_info_label=[[UILabel alloc]initWithFrame:CGRectMake(small_image_width+10+10,10,whole_frame.size.width-small_image_width-10,small_image_height)];
     mono_detailed_image_view=[[CacheImageView alloc]initWithFrame:CGRectMake(10,small_image_height+10+10,big_image_width,big_image_height)];
-    //mono_detailed_image_view=[[CacheImageButton alloc]initWithFrame:CGRectMake(5,small_image_height+10,big_image_width,big_image_height)];
     
     
     [mono_image_view setCacheImageUrl:dict[@"small_image"]];
     [mono_detailed_image_view setCacheImageUrl:dict[@"big_image"]];
     
+    [self addSubview:mono_image_view];
+    [self addSubview:mono_detailed_image_view];
+    
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    //paragraphStyle.lineHeightMultiple = 30.0f;
+    
     paragraphStyle.maximumLineHeight = 30.0f;
-    //paragraphStyle.minimumLineHeight = 30.0f;
+    
     paragraphStyle.lineSpacing=10.0f;
     
-    //NSString *string = info;
     NSDictionary *ats = @{
-                          //NSFontAttributeName : [UIFont fontWithName:@"DIN Medium" size:16.0f],
+                          NSFontAttributeName : [UIFont fontWithName:@"Arial" size:16.0f],
                           NSParagraphStyleAttributeName : paragraphStyle,
                           };
+    
+    /*
+    mono_info_label=[[UILabel alloc]initWithFrame:CGRectMake(small_image_width+10+10,10,whole_frame.size.width-small_image_width-10,small_image_height)];
     
     mono_info_label.attributedText = [[NSAttributedString alloc] initWithString:info attributes:ats];//textview 设置行间距
     
@@ -111,13 +121,22 @@
     [mono_info_label setNumberOfLines:0];
     //[mono_info_label setText:info];
     //[mono_info_label setBackgroundColor:[UIColor redColor]];
-    
-    /*
-    [mono_detailed_image_view addTarget:self action:@selector(viewBigImage:) forControlEvents:(UIControlEventTouchDragInside)];
+     [self addSubview:mono_info_label];
     */
-    [self addSubview:mono_image_view];
-    [self addSubview:mono_detailed_image_view];
-    [self addSubview:mono_info_label];
+    
+    mono_text_view = [[UITextView alloc] initWithFrame:CGRectMake(small_image_width+10+10,10,whole_frame.size.width-small_image_width-30,small_image_height)];
+    mono_text_view.textColor = [UIColor blackColor];//设置textview里面的字体颜色
+    //mono_text_view.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小
+    mono_text_view.backgroundColor = [UIColor whiteColor];//设置它的背景颜色
+    //mono_text_view.text=info;
+    mono_text_view.scrollEnabled = YES;//是否可以拖动
+    mono_text_view.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
+    //mono_text_view.userInteractionEnabled=NO;
+    mono_text_view.editable=NO;
+    mono_text_view.attributedText=[[NSAttributedString alloc]initWithString:info attributes:ats];
+    [mono_text_view setShowsVerticalScrollIndicator:YES];
+    [self addSubview:mono_text_view];
+    
 }
 
 /*
