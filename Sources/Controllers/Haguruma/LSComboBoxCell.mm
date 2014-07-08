@@ -15,7 +15,7 @@
     [btn setTag:tag];
     [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor grayColor]) forState:(UIControlStateHighlighted)];
-    [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor whiteColor]) forState:(UIControlStateNormal)];
+    [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]) forState:(UIControlStateNormal)];
     [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor redColor]) forState:(UIControlStateSelected)];
     [btn setFrame:frame];
     [btn setTitle:title forState:(UIControlStateNormal)];
