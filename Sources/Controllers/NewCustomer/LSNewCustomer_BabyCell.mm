@@ -16,9 +16,9 @@
     NSCalendar *myCal = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
     unsigned units  = NSMonthCalendarUnit|NSDayCalendarUnit|NSYearCalendarUnit;
     NSDateComponents *comp1 = [myCal components:units fromDate:now];
-    //NSInteger month = [comp1 month];
+    NSInteger month = [comp1 month];
     NSInteger year = [comp1 year];
-    //NSInteger day = [comp1 day];
+    NSInteger day = [comp1 day];
     
     self.theYearArray=@[[NSString stringWithFormat:@"%d",year],[NSString stringWithFormat:@"%d",year-1],[NSString stringWithFormat:@"%d",year-2],[NSString stringWithFormat:@"%d",year-3]];
     

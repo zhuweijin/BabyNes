@@ -81,7 +81,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    //NSString * url=[[[connection currentRequest]URL]absoluteString];
+    NSString * url=[[[connection currentRequest]URL]absoluteString];
     [the_data appendData:data];
     //_Log(@"FileDownloader didReceiveData length=%d from [%@]",[data length],url);
 }

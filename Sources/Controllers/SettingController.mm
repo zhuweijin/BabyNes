@@ -208,7 +208,7 @@
 		 [sender removeFromSuperview];
 	 }];
 }
-/*
+
 -(void) check_cache_files{
     _Log(@"check_cache_files");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);//NSCachesDirectory//NSDocumentDirectory
@@ -221,5 +221,5 @@
     NSArray *files = [fileManage subpathsAtPath: myDirectory ];
     _Log(@"%@",files);
 }
-*/
+
 @end

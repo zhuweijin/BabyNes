@@ -144,7 +144,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //NSUInteger section = [indexPath section];
+    NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     
     //NSString *key=[NSString stringWithFormat:@"section %d row %d",section,row]; //[_arrayType objectAtIndex:section];
