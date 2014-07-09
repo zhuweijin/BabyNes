@@ -106,6 +106,7 @@
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"dealCartChanged !");
+    
     [self reloadData];
 }
 

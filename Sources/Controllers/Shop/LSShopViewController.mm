@@ -57,6 +57,41 @@
     
 }
 
+-(void)addObservers{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    // 键盘高度变化通知，ios5.0新增的
+#ifdef __IPHONE_5_0
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version >= 5.0) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    }
+#endif
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
+    
+    _Log(@"LSShopVC addObservers");
+}
+-(void)removeObservers{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
+    
+    _Log(@"LSShopVC removeObservers");
+}
+
 - (void)viewDidLoad
 {
     _Log(@"LSShopViewController viewDidLoad");
@@ -125,6 +160,7 @@
     self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_seek_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_customer_seek_button];
     
@@ -133,6 +169,7 @@
     self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_customer_new_button];
@@ -141,6 +178,7 @@
     self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.the_order_confirm_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.the_order_confirm_button.frame=CGRectMake(850, 600, 150, 30);
     [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -159,38 +197,14 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    // 键盘高度变化通知，ios5.0新增的
-#ifdef __IPHONE_5_0
-    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (version >= 5.0) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    }
-#endif
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
+    [self removeObservers];
+    [self addObservers];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
+    [self removeObservers];
 }
 
 
@@ -350,7 +364,12 @@
 }
 
 -(void)dealMonoCellSelected:(NSNotification *)notification{
-    _Log(@"SHOP VC dealMonoCellSelected !");
+    _Log(@"SHOP VC dealMonoCellSelected ! with obj=[%@]",notification.object);
+    if([CartEntity getChangeState]){
+        _Log(@"Cart doing");
+    }else{
+        [CartEntity setChangeState:YES];
+    }
     
     double whole_animation_duration=0.4;
     
@@ -358,29 +377,6 @@
     CGRect originalCIVFrame=civ.frame;
     ProductEntity* pe= [notification.object objectForKey:@"pe"];
     
-    /*
-     CGRect civBigFrame=civ.frame;
-     civBigFrame.origin.x-=civBigFrame.size.width/2;
-     civBigFrame.origin.y-=civBigFrame.size.height/2;
-     civBigFrame.size.width*=2;
-     civBigFrame.size.height*=2;
-     CGRect civToFrame=civ.frame;
-     civToFrame=self.list_icon_image_view.frame;
-     [self.view addSubview:civ];
-     
-     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-     [civ setFrame:civBigFrame];
-     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     } completion:^(BOOL finished) {
-     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-     [civ setFrame:civToFrame];
-     //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     } completion:^(BOOL finished) {
-     [civ removeFromSuperview];
-     [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-     }];
-     }];
-     */
     if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
         _Log(@"Should do CartItem Insert Animation");
         CGRect cartItemFromFrame=originalCIVFrame;
@@ -411,7 +407,7 @@
                 [self.cartTableView setContentOffset:CGPointMake(0, 50*(row_count-5))];
             }
             cell.frame=cartItemToFrame;
-            cell.backgroundColor = [UIColor yellowColor];
+            cell.backgroundColor = UIUtil::Color(235,238,250);//[UIColor yellowColor];
         } completion:^(BOOL finished) {
             [cell removeFromSuperview];
             [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
@@ -425,7 +421,7 @@
                 _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
                 UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                 _Log(@"Seek existed cell:[%@]",cell);
-                cell.backgroundColor=[UIColor yellowColor];
+                cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
                 [UIView animateWithDuration:whole_animation_duration animations:^{
                     
                     if(index>5){
@@ -450,7 +446,7 @@
                 } completion:^(BOOL finished) {
                     UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                     _Log(@"Seek existed cell:[%@]",cell);
-                    cell.backgroundColor=[UIColor yellowColor];
+                    cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
                     [UIView animateWithDuration:whole_animation_duration/2 animations:^{
                         
                         if(index>5){
@@ -467,6 +463,7 @@
             }
         }
     }
+    
 }
 
 -(void)UserRegistered:(NSNotification *) notification{

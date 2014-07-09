@@ -160,14 +160,26 @@
 /* Error */
 "Error" = "錯誤";
 
+/* Error in network connection. */
+"Error in network connection." = "網絡連接失敗。";
+
 /* Exit */
 "Exit" = "退出";
+
+/* Fail to get expected result. */
+"Fail to get expected result." = "網絡請求失敗。";
 
 /* Failed */
 "Failed" = "失敗";
 
+/* Failed in examine the identification. */
+"Failed in examine the identification." = "身份驗證失敗。";
+
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "解析商品數據失敗！";
+
+/* Failed to load the details of the product. */
+"Failed to load the details of the product." = "加載產品詳情失敗。";
 
 /* Feedback */
 "Feedback" = "用戶反饋";
@@ -202,9 +214,6 @@
 /* Loading */
 "Loading" = "刷新中...";
 
-/* Loading, please retry later. */
-"Loading, please retry later." = "尚未加載完成，請稍後再來。";
-
 /* Loading... */
 "Loading..." = "加載中⋯";
 
@@ -219,9 +228,6 @@
 
 /* Material */
 "Material" = "媒介中心";
-
-/* Message Center */
-"Message Center" = "消息中心";
 
 /* Mobile */
 "Mobile" = "手機號";
@@ -307,6 +313,12 @@
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "產品                              價格           數量";
 
+/* Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@ */
+"Product Name： %@\nSKU Number： %@\nNet Wt./Specification： %@\nCapacity： %@\nOrigin: %@\nPrice： %@" = "產品名稱： %@\nSKU 編號： %@\n凈含量/規格： %@\n容量： %@\n產地: %@\n價格： %@";
+
+/* Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@ */
+"Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@" = "產品名稱： %@\n\nSKU 編號： %@\n\n凈含量/規格： %@\n\n容量： %@\n\n產地: %@\n\n價格： %@";
+
 /* Province */
 "Province" = "省份";
 
@@ -364,6 +376,12 @@
 /* Send via Email */
 "Send via Email" = "發送郵件鏈接";
 
+/* Server response with empty. */
+"Server response with empty." = "未獲得數據。";
+
+/* Server response with error. */
+"Server response with error." = "服務器返回錯誤。";
+
 /* Settings */
 "Settings" = "設置";
 
@@ -382,11 +400,32 @@
 /* Shopping Cart */
 "Shopping Cart" = "購物車";
 
-/* Sorry but there is not network available. */
-"Sorry but there is not network available." = "抱歉，目前無可用網絡。";
+/* Sorry but there is no network available. */
+"Sorry but there is no network available." = "抱歉，目前無可用網絡。";
+
+/* SR Center */
+"SR Center" = "消息中心";
+
+/* Success */
+"Success" = "成功";
 
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
+
+/* The identification information is not correct, please use the correct pair. */
+"The identification information is not correct, please use the correct pair." = "認證信息錯誤，請重新輸入。";
+
+/* There is no need to update. */
+"There is no need to update." = "無需更新";
+
+/* There is no user with this ID. */
+"There is no user with this ID." = "不存在此用戶。";
+
+/* This device is not in the permitted list. */
+"This device is not in the permitted list." = "當前設備未獲使用許可。";
+
+/* This device is not permitted. */
+"This device is not permitted." = "當前設備未獲許可。";
 
 /* Title */
 "Title" = "稱呼";
@@ -397,11 +436,20 @@
 /* Today */
 "Today" = "今天";
 
+/* Token has expired. */
+"Token has expired." = "身份驗證失效，需要重新登錄。";
+
 /* Tomorrow */
 "Tomorrow" = "明天";
 
 /* Uknown error: %d */
 "Uknown error: %d" = "未知錯誤，代碼：%d";
+
+/* Unknown Error */
+"Unknown Error" = "未知錯誤";
+
+/* Unknown error. */
+"Unknown error." = "未知錯誤";
 
 /* Version %@ */
 "Version %@" = "版本 %@";

@@ -1,6 +1,6 @@
 
 #import "DataController.h"
-#import "PRPhotoPlayer.h"
+//#import "PRPhotoPlayer.h"
 
 //
 @interface MaterialController : DataController

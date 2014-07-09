@@ -46,6 +46,7 @@
     self.theExitButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.theExitButton.titleLabel.textColor=[UIColor whiteColor];
     self.theExitButton.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.theExitButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.theExitButton.frame=CGRectMake(430, 20, 100, 30);
     [self.theExitButton setTitle:NSLocalizedString(@"Close", @"取消创建") forState:UIControlStateNormal];
     [self.theExitButton addTarget:self action:@selector(closeView:) forControlEvents:UIControlEventTouchUpInside];
@@ -160,6 +161,7 @@
     self.theBabyAddButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.theBabyAddButton.titleLabel.textColor=[UIColor whiteColor];
     self.theBabyAddButton.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.theBabyAddButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.theBabyAddButton.frame=CGRectMake(130, 450, 100, 30);
     [self.theBabyAddButton setTitle:NSLocalizedString(@"Add Baby", @"添加一个宝宝") forState:UIControlStateNormal];
     [self.theBabyAddButton addTarget:self action:@selector(addBaby:) forControlEvents:UIControlEventTouchUpInside];
@@ -169,6 +171,7 @@
     self.theCustomerAddButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.theCustomerAddButton.titleLabel.textColor=[UIColor whiteColor];
     self.theCustomerAddButton.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    [self.theCustomerAddButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.theCustomerAddButton.frame=CGRectMake(380, 450, 100, 30);
     [self.theCustomerAddButton setTitle:NSLocalizedString(@"Create", @"确认创建") forState:UIControlStateNormal];
     [self.theCustomerAddButton addTarget:self action:@selector(addCustomer:) forControlEvents:UIControlEventTouchUpInside];

@@ -9,8 +9,16 @@
 #import "CartEntity.h"
 
 static CartEntity * defaultCartEntity=nil;
+static BOOL isChanging=false;
 
 @implementation CartEntity
+
++(BOOL)getChangeState{
+    return isChanging;
+}
++(void)setChangeState:(BOOL)isChangeStart{
+    isChanging=isChangeStart;
+}
 
 +(CartEntity*)getDefaultCartEntity{
     if(defaultCartEntity==nil){
@@ -27,7 +35,7 @@ static CartEntity * defaultCartEntity=nil;
 
 -(void)resetCart{
     self.cart_array=[[NSMutableArray alloc]init];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
 }
 
 -(int)currentQuantityOfProductID:(int)pid{
@@ -51,6 +59,7 @@ static CartEntity * defaultCartEntity=nil;
 
 -(void)addToCart:(int)product_id withQuantity:(int)number{
     _Log(@"Cart addToCart[%d] with %d",product_id,number);
+    isChanging=false;
     if(number==0){
         return;
     }else{
@@ -78,7 +87,12 @@ static CartEntity * defaultCartEntity=nil;
             }
             
         }
+        
+        //NSNumber* pid_NSN=[NSNumber numberWithInt:product_id];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:pid_NSN];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
+
+        
     }
 }
 

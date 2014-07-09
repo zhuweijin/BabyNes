@@ -3,7 +3,7 @@
 #import "LSDeviceRegister.h"
 
 //
-@interface LoginController : BaseController
+@interface LoginController : BaseController<DataLoaderDelegate>
 {
 	UIImageView *_logoView;
 	UIImageView *_loginPane;

@@ -56,7 +56,7 @@
                         num,@"lastClean",
                         [NSString stringWithFormat:@"%d",net_state],@"net",
                         SUUID,@"SUUID",
-                        NSLocalizedString(@"EN", @"CN"),@"language",
+                        NSLocalizedString(@"EN", @"CN"),@"language",//TO DELETED
                         nil
                         ];
     
