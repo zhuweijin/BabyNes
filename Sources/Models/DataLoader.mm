@@ -348,6 +348,8 @@ static NSString *_accessToken = nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
+	_checkChange = YES;
+
 	_loading = NO;
 	if (_error == DataLoaderNoError)
 	{

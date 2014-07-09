@@ -12,7 +12,6 @@
 {
     is_reloading=false;
 	self = [super initWithService:@"pdt_classify"];
-	_loader.jsonOptions = NSJSONReadingMutableContainers;
 	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
 	return self;
 }
@@ -107,8 +106,9 @@
     */
     cate_id=sender.tag;
     
-	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
-	if (cate[@"VIEW"] == nil)
+	NSDictionary *cate = _loader.dict[@"category"][sender.tag];
+	_itemPane = _itemPanes[cate[@"value"]];
+	if (_itemPane == nil)
 	{
 		CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width - 370, _contentView.frame.size.height);
 		if (cate[@"url"])
@@ -147,11 +147,7 @@
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		cate[@"VIEW"] = _itemPane;
-	}
-	else
-	{
-		_itemPane = cate[@"VIEW"];
+		_itemPanes[cate[@"value"]] = _itemPane;
 	}
 
     _Log(@"cate btn dict= [%@]",cateButtonDict);

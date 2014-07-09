@@ -16,7 +16,6 @@ static int MonoNumberInRow=4;
 - (id)init
 {
 	self = [super initWithService:@"material"];
-    _loader.jsonOptions = NSJSONReadingMutableContainers;
 	self.title = NSLocalizedString(@"Material", @"媒介中心");
 	return self;
 }
@@ -138,8 +137,8 @@ static int MonoNumberInRow=4;
     cate_id=sender.tag;
     
     _Log(@"Material dict=[%@] cate=[%@] cate_id=[%d]",_loader.dict,cate,cate_id);
-    
-	if (cate[@"VIEW"] == nil)
+	_itemPane = _itemPanes[cate[@"value"]];
+	if (_itemPane == nil)
 	{
         //_Log(@"cateButtonClicked CATE=[%@]",cate);
 		CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width - CateItemWidth, _contentView.frame.size.height);
@@ -203,11 +202,7 @@ static int MonoNumberInRow=4;
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-		cate[@"VIEW"] = _itemPane;
-	}
-	else
-	{
-		_itemPane = cate[@"VIEW"];
+		_itemPanes[cate[@"value"]] = _itemPane;
 	}
     
     _Log(@"cate btn dict= [%@]",cateButtonDict);
