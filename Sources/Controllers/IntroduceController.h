@@ -12,6 +12,7 @@
     
     int cate_id;
     
+	NSMutableDictionary *_itemPanes;
     NSMutableDictionary * cateButtonDict;
 }
 

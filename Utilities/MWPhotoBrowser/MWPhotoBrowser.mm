@@ -873,10 +873,12 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 		}
 		
 		// Set navigation bar frame
-		CGRect navBarFrame = self.navigationController.navigationBar.frame;
-		navBarFrame.origin.y = statusBarHeight;
-		self.navigationController.navigationBar.frame = navBarFrame;
-		
+		if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad)
+		{
+			CGRect navBarFrame = self.navigationController.navigationBar.frame;
+			navBarFrame.origin.y = statusBarHeight;
+			self.navigationController.navigationBar.frame = navBarFrame;
+		}
 	}
 	
 	// Captions

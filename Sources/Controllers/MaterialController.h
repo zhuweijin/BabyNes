@@ -8,6 +8,7 @@
     UIView *_itemPane;
     int cate_id;
     
+	NSMutableDictionary *_itemPanes;
     NSMutableDictionary * cateButtonDict;
 }
 
