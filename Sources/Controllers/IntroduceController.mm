@@ -55,6 +55,7 @@
 {
     is_reloading=false;
     
+	_itemPanes = [[NSMutableDictionary alloc]init];
     cateButtonDict=[[NSMutableDictionary alloc]init];
     
     if(catePane!=nil){

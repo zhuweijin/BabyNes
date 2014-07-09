@@ -93,7 +93,8 @@ static int MonoNumberInRow=4;
 {
     _Log(@"MeterialController loadContentView");
     
-    cateButtonDict=[[NSMutableDictionary alloc]init];
+ 	_itemPanes = [[NSMutableDictionary alloc]init];
+	cateButtonDict=[[NSMutableDictionary alloc]init];
     [self refreshIdlePRVideo:NO];
     [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
