@@ -95,8 +95,8 @@ static int MonoNumberInRow=4;
     _Log(@"MeterialController loadContentView");
     
     cateButtonDict=[[NSMutableDictionary alloc]init];
-    [self refreshIdlePRVideo:NO];
-    [self refreshDownloadAllFilesWithDict:dict isForce:NO];
+    [self refreshIdlePRVideo:YES];
+    [self refreshDownloadAllFilesWithDict:dict isForce:YES];
     
     UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
