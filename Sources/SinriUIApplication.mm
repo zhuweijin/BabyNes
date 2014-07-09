@@ -13,7 +13,14 @@
 
 -(NSString*)getPRURL{
     //return @"http://uniquebaby.duapp.com/babynesios/admin/api/video/video-4.mp4";
-    return [[ServerConfig getServerConfig]getURL_idle_video];
+    NSString*url=[[ServerConfig getServerConfig]getURL_idle_video];
+    NSString * cache_file=NSUtil::CacheUrlPath(url);
+    NSString*final=url;
+    if(NSUtil::IsFileExist(cache_file)){
+        final=cache_file;
+    }
+    _Log(@"PR Time! finally %@",final);
+    return final;
 }
 
 -(void)registerEndPRNotificationReceiver{

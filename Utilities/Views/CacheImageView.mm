@@ -23,7 +23,7 @@
 	NSString *path = NSUtil::CacheUrlPath(cacheImageUrl);
 	UIImage *image = [UIImage imageWithContentsOfFile:path];
 	[(id<CacheImageProtocol>)self setImage:image];
-	if (image == nil)
+	//if (image == nil) //Killed by Sinri to try out the cache lock problem
 	{
 #ifdef _CacheImageShowingWithIndicator
 		[self showActivityIndicator:YES];

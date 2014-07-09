@@ -13,6 +13,9 @@
 
 @property NSMutableArray * cart_array;
 
++(BOOL)getChangeState;
++(void)setChangeState:(BOOL)isChangeStart;
+
 +(CartEntity*)getDefaultCartEntity;
 -(void)resetCart;
 

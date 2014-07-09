@@ -1,6 +1,7 @@
 
 #import "IntroduceController.h"
 #import "IntroduceItemView.h"
+#import "IntroduceMonoDetailView.h"
 
 @implementation IntroduceController
 
@@ -9,8 +10,8 @@
 // Constructor
 - (id)init
 {
+    is_reloading=false;
 	self = [super initWithService:@"pdt_classify"];
-	_loader.jsonOptions = NSJSONReadingMutableContainers;
 	self.title = NSLocalizedString(@"Introduce", @"产品介绍");
 	return self;
 }
@@ -52,42 +53,44 @@
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
 {
+    is_reloading=false;
+    
+	_itemPanes = [[NSMutableDictionary alloc]init];
     cateButtonDict=[[NSMutableDictionary alloc]init];
     
-	UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
+    if(catePane!=nil){
+        [catePane removeFromSuperview];
+        catePane=nil;
+    }
+    
+    catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-	catePane.backgroundColor = UIColor.blackColor;//UIUtil::Color(224,228,222);
+	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;
-	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
+	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/4);
+    //CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
 	for (NSDictionary *cate in dict[@"category"])
 	{
+        //if(cate[@"image"]==[NSNull null]){
+            _Log(@"IntroduceController: cate[%@]image=[%@]",cate[@"name"],cate[@"image"]);
+        //}
         
-		UIButton *button = [[CacheImageButton alloc] initWithFrame:frame];
-		button.titleLabel.font = [UIFont boldSystemFontOfSize:30];
-		catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-		button.cacheImageUrl = cate[@"image"];
-		//[button setBackgroundImage:UIUtil::ImageWithColor(148, 189, 233) forState:UIControlStateNormal];
-		[button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
-		[button setTitle:cate[@"name"] forState:UIControlStateNormal];
-		[catePane addSubview:button];
-		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-		button.tag = i++;
+        catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中。。设置content是title和image一起变化
-        [button.imageView.layer setCornerRadius:CGRectGetHeight([button.imageView bounds]) / 2];
-        button.imageView.layer.masksToBounds = YES;
-        //然后再给图层添加一个有色的边框，类似qq空间头像那样
-        button.imageView.layer.borderWidth = 5;
-        button.imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
-        button.imageView.layer.contents = (id) [button.imageView.image CGImage];
-		frame.origin.y += frame.size.height + 0.5;
+        CateImageButton * button=[[CateImageButton alloc]initWithFrame:frame withTitle:cate[@"name"] withTag:(i++) withCacheImageURL:cate[@"image"]];
+        [button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [catePane addSubview:button];
+		frame.origin.y += frame.size.height + 1;
+        //frame.origin.y += frame.size.height + 0.5;
         
         [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
-	[self cateButtonClicked:nil];
-    cate_id=0;
+    if(!is_reloading){
+        [self cateButtonClicked:nil];
+        cate_id=-1;
+    }
 }
 
 //
@@ -95,10 +98,18 @@
 {
 	[_itemPane removeFromSuperview];
 	
+    /*
+    if(cate_id==sender.tag && !is_reloading){
+        _Log(@"IntroduceController category re-loadBegin(c=%d,s=%d)",cate_id,sender.tag);
+        is_reloading=true;
+        [_loader loadBegin];
+    }
+    */
     cate_id=sender.tag;
     
-	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
-	if (cate[@"VIEW"] == nil)
+	NSDictionary *cate = _loader.dict[@"category"][sender.tag];
+	_itemPane = _itemPanes[cate[@"value"]];
+	if (_itemPane == nil)
 	{
 		CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width - 370, _contentView.frame.size.height);
 		if (cate[@"url"])
@@ -132,15 +143,12 @@
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+            CGFloat gap=20;
+			((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		cate[@"VIEW"] = _itemPane;
-	}
-	else
-	{
-		_itemPane = cate[@"VIEW"];
+		_itemPanes[cate[@"value"]] = _itemPane;
 	}
 
     _Log(@"cate btn dict= [%@]",cateButtonDict);
@@ -164,7 +172,31 @@
 - (void)itemButtonClicked:(UITapGestureRecognizer *)sender
 {
 	NSDictionary *item = _loader.dict[@"capsule"][sender.view.tag];
-	UIUtil::ShowAlert(item.description);
+	_Log(@"Introduce Item Button Clicked --> dict=[%@]",item);
+    CGRect frame = _itemPane.frame;
+    [_itemPane removeFromSuperview];
+    UIScrollView * sv;
+    sv = [[UIScrollView alloc] initWithFrame:frame];
+    sv.backgroundColor = UIUtil::Color(242,244,246);//[UIColor redColor];
+    
+    
+    for (int i=0;i<[item[@"products"] count];i++){
+        id product=[item[@"products"] objectAtIndex:i];
+        CGRect subFrame=CGRectMake((frame.size.width)*i, 5, (frame.size.width), frame.size.height);
+        IntroduceMonoDetailView * dmv=[[IntroduceMonoDetailView alloc]initWithFrame:subFrame withPid:[product objectForKey:@"pid"]];
+        if(i%2==0){
+            [dmv setBackgroundColor:[UIColor whiteColor]];
+        }else{
+            [dmv setBackgroundColor:[UIColor colorWithWhite:50 alpha:0.8]];
+        }
+        [sv addSubview:dmv];
+    }
+    [sv setPagingEnabled:YES];
+    sv.contentSize = CGSizeMake(frame.size.width*[item[@"products"]count], sv.frame.size.height);
+    sv.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    _itemPane=sv;
+    [_contentView addSubview:_itemPane];
 }
 
 @end

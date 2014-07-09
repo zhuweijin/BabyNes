@@ -1,6 +1,7 @@
 
 #import "LoginController.h"
 #import "RootController.h"
+#import "CartEntity.h"
 
 @implementation LoginController
 
@@ -255,6 +256,77 @@
 			 @"password": _passwordField.text,
 			 @"uuid": [LSDeviceInfo device_sn],/*SystemUtil::SN()*//*@"7A626E32-D9F8-4BEF-859F-852071CE0001",*/
 		 };
+         
+		 //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
+         [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {
+             DataLoader.accessToken = loader.dict[@"token"];
+             if (_rememberButton.selected)
+             {
+                 Settings::Save(kAccessToken, DataLoader.accessToken);
+             }
+             
+             //DO REGISTER
+             
+             if([_usernameField.text isEqualToString:@"admin"]){
+                 BOOL registered_device=[LSDeviceRegister doDeviceRegister];
+                 if(!registered_device){
+                     UIUtil::ShowAlert(NSLocalizedString(@"Register or update device information failed!", @"登记或更新设备失败！"));
+                     _Log(@"Register or update device information failed!");
+                 }else{
+                     _Log(@"registered_device");
+                 }
+             }
+             
+             [[CartEntity getDefaultCartEntity]resetCart];
+             
+             UIViewController *controller = [[RootController alloc] init];
+             [self.navigationController setViewControllers:@[controller] animated:YES];
+         } failure:^BOOL(DataLoader *loader, NSString *error) {
+             Settings::Save(kAccessToken);
+             [UIView animateWithDuration:0.3 animations:^()
+              {
+                  _loginPane.center = CGPointMake(self.view.bounds.size.width / 2, _loginPane.center.y);
+              } completion:^(BOOL finished)
+              {
+                  _Log(@"LoginController login ERROR[%d]=[%@]",loader.error,loader.errorString);
+                  NSString * info=nil;
+                  if (loader.error == DataLoaderIdentificationError)
+                  {
+                      info=NSLocalizedString(@"The identification information is not correct, please use the correct pair.", @"认证信息错误，请重新输入。");
+                  }else if(loader.error==DataLoaderNotFound){
+                      info=NSLocalizedString(@"There is no user with this ID.", @"不存在此用户。");
+                  }else if(loader.error==DataLoaderIllegalDevice) {
+                      info=NSLocalizedString(@"This device is not in the permitted list.", @"当前设备未获使用许可。");
+                  }
+                  //else if(loader.error==DataLoaderEmpty){}
+                  else{
+                      info=NSLocalizedString(@"Unknown Error", @"未知错误");
+                  }
+                  UIUtil::ShowAlert(info);
+                  _passwordField.text = nil;
+                  [self updateDoneButton];
+                  [_passwordField becomeFirstResponder];
+              }];
+             return NO;
+         }];
+     }];
+}
+
+- (void)doneAction_bak
+{
+	Settings::Set(kUsername, _usernameField.text);
+	[UIView animateWithDuration:0.3 animations:^()
+	 {
+		 _loginPane.center = CGPointMake(-_loginPane.frame.size.width / 2, _loginPane.center.y);
+	 } completion:^(BOOL finished)
+	 {
+		 NSDictionary *params = @
+		 {
+			 @"username": _usernameField.text,
+			 @"password": _passwordField.text,
+			 @"uuid": [LSDeviceInfo device_sn],/*SystemUtil::SN()*//*@"7A626E32-D9F8-4BEF-859F-852071CE0001",*/
+		 };
+         
 		 [DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
 		  {
 			  if (loader.error != DataLoaderNoError)
@@ -265,16 +337,30 @@
 					   _loginPane.center = CGPointMake(self.view.bounds.size.width / 2, _loginPane.center.y);
 				   } completion:^(BOOL finished)
 				   {
-					   if (loader.error == DataLoaderPassError)
+                       _Log(@"LoginController login ERROR[%d]=[%@]",loader.error,loader.errorString);
+                       NSString * info=nil;
+					   if (loader.error == DataLoaderIdentificationError)
 					   {
-						   _passwordField.text = nil;
-						   [self updateDoneButton];
-						   [_passwordField becomeFirstResponder];
-					   }
+						   info=NSLocalizedString(@"The identification information is not correct, please use the correct pair.", @"认证信息错误，请重新输入。");
+					   }else if(loader.error==DataLoaderNotFound){
+                           info=NSLocalizedString(@"There is no user with this ID.", @"不存在此用户。");
+                       }else if(loader.error==DataLoaderIllegalDevice) {
+                           info=NSLocalizedString(@"This device is not in the permitted list.", @"当前设备未获使用许可。");
+                       }
+                       //else if(loader.error==DataLoaderEmpty){}
+                       else{
+                           info=NSLocalizedString(@"Unknown Error", @"未知错误");
+                       }
+                       //UIUtil::ShowAlert(info);
+                       _passwordField.text = nil;
+                       [self updateDoneButton];
+                       [_passwordField becomeFirstResponder];
+                       
 				   }];
 				  return;
 			  }
 			  
+              
 			  DataLoader.accessToken = loader.dict[@"token"];
 			  if (_rememberButton.selected)
 			  {
@@ -299,5 +385,6 @@
 		 
 	 }];
 }
+
 
 @end

@@ -10,19 +10,28 @@
 
 @implementation LSComboBoxCell
 
+-(UIButton*)newCellButtonWithTitle:(NSString*)title withTag:(int)tag withFrame:(CGRect)frame{
+    UIButton* btn=[UIButton buttonWithType:(UIButtonTypeCustom)];
+    [btn setTag:tag];
+    [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+    [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor grayColor]) forState:(UIControlStateHighlighted)];
+    [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]) forState:(UIControlStateNormal)];
+    [btn setBackgroundImage:UIUtil::ImageWithColor([UIColor redColor]) forState:(UIControlStateSelected)];
+    [btn setFrame:frame];
+    [btn setTitle:title forState:(UIControlStateNormal)];
+    //[btn addTarget:comboBox action:@selector(select_item:) forControlEvents:(UIControlEventTouchUpInside)];
+    [btn.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
+    return btn;
+}
+
 -(void)loadforComboBox:(UIView*)comboBox withTag:(int)tag withText:(NSString *)text asFrame:(CGRect) frame{
     if(self.btn){
         [self.btn removeFromSuperview];
         self.btn=nil;
     }
     _Log(@"LSComboBoxCell load With...%d/%@",tag,text);
-    self.btn=[UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.btn setTag:tag];
-    [self.btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-    [self.btn setFrame:frame];
-    [self.btn setTitle:text forState:(UIControlStateNormal)];
+    self.btn=[self newCellButtonWithTitle:text withTag:tag withFrame:frame];
     [self.btn addTarget:comboBox action:@selector(select_item:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.btn.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
     [self addSubview:self.btn];
 }
 
@@ -36,13 +45,8 @@
         
         self.btn=nil;
         _Log(@"LSComboBoxCell initWith...%d/%@",tag,text);
-        self.btn=[UIButton buttonWithType:(UIButtonTypeCustom)];
-        [self.btn setTag:tag];
-        [self.btn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        [self.btn setFrame:frame];
-        [self.btn setTitle:text forState:(UIControlStateNormal)];
+        self.btn=[self newCellButtonWithTitle:text withTag:tag withFrame:frame];
         [self.btn addTarget:comboBox action:@selector(select_item:) forControlEvents:(UIControlEventTouchUpInside)];
-        [self.btn.titleLabel setTextAlignment:(NSTextAlignmentLeft)];
         [self addSubview:self.btn];
         
     }
@@ -66,7 +70,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    //_Log(@"LSComboBoxCell selected");
+    _Log(@"LSComboBoxCell selected");
     // Configure the view for the selected state
 }
 

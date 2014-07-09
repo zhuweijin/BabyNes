@@ -3,6 +3,7 @@
 #import "MeterialImageItemView.h"
 #import "MeterialVideoItemView.h"
 #import "MWPhotoBrowser.h"
+#import "ServerConfig.h"
 
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
@@ -15,7 +16,6 @@ static int MonoNumberInRow=4;
 - (id)init
 {
 	self = [super initWithService:@"material"];
-    _loader.jsonOptions = NSJSONReadingMutableContainers;
 	self.title = NSLocalizedString(@"Material", @"媒介中心");
 	return self;
 }
@@ -54,10 +54,22 @@ static int MonoNumberInRow=4;
 
 #pragma Event methods
 
+-(void)refreshIdlePRVideo:(BOOL)force_refresh{
+    NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
+    if(network_status==ReachableViaWiFi){
+        NSString*idle_video_url=[[ServerConfig getServerConfig]getURL_idle_video];
+        NSString * cache_path = NSUtil::CacheUrlPath(idle_video_url);
+        if(force_refresh || !NSUtil::IsFileExist(cache_path)){
+            _Log(@"refreshIdlePRVideo[%@]->[%@]",idle_video_url,cache_path);
+            [FileDownloader ariseNewDownloadTaskForURL:idle_video_url withAccessToken:[DataLoader accessToken]];
+        }
+    }
+   
+}
+
 -(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh{
     // NotReachable = 0,ReachableViaWiFi,ReachableViaWWAN
     NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
-    
     if(network_status==ReachableViaWiFi){
         for (NSDictionary *cate in dict[@"category"]){
             for (NSDictionary *item in dict[cate[@"value"]]){
@@ -81,18 +93,20 @@ static int MonoNumberInRow=4;
 {
     _Log(@"MeterialController loadContentView");
     
-    cateButtonDict=[[NSMutableDictionary alloc]init];
-    
+ 	_itemPanes = [[NSMutableDictionary alloc]init];
+	cateButtonDict=[[NSMutableDictionary alloc]init];
+    [self refreshIdlePRVideo:NO];
     [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
     UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
-	catePane.backgroundColor = [UIColor grayColor];//UIUtil::Color(224,228,222);
+	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
 	[contentView addSubview:catePane];
 	
 	NSInteger i = 0;
 	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/4);
-    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
+    //CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
+    CGRect frame = CGRectMake(0, 0, CateItemWidth, (catePane.frame.size.height - 1 * MonoNumberInRow)/[[dict objectForKey:@"category"] count]);
 	for (NSDictionary *cate in dict[@"category"])
 	{
         UIButton *button = [[UIButton alloc] initWithFrame:frame];
@@ -105,7 +119,8 @@ static int MonoNumberInRow=4;
 		[button addTarget:self action:@selector(cateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 		button.tag = i++;
         
-		frame.origin.y += frame.size.height + 0.5;
+		//frame.origin.y += frame.size.height + 0.5;
+        frame.origin.y += frame.size.height + 1;
         
         [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
@@ -123,12 +138,12 @@ static int MonoNumberInRow=4;
     cate_id=sender.tag;
     
     _Log(@"Material dict=[%@] cate=[%@] cate_id=[%d]",_loader.dict,cate,cate_id);
-    
-	if (cate[@"VIEW"] == nil)
+	_itemPane = _itemPanes[cate[@"value"]];
+	if (_itemPane == nil)
 	{
         //_Log(@"cateButtonClicked CATE=[%@]",cate);
 		CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width - CateItemWidth, _contentView.frame.size.height);
-		if ([cate[@"value"] isEqualToString:@"video"])//非常神奇的事情，有image的反而是视频。。这个预览。
+		if ([cate[@"value"] isEqualToString:@"video"])
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
@@ -182,16 +197,13 @@ static int MonoNumberInRow=4;
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
+             CGFloat gap=20;
+			((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-		cate[@"VIEW"] = _itemPane;
-	}
-	else
-	{
-		_itemPane = cate[@"VIEW"];
+		_itemPanes[cate[@"value"]] = _itemPane;
 	}
     
     _Log(@"cate btn dict= [%@]",cateButtonDict);
@@ -236,7 +248,7 @@ static int MonoNumberInRow=4;
                 int ret =[the_WWAN_alertview showDialog];//cancel=0, continue=1
                 if(ret==1)final_video_url=file_url;
             }else{
-                UIUtil::ShowAlert(NSLocalizedString(@"Sorry but there is not network available.", @"抱歉，目前无可用网络。"));
+                UIUtil::ShowAlert(NSLocalizedString(@"Sorry but there is no network available.", @"抱歉，目前无可用网络。"));
             }
         }
         

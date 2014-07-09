@@ -21,7 +21,7 @@ static ErrorAlertView *_alertView = nil;
 		_alertView = [[ErrorAlertView alloc] init];
 		_alertView.title = error;
 		_alertView.delegate = _alertView;
-		if (loader.error == DataLoaderNoData || loader.error == DataLoaderNetworkError)
+		if (loader.error == DataLoaderServerError || loader.error == DataLoaderNetworkError)
 		{
 			[_alertView addButtonWithTitle:NSLocalizedString(@"Cancel", @"取消")];
 			[_alertView addButtonWithTitle:NSLocalizedString(@"Retry", @"重试")];
@@ -33,7 +33,9 @@ static ErrorAlertView *_alertView = nil;
 		_alertView.loader = loader;
 		_alertView.loader_delegate = loader.delegate;
 		//[_alertView show];
+        //CGRect win_frame=[[[UIApplication sharedApplication]keyWindow] frame];
 	}
+    [_alertView setFrame:CGRectMake(0, 400, 1024, 100)];
 	return _alertView;
 }
 
@@ -186,6 +188,7 @@ static NSString *_accessToken = nil;
 //
 - (NSString *)errorString
 {
+    /*
 	const static NSString *c_strings[] =
 	{
 		NSLocalizedString(@"Not initialized", @"尚未初始化"),
@@ -194,6 +197,30 @@ static NSString *_accessToken = nil;
 		NSLocalizedString(@"Network error", @"网络连接不给力啊"),
 	};
 	return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
+     */
+    NSString * info=nil;
+    if(_error==DataLoaderNetworkError){
+        info=NSLocalizedString(@"Error in network connection.", @"网络连接失败。");
+    }else if(_error==DataLoaderNoError){
+        info=NSLocalizedString(@"Success", @"成功");
+    }else if(_error==DataLoaderTokenError){
+        info=NSLocalizedString(@"Token has expired.", @"身份验证失效，需要重新登录。");
+    }else if(_error==DataLoaderIllegalDevice){
+        info=NSLocalizedString(@"This device is not permitted.", @"当前设备未获许可。");
+    }else if(_error==DataLoaderNotFound){
+        info=NSLocalizedString(@"Fail to get expected result.", @"网络请求失败。");
+    }else if(_error==DataLoaderIdentificationError){
+        info=NSLocalizedString(@"Failed in examine the identification.", @"身份验证失败。");
+    }else if(_error==DataLoaderServerError){
+        info=NSLocalizedString(@"Server response with error.", @"服务器返回错误。");
+    }else if(_error==DataLoaderEmpty){
+        info=NSLocalizedString(@"Server response with empty.", @"未获得数据。");
+    }else if(_error==DataLoaderNoChange){
+        info=NSLocalizedString(@"There is no need to update.", @"无需更新");
+    }else{
+        info=NSLocalizedString(@"Unknown error.", @"未知错误");
+    }
+    return info;
 }
 
 #pragma mark Data loading methods
@@ -266,7 +293,7 @@ static NSString *_accessToken = nil;
 		}
 		else
 		{
-			_error = DataLoaderDataError;
+			_error = DataLoaderServerError;
 		}
 	}
 	else
@@ -321,16 +348,18 @@ static NSString *_accessToken = nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
+	_checkChange = YES;
+
 	_loading = NO;
 	if (_error == DataLoaderNoError)
 	{
 		self.dict = dict;
 	}
-	else if (_error == DataLoaderUserError)
+	else if (_error == DataLoaderTokenError)
 	{
 		[DataLoader login];
 	}
-	else if (_error == DataLoaderPassError)
+	else if (_error == DataLoaderIdentificationError)
 	{
 		[DataLoader logout];
 	}
@@ -385,6 +414,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadError:(NSString *)error
 {
+    _Log(@"DataLoader->loadError:error[%@]",error);
 	if (_failure)
 	{
 		if (!_failure(self, error))
@@ -392,7 +422,7 @@ static NSString *_accessToken = nil;
 			return;
 		}
 	}
-	if (_error == DataLoaderUserError || _error == DataLoaderPassError)
+	if (_error == DataLoaderIdentificationError || _error == DataLoaderTokenError)
 	{
 		[ToastView toastWithError:error];
 	}

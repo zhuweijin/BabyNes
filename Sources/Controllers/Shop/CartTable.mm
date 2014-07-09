@@ -40,8 +40,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSUInteger section = [indexPath section];
-    NSUInteger row = [indexPath row];
+    //NSUInteger section = [indexPath section];
+    //NSUInteger row = [indexPath row];
     
     //NSString *key=[NSString stringWithFormat:@"section %d row %d",section,row]; //[_arrayType objectAtIndex:section];
     
@@ -106,6 +106,7 @@
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"dealCartChanged !");
+    
     [self reloadData];
 }
 

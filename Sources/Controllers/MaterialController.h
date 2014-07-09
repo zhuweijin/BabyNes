@@ -1,6 +1,6 @@
 
 #import "DataController.h"
-#import "PRPhotoPlayer.h"
+//#import "PRPhotoPlayer.h"
 
 //
 @interface MaterialController : DataController
@@ -8,6 +8,7 @@
     UIView *_itemPane;
     int cate_id;
     
+	NSMutableDictionary *_itemPanes;
     NSMutableDictionary * cateButtonDict;
 }
 
