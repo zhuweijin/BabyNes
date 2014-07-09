@@ -55,7 +55,7 @@
 }
 
 -(void)loadCartMonoWithName:(NSString*)name andPrice:(int)cents andQuantity:(int)quantity andID:(int)mono_id{
-    //[self cleanOldView];
+    [self cleanOldView];
     _Log(@"loadCartMonoWithName %@ ... with ID %d",name,mono_id);
     //_Log(@"loadCartMonoWithNameAnd... cleaned");
     if(self.name==nil){

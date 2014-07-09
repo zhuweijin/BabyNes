@@ -420,9 +420,9 @@
 +(NSString*) device_sn{
     //NSString *udid =NSUtil::UUID();
     NSString *udid =SystemUtil::SN();
-    if([[LSDeviceInfo deviceModelOriginal] isEqualToString:@"i386"] || [[LSDeviceInfo deviceModelOriginal] isEqualToString:@"x86_64"]){
+    //if([[LSDeviceInfo deviceModelOriginal] isEqualToString:@"i386"] || [[LSDeviceInfo deviceModelOriginal] isEqualToString:@"x86_64"]){
         udid =NSUtil::MD5(udid);
-    }
+    //}
     //NSString *udid=[LSDeviceInfo getHexDevice_sn];
     //NSString *udid = [SecureUDID UDIDForDomain:@"erp.leqee.com" usingKey:@"BabyNesPOS"];
     return udid;

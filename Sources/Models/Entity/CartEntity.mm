@@ -73,6 +73,10 @@ static BOOL isChanging=false;
             }
         }
         if(pe==nil){
+            if(number<=0){
+                _Log(@"07091229 number=%d",number);
+                return;
+            }
             _Log(@"sought out nothing..create");
             ProductEntity * pe=[[ProductEntity alloc]initProductWithId:[mono product_id] withTitle:[mono product_title] withCents:[mono product_price_cents] withMagentoID:[mono product_magento_id] withImageName:[mono product_image]];
             [pe setQuantity:number];
@@ -111,9 +115,10 @@ static BOOL isChanging=false;
     }
     return total;
 }
-
+/*
 -(void)testChange{
     _Log(@"testChange called");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
 }
+ */
 @end

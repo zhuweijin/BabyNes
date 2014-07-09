@@ -27,5 +27,5 @@
 -(int)getTotalQuantity;
 -(int)getTotalCents;
 
--(void)testChange;
+//-(void)testChange;
 @end
