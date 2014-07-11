@@ -29,7 +29,7 @@
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
-    _Log(@"MonoCell setSelected=%d for cell[%@]",selected,self.label.text);
+    //_Log(@"MonoCell setSelected=%d for cell[%@]",selected,self.label.text);
     /*
     if(selected){
         [self setBackgroundColor:[UIColor yellowColor]];

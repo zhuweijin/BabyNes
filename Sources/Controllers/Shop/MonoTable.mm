@@ -90,7 +90,20 @@
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma UIViewScrollerDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if(_theSVDelegate){
+        _Log(@"MonoTable scrollViewDidEndDragging !");
+        [_theSVDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+}
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(_theSVDelegate){
+        _Log(@"MonoTable scrollViewDidEndDecelerating !");
+        [_theSVDelegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
 
 /*
  // Only override drawRect: if you perform custom drawing.

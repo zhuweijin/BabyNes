@@ -11,7 +11,8 @@
 #import "ProductEntity.h"
 #import "CartEntity.h"
 
-@interface MonoTable : UITableView <UITableViewDelegate,UITableViewDataSource>
+@interface MonoTable : UITableView <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 //@property NSMutableArray * pdtArray;
 //-(void)setPdtArrayWithNSDic:(NSDictionary*)dict;
+@property id<UIScrollViewDelegate> theSVDelegate;
 @end

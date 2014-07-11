@@ -33,6 +33,8 @@
 
 @end
 
+static CGFloat reloadHeaderHeight=30;
+
 @implementation LSShopViewController
 
 // Constructor
@@ -40,6 +42,7 @@
 {
     self = [super initWithService:@"pdt_classify"];
     self.title = NSLocalizedString(@"Shop", @"网上商店");
+    self.thePullReloadDelegate=self;
     return self;
 }
 
@@ -218,6 +221,9 @@
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
     _Log(@"LSShopViewcController loadContentView[%@] withDict[%@]",contentView,dict);
     
+    is_reloading=false;
+    [self responseForReloadWork];
+    
     if(self.monoTableView){
         [self.monoTableView removeFromSuperview];
         self.monoTableView = nil;
@@ -235,6 +241,17 @@
     [self.monoTableView setRowHeight:70];
     [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
     [contentView addSubview:self.monoTableView];
+    
+    reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
+    [reloadLabel setTextColor:[UIColor grayColor]];
+    [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+    [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+    //[self.monoTableView addSubview:reloadLabel];
+    [self.monoTableView setTableHeaderView:reloadLabel];
+    [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
+    [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+    
+    [self.monoTableView setTheSVDelegate:self];
     
     [self.monoTableView reloadData];
 }
@@ -495,4 +512,58 @@
     [self.the_customer_new_button setHidden:NO];
     [self.the_order_confirm_button setHidden:YES];
 }
+
+#pragma UIViewScrollerDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!is_reloading) { // 判断是否处于刷新状态，刷新中就不执行
+        if(-scrollView.contentOffset.y>reloadHeaderHeight*2){
+            _Log(@"ShopController scrollViewDidEndDragging to response");
+            is_reloading=true;
+            [self responseForReloadWork];
+            return;
+        }
+    }
+    _Log(@"ShopController scrollViewDidEndDragging not response as %f - %d",scrollView.contentOffset.y,decelerate);
+    [scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
+    //[scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(!is_reloading){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
+}
+
+-(void)responseForReloadWork{
+    _Log(@"ShopController responseForReloadWork isWithError=%@ is_reloading=%d",_loader.errorString,is_reloading);
+    if(is_reloading){
+        [_loader loadBegin];
+        [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
+        [self.view.window setUserInteractionEnabled:NO];
+        [self.monoTableView scrollRectToVisible:{0,0,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+        
+        //转转 开始
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view toastWithLoading];
+		_LogLine();
+        
+        _Log(@"ShopController responseForReloadWork to 0,0");
+        _Log(@"ShopController responseForReloadWork begin reload done");
+    }else{
+        [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+        
+        [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+        _Log(@"ShopController responseForReloadWork to 0,reloadHeaderHeight");
+        [self.view.window setUserInteractionEnabled:YES];
+        
+        //转转 消失
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view dismissToast];
+		_LogLine();
+        
+        _Log(@"ShopController responseForReloadWork end reload done");
+    }
+}
+
 @end

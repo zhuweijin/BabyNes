@@ -229,6 +229,8 @@ static NSString *_accessToken = nil;
 - (BOOL)loadBegin
 {
 	if (_loading) return NO;
+    
+    _Log(@"SinriDigin DataLoader loadBegin");
 
 	if ([_delegate respondsToSelector:@selector(loadBegan:)])
 	{
@@ -249,6 +251,8 @@ static NSString *_accessToken = nil;
 //
 - (void)loadStart
 {
+    _Log(@"SinriDigin DataLoader loadStart");
+    
 	UIUtil::ShowNetworkIndicator(YES);
 	if (!_dict && _showLoading)
 	{
@@ -273,6 +277,7 @@ static NSString *_accessToken = nil;
 //
 - (id)loadDoing
 {
+    _Log(@"SinriDigin DataLoader loadDoing");
 	// 装载数据并解析
 	NSDictionary *dict = nil;
 	NSData *data = [self loadData];
@@ -288,6 +293,9 @@ static NSString *_accessToken = nil;
 				if (_checkChange && [_dict isEqualToDictionary:dict])
 				{
 					_error = DataLoaderNoChange;
+                    _Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE");
+                    //_Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE old_dict=[%@]",_dict);
+                    //_Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE new_dict=[%@]",dict);
 				}
 			}
 		}
@@ -307,7 +315,8 @@ static NSString *_accessToken = nil;
 //
 - (NSData *)loadData
 {
-	NSString *url = kServiceUrl(_service);
+	NSString *url =[NSString stringWithFormat:@"%@/%@.php", [[ServerConfig getServerConfig] getURL_root], _service];
+    //kServiceUrl(_service);
 	return [_delegate respondsToSelector:@selector(loadData: url:)] ? [_delegate loadData:self url:url] : [self loadData:url];
 }
 
@@ -348,6 +357,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
+    _Log(@"SinriDigin DataLoader loadEnded");
 	_checkChange = YES;
 
 	_loading = NO;
@@ -386,6 +396,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadStop:(NSDictionary *)dict
 {
+    _Log(@"SinriDigin DataLoader loadStop");
 	UIUtil::ShowNetworkIndicator(NO);
 	if (_showLoading)
 	{

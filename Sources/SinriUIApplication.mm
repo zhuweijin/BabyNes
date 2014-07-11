@@ -32,7 +32,8 @@
 }
 
 -(NSTimeInterval)maxIdleTime{
-    return 20;
+    return 60*5;
+    //return 20;
 }
 
 - (void)sendEvent:(UIEvent *)event {
