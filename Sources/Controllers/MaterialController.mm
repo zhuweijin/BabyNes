@@ -8,6 +8,8 @@
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
 
+static CGFloat reloadHeaderHeight=40;
+
 @implementation MaterialController
 
 #pragma mark Generic methods
@@ -17,6 +19,10 @@ static int MonoNumberInRow=4;
 {
 	self = [super initWithService:@"material"];
 	self.title = NSLocalizedString(@"Material", @"媒介中心");
+    
+    self.thePullReloadDelegate=self;
+    cate_id=0;
+    
 	return self;
 }
 
@@ -91,6 +97,8 @@ static int MonoNumberInRow=4;
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
 {
+    is_reloading=false;
+    [self responseForReloadWork];
     _Log(@"MeterialController loadContentView");
     
  	_itemPanes = [[NSMutableDictionary alloc]init];
@@ -98,7 +106,12 @@ static int MonoNumberInRow=4;
     [self refreshIdlePRVideo:NO];
     [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
-    UIView *catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
+    if(catePane!=nil){
+        [catePane removeFromSuperview];
+        catePane=nil;
+    }
+    
+    catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
 	[contentView addSubview:catePane];
@@ -124,18 +137,23 @@ static int MonoNumberInRow=4;
         
         [cateButtonDict setValue:button forKey:cate[@"name"]];
 	}
-	[self cateButtonClicked:nil];
-    cate_id=0;
+	
+    //[self cateButtonClicked:nil];
+    [self cateButtonClicked:nil anywayCateId:cate_id];
 
 }
 
+- (void)cateButtonClicked:(UIButton *)sender{
+    [self cateButtonClicked:sender anywayCateId:sender.tag];
+}
 //
-- (void)cateButtonClicked:(UIButton *)sender
+//- (void)cateButtonClicked:(UIButton *)sender
+- (void)cateButtonClicked:(UIButton *)sender anywayCateId:(int)sender_tag
 {
 	[_itemPane removeFromSuperview];
 	
-	NSMutableDictionary *cate = _loader.dict[@"category"][sender.tag];
-    cate_id=sender.tag;
+	NSMutableDictionary *cate = _loader.dict[@"category"][sender_tag];
+    cate_id=sender_tag;
     
     _Log(@"Material dict=[%@] cate=[%@] cate_id=[%d]",_loader.dict,cate,cate_id);
 	_itemPane = _itemPanes[cate[@"value"]];
@@ -149,7 +167,8 @@ static int MonoNumberInRow=4;
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
-			CGRect frame = {0, 0, width, width};
+			//CGRect frame = {0, 0, width, width};
+            CGRect frame = {0, reloadHeaderHeight, width, width};
 			NSUInteger i = 0;
 			for (NSDictionary *item in _loader.dict[cate[@"value"]])	// TODO: 解析
 			{
@@ -169,7 +188,21 @@ static int MonoNumberInRow=4;
 					frame.origin.x += frame.size.width;
 				}
 			}
-			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
+            CGFloat gap=20;
+			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            if(h<=_itemPane.frame.size.height){
+                h=_itemPane.frame.size.height+reloadHeaderHeight;
+            }
+            ((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, h);
+            ((UIScrollView *)_itemPane).contentOffset=CGPointMake(0, reloadHeaderHeight);
+            ((UIScrollView *)_itemPane).delegate=self;
+            
+            reloadLabel=[[UILabel alloc]initWithFrame:{0,10,_itemPane.frame.size.width,reloadHeaderHeight-20}];
+            [reloadLabel setTextColor:[UIColor grayColor]];
+            [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+            [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+            [_itemPane addSubview:reloadLabel];
 		}
 		else
 		{
@@ -177,7 +210,8 @@ static int MonoNumberInRow=4;
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
-			CGRect frame = {0, 0, width, width};
+			//CGRect frame = {0, 0, width, width};
+            CGRect frame = {0, reloadHeaderHeight, width, width};
 			NSUInteger i = 0;
 			for (NSDictionary *item in _loader.dict[cate[@"value"]])	// TODO: 解析
 			{
@@ -197,8 +231,21 @@ static int MonoNumberInRow=4;
 					frame.origin.x += frame.size.width;
 				}
 			}
-             CGFloat gap=20;
-			((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap));
+            CGFloat gap=20;
+			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
+            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            if(h<=_itemPane.frame.size.height){
+                h=_itemPane.frame.size.height+reloadHeaderHeight;
+            }
+            ((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, h);
+            ((UIScrollView *)_itemPane).contentOffset=CGPointMake(0, reloadHeaderHeight);
+            ((UIScrollView *)_itemPane).delegate=self;
+            
+            reloadLabel=[[UILabel alloc]initWithFrame:{0,10,_itemPane.frame.size.width,reloadHeaderHeight-20}];
+            [reloadLabel setTextColor:[UIColor grayColor]];
+            [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+            [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+            [_itemPane addSubview:reloadLabel];
 		}
 		
 		_itemPane.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -209,8 +256,8 @@ static int MonoNumberInRow=4;
     _Log(@"cate btn dict= [%@]",cateButtonDict);
 
     for (UIButton * btn in [cateButtonDict allValues]) {
-        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender.tag);
-        if(btn.tag==sender.tag){
+        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
+        if(btn.tag==sender_tag){
             btn.backgroundColor=UIUtil::Color(117, 114, 184) ;
             [btn setHighlighted:YES];
         }else{
@@ -294,5 +341,63 @@ static int MonoNumberInRow=4;
 //	MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
 //	return [captionView autorelease];
 //}
+
+#pragma UIViewScrollerDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!is_reloading) { // 判断是否处于刷新状态，刷新中就不执行
+        if(-scrollView.contentOffset.y>reloadHeaderHeight*2){
+            //_Log(@"IntroduceController scrollViewDidScroll: height=%f offset.y=%f",scrollView.contentSize.height,scrollView.contentOffset.y);
+            
+            _Log(@"MaterialController reloadBegin(c=%d)",cate_id);
+            is_reloading=true;
+            [self responseForReloadWork];
+            return;
+        }
+    }
+    {
+        [(UIScrollView*)_itemPane scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(!is_reloading){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
+}
+
+-(void)responseForReloadWork{
+    _Log(@"MaterialController responseForReloadWork isWithError=%@",_loader.errorString);
+    if(is_reloading){
+        [_loader loadBegin];
+        [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
+        [self.view.window setUserInteractionEnabled:NO];
+        [((UIScrollView *)_itemPane) scrollRectToVisible:{0,0,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+        
+        //转转 开始
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view toastWithLoading];
+		_LogLine();
+        
+        //_Log(@"responseForReloadWork to 0,0");
+        //_Log(@"IntroductController responseForReloadWork begin reload done");
+    }else{
+        [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+        
+        [((UIScrollView *)_itemPane) scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+        //_Log(@"responseForReloadWork to 0,reloadHeaderHeight");
+        [self.view.window setUserInteractionEnabled:YES];
+        //_Log(@"IntroductController responseForReloadWork end reload done");
+        
+        //转转 消失
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view dismissToast];
+		_LogLine();
+        
+        [self refreshIdlePRVideo:YES];
+        [self refreshDownloadAllFilesWithDict:_loader.dict isForce:YES];
+    }
+}
+
+
 
 @end

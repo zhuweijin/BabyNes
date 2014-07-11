@@ -16,6 +16,8 @@
 
 +(ServerConfig*)getServerConfig;
 
+-(NSString*)getURL_root;
+
 -(NSString*)getURL_login;
 -(NSString*)getURL_device_register;
 -(NSString*)getURL_device_report;

@@ -58,6 +58,8 @@
 	
 	StatStart();
     
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    
     [(SinriUIApplication *)application registerEndPRNotificationReceiver];
     
     //Report Device Information Regularly

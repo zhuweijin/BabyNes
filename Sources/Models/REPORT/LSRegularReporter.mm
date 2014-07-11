@@ -102,15 +102,15 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    _Log(@"Regular Report didReceiveResponse [%@]",response);
+    //_Log(@"Regular Report didReceiveResponse [%@]",response);
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-     _Log(@"Regular Report didReceiveData [%@]",data);
+     //_Log(@"Regular Report didReceiveData [%@]",data);
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    _Log(@"Regular Report didFailWithError [%@]",error);
+    //_Log(@"Regular Report didFailWithError [%@]",error);
 }
 
 @end

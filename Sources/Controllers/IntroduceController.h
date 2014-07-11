@@ -4,16 +4,17 @@
 
 //
 @interface IntroduceController : DataController
+<UIScrollViewDelegate,DataControllerPullReloadDelegate>
 {
     UIView *catePane;
 	UIView *_itemPane;
-    
-    BOOL is_reloading;
     
     int cate_id;
     
 	NSMutableDictionary *_itemPanes;
     NSMutableDictionary * cateButtonDict;
+    
+    UILabel * reloadLabel;
 }
 
 @end

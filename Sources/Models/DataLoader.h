@@ -1,14 +1,15 @@
+#import "ServerConfig.h"
 
 #define TEST
 #ifdef TEST
-#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
+//#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #else
-#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
+//#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #endif
 
-#define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
+//#define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
 
 #define kAuthConsumerKey		@"XXX"
 #define kAuthConsumerSecret		@"XXX"

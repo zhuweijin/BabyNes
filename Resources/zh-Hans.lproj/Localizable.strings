@@ -37,21 +37,6 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*宝宝的性别：";
 
-/* 13-24 Month Standard 8 Oz */
-"13-24 Month Standard 8 Oz" = "13-24个月胶囊奶粉";
-
-/* 25-36 Month Standard 8 Oz */
-"25-36 Month Standard 8 Oz" = "25-36个月胶囊奶粉";
-
-/* 3-6 Month Big 7 Oz */
-"3-6 Month Big 7 Oz" = "3-6个月胶囊奶粉 7盎司";
-
-/* 3-6 Month Standard 6 Oz */
-"3-6 Month Standard 6 Oz" = "3-6个月胶囊奶粉 6盎司";
-
-/* 7-12 Month Standard 8 Oz */
-"7-12 Month Standard 8 Oz" = "7-12个月胶囊奶粉";
-
 /* About */
 "About" = "关于";
 
@@ -78,9 +63,6 @@
 
 /* After Tomorrow */
 "After Tomorrow" = "后天";
-
-/* AnyShop */
-"AnyShop" = "任意店铺";
 
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "你确定要清除网络缓存吗？";
@@ -142,9 +124,6 @@
 /* Could not open */
 "Could not open" = "无法打开";
 
-/* Could not send SMS on this device. */
-"Could not send SMS on this device." = "在此设备上无法发送短信。";
-
 /* Create */
 "Create" = "确认创建";
 
@@ -202,18 +181,6 @@
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "加载产品详情失败。";
 
-/* Failed to send email. */
-"Failed to send email." = "发送邮件失败。";
-
-/* Failed to send login data */
-"Failed to send login data" = "认证请求发送失败";
-
-/* Failed to send login data, please check your network status. */
-"Failed to send login data, please check your network status." = "未能发送认证请求，请检查网络。";
-
-/* Failed to send SMS. */
-"Failed to send SMS." = "发送短信失败。";
-
 /* Feedback */
 "Feedback" = "用户反馈";
 
@@ -223,17 +190,8 @@
 /* Fill in the Contact2 */
 "Fill in the Contact2" = "请留下您的QQ，邮箱，电话等联系方式";
 
-/* First Month Big 4 Oz */
-"First Month Big 4 Oz" = "第1个月胶囊奶粉 4盎司";
-
-/* First Month Standard 3 Oz */
-"First Month Standard 3 Oz" = "第1个月胶囊奶粉 3盎司";
-
 /* For Baby [%d]: */
 "For Baby [%d]:" = "第%d个宝宝信息：";
-
-/* Forget Password */
-"Forget Password" = "忘记密码";
 
 /* Full Screen */
 "Full Screen" = "全屏幕";
@@ -241,20 +199,8 @@
 /* Girl */
 "Girl" = "女";
 
-/* Give password here */
-"Give password here" = "请输入密码";
-
-/* Give username here */
-"Give username here" = "请输入用户名";
-
-/* Guest */
-"Guest" = "游客";
-
 /* Ignore */
 "Ignore" = "忽略";
-
-/* Incorrect Identity Input */
-"Incorrect Identity Input" = "用户名和密码不正确。";
 
 /* Introduce */
 "Introduce" = "产品介绍";
@@ -269,31 +215,16 @@
 "Loading" = "刷新中...";
 
 /* Loading... */
-"Loading..." = "加载中⋯";
+"Loading..." = "加载中...";
 
 /* Login */
 "Login" = "登录";
 
-/* Login Failed */
-"Login Failed" = "认证失败";
-
-/* Login Request Failed */
-"Login Request Failed" = "发送登录请求失败，请检查网络！";
-
-/* Logined failed! */
-"Logined failed!" = "登陆失败";
-
-/* Logined successfully */
-"Logined successfully" = "登陆成功";
-
 /* Logout */
-"Logout" = "退出登录";
+"Logout" = "安全退出";
 
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
-
-/* Machine */
-"Machine" = "奶粉机器";
 
 /* Material */
 "Material" = "媒介中心";
@@ -367,9 +298,6 @@
 /* OK */
 "OK" = "确定";
 
-/* Online Shop */
-"Online Shop" = "网上商店";
-
 /* Open with Safari */
 "Open with Safari" = "在 Safari 中打开";
 
@@ -382,15 +310,6 @@
 /* Paid Network Warning */
 "Paid Network Warning" = "付费网络提醒";
 
-/* Password */
-"Password" = "密码";
-
-/* Please setup your email account first. */
-"Please setup your email account first." = "请先设置您的邮件账户。";
-
-/* Please wait */
-"Please wait" = "请等待";
-
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "产品                              价格           数量";
 
@@ -399,12 +318,6 @@
 
 /* Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@ */
 "Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@" = "产品名称： %@\n\nSKU 编号： %@\n\n净含量/规格： %@\n\n容量： %@\n\n产地: %@\n\n价格： %@";
-
-/* Products */
-"Products" = "介绍产品";
-
-/* Promotor Login */
-"Promotor Login" = "导购员登录";
 
 /* Province */
 "Province" = "省份";
@@ -418,8 +331,8 @@
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
-/* Pull down to refresh... */
-"Pull down to refresh..." = "下拉可以更新⋯";
+/* Pull to reload */
+"Pull to reload" = "下拉以刷新";
 
 /* p_m */
 "p_m" = "下午";
@@ -432,9 +345,6 @@
 
 /* Registered as [%@] */
 "Registered as [%@]" = "成功注册为[%@]";
-
-/* Release to refresh... */
-"Release to refresh..." = "松开立即更新⋯";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "松开即可刷新...";
@@ -460,26 +370,14 @@
 /* Saving */
 "Saving" = "正在保存";
 
-/* Second Month Big 6 Oz */
-"Second Month Big 6 Oz" = "第2个月胶囊奶粉 6盎司";
-
-/* Second Month Standard 5 Oz */
-"Second Month Standard 5 Oz" = "第2个月胶囊奶粉 5盎司";
-
 /* Seek */
 "Seek" = "搜索";
 
 /* Send */
 "Send" = "发送";
 
-/* Send SMS successfully. */
-"Send SMS successfully." = "发送短信成功。";
-
 /* Send via Email */
 "Send via Email" = "发送邮件链接";
-
-/* Server Down. */
-"Server Down." = "服务器错误";
 
 /* Server response with empty. */
 "Server response with empty." = "未获得数据。";
@@ -505,9 +403,6 @@
 /* Shopping Cart */
 "Shopping Cart" = "购物车";
 
-/* Soothe Standard 7 Oz */
-"Soothe Standard 7 Oz" = "Sooth";
-
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "抱歉，目前无可用网络。";
 
@@ -519,9 +414,6 @@
 
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "总计：￥%.2f       数量：%d";
-
-/* Sum $%.2f Quantity %d */
-"Sum $%.2f Quantity %d" = "总计：￥%.2f   数量：%d";
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "认证信息错误，请重新输入。";
@@ -562,20 +454,11 @@
 /* Unknown error. */
 "Unknown error." = "未知错误";
 
-/* Username */
-"Username" = "用户名";
-
 /* Version %@ */
 "Version %@" = "版本 %@";
 
 /* Version %@ %@© %@ */
 "Version %@ %@© %@" = "版本 %@ %@© %@";
-
-/* Waiting for authority information from server... */
-"Waiting for authority information from server..." = "认证请求发送完毕，等待认证";
-
-/* Wrong Username-Password Pair! */
-"Wrong Username-Password Pair!" = "用户名和密码有误";
 
 /* Year */
 "Year" = "年份";
