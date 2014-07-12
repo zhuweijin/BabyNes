@@ -10,7 +10,15 @@
 #import "PRMoviePlayer.h"
 #import "PRPhotoPlayer.h"
 
+#import "RootController.h"
+#import "LoginController.h"
+
 @interface SinriUIApplication : UIApplication
+
+@property UINavigationController * navController;
+@property RootController * rootController;
+@property LoginController * loginController;
+
 //maxIdleTime 和 idleTimer
 @property NSTimer * idleTimer;
 -(NSTimeInterval)maxIdleTime;

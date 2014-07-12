@@ -36,7 +36,8 @@ DataLoaderError;
 
 //A new Error Code defined by Sinri Edogawa on 2014 July 8th.
 typedef enum {
-    DataLoaderNetworkError,
+    DataLoaderNoCacheError=-1,
+    DataLoaderNetworkError=0,
     DataLoaderNoError=200,
     DataLoaderTokenError=401,
     DataLoaderIllegalDevice=403,

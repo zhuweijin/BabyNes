@@ -2,6 +2,7 @@
 
 #import "DataLoader.h"
 #import "LoginController.h"
+#import "DialogUIAlertView.h"
 
 //
 @interface ErrorAlertView : UIAlertView
@@ -48,11 +49,11 @@ static ErrorAlertView *_alertView = nil;
 		_loader_delegate = nil;
 		_loader = nil;
 	}
-//	else if (_loader.error == DataLoaderProfileIncomplete)
-//	{
-//		UIViewController *controller = [[BasicProfileController alloc] init];
-//		[UIUtil::RootViewController() presentNavigationController:controller animated:YES];
-//	}
+    //	else if (_loader.error == DataLoaderProfileIncomplete)
+    //	{
+    //		UIViewController *controller = [[BasicProfileController alloc] init];
+    //		[UIUtil::RootViewController() presentNavigationController:controller animated:YES];
+    //	}
 	_alertView = nil;
 }
 @end
@@ -135,6 +136,7 @@ static NSString *_accessToken = nil;
 //
 + (void)logout
 {
+    _Log(@"DataLoader logout");
 	_accessToken = nil;
 	Settings::Save(kAccessToken);
 	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];
@@ -143,6 +145,7 @@ static NSString *_accessToken = nil;
 //
 + (void)login
 {
+    _Log(@"DataLoader login");
 	[self logout];
 	UIViewController *controller = [[LoginController alloc] init];
 	UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
@@ -189,17 +192,19 @@ static NSString *_accessToken = nil;
 - (NSString *)errorString
 {
     /*
-	const static NSString *c_strings[] =
-	{
-		NSLocalizedString(@"Not initialized", @"尚未初始化"),
-		NSLocalizedString(@"No change", @"数据无变化"),
-		NSLocalizedString(@"Data error", @"数据服务错误"),
-		NSLocalizedString(@"Network error", @"网络连接不给力啊"),
-	};
-	return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
+     const static NSString *c_strings[] =
+     {
+     NSLocalizedString(@"Not initialized", @"尚未初始化"),
+     NSLocalizedString(@"No change", @"数据无变化"),
+     NSLocalizedString(@"Data error", @"数据服务错误"),
+     NSLocalizedString(@"Network error", @"网络连接不给力啊"),
+     };
+     return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
      */
     NSString * info=nil;
-    if(_error==DataLoaderNetworkError){
+    if(_error==DataLoaderNoCacheError){
+        info=NSLocalizedString(@"No cache available.", @"加载本地缓存失败。");
+    }else if(_error==DataLoaderNetworkError){
         info=NSLocalizedString(@"Error in network connection.", @"网络连接失败。");
     }else if(_error==DataLoaderNoError){
         info=NSLocalizedString(@"Success", @"成功");
@@ -231,7 +236,7 @@ static NSString *_accessToken = nil;
 	if (_loading) return NO;
     
     _Log(@"SinriDigin DataLoader loadBegin");
-
+    
 	if ([_delegate respondsToSelector:@selector(loadBegan:)])
 	{
 		if (![_delegate loadBegan:self])
@@ -337,7 +342,7 @@ static NSString *_accessToken = nil;
 	NSData *data = HttpUtil::HttpData(url, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
 	if (data == nil)
 	{
-		_Log(@"Response: %@\n\nError: %@\n\n", response, error);
+		_Log(@"DataLoader loadData url=[%@] Response: %@\n\nError: %@\n\n",url, response, error);
 	}
 	return data;
 }
@@ -346,12 +351,16 @@ static NSString *_accessToken = nil;
 - (id)parseData:(NSData *)data
 {
 	NSError *error = nil;
-	NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:_jsonOptions error:&error];
-	if (dict == nil)
-	{
-		_Log(@"Data: %@\n\n Error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
-	}
-	return dict;
+    if(data){
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:_jsonOptions error:&error];
+        if (dict == nil)
+        {
+            _Log(@"Data: %@\n\n Error: %@", (data==nil?@"nil":[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]), error);
+        }
+        return dict;
+    }else{
+        return nil;
+    }
 }
 
 //
@@ -359,7 +368,7 @@ static NSString *_accessToken = nil;
 {
     _Log(@"SinriDigin DataLoader loadEnded");
 	_checkChange = YES;
-
+    
 	_loading = NO;
 	if (_error == DataLoaderNoError)
 	{
@@ -368,10 +377,12 @@ static NSString *_accessToken = nil;
 	else if (_error == DataLoaderTokenError)
 	{
 		[DataLoader login];
+        return;
 	}
 	else if (_error == DataLoaderIdentificationError)
 	{
 		[DataLoader logout];
+        return;
 	}
 	else
 	{
@@ -435,7 +446,9 @@ static NSString *_accessToken = nil;
 	}
 	if (_error == DataLoaderIdentificationError || _error == DataLoaderTokenError)
 	{
-		[ToastView toastWithError:error];
+		//[ToastView toastWithError:error];
+        UIAlertView * uiav= [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Data Loader Error", @"数据加载错误") message:error delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles: nil];
+        [uiav show];
 	}
 	else if (_checkError)
 	{

@@ -1,5 +1,6 @@
 
 #import "SettingController.h"
+#import "SinriUIApplication.h"
 
 @implementation SettingController
 
@@ -115,7 +116,16 @@
     
     if(result==1){
         Settings::Save(kAccessToken);
-        UIViewController *controller = [[LoginController alloc] init];
+        //UIViewController *controller = [[LoginController alloc] init];
+        
+        [[(SinriUIApplication *)([UIApplication sharedApplication]) loginController] dismissViewControllerAnimated:NO completion:^{
+            _Log(@"RootController dismiss login controoler");
+        }];
+        
+        [(SinriUIApplication *)([UIApplication sharedApplication]) setLoginController:nil];
+        [(SinriUIApplication *)([UIApplication sharedApplication]) setLoginController:[[LoginController alloc] init]];
+        UIViewController *controller=[(SinriUIApplication *)([UIApplication sharedApplication]) loginController];
+        
         [self.navigationController setViewControllers:@[controller] animated:NO];
     }
 }

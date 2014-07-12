@@ -14,6 +14,7 @@
 //, NSURLConnectionDownloadDelegate
 , NSURLConnectionDataDelegate>
 {
+    NSString * source_url;
     NSMutableData * the_data;
     NSString * the_cache_path;
 }
