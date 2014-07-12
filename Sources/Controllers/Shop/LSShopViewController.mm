@@ -549,7 +549,7 @@ static CGFloat reloadHeaderHeight=30;
     if(is_reloading){
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
-        [self.view.window setUserInteractionEnabled:NO];
+        //[self.view.window setUserInteractionEnabled:NO];
         [self.monoTableView scrollRectToVisible:{0,0,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
         
         //转转 开始
@@ -564,7 +564,7 @@ static CGFloat reloadHeaderHeight=30;
         
         [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
         _Log(@"ShopController responseForReloadWork to 0,reloadHeaderHeight");
-        [self.view.window setUserInteractionEnabled:YES];
+        //[self.view.window setUserInteractionEnabled:YES];
         
         //转转 消失
         UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();

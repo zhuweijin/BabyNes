@@ -9,11 +9,18 @@
 #pragma mark Generic methods
 
 // Constructor
-//- (id)init
-//{
-//	self = [super init];
-//	return self;
-//}
+- (id)init
+{
+	self = [super init];
+    _msg=nil;
+	return self;
+}
+
+-(id)initWithMessage:(NSString*)theMessage{
+    self=[super init];
+    _msg=theMessage;
+    return self;
+}
 
 //
 - (void)createSubviews
@@ -121,6 +128,12 @@
 {
 	[super viewDidLoad];
 	[self createSubviews];
+    
+    if(_msg){
+    UIAlertView * uiav=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Identity Exception", @"身份认证异常") message:_msg delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确认") otherButtonTitles: nil];
+    [uiav show];
+    }
+    
 }
 
 // Called when the view is about to made visible.
@@ -130,6 +143,8 @@
 //#ifndef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES];
 //#endif
+    
+    [self.view.window setUserInteractionEnabled:YES];
 }
 
 //
@@ -162,6 +177,7 @@
 #else
 	[self showSubviews];
 #endif
+    [self.view.window setUserInteractionEnabled:YES];
 }
 
 //

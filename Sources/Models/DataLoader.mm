@@ -139,15 +139,31 @@ static NSString *_accessToken = nil;
     _Log(@"DataLoader logout");
 	_accessToken = nil;
 	Settings::Save(kAccessToken);
-	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
 }
 
 //
 + (void)login
 {
     _Log(@"DataLoader login");
-	[self logout];
+	//[self logout];
+    _accessToken = nil;
+	Settings::Save(kAccessToken);
+    //That's what logout wanna do.
+    
 	UIViewController *controller = [[LoginController alloc] init];
+	UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+}
+
++ (void)login:(NSString*)msg
+{
+    _Log(@"DataLoader login");
+	//[self logout];
+    _accessToken = nil;
+	Settings::Save(kAccessToken);
+    //That's what logout wanna do.
+    
+	UIViewController *controller = [[LoginController alloc] initWithMessage:msg];
 	UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
 }
 
@@ -376,13 +392,15 @@ static NSString *_accessToken = nil;
 	}
 	else if (_error == DataLoaderTokenError)
 	{
-		[DataLoader login];
+		//[DataLoader login];
+        [DataLoader login:[self errorString]];
         return;
 	}
 	else if (_error == DataLoaderIdentificationError)
 	{
-		[DataLoader logout];
-        return;
+		//[DataLoader logout];
+        //[DataLoader login];
+        //return;
 	}
 	else
 	{
