@@ -366,7 +366,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
-    _Log(@"SinriDigin DataLoader loadEnded");
+    //_Log(@"SinriDigin DataLoader loadEnded");
 	_checkChange = YES;
     
 	_loading = NO;
@@ -386,7 +386,11 @@ static NSString *_accessToken = nil;
 	}
 	else
 	{
-		_Log(@"%@: %d =>\n%@", (_error == DataLoaderNoChange) ? @"NOCHANGE" : @"ERROR", _error, dict);
+        if(_error == DataLoaderNoChange){
+            _Log(@"SinriDigin DataLoader loadEnded %@: %d", @"NOCHANGE", _error);
+        }else{
+            _Log(@"SinriDigin DataLoader loadEnded %@: %d =>\n%@", @"ERROR", _error, dict);
+        }
 	}
 	
 	[self loadStop:dict];
@@ -407,7 +411,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadStop:(NSDictionary *)dict
 {
-    _Log(@"SinriDigin DataLoader loadStop");
+    //_Log(@"SinriDigin DataLoader loadStop");
 	UIUtil::ShowNetworkIndicator(NO);
 	if (_showLoading)
 	{
@@ -447,8 +451,10 @@ static NSString *_accessToken = nil;
 	if (_error == DataLoaderIdentificationError || _error == DataLoaderTokenError)
 	{
 		//[ToastView toastWithError:error];
+        /*
         UIAlertView * uiav= [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Data Loader Error", @"数据加载错误") message:error delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles: nil];
         [uiav show];
+         */
 	}
 	else if (_checkError)
 	{

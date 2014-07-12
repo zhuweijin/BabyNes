@@ -190,7 +190,7 @@ static CGFloat reloadHeaderHeight=40;
 		_itemPanes[cate[@"value"]] = _itemPane;
 	}
     
-    _Log(@"cate btn dict= [%@]",cateButtonDict);
+    //_Log(@"cate btn dict= [%@]",cateButtonDict);
     
     for (UIButton * btn in [cateButtonDict allValues]) {
         _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);

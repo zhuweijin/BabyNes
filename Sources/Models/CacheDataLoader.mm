@@ -41,7 +41,7 @@
 //
 - (NSData *)loadData
 {
-    _Log(@"CacheDataLoader loadData called");
+    //_Log(@"CacheDataLoader loadData called");
 	NSData *data;
 	NSString *cache = self.cachePath;
 	if (_online)
@@ -54,7 +54,7 @@
 			if (error == DataLoaderNoError)
 			{
 				[data writeToFile:cache atomically:YES];
-                _Log(@"CacheDataLoader loadData online done data=[%@] written to cache[%@]",data,cache);
+                _Log(@"CacheDataLoader loadData online done data written to cache[%@]",cache);
 			}else{
                 _Log(@"CacheDataLoader loadData online ERROR data=[%@] not written to cache[%@]",data,cache);
             }
@@ -66,12 +66,12 @@
 	{
 		data = [NSData dataWithContentsOfFile:cache];
         if(data){
-            _Log(@"CacheDataLoader loadData offline done data=[%@] from cache[%@]",data,cache);
+            _Log(@"CacheDataLoader loadData offline done data from cache[%@]",cache);
         }else{
             _online=YES;
             data=[self loadData];
             if(data){
-                _Log(@"CacheDataLoader loadData offline->online done data=[%@] from cache[%@]",data,cache);
+                _Log(@"CacheDataLoader loadData offline->online done data from cache[%@]",cache);
             }else{
                 NSMutableData *data_t = [[NSMutableData alloc] init];
                 NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data_t];
@@ -82,7 +82,7 @@
             }
         }
 	}
-    _Log(@"CacheDataLoader loadData finally [%@]",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //_Log(@"CacheDataLoader loadData finally [%@]",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	return data;
 }
 
@@ -92,13 +92,13 @@
 	//
 	if (_online)
 	{
-        _Log(@"CacheDataLoader loadStop online with Dict=[%@]",dict);
+        //_Log(@"CacheDataLoader loadStop online with Dict=[%@]",dict);
 		[super loadStop:dict];
 		Settings::Save(self.stampKey, self.date);
 	}
 	else
 	{
-        _Log(@"CacheDataLoader loadStop offline with Dict=[%@]",dict);
+        //_Log(@"CacheDataLoader loadStop offline with Dict=[%@]",dict);
 		_online = YES;
 		[self performSelector:@selector(loadBegin) withObject:nil afterDelay:1.0];
 	}
