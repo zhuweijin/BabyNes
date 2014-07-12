@@ -82,6 +82,9 @@
 /* AnyShop */
 "AnyShop" = "任意店铺";
 
+/* Are you forced to log out for the incorrect token. */
+"Are you forced to log out for the incorrect token." = "因为当前账户有错，您将被退出。";
+
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "你确定要清除网络缓存吗？";
 
@@ -153,6 +156,9 @@
 
 /* Data error */
 "Data error" = "数据服务错误";
+
+/* Data Loader Error */
+"Data Loader Error" = "数据加载错误";
 
 /* Day */
 "Day" = "日";
@@ -351,6 +357,9 @@
 
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
+
+/* No cache available. */
+"No cache available." = "加载本地缓存失败。";
 
 /* No change */
 "No change" = "数据无变化";

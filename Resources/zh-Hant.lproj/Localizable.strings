@@ -82,6 +82,9 @@
 /* AnyShop */
 "AnyShop" = "任意店鋪";
 
+/* Are you forced to log out for the incorrect token. */
+"Are you forced to log out for the incorrect token." = "因為當前賬戶有錯，您將被退出。";
+
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "你確定要清除網絡緩存嗎？";
 
@@ -153,6 +156,9 @@
 
 /* Data error */
 "Data error" = "數據服務錯誤";
+
+/* Data Loader Error */
+"Data Loader Error" = "數據加載錯誤";
 
 /* Day */
 "Day" = "日";
@@ -351,6 +357,9 @@
 
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "第%d個寶寶的昵稱未填寫";
+
+/* No cache available. */
+"No cache available." = "加載本地緩存失敗。";
 
 /* No change */
 "No change" = "數據無變化";

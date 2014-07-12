@@ -18,6 +18,8 @@
 	<string>检查设备序列号；修复错误。</string>
 	<key>1.0.23</key>
 	<string>编译新版本。</string>
+	<key>1.0.24</key>
+	<string>更新编译。</string>
 	<key>1.0.4</key>
 	<string>实现主界面框架。</string>
 	<key>1.0.8</key>
