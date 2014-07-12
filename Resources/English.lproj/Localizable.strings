@@ -82,6 +82,9 @@
 /* AnyShop */
 "AnyShop" = "AnyShop";
 
+/* Are you forced to log out for the incorrect token. */
+"Are you forced to log out for the incorrect token." = "Are you forced to log out for the incorrect token.";
+
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "Are you sure to clear cache?";
 
@@ -153,6 +156,9 @@
 
 /* Data error */
 "Data error" = "Data error";
+
+/* Data Loader Error */
+"Data Loader Error" = "Data Loader Error";
 
 /* Day */
 "Day" = "Day";
@@ -351,6 +357,9 @@
 
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "Nickname of Baby is not completed yet for No.%d baby";
+
+/* No cache available. */
+"No cache available." = "No cache available.";
 
 /* No change */
 "No change" = "No change";
