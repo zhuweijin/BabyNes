@@ -30,8 +30,17 @@
 	// Create controller
 	// TODO: Remove navigation controller
 	DataLoader.accessToken = Settings::Get(kAccessToken);
-	UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
+	/*
+    UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
+    */
+    [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
+    [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
+    UIViewController *controller = DataLoader.accessToken ? [((SinriUIApplication *)application) rootController] : [((SinriUIApplication *)application) loginController];
+    [((SinriUIApplication *)application) setNavController:[[UINavigationController alloc]initWithRootViewController:controller]];
+    UINavigationController *navigator=[((SinriUIApplication *)application) navController];
+    
+    
 #ifdef _CustomHeader
 	navigator.navigationBarHidden = YES;
 #else
@@ -71,7 +80,7 @@
     _Log(@"LOG %@",[LSDeviceInfo check_all]);
     
     //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    
+    /*
     NSString * uuid=NSUtil::UUID();
     NSString* sn = SystemUtil::SN();
     NSData * sn_data=[sn dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
@@ -85,7 +94,7 @@
 
     
     _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
-    
+     */    
     _Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
     
 	return YES;

@@ -8,7 +8,26 @@
 
 #import "FileDownloader.h"
 
+static NSMutableDictionary * fileTaskDict=[[NSMutableDictionary alloc]init];
+
 @implementation FileDownloader
+
++(NSMutableDictionary *)getFileTaskDict{
+    if(fileTaskDict==nil)fileTaskDict=[[NSMutableDictionary alloc]init];
+    return fileTaskDict;
+}
++(FileDownloader*)seekInFileTaskDict:(NSString*)url{
+    return [[FileDownloader getFileTaskDict]objectForKey:url];
+}
++(void)addFileTask:(NSString*)url withFD:(FileDownloader *)fd{
+    [[FileDownloader getFileTaskDict]setObject:fd forKey:url];
+}
++(void)removeFileTask:(NSString *)url{
+    [[FileDownloader getFileTaskDict] removeObjectForKey:url];
+}
++(BOOL)isNotRunningFileTask:(NSString *)url{
+    return ([FileDownloader seekInFileTaskDict:url]==nil);
+}
 
 +(void)ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT{
     FileDownloader *fd=[[FileDownloader alloc]init];
@@ -17,38 +36,51 @@
 
 - (BOOL)doAsyncDownloadByURL:(NSString *)URL withParameterString:(NSString*)parameterString toDelegate:delegate
 {
-    // 初始化请求
-    NSMutableURLRequest  *request = [[NSMutableURLRequest alloc] init];
+    source_url=URL;
     
-    // 设置
-    NSData *postData = [parameterString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    [request setURL:[NSURL URLWithString:URL]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    //[request setCachePolicy:NSURLRequestUseProtocolCachePolicy]; // 设置缓存策略
-    //[request setTimeoutInterval:10*60]; // 设置超时
-    /*
-    _Log(@"[REQUEST-HEADER] count=%i",[[request allHTTPHeaderFields] count]);
-    for(id key in [[request allHTTPHeaderFields] allKeys]){
-        _Log(@"[REQUEST-HEADER] %@=%@",key,[[request allHTTPHeaderFields] valueForKey:key]);
-    }
-    _Log(@"[REQUEST-HEADER] URL=%@ param=%@[%@]",URL,postData,parameterString);
-    */
-    //resultData=[[NSMutableData alloc] initWithData:nil];
-    
-    the_data=[[NSMutableData alloc]init];
-    the_cache_path=NSUtil::CacheUrlPath(URL);
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
-    if (connection == nil) {
-        _Log(@"FileDownloader doAsyncAPIRequestByURL [%@] Failed to create connection",URL);
-        return NO;
+    if([FileDownloader isNotRunningFileTask:source_url]){
+        [FileDownloader addFileTask:source_url withFD:self];
+        
+        // 初始化请求
+        NSMutableURLRequest  *request = [[NSMutableURLRequest alloc] init];
+        
+        // 设置
+        NSData *postData = [parameterString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        [request setURL:[NSURL URLWithString:URL]];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        //[request setCachePolicy:NSURLRequestUseProtocolCachePolicy]; // 设置缓存策略
+        //[request setTimeoutInterval:10*60]; // 设置超时
+        /*
+         _Log(@"[REQUEST-HEADER] count=%i",[[request allHTTPHeaderFields] count]);
+         for(id key in [[request allHTTPHeaderFields] allKeys]){
+         _Log(@"[REQUEST-HEADER] %@=%@",key,[[request allHTTPHeaderFields] valueForKey:key]);
+         }
+         _Log(@"[REQUEST-HEADER] URL=%@ param=%@[%@]",URL,postData,parameterString);
+         */
+        //resultData=[[NSMutableData alloc] initWithData:nil];
+        
+        the_data=[[NSMutableData alloc]init];
+        the_cache_path=NSUtil::CacheUrlPath(URL);
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
+        
+        
+        
+        if (connection == nil) {
+            _Log(@"FileDownloader doAsyncAPIRequestByURL [%@] Failed to create connection",URL);
+            [FileDownloader removeFileTask:source_url];
+            return NO;
+        }else{
+            [delegate setConnection:connection];
+            _Log(@"FileDownloader doAsyncAPIRequestByURL [%@] arised",URL);
+            return YES;
+        }
     }else{
-        [delegate setConnection:connection];
-        _Log(@"FileDownloader doAsyncAPIRequestByURL [%@] arised",URL);
-        return YES;
+        _Log(@"FileDownloader PASSOVER: URL[%@] has been running.",URL);
+        return NO;
     }
 }
 - (BOOL)connection:(NSURLConnection *)connection
@@ -75,11 +107,13 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     
 	[challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
--(void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
-    NSString * url=[[[connection currentRequest]URL]absoluteString];
-    _Log(@"FileDownloader url = %@\ndidSendBodyData=%d\ntotalBytesWritten=%d\ntotalBytesExpectedToWrite=%d",url,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
-    
-}
+/*
+ -(void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
+ NSString * url=[[[connection currentRequest]URL]absoluteString];
+ _Log(@"FileDownloader url = %@\ndidSendBodyData=%d\ntotalBytesWritten=%d\ntotalBytesExpectedToWrite=%d",url,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);
+ 
+ }
+ */
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     //NSString * url=[[[connection currentRequest]URL]absoluteString];
     [the_data appendData:data];
@@ -94,11 +128,13 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FILE_DOWNLOADED_FAILED" object:url];
     }
+    [FileDownloader removeFileTask:source_url];
     _Log(@"FileDownloader connectionDidFinishLoading for url [%@] written=%d",url,written);
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSString * url=[[[connection currentRequest]URL]absoluteString];
+    [FileDownloader removeFileTask:source_url];
     _Log(@"FileDownloader didFailWithError url = %@",url);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FILE_DOWNLOADED_FAILED" object:url];
 }

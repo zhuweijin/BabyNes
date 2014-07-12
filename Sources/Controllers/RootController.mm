@@ -7,6 +7,7 @@
 #import "MoviePlayer.h"
 #import "MaterialController.h"
 #import "MessageController.h"
+#import "SinriUIApplication.h"
 
 @implementation RootController
 
@@ -60,13 +61,17 @@
 	[exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:exitButton];
      */
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sineToIwareta:) name:kLogoutNotification object:nil];
 }
 
 // Called after the view controller's view is released and set to nil.
-//- (void)viewDidUnload
-//{
-//	[super viewDidUnload];
-//}
+- (void)viewDidUnload
+{
+	[super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
+}
 
 // Called when the view is about to made visible.
 - (void)viewWillAppear:(BOOL)animated
@@ -74,8 +79,10 @@
 	[super viewWillAppear:animated];
 #ifdef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
+    _Log(@"RootController viewWillAppear setNavigationBarHidden:YES");
 #else
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
+    _Log(@"RootController viewWillAppear setNavigationBarHidden:NO");
 #endif
 }
 
@@ -84,7 +91,9 @@
 {
 	[super viewWillDisappear:animated];
 #ifdef _CustomHeader
-	[self.navigationController setNavigationBarHidden:NO animated:YES];
+	//[self.navigationController setNavigationBarHidden:NO animated:YES];//OLD
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    _Log(@"RootController viewWillDisappear setNavigationBarHidden:YES");
 #endif
 }
 
@@ -119,6 +128,29 @@
     frame.size.height=500;
     //frame.size.width+=100;
     [nc.view.superview setFrame:frame];
+}
+
+-(void)sineToIwareta:(id)sender{
+    _Log(@"RootController sineToIwareta");
+    //DialogUIAlertView * logout_dialog=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Logout", @"注销") message:NSLocalizedString(@"Are you forced to log out for the incorrect token.", @"因为当前账户有错，您将被退出。") cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"OK", @"确定")];
+    DialogUIAlertView * logout_dialog=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Logout", @"注销") message:NSLocalizedString(@"Are you forced to log out for the incorrect token.", @"因为当前账户有错，您将被退出。") cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles:nil];
+    int result=[logout_dialog showDialog];
+    
+    if(result==1 || result==0){
+        Settings::Save(kAccessToken);
+        [self.view.window setUserInteractionEnabled:YES];
+        //UIViewController *controller = [[LoginController alloc] init];
+        
+        [[(SinriUIApplication *)([UIApplication sharedApplication]) loginController] dismissViewControllerAnimated:NO completion:^{
+            _Log(@"RootController dismiss login controoler");
+        }];
+        
+        [(SinriUIApplication *)([UIApplication sharedApplication]) setLoginController:nil];
+        [(SinriUIApplication *)([UIApplication sharedApplication]) setLoginController:[[LoginController alloc] init]];
+        UIViewController *controller=[(SinriUIApplication *)([UIApplication sharedApplication]) loginController];
+        
+        [self.navigationController setViewControllers:@[controller] animated:NO];
+    }
 }
 
 @end

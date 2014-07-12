@@ -360,8 +360,17 @@ static CGFloat reloadHeaderHeight=40;
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if(!is_reloading){
-        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    @try {
+        _Log(@"MaterialController scrollViewDidEndDecelerating sV=[%@]",scrollView);
+        if(!is_reloading && scrollView.contentOffset.y<reloadHeaderHeight){
+            [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        _Log(@"~");
+    }
+    @finally {
+        _Log(@"~~");
     }
 }
 

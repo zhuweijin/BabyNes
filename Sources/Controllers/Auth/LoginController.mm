@@ -2,6 +2,7 @@
 #import "LoginController.h"
 #import "RootController.h"
 #import "CartEntity.h"
+#import "SinriUIApplication.h"
 
 @implementation LoginController
 
@@ -126,9 +127,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-#ifndef _CustomHeader
+//#ifndef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES];
-#endif
+//#endif
 }
 
 //
@@ -279,7 +280,12 @@
              
              [[CartEntity getDefaultCartEntity]resetCart];
              
-             UIViewController *controller = [[RootController alloc] init];
+             //UIViewController *controller = [[RootController alloc] init];
+             
+             [(SinriUIApplication *)([UIApplication sharedApplication]) setRootController:nil];
+             [(SinriUIApplication *)([UIApplication sharedApplication]) setRootController:[[RootController alloc] init]];
+             UIViewController *controller=[(SinriUIApplication *)([UIApplication sharedApplication]) rootController];
+             
              [self.navigationController setViewControllers:@[controller] animated:YES];
          } failure:^BOOL(DataLoader *loader, NSString *error) {
              Settings::Save(kAccessToken);
