@@ -21,10 +21,10 @@
 
 -(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([ProductEntity getProductArray]!=nil){
-        _Log(@"MONO TABLE rows...self.pdtArray=[%@] count=%d",[ProductEntity getProductArray],[[ProductEntity getProductArray]count]);
+        //_Log(@"MONO TABLE rows...self.pdtArray=[%@] count=%d",[ProductEntity getProductArray],[[ProductEntity getProductArray]count]);
         return [[ProductEntity getProductArray]count];
     }else{
-        _Log(@"MONO TABLE rows...self.pdtArray=[%@] count=0",[ProductEntity getProductArray]);
+        //_Log(@"MONO TABLE rows...self.pdtArray=[%@] count=0",[ProductEntity getProductArray]);
         return 0;
     }
 }

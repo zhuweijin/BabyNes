@@ -37,7 +37,7 @@ static NSArray * product_array;
                 //good_image_url= [@"ShopImage/" stringByAppendingString:[good_image_url lastPathComponent]];
                 //_Log(@"products=[%@]",[pdt_good objectForKey:@"products"]);
                 for (id pdt_item in [pdt_good objectForKey:@"products"] ) {
-                    _Log(@"pdt_item=[%@]",pdt_item);
+                    //_Log(@"pdt_item=[%@]",pdt_item);
                     NSString*pid=[pdt_item objectForKey:@"pid"];
                     NSString*price=[pdt_item objectForKey:@"price"];
                     NSString*sku_no=[pdt_item objectForKey:@"sku_no"];

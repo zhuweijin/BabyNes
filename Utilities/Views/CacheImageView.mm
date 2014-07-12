@@ -23,7 +23,7 @@
 	NSString *path = NSUtil::CacheUrlPath(cacheImageUrl);
 	UIImage *image = [UIImage imageWithContentsOfFile:path];
 	[(id<CacheImageProtocol>)self setImage:image];
-	//if (image == nil) //Killed by Sinri to try out the cache lock problem
+	if (image == nil) //Killed by Sinri to try out the cache lock problem
 	{
 #ifdef _CacheImageShowingWithIndicator
 		[self showActivityIndicator:YES];
@@ -44,7 +44,7 @@
 {
 	@autoreleasepool
 	{
-		_Log(@"cacheImageDownloading %@", cacheImageUrl);
+		//_Log(@"cacheImageDownloading %@", cacheImageUrl);
 		NSString *path = NSUtil::CacheUrlPath(cacheImageUrl);
 		NSData *data = HttpUtil::DownloadData(cacheImageUrl, path, DownloadFromOnline);
 		UIImage *image = data ? [UIImage imageWithData:data] : nil;

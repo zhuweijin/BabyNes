@@ -54,7 +54,7 @@
         [_idleTimer invalidate];
     }
     _idleTimer = [NSTimer scheduledTimerWithTimeInterval:[self maxIdleTime] target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
-    _Log(@"SinriUIApplication resetIdleTimer for about %lf seconds",[self maxIdleTime]);
+    //_Log(@"SinriUIApplication resetIdleTimer for about %lf seconds",[self maxIdleTime]);
 } 
 
 - (void)idleTimerExceeded {

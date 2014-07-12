@@ -91,8 +91,8 @@
 {
 	[super viewWillDisappear:animated];
 #ifdef _CustomHeader
-	//[self.navigationController setNavigationBarHidden:NO animated:YES];//OLD
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+	[self.navigationController setNavigationBarHidden:NO animated:YES];//OLD
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     _Log(@"RootController viewWillDisappear setNavigationBarHidden:YES");
 #endif
 }

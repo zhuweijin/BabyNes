@@ -77,7 +77,7 @@
 
      [(SinriUIApplication *)application resetIdleTimer];
     
-    _Log(@"LOG %@",[LSDeviceInfo check_all]);
+    //_Log(@"LOG %@",[LSDeviceInfo check_all]);
     
     //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     /*
@@ -95,7 +95,7 @@
     
     _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
      */    
-    _Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
+    //_Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
     
 	return YES;
 }
