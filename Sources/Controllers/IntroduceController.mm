@@ -193,7 +193,7 @@ static CGFloat reloadHeaderHeight=40;
     //_Log(@"cate btn dict= [%@]",cateButtonDict);
     
     for (UIButton * btn in [cateButtonDict allValues]) {
-        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
+        //_Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
         //if(btn.tag==sender.tag){
         if(btn.tag==sender_tag){
             btn.backgroundColor=UIUtil::Color(117, 114, 184) ;
@@ -278,7 +278,7 @@ static CGFloat reloadHeaderHeight=40;
         _Log(@"~");
     }
     @finally {
-        _Log(@"~~");
+        //_Log(@"~~");
     }
     
 }

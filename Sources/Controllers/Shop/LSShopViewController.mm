@@ -540,7 +540,7 @@ static CGFloat reloadHeaderHeight=30;
         _Log(@"~");
     }
     @finally {
-        _Log(@"~~");
+        //_Log(@"~~");
     }
 }
 
