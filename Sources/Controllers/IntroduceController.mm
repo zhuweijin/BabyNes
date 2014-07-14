@@ -262,6 +262,9 @@ static CGFloat reloadHeaderHeight=40;
             return;
         }
     }
+    if(!decelerate && scrollView.contentOffset.y>=0 && scrollView.contentOffset.y<=reloadHeaderHeight){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

@@ -528,8 +528,9 @@ static CGFloat reloadHeaderHeight=30;
     }
     _Log(@"ShopController scrollViewDidEndDragging not response as %f - %d",scrollView.contentOffset.y,decelerate);
     //[scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
-    //[scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
-    
+    if(!decelerate && scrollView.contentOffset.y>=0 && scrollView.contentOffset.y<=reloadHeaderHeight){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

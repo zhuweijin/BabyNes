@@ -61,17 +61,22 @@ static BOOL shouldMonitorIdle=YES;
 - (void)resetIdleTimer {
     if (_idleTimer) {
         [_idleTimer invalidate];
+        _Log(@"SinriUIApplication resetIdleTimer");
     }
     if([SinriUIApplication isToMonitorIdle]){
         _idleTimer = [NSTimer scheduledTimerWithTimeInterval:[self maxIdleTime] target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
+        _Log(@"SinriUIApplication resetIdleTimer start for about %lf seconds",[self maxIdleTime]);
     }
-    //_Log(@"SinriUIApplication resetIdleTimer for about %lf seconds",[self maxIdleTime]);
+    
 } 
 
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
     //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
-    if(!_is_playing && [SinriUIApplication isToMonitorIdle])[self loadPR:nil withTitle:nil];
+    if(!_is_playing && [SinriUIApplication isToMonitorIdle]){
+        [self loadPR:nil withTitle:nil];
+        _Log(@"SinriUIApplication idleTimerExceeded to PR");
+    }
 }
 
 -(void) loadPR:(NSString*)url withTitle:(NSString *)title{
