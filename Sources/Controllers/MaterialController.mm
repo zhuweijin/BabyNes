@@ -354,9 +354,6 @@ static CGFloat reloadHeaderHeight=40;
             return;
         }
     }
-    {
-        [(UIScrollView*)_itemPane scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
-    }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

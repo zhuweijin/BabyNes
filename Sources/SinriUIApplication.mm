@@ -9,6 +9,8 @@
 #import "SinriUIApplication.h"
 #import "ServerConfig.h"
 
+static BOOL shouldMonitorIdle=YES;
+
 @implementation SinriUIApplication
 
 -(NSString*)getPRURL{
@@ -36,6 +38,13 @@
     //return 20;
 }
 
++(BOOL)isToMonitorIdle{
+    return shouldMonitorIdle;
+}
++(void)setShouldMonitorIdle:(BOOL)toMonitor{
+    shouldMonitorIdle=toMonitor;
+}
+
 - (void)sendEvent:(UIEvent *)event {
     [super sendEvent:event];
     // 只在开始或结束触摸时 reset 闲置时间, 以减少不必须要的时钟 reset 动作
@@ -53,14 +62,16 @@
     if (_idleTimer) {
         [_idleTimer invalidate];
     }
-    _idleTimer = [NSTimer scheduledTimerWithTimeInterval:[self maxIdleTime] target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
+    if([SinriUIApplication isToMonitorIdle]){
+        _idleTimer = [NSTimer scheduledTimerWithTimeInterval:[self maxIdleTime] target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
+    }
     //_Log(@"SinriUIApplication resetIdleTimer for about %lf seconds",[self maxIdleTime]);
 } 
 
 - (void)idleTimerExceeded {
     _Log(@"SinriUIApplication idleTimerExceeded");
     //UIUtil::ShowAlert(@"SinriUIApplication idleTimerExceeded");
-    if(!_is_playing)[self loadPR:nil withTitle:nil];
+    if(!_is_playing && [SinriUIApplication isToMonitorIdle])[self loadPR:nil withTitle:nil];
 }
 
 -(void) loadPR:(NSString*)url withTitle:(NSString *)title{

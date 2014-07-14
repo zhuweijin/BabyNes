@@ -8,9 +8,31 @@
 
 #import "FileDownloader.h"
 
+static NSString * LogSignature=@"FileDownloaderLog";
+static NSString * FileDownloaderNotificationTypeSuccess=@"FILE_DOWNLOADED_SUCCESS";
+static NSString * FileDownloaderNotificationTypeFailed=@"FILE_DOWNLOADED_FAILED";
+static NSString * FileDownloaderNotificationTypeResponsed=@"FILE_DOWNLOADED_RESPONSED";
+static NSString * FileDownloaderNotificationTypeReceivedData=@"FILE_DOWNLOADED_RECEIVED_DATA";
+
 static NSMutableDictionary * fileTaskDict=[[NSMutableDictionary alloc]init];
 
 @implementation FileDownloader
+
++(NSString*)getLogSignature{
+    return LogSignature;
+}
++(NSString*)getFileDownloaderNotificationTypeSuccess{
+    return FileDownloaderNotificationTypeSuccess;
+}
++(NSString*)getFileDownloaderNotificationTypeFailed{
+    return FileDownloaderNotificationTypeFailed;
+}
++(NSString*)getFileDownloaderNotificationTypeResponsed{
+    return FileDownloaderNotificationTypeResponsed;
+}
++(NSString*)getFileDownloaderNotificationTypeReceivedData{
+    return FileDownloaderNotificationTypeReceivedData;
+}
 
 +(NSMutableDictionary *)getFileTaskDict{
     if(fileTaskDict==nil)fileTaskDict=[[NSMutableDictionary alloc]init];
@@ -114,19 +136,42 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
  
  }
  */
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    NSString* suggestedFilename=[response suggestedFilename];
+    expected_length=[response expectedContentLength];
+    done_length=0;
+    _Log(@"FileDownloader didReceiveResponse suggestedFilename=%@,content length=%lld\n(response=%@)",suggestedFilename,expected_length,response);
+    NSDictionary * obj=@{
+                         @"url":[[[connection currentRequest]URL]absoluteString],
+                         @"AllLength":[NSNumber numberWithLongLong: expected_length],
+                         };
+    [[NSNotificationCenter defaultCenter]postNotificationName:[FileDownloader getFileDownloaderNotificationTypeResponsed]  object:obj];
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    //NSString * url=[[[connection currentRequest]URL]absoluteString];
     [the_data appendData:data];
-    //_Log(@"FileDownloader didReceiveData length=%d from [%@]",[data length],url);
+    done_length+=[data length];
+    //NSString * url=[[[connection currentRequest]URL]absoluteString];
+    //[FileDownloader MyLog:[NSString stringWithFormat:@"FileDownloader didReceiveData length=%d from [%@]",[data length],url]];
+    _Log(@"FileDownloader didReceiveData length=%d now done %f%%",[data length],(100.0*done_length/expected_length));
+    NSDictionary * obj=@{
+                         @"url":[[[connection currentRequest]URL]absoluteString],
+                         @"ThisLength":[NSNumber numberWithLongLong: [data length]],
+                         @"NowPercent":[NSNumber numberWithFloat:(100.0*done_length/expected_length)],
+                         @"NowLength":[NSNumber numberWithLongLong: done_length],
+                         @"AllLength":[NSNumber numberWithLongLong: expected_length],
+                         };
+    [[NSNotificationCenter defaultCenter]postNotificationName:[FileDownloader getFileDownloaderNotificationTypeReceivedData]  object:obj];
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     NSString * url=[[[connection currentRequest]URL]absoluteString];
     BOOL written=[the_data writeToFile:the_cache_path atomically:YES];
     if(written){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"FILE_DOWNLOADED_SUCCESS" object:url];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[FileDownloader getFileDownloaderNotificationTypeSuccess] object:url];
     }else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"FILE_DOWNLOADED_FAILED" object:url];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[FileDownloader getFileDownloaderNotificationTypeFailed] object:url];
     }
     [FileDownloader removeFileTask:source_url];
     _Log(@"FileDownloader connectionDidFinishLoading for url [%@] written=%d",url,written);
@@ -136,7 +181,21 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     NSString * url=[[[connection currentRequest]URL]absoluteString];
     [FileDownloader removeFileTask:source_url];
     _Log(@"FileDownloader didFailWithError url = %@",url);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"FILE_DOWNLOADED_FAILED" object:url];
+    [[NSNotificationCenter defaultCenter] postNotificationName:[FileDownloader getFileDownloaderNotificationTypeFailed] object:url];
+}
+-(NSString*)getURL{
+    return source_url;
+}
+-(float)getPercent{
+    return done_length*100.0/expected_length;
+}
++(NSString*)currentDownloadProgress{
+    NSDictionary * dict=[FileDownloader getFileTaskDict];
+    NSString* log=@"FileDownloader Log\n";
+    for (FileDownloader * fd in dict) {
+        log=[log stringByAppendingString:[NSString stringWithFormat:@"URL[%@]:%f%%\n",[fd getURL],[fd getPercent]]];
+    }
+    return log;
 }
 
 @end

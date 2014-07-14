@@ -123,12 +123,15 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationWillEnterForeground");
+    [SinriUIApplication setShouldMonitorIdle:YES];
+     [(SinriUIApplication *)application resetIdleTimer];
 }
 
 // Tells the delegate that the application is now in the background.
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationDidEnterBackground");
+     [SinriUIApplication setShouldMonitorIdle:NO];
 }
 
 

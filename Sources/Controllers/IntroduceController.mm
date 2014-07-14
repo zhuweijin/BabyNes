@@ -233,7 +233,7 @@ static CGFloat reloadHeaderHeight=40;
     
     for (int i=0;i<[item[@"products"] count];i++){
         id product=[item[@"products"] objectAtIndex:i];
-        CGRect subFrame=CGRectMake((frame.size.width)*i, 5, (frame.size.width), frame.size.height);
+        CGRect subFrame=CGRectMake((frame.size.width)*i, 0, (frame.size.width), frame.size.height);
         IntroduceMonoDetailView * dmv=[[IntroduceMonoDetailView alloc]initWithFrame:subFrame withPid:[product objectForKey:@"pid"]];
         if(i%2==0){
             [dmv setBackgroundColor:[UIColor whiteColor]];
@@ -261,9 +261,6 @@ static CGFloat reloadHeaderHeight=40;
             [self responseForReloadWork];
             return;
         }
-    }
-    {
-        [(UIScrollView*)_itemPane scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
     }
 }
 
