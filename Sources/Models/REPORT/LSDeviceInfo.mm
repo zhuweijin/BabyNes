@@ -62,9 +62,9 @@
             break;
     }
 
+    NSString* vendor=[LSDeviceInfo identifierForVendor];
     
-    
-    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@\nBattery: IN[%d] LEVEL[%d]\n[%@]",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type,isPlugIn,battery_level,batteryStateText];
+    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@\nBattery: IN[%d] LEVEL[%d]\n[%@]\nvendor: %@",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type,isPlugIn,battery_level,batteryStateText,vendor];
     return  result;
 }
 

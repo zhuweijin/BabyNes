@@ -24,7 +24,7 @@
     self.sec_uuid=[LSDeviceInfo device_sn];//From SecureUUID
     self.store_id=@"Unknown";//UNKNOWN
     self.ipad_number=@"Unknown";//UNKNOWN
-    self.manufacturer_id=@"Unknown";//UNKNOWN
+    self.manufacturer_id=[LSDeviceInfo identifierForVendor];
     self.os_version=[NSString stringWithFormat:@"%@ %@",[LSDeviceInfo systemName],[LSDeviceInfo systemVersion]];//systemVersion
     self.model=[LSDeviceInfo deviceModelOriginal];//deviceModel
     self.app_version=[[iVersion sharedInstance] applicationVersion];//iVerion
