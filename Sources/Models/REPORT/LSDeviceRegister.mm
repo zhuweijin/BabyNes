@@ -22,8 +22,8 @@
     self=[super init];
     
     self.sec_uuid=[LSDeviceInfo device_sn];//From SecureUUID
-    self.store_id=@"Unknown";//UNKNOWN
-    self.ipad_number=@"Unknown";//UNKNOWN
+    //self.store_id=@"Unknown";//UNKNOWN
+    //self.ipad_number=@"Unknown";//UNKNOWN
     self.manufacturer_id=[LSDeviceInfo identifierForVendor];
     self.os_version=[NSString stringWithFormat:@"%@ %@",[LSDeviceInfo systemName],[LSDeviceInfo systemVersion]];//systemVersion
     self.model=[LSDeviceInfo deviceModelOriginal];//deviceModel
@@ -41,8 +41,8 @@
                         @"register_device",@"act",
                         AT,@"token",
                         self.sec_uuid,@"sec_uuid",
-                        self.store_id,@"store_id",
-                        self.ipad_number,@"ipad_number",
+                        //self.store_id,@"store_id",
+                        //self.ipad_number,@"ipad_number",
                         self.manufacturer_id,@"manufacturer_id",
                         self.os_version,@"os_version",
                         self.model,@"model",
