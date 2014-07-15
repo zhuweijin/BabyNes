@@ -42,7 +42,29 @@
         net_type=@"ReachableViaWWAN";
     }
     
-    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type];
+    int isPlugIn=[LSDeviceInfo batteryState_isPlugIn];
+    NSString* batteryStateText=@"INIT";
+    int battery_level=[LSDeviceInfo batteryLevel];
+    switch ([[UIDevice currentDevice] batteryState]) {
+        case UIDeviceBatteryStateUnknown:
+            batteryStateText=@"UIDeviceBatteryStateUnknown";//unknown
+            break;
+        case UIDeviceBatteryStateUnplugged:
+            batteryStateText=@"UIDeviceBatteryStateUnplugged";//is_plugin=0
+            break;
+        case UIDeviceBatteryStateCharging:
+            batteryStateText=@"UIDeviceBatteryStateCharging";//is_plugin=1
+            break;
+        case UIDeviceBatteryStateFull:
+            batteryStateText=@"UIDeviceBatteryStateFull";//is_plugin=1
+            break;
+        default:
+            break;
+    }
+
+    
+    
+    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@\nBattery: IN[%d] LEVEL[%d]\n[%@]",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type,isPlugIn,battery_level,batteryStateText];
     return  result;
 }
 
