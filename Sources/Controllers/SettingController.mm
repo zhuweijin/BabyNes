@@ -202,6 +202,9 @@
 	 }];
     
     //[self check_cache_files];
+    //FOR TEST
+    UIAlertView * uiav=[[UIAlertView alloc]initWithTitle:@"STATUS" message:[LSDeviceInfo check_all] delegate:nil cancelButtonTitle:@"I SEE" otherButtonTitles: nil];
+    [uiav show];
 }
 
 //

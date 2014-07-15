@@ -154,7 +154,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     done_length+=[data length];
     //NSString * url=[[[connection currentRequest]URL]absoluteString];
     //[FileDownloader MyLog:[NSString stringWithFormat:@"FileDownloader didReceiveData length=%d from [%@]",[data length],url]];
-    _Log(@"FileDownloader didReceiveData length=%d now done %f%%",[data length],(100.0*done_length/expected_length));
+    //_Log(@"FileDownloader didReceiveData length=%d now done %f%%",[data length],(100.0*done_length/expected_length));
     NSDictionary * obj=@{
                          @"url":[[[connection currentRequest]URL]absoluteString],
                          @"ThisLength":[NSNumber numberWithLongLong: [data length]],

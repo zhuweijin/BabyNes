@@ -21,6 +21,8 @@
     NSString *result_release = [NSString stringWithCString:systemInfo.release encoding:NSUTF8StringEncoding];
     NSString *result_version = [NSString stringWithCString:systemInfo.version encoding:NSUTF8StringEncoding];
     
+    NSString * sn=[LSDeviceInfo device_sn];
+    
     NSString*appBundleID=[[iVersion sharedInstance] applicationBundleID];
     NSString*appVerion=[[iVersion sharedInstance] applicationVersion];
     NSString*appVerionDetails=[[iVersion sharedInstance] versionDetails];
@@ -30,8 +32,17 @@
     NSString*my_location=[LSDeviceInfo myLocation];
     
     NSString* wlan_status=[LSDeviceInfo WLAN];
+    NSString* net_type=@"Unknown";
+    NetworkStatus ns=[LSDeviceInfo currentNetworkType];
+    if(ns==NotReachable){
+        net_type=@"NotReachable";
+    }else if(ns==ReachableViaWiFi){
+        net_type=@"ReachableViaWiFi";
+    }else if(ns==ReachableViaWWAN){
+        net_type=@"ReachableViaWWAN";
+    }
     
-    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@",result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status];
+    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type];
     return  result;
 }
 
