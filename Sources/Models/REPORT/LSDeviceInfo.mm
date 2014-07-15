@@ -103,12 +103,14 @@
     if(findCountry)
     {
         //_Log(@"contry is %@",contry);
+        /*
         if([[contry uppercaseString] isEqualToString:@"HK"]||
            [[contry uppercaseString] isEqualToString:@"MO"]||
            [[contry uppercaseString] isEqualToString:@"TW"])
         {
             contry = @"CN";
         }
+         */
         region = contry;
     }
     else
