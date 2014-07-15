@@ -127,7 +127,7 @@
         CGRect show_frame = _navigationBar.frame;
         CGRect hide_frame=show_frame;
         hide_frame.origin.y-=hide_frame.size.height;
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:1 animations:^{
             [_navigationBar setFrame:hide_frame];
         } completion:^(BOOL finished) {
             [_navigationBar setHidden:YES];

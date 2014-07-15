@@ -256,7 +256,7 @@ static CGFloat reloadHeaderHeight=40;
     //_Log(@"cate btn dict= [%@]",cateButtonDict);
 
     for (UIButton * btn in [cateButtonDict allValues]) {
-        _Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
+        //_Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
         if(btn.tag==sender_tag){
             btn.backgroundColor=UIUtil::Color(117, 114, 184) ;
             [btn setHighlighted:YES];
@@ -354,8 +354,8 @@ static CGFloat reloadHeaderHeight=40;
             return;
         }
     }
-    {
-        [(UIScrollView*)_itemPane scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+    if(!decelerate && scrollView.contentOffset.y>=0 && scrollView.contentOffset.y<=reloadHeaderHeight){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
     }
 }
 
@@ -370,7 +370,7 @@ static CGFloat reloadHeaderHeight=40;
         _Log(@"~");
     }
     @finally {
-        _Log(@"~~");
+        //_Log(@"~~");
     }
 }
 
@@ -379,7 +379,7 @@ static CGFloat reloadHeaderHeight=40;
     if(is_reloading){
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
-        [self.view.window setUserInteractionEnabled:NO];
+        //[self.view.window setUserInteractionEnabled:NO];
         [((UIScrollView *)_itemPane) scrollRectToVisible:{0,0,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
         
         //转转 开始
@@ -394,7 +394,7 @@ static CGFloat reloadHeaderHeight=40;
         
         [((UIScrollView *)_itemPane) scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
         //_Log(@"responseForReloadWork to 0,reloadHeaderHeight");
-        [self.view.window setUserInteractionEnabled:YES];
+        //[self.view.window setUserInteractionEnabled:YES];
         //_Log(@"IntroductController responseForReloadWork end reload done");
         
         //转转 消失

@@ -159,7 +159,7 @@ static CGFloat reloadHeaderHeight=30;
     
     self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.the_customer_seek_button setFrame:CGRectMake(920, 460, 80, 30)];
-    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Seek", @"搜索")  forState:(UIControlStateNormal)];
+    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Search", @"搜索")  forState:(UIControlStateNormal)];
     self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
@@ -175,6 +175,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.the_customer_new_button setHidden:YES];
     [self.view addSubview:self.the_customer_new_button];
     
     self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -311,6 +312,8 @@ static CGFloat reloadHeaderHeight=30;
     _Log(@"order_confirm called");
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed.", @"您的订单已经确认。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
     [alertView show];
+    [self.the_customer_new_button setHidden:YES];
+    [self.the_order_confirm_button setHidden:YES];
 }
 
 //
@@ -509,7 +512,7 @@ static CGFloat reloadHeaderHeight=30;
     [[CartEntity getDefaultCartEntity]  resetCart];
     [self.the_customer_search_result setText:@""];
     [self.the_customer_mobile_textfield setText:@""];
-    [self.the_customer_new_button setHidden:NO];
+    [self.the_customer_new_button setHidden:YES];
     [self.the_order_confirm_button setHidden:YES];
 }
 
@@ -524,9 +527,10 @@ static CGFloat reloadHeaderHeight=30;
         }
     }
     _Log(@"ShopController scrollViewDidEndDragging not response as %f - %d",scrollView.contentOffset.y,decelerate);
-    [scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
-    //[scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
-    
+    //[scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
+    if(!decelerate && scrollView.contentOffset.y>=0 && scrollView.contentOffset.y<=reloadHeaderHeight){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -540,7 +544,7 @@ static CGFloat reloadHeaderHeight=30;
         _Log(@"~");
     }
     @finally {
-        _Log(@"~~");
+        //_Log(@"~~");
     }
 }
 
@@ -549,7 +553,7 @@ static CGFloat reloadHeaderHeight=30;
     if(is_reloading){
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
-        [self.view.window setUserInteractionEnabled:NO];
+        //[self.view.window setUserInteractionEnabled:NO];
         [self.monoTableView scrollRectToVisible:{0,0,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
         
         //转转 开始
@@ -564,7 +568,7 @@ static CGFloat reloadHeaderHeight=30;
         
         [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
         _Log(@"ShopController responseForReloadWork to 0,reloadHeaderHeight");
-        [self.view.window setUserInteractionEnabled:YES];
+        //[self.view.window setUserInteractionEnabled:YES];
         
         //转转 消失
         UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();

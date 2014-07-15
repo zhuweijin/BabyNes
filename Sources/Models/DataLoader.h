@@ -95,6 +95,7 @@ typedef enum {
 
 //
 + (void)login;		// 注销并显示登录界面
++ (void)login:(NSString*)msg; // 注销并显示登录界面，并提示错误
 + (void)logout;		// 注销
 + (BOOL)isLogon;	// 是否已登录
 + (NSString *)accessToken;

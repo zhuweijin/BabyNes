@@ -47,7 +47,9 @@
 	[menuButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:menuButton];
 	
-	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
+	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"app/logo@2x.jpg")];
+    //logoView.frame = CGRectMake(45, 0, 85, 45);
+    //UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
 	logoView.frame = CGRectMake(45, 0, logoView.frame.size.width, logoView.frame.size.height);
 	[self.tabBar addSubview:logoView];
     

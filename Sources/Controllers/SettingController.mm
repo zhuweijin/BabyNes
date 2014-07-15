@@ -141,7 +141,7 @@
 		WizardCell *cell = (WizardCell *)[objc_getAssociatedObject(alertView, (__bridge void *)@"SENDER") superview];
 		cell.detail = nil;
 		UIButton *button = (UIButton *)cell.accessoryView;
-		[button setTitle:NSLocalizedString(@"Cleansed", @"已清除") forState:UIControlStateNormal];
+		[button setTitle:NSLocalizedString(@"Cleaned", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
         
         //Log time for cleaning cache
@@ -178,7 +178,7 @@
 	objc_setAssociatedObject(button, (__bridge void *)@"SENDER", sender, OBJC_ASSOCIATION_ASSIGN);
 	[self.view.window addSubview:button];
     
-    _Log(@"logo button = %@",button);
+    _Log(@"logo button = %@ %d",button,[[UIDevice currentDevice] orientation]);
 
     
 	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
@@ -202,6 +202,9 @@
 	 }];
     
     //[self check_cache_files];
+    //FOR TEST
+    UIAlertView * uiav=[[UIAlertView alloc]initWithTitle:@"STATUS" message:[LSDeviceInfo check_all] delegate:nil cancelButtonTitle:@"I SEE" otherButtonTitles: nil];
+    [uiav show];
 }
 
 //

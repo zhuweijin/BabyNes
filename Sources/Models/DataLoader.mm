@@ -3,6 +3,7 @@
 #import "DataLoader.h"
 #import "LoginController.h"
 #import "DialogUIAlertView.h"
+#import "SinriUIApplication.h"
 
 //
 @interface ErrorAlertView : UIAlertView
@@ -139,16 +140,46 @@ static NSString *_accessToken = nil;
     _Log(@"DataLoader logout");
 	_accessToken = nil;
 	Settings::Save(kAccessToken);
-	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
 }
 
 //
 + (void)login
 {
     _Log(@"DataLoader login");
-	[self logout];
+	//[self logout];
+    _accessToken = nil;
+	Settings::Save(kAccessToken);
+    //That's what logout wanna do.
+    
 	UIViewController *controller = [[LoginController alloc] init];
 	UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+}
+
++ (void)login:(NSString*)msg
+{
+    _Log(@"DataLoader login");
+    
+    if(_accessToken!=nil){
+        
+        //[self logout];
+        _accessToken = nil;
+        Settings::Save(kAccessToken);
+        //That's what logout wanna do.
+        
+        //UIViewController *controller = [[LoginController alloc] initWithMessage:msg];//Yonsm's
+        /*
+        [(SinriUIApplication *)[UIApplication sharedApplication] setLoginController:[[LoginController alloc] initWithMessage:msg]];
+        UIViewController *controller=[(SinriUIApplication *)[UIApplication sharedApplication] loginController];
+        UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+         */
+        //Mine
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
+        _Log(@"DataLoader login PresentModalNavigationController");
+    }else{
+        _Log(@"DataLoader login has been running");
+    }
 }
 
 //
@@ -376,13 +407,15 @@ static NSString *_accessToken = nil;
 	}
 	else if (_error == DataLoaderTokenError)
 	{
-		[DataLoader login];
+		//[DataLoader login];
+        [DataLoader login:[self errorString]];
         return;
 	}
 	else if (_error == DataLoaderIdentificationError)
 	{
-		[DataLoader logout];
-        return;
+		//[DataLoader logout];
+        //[DataLoader login];
+        //return;
 	}
 	else
 	{
@@ -452,8 +485,8 @@ static NSString *_accessToken = nil;
 	{
 		//[ToastView toastWithError:error];
         /*
-        UIAlertView * uiav= [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Data Loader Error", @"数据加载错误") message:error delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles: nil];
-        [uiav show];
+         UIAlertView * uiav= [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Data Loader Error", @"数据加载错误") message:error delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles: nil];
+         [uiav show];
          */
 	}
 	else if (_checkError)
