@@ -190,7 +190,7 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
             if(h<=_itemPane.frame.size.height){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
@@ -233,7 +233,7 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
             if(h<=_itemPane.frame.size.height){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
