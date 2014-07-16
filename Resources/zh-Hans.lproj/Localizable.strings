@@ -82,6 +82,9 @@
 /* AnyShop */
 "AnyShop" = "任意店铺";
 
+/* Are you forced to log out for the incorrect token. */
+"Are you forced to log out for the incorrect token." = "因为当前账户有错，您将被退出。";
+
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "你确定要清除网络缓存吗？";
 
@@ -118,8 +121,8 @@
 /* Clean Cache */
 "Clean Cache" = "清除缓存";
 
-/* Cleansed */
-"Cleansed" = "已清除";
+/* Cleaned */
+"Cleaned" = "已清除";
 
 /* Close */
 "Close" = "取消创建";
@@ -153,6 +156,9 @@
 
 /* Data error */
 "Data error" = "数据服务错误";
+
+/* Data Loader Error */
+"Data Loader Error" = "数据加载错误";
 
 /* Day */
 "Day" = "日";
@@ -249,6 +255,9 @@
 
 /* Guest */
 "Guest" = "游客";
+
+/* Identity Exception */
+"Identity Exception" = "身份认证异常";
 
 /* Ignore */
 "Ignore" = "忽略";
@@ -352,6 +361,9 @@
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
 
+/* No cache available. */
+"No cache available." = "加载本地缓存失败。";
+
 /* No change */
 "No change" = "数据无变化";
 
@@ -421,6 +433,9 @@
 /* Pull down to refresh... */
 "Pull down to refresh..." = "下拉可以更新⋯";
 
+/* Pull to reload */
+"Pull to reload" = "下拉以刷新";
+
 /* p_m */
 "p_m" = "下午";
 
@@ -460,14 +475,14 @@
 /* Saving */
 "Saving" = "正在保存";
 
+/* Search */
+"Search" = "搜索";
+
 /* Second Month Big 6 Oz */
 "Second Month Big 6 Oz" = "第2个月胶囊奶粉 6盎司";
 
 /* Second Month Standard 5 Oz */
 "Second Month Standard 5 Oz" = "第2个月胶囊奶粉 5盎司";
-
-/* Seek */
-"Seek" = "搜索";
 
 /* Send */
 "Send" = "发送";

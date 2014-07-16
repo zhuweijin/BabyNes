@@ -82,6 +82,9 @@
 /* AnyShop */
 "AnyShop" = "AnyShop";
 
+/* Are you forced to log out for the incorrect token. */
+"Are you forced to log out for the incorrect token." = "Are you forced to log out for the incorrect token.";
+
 /* Are you sure to clear cache? */
 "Are you sure to clear cache?" = "Are you sure to clear cache?";
 
@@ -118,8 +121,8 @@
 /* Clean Cache */
 "Clean Cache" = "Clean Cache";
 
-/* Cleansed */
-"Cleansed" = "Cleansed";
+/* Cleaned */
+"Cleaned" = "Cleaned";
 
 /* Close */
 "Close" = "Close";
@@ -153,6 +156,9 @@
 
 /* Data error */
 "Data error" = "Data error";
+
+/* Data Loader Error */
+"Data Loader Error" = "Data Loader Error";
 
 /* Day */
 "Day" = "Day";
@@ -249,6 +255,9 @@
 
 /* Guest */
 "Guest" = "Guest";
+
+/* Identity Exception */
+"Identity Exception" = "Identity Exception";
 
 /* Ignore */
 "Ignore" = "Ignore";
@@ -352,6 +361,9 @@
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "Nickname of Baby is not completed yet for No.%d baby";
 
+/* No cache available. */
+"No cache available." = "No cache available.";
+
 /* No change */
 "No change" = "No change";
 
@@ -421,6 +433,9 @@
 /* Pull down to refresh... */
 "Pull down to refresh..." = "Pull down to refresh...";
 
+/* Pull to reload */
+"Pull to reload" = "Pull to reload";
+
 /* p_m */
 "p_m" = "p_m";
 
@@ -460,14 +475,14 @@
 /* Saving */
 "Saving" = "Saving";
 
+/* Search */
+"Search" = "Search";
+
 /* Second Month Big 6 Oz */
 "Second Month Big 6 Oz" = "Second Month Big 6 Oz";
 
 /* Second Month Standard 5 Oz */
 "Second Month Standard 5 Oz" = "Second Month Standard 5 Oz";
-
-/* Seek */
-"Seek" = "Seek";
 
 /* Send */
 "Send" = "Send";

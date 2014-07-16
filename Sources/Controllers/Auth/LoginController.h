@@ -15,4 +15,7 @@
 	UITextField *_passwordField;
 }
 
+@property NSString * msg;
+-(id)initWithMessage:(NSString*)theMessage;
+
 @end

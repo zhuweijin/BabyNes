@@ -52,6 +52,18 @@
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
 {
+    [self addDTBtn];
 }
 
+-(void)addDTBtn{
+    UIButton * btn=[UIButton buttonWithType:(UIButtonTypeInfoDark)];
+    [btn setFrame:{100,100,100,50}];
+    [btn setTitle:@"Dirty Token" forState:(UIControlStateNormal)];
+    [btn addTarget:self action:@selector(dirtToken:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:btn];
+}
+-(void)dirtToken:(id)sender{
+    [DataLoader setAccessToken:@"lalala"];
+    _Log(@"dirtToken => %@",[DataLoader accessToken]);
+}
 @end

@@ -33,6 +33,8 @@
 
 @end
 
+static CGFloat reloadHeaderHeight=30;
+
 @implementation LSShopViewController
 
 // Constructor
@@ -40,6 +42,7 @@
 {
     self = [super initWithService:@"pdt_classify"];
     self.title = NSLocalizedString(@"Shop", @"网上商店");
+    self.thePullReloadDelegate=self;
     return self;
 }
 
@@ -156,7 +159,7 @@
     
     self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.the_customer_seek_button setFrame:CGRectMake(920, 460, 80, 30)];
-    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Seek", @"搜索")  forState:(UIControlStateNormal)];
+    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Search", @"搜索")  forState:(UIControlStateNormal)];
     self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
     self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
@@ -172,6 +175,7 @@
     [self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.the_customer_new_button setHidden:YES];
     [self.view addSubview:self.the_customer_new_button];
     
     self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -218,6 +222,9 @@
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
     _Log(@"LSShopViewcController loadContentView[%@] withDict[%@]",contentView,dict);
     
+    is_reloading=false;
+    [self responseForReloadWork];
+    
     if(self.monoTableView){
         [self.monoTableView removeFromSuperview];
         self.monoTableView = nil;
@@ -235,6 +242,17 @@
     [self.monoTableView setRowHeight:70];
     [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
     [contentView addSubview:self.monoTableView];
+    
+    reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
+    [reloadLabel setTextColor:[UIColor grayColor]];
+    [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+    [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+    //[self.monoTableView addSubview:reloadLabel];
+    [self.monoTableView setTableHeaderView:reloadLabel];
+    [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
+    [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+    
+    [self.monoTableView setTheSVDelegate:self];
     
     [self.monoTableView reloadData];
 }
@@ -294,6 +312,8 @@
     _Log(@"order_confirm called");
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed.", @"您的订单已经确认。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
     [alertView show];
+    [self.the_customer_new_button setHidden:YES];
+    [self.the_order_confirm_button setHidden:YES];
 }
 
 //
@@ -492,7 +512,71 @@
     [[CartEntity getDefaultCartEntity]  resetCart];
     [self.the_customer_search_result setText:@""];
     [self.the_customer_mobile_textfield setText:@""];
-    [self.the_customer_new_button setHidden:NO];
+    [self.the_customer_new_button setHidden:YES];
     [self.the_order_confirm_button setHidden:YES];
 }
+
+#pragma UIViewScrollerDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!is_reloading) { // 判断是否处于刷新状态，刷新中就不执行
+        if(-scrollView.contentOffset.y>reloadHeaderHeight*2){
+            _Log(@"ShopController scrollViewDidEndDragging to response");
+            is_reloading=true;
+            [self responseForReloadWork];
+            return;
+        }
+    }
+    _Log(@"ShopController scrollViewDidEndDragging not response as %f - %d",scrollView.contentOffset.y,decelerate);
+    //[scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
+    if(!decelerate && scrollView.contentOffset.y>=0 && scrollView.contentOffset.y<=reloadHeaderHeight){
+        [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    @try {
+        _Log(@"ShopController scrollViewDidEndDecelerating sV=[%@]",scrollView);
+        if(!is_reloading && scrollView.contentOffset.y<reloadHeaderHeight){
+            [scrollView scrollRectToVisible:{0,reloadHeaderHeight,scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        _Log(@"~");
+    }
+    @finally {
+        //_Log(@"~~");
+    }
+}
+
+-(void)responseForReloadWork{
+    _Log(@"ShopController responseForReloadWork isWithError=%@ is_reloading=%d",_loader.errorString,is_reloading);
+    if(is_reloading){
+        [_loader loadBegin];
+        [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
+        //[self.view.window setUserInteractionEnabled:NO];
+        [self.monoTableView scrollRectToVisible:{0,0,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+        
+        //转转 开始
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view toastWithLoading];
+		_LogLine();
+        
+        _Log(@"ShopController responseForReloadWork to 0,0");
+        _Log(@"ShopController responseForReloadWork begin reload done");
+    }else{
+        [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+        
+        [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+        _Log(@"ShopController responseForReloadWork to 0,reloadHeaderHeight");
+        //[self.view.window setUserInteractionEnabled:YES];
+        
+        //转转 消失
+        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+		[controller.view dismissToast];
+		_LogLine();
+        
+        _Log(@"ShopController responseForReloadWork end reload done");
+    }
+}
+
 @end

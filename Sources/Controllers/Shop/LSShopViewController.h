@@ -20,7 +20,10 @@
 #import "CartEntity.h"
 
 @interface LSShopViewController :  DataController//UIViewController
-<UITextFieldDelegate,UIAlertViewDelegate>
+<UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate,DataControllerPullReloadDelegate>
+{
+    UILabel * reloadLabel;
+}
 
 
 @end

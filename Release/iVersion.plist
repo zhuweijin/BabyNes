@@ -16,6 +16,10 @@
 	<string>修改图片浏览器问题；数据不发生变化时不装载。</string>
 	<key>1.0.21</key>
 	<string>检查设备序列号；修复错误。</string>
+	<key>1.0.23</key>
+	<string>编译新版本。</string>
+	<key>1.0.27</key>
+	<string>更新编译。</string>
 	<key>1.0.4</key>
 	<string>实现主界面框架。</string>
 	<key>1.0.8</key>

@@ -100,7 +100,7 @@
 		2F12923F19628B9F00F271AA /* Reachability.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923C19628B9F00F271AA /* Reachability.mm */; };
 		2F12924219629B8D00F271AA /* SecureUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F12924119629B8D00F271AA /* SecureUDID.m */; };
 		2F2D54AC1967A8990050ACFA /* PRPhotoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */; };
-		2F2D54B51967E8BF0050ACFA /* ServerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B41967E8BF0050ACFA /* ServerConfig.m */; };
+		2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */; };
 		2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
@@ -304,7 +304,7 @@
 		2F2D54AA1967A8990050ACFA /* PRPhotoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PRPhotoPlayer.h; path = Sources/Controllers/PRPhotoPlayer.h; sourceTree = SOURCE_ROOT; };
 		2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PRPhotoPlayer.mm; path = Sources/Controllers/PRPhotoPlayer.mm; sourceTree = SOURCE_ROOT; };
 		2F2D54B31967E8BF0050ACFA /* ServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfig.h; sourceTree = "<group>"; };
-		2F2D54B41967E8BF0050ACFA /* ServerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfig.m; sourceTree = "<group>"; };
+		2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ServerConfig.mm; sourceTree = "<group>"; };
 		2F357F54196A721A0049AB52 /* IntroduceMonoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceMonoDetailView.h; sourceTree = "<group>"; };
 		2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceMonoDetailView.mm; sourceTree = "<group>"; };
 		2F54FFF71961763C0093028E /* ProductEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductEntity.h; path = Entity/ProductEntity.h; sourceTree = "<group>"; };
@@ -614,7 +614,7 @@
 				2FF644EF19667DB200A802A9 /* FileDownloader.h */,
 				2FF644F019667DB200A802A9 /* FileDownloader.mm */,
 				2F2D54B31967E8BF0050ACFA /* ServerConfig.h */,
-				2F2D54B41967E8BF0050ACFA /* ServerConfig.m */,
+				2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -947,7 +947,7 @@
 				2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */,
 				2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */,
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
-				2F2D54B51967E8BF0050ACFA /* ServerConfig.m in Sources */,
+				2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,

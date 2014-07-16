@@ -64,15 +64,24 @@
 - (void)loadEnded:(DataLoader *)loader
 {
 	_Log(@"load Ended with Dict [%@]", loader.dict);
+    _Log(@"DataController loadEnded Error=%d:%@",loader.error,loader.errorString);
 	if (loader.error == DataLoaderNoError)
 	{
 		[_contentView removeFromSuperview];
 		
-		_contentView = [[UIView alloc] initWithFrame:self.view.bounds];
+        CGRect contentViewFrame=self.view.bounds;
+        _Log(@"DataController loadEnded to init contentView when self.view = [%@]",self.view);
+		_contentView = [[UIView alloc] initWithFrame:contentViewFrame];
+        _Log(@"DataController loadEnded to init contentView with frame[%f,%f,%f,%f]",contentViewFrame.origin.x,contentViewFrame.origin.y,contentViewFrame.size.width,contentViewFrame.size.height);
 		_contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[self.view addSubview:_contentView];
 		[self loadContentView:_contentView withDict:loader.dict];
-	}
+	}else{
+        is_reloading=false;
+        if(_thePullReloadDelegate){
+            [_thePullReloadDelegate responseForReloadWork];
+        }
+    }
 }
 
 //
@@ -86,5 +95,9 @@
 //{
 //	[_loader loadBegin];
 //}
-
+/*
+-(void)responseForReloadWork{
+    _Log(@"DataController responseForReloadWork withError=%@",_loader.errorString);
+}
+ */
 @end

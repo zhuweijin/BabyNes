@@ -36,6 +36,10 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     return defaultServerConfig;
 }
 
+-(NSString*)getURL_root{
+    return [dict objectForKey:@"kServerUrl"];
+}
+
 -(NSString*)getURL_login{
     return [self findURL:@"login"];
 }

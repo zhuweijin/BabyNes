@@ -26,7 +26,6 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
 	self.view.backgroundColor = UIUtil::Color(235, 238, 250);
 	if (UIUtil::IsOS7())
 	{
@@ -45,6 +44,7 @@
 	
 #ifdef _CustomHeader
 	frame.origin.y += tabBarHeight;
+    _Log(@"PivotController viewDidLoaded frame.origin.y += tabBarHeight(%f);",tabBarHeight);
 #endif
 	frame.size.height = 768 - 66;
 	_scrollView = [[PredictScrollView alloc] initWithFrame:frame];

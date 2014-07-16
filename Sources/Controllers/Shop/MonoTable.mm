@@ -21,10 +21,10 @@
 
 -(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([ProductEntity getProductArray]!=nil){
-        _Log(@"MONO TABLE rows...self.pdtArray=[%@] count=%d",[ProductEntity getProductArray],[[ProductEntity getProductArray]count]);
+        //_Log(@"MONO TABLE rows...self.pdtArray=[%@] count=%d",[ProductEntity getProductArray],[[ProductEntity getProductArray]count]);
         return [[ProductEntity getProductArray]count];
     }else{
-        _Log(@"MONO TABLE rows...self.pdtArray=[%@] count=0",[ProductEntity getProductArray]);
+        //_Log(@"MONO TABLE rows...self.pdtArray=[%@] count=0",[ProductEntity getProductArray]);
         return 0;
     }
 }
@@ -90,7 +90,20 @@
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma UIViewScrollerDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if(_theSVDelegate){
+        _Log(@"MonoTable scrollViewDidEndDragging !");
+        [_theSVDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+}
 
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(_theSVDelegate){
+        _Log(@"MonoTable scrollViewDidEndDecelerating !");
+        [_theSVDelegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
 
 /*
  // Only override drawRect: if you perform custom drawing.

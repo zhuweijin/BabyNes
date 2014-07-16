@@ -2,6 +2,8 @@
 
 #import "DataLoader.h"
 #import "LoginController.h"
+#import "DialogUIAlertView.h"
+#import "SinriUIApplication.h"
 
 //
 @interface ErrorAlertView : UIAlertView
@@ -48,11 +50,11 @@ static ErrorAlertView *_alertView = nil;
 		_loader_delegate = nil;
 		_loader = nil;
 	}
-//	else if (_loader.error == DataLoaderProfileIncomplete)
-//	{
-//		UIViewController *controller = [[BasicProfileController alloc] init];
-//		[UIUtil::RootViewController() presentNavigationController:controller animated:YES];
-//	}
+    //	else if (_loader.error == DataLoaderProfileIncomplete)
+    //	{
+    //		UIViewController *controller = [[BasicProfileController alloc] init];
+    //		[UIUtil::RootViewController() presentNavigationController:controller animated:YES];
+    //	}
 	_alertView = nil;
 }
 @end
@@ -135,17 +137,49 @@ static NSString *_accessToken = nil;
 //
 + (void)logout
 {
+    _Log(@"DataLoader logout");
 	_accessToken = nil;
 	Settings::Save(kAccessToken);
-	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
 }
 
 //
 + (void)login
 {
-	[self logout];
+    _Log(@"DataLoader login");
+	//[self logout];
+    _accessToken = nil;
+	Settings::Save(kAccessToken);
+    //That's what logout wanna do.
+    
 	UIViewController *controller = [[LoginController alloc] init];
 	UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+}
+
++ (void)login:(NSString*)msg
+{
+    _Log(@"DataLoader login");
+    
+    if(_accessToken!=nil){
+        
+        //[self logout];
+        _accessToken = nil;
+        Settings::Save(kAccessToken);
+        //That's what logout wanna do.
+        
+        //UIViewController *controller = [[LoginController alloc] initWithMessage:msg];//Yonsm's
+        /*
+        [(SinriUIApplication *)[UIApplication sharedApplication] setLoginController:[[LoginController alloc] initWithMessage:msg]];
+        UIViewController *controller=[(SinriUIApplication *)[UIApplication sharedApplication] loginController];
+        UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+         */
+        //Mine
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
+        _Log(@"DataLoader login PresentModalNavigationController");
+    }else{
+        _Log(@"DataLoader login has been running");
+    }
 }
 
 //
@@ -189,17 +223,19 @@ static NSString *_accessToken = nil;
 - (NSString *)errorString
 {
     /*
-	const static NSString *c_strings[] =
-	{
-		NSLocalizedString(@"Not initialized", @"尚未初始化"),
-		NSLocalizedString(@"No change", @"数据无变化"),
-		NSLocalizedString(@"Data error", @"数据服务错误"),
-		NSLocalizedString(@"Network error", @"网络连接不给力啊"),
-	};
-	return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
+     const static NSString *c_strings[] =
+     {
+     NSLocalizedString(@"Not initialized", @"尚未初始化"),
+     NSLocalizedString(@"No change", @"数据无变化"),
+     NSLocalizedString(@"Data error", @"数据服务错误"),
+     NSLocalizedString(@"Network error", @"网络连接不给力啊"),
+     };
+     return (_error < _NumOf(c_strings)) ? (NSString *)c_strings[_error] : [NSString stringWithFormat:NSLocalizedString(@"Uknown error: %d", @"未知错误，代码：%d"), _error];
      */
     NSString * info=nil;
-    if(_error==DataLoaderNetworkError){
+    if(_error==DataLoaderNoCacheError){
+        info=NSLocalizedString(@"No cache available.", @"加载本地缓存失败。");
+    }else if(_error==DataLoaderNetworkError){
         info=NSLocalizedString(@"Error in network connection.", @"网络连接失败。");
     }else if(_error==DataLoaderNoError){
         info=NSLocalizedString(@"Success", @"成功");
@@ -229,7 +265,9 @@ static NSString *_accessToken = nil;
 - (BOOL)loadBegin
 {
 	if (_loading) return NO;
-
+    
+    _Log(@"SinriDigin DataLoader loadBegin");
+    
 	if ([_delegate respondsToSelector:@selector(loadBegan:)])
 	{
 		if (![_delegate loadBegan:self])
@@ -249,6 +287,8 @@ static NSString *_accessToken = nil;
 //
 - (void)loadStart
 {
+    _Log(@"SinriDigin DataLoader loadStart");
+    
 	UIUtil::ShowNetworkIndicator(YES);
 	if (!_dict && _showLoading)
 	{
@@ -273,6 +313,7 @@ static NSString *_accessToken = nil;
 //
 - (id)loadDoing
 {
+    _Log(@"SinriDigin DataLoader loadDoing");
 	// 装载数据并解析
 	NSDictionary *dict = nil;
 	NSData *data = [self loadData];
@@ -288,6 +329,9 @@ static NSString *_accessToken = nil;
 				if (_checkChange && [_dict isEqualToDictionary:dict])
 				{
 					_error = DataLoaderNoChange;
+                    _Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE");
+                    //_Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE old_dict=[%@]",_dict);
+                    //_Log(@"SinriDigin DataLoader loadDoing SEEM TO BE NO CHANGE new_dict=[%@]",dict);
 				}
 			}
 		}
@@ -307,7 +351,8 @@ static NSString *_accessToken = nil;
 //
 - (NSData *)loadData
 {
-	NSString *url = kServiceUrl(_service);
+	NSString *url =[NSString stringWithFormat:@"%@/%@.php", [[ServerConfig getServerConfig] getURL_root], _service];
+    //kServiceUrl(_service);
 	return [_delegate respondsToSelector:@selector(loadData: url:)] ? [_delegate loadData:self url:url] : [self loadData:url];
 }
 
@@ -328,7 +373,7 @@ static NSString *_accessToken = nil;
 	NSData *data = HttpUtil::HttpData(url, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
 	if (data == nil)
 	{
-		_Log(@"Response: %@\n\nError: %@\n\n", response, error);
+		_Log(@"DataLoader loadData url=[%@] Response: %@\n\nError: %@\n\n",url, response, error);
 	}
 	return data;
 }
@@ -337,19 +382,24 @@ static NSString *_accessToken = nil;
 - (id)parseData:(NSData *)data
 {
 	NSError *error = nil;
-	NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:_jsonOptions error:&error];
-	if (dict == nil)
-	{
-		_Log(@"Data: %@\n\n Error: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding], error);
-	}
-	return dict;
+    if(data){
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:_jsonOptions error:&error];
+        if (dict == nil)
+        {
+            _Log(@"Data: %@\n\n Error: %@", (data==nil?@"nil":[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]), error);
+        }
+        return dict;
+    }else{
+        return nil;
+    }
 }
 
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
+    //_Log(@"SinriDigin DataLoader loadEnded");
 	_checkChange = YES;
-
+    
 	_loading = NO;
 	if (_error == DataLoaderNoError)
 	{
@@ -357,15 +407,23 @@ static NSString *_accessToken = nil;
 	}
 	else if (_error == DataLoaderTokenError)
 	{
-		[DataLoader login];
+		//[DataLoader login];
+        [DataLoader login:[self errorString]];
+        return;
 	}
 	else if (_error == DataLoaderIdentificationError)
 	{
-		[DataLoader logout];
+		//[DataLoader logout];
+        //[DataLoader login];
+        //return;
 	}
 	else
 	{
-		_Log(@"%@: %d =>\n%@", (_error == DataLoaderNoChange) ? @"NOCHANGE" : @"ERROR", _error, dict);
+        if(_error == DataLoaderNoChange){
+            _Log(@"SinriDigin DataLoader loadEnded %@: %d", @"NOCHANGE", _error);
+        }else{
+            _Log(@"SinriDigin DataLoader loadEnded %@: %d =>\n%@", @"ERROR", _error, dict);
+        }
 	}
 	
 	[self loadStop:dict];
@@ -386,6 +444,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadStop:(NSDictionary *)dict
 {
+    //_Log(@"SinriDigin DataLoader loadStop");
 	UIUtil::ShowNetworkIndicator(NO);
 	if (_showLoading)
 	{
@@ -424,7 +483,11 @@ static NSString *_accessToken = nil;
 	}
 	if (_error == DataLoaderIdentificationError || _error == DataLoaderTokenError)
 	{
-		[ToastView toastWithError:error];
+		//[ToastView toastWithError:error];
+        /*
+         UIAlertView * uiav= [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Data Loader Error", @"数据加载错误") message:error delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"确定") otherButtonTitles: nil];
+         [uiav show];
+         */
 	}
 	else if (_checkError)
 	{

@@ -1,14 +1,15 @@
+#import "ServerConfig.h"
 
 #define TEST
 #ifdef TEST
-#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
+//#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #else
-#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
+//#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
 //@"http://uniquebaby.duapp.com/babynesios/admin/api"
 #endif
 
-#define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
+//#define kServiceUrl(s)			[NSString stringWithFormat:@"%@/%@.php", kServerUrl, s]
 
 #define kAuthConsumerKey		@"XXX"
 #define kAuthConsumerSecret		@"XXX"
@@ -35,7 +36,8 @@ DataLoaderError;
 
 //A new Error Code defined by Sinri Edogawa on 2014 July 8th.
 typedef enum {
-    DataLoaderNetworkError,
+    DataLoaderNoCacheError=-1,
+    DataLoaderNetworkError=0,
     DataLoaderNoError=200,
     DataLoaderTokenError=401,
     DataLoaderIllegalDevice=403,
@@ -93,6 +95,7 @@ typedef enum {
 
 //
 + (void)login;		// 注销并显示登录界面
++ (void)login:(NSString*)msg; // 注销并显示登录界面，并提示错误
 + (void)logout;		// 注销
 + (BOOL)isLogon;	// 是否已登录
 + (NSString *)accessToken;

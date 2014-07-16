@@ -30,8 +30,17 @@
 	// Create controller
 	// TODO: Remove navigation controller
 	DataLoader.accessToken = Settings::Get(kAccessToken);
-	UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
+	/*
+    UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
+    */
+    [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
+    [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
+    UIViewController *controller = DataLoader.accessToken ? [((SinriUIApplication *)application) rootController] : [((SinriUIApplication *)application) loginController];
+    [((SinriUIApplication *)application) setNavController:[[UINavigationController alloc]initWithRootViewController:controller]];
+    UINavigationController *navigator=[((SinriUIApplication *)application) navController];
+    
+    
 #ifdef _CustomHeader
 	navigator.navigationBarHidden = YES;
 #else
@@ -58,6 +67,8 @@
 	
 	StatStart();
     
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    
     [(SinriUIApplication *)application registerEndPRNotificationReceiver];
     
     //Report Device Information Regularly
@@ -66,10 +77,10 @@
 
      [(SinriUIApplication *)application resetIdleTimer];
     
-    _Log(@"LOG %@",[LSDeviceInfo check_all]);
+    //_Log(@"LOG %@",[LSDeviceInfo check_all]);
     
     //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    
+    /*
     NSString * uuid=NSUtil::UUID();
     NSString* sn = SystemUtil::SN();
     NSData * sn_data=[sn dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
@@ -83,8 +94,8 @@
 
     
     _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
-    
-    _Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
+     */    
+    //_Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
     
 	return YES;
 }
@@ -112,12 +123,15 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationWillEnterForeground");
+    [SinriUIApplication setShouldMonitorIdle:YES];
+     [(SinriUIApplication *)application resetIdleTimer];
 }
 
 // Tells the delegate that the application is now in the background.
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationDidEnterBackground");
+     [SinriUIApplication setShouldMonitorIdle:NO];
 }
 
 
