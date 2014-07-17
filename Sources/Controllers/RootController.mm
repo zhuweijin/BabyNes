@@ -1,13 +1,8 @@
 
 #import "RootController.h"
-#import "LoginController.h"
-#import "SettingController.h"
-#import "LSShopViewController.h"
-#import "IntroduceController.h"
-#import "MoviePlayer.h"
-#import "MaterialController.h"
-#import "MessageController.h"
+
 #import "SinriUIApplication.h"
+
 
 @implementation RootController
 
@@ -17,12 +12,19 @@
 - (id)init
 {
 	self = [super init];
-	self.viewControllers = @[
+    _shopVC=[[LSShopViewController alloc] init];
+    _intrVC=[[IntroduceController alloc] init];
+    _mateVC=[[MaterialController alloc] init];
+   _srVC =[[MessageController alloc] init];
+	/*
+    self.viewControllers = @[
 							 [[LSShopViewController alloc] init],
 							 [[IntroduceController alloc] init],
                              [[MaterialController alloc] init],
 							 [[MessageController alloc] init],
 							 ];
+     */
+    self.viewControllers=@[_shopVC,_intrVC,_mateVC,_srVC];
 	return self;
 }
 
@@ -47,9 +49,10 @@
 	[menuButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:menuButton];
 	
-	UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"app/logo@2x.jpg")];
+	//UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"app/logo@2x.jpg")];
     //logoView.frame = CGRectMake(45, 0, 85, 45);
-    //UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"HomeLogo")];
+    //UIImageView *logoView = [[UIImageView alloc] initWithImage:UIUtil::Image(@"newlogo")];
 	logoView.frame = CGRectMake(45, 0, logoView.frame.size.width, logoView.frame.size.height);
 	[self.tabBar addSubview:logoView];
     
@@ -86,6 +89,11 @@
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
     _Log(@"RootController viewWillAppear setNavigationBarHidden:NO");
 #endif
+    //[self onTabButtonWithOldTab];
+    if(_shopVC){
+        [_shopVC removeObservers];
+        [_shopVC addObservers];
+    }
 }
 
 // Called after the view was dismissed, covered or otherwise hidden.
@@ -105,7 +113,14 @@
 - (void)menuButtonClicked:(UIButton *)sender
 {
 	UIViewController *controller = [[SettingController alloc] init];
-	[self.navigationController pushViewController:controller animated:YES];
+	[self.navigationController pushViewController:controller animated:YES];//OLD
+    /*
+    [controller setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+    [controller setModalPresentationStyle:(UIModalPresentationFullScreen)];
+    [self.navigationController presentViewController:controller animated:YES completion:^{
+        //DONE
+    }];
+     */
 }
 
 //
@@ -153,6 +168,20 @@
         
         [self.navigationController setViewControllers:@[controller] animated:NO];
     }
+}
+
+#pragma mark Event methods
+
+//
+- (void)onTabButtonWithOldTab
+{
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.4];
+	//_scrollView.currentPage = button.tag - kTabButonTag;
+    if(self.scrollView.currentPage){
+        self.scrollView.currentPage=self.scrollView.currentPage;
+    }
+	[UIView commitAnimations];
 }
 
 @end

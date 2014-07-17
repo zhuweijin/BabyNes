@@ -24,6 +24,7 @@
 {
     UILabel * reloadLabel;
 }
-
+-(void)addObservers;
+-(void)removeObservers;
 
 @end

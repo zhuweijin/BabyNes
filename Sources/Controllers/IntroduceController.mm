@@ -5,6 +5,8 @@
 
 static CGFloat reloadHeaderHeight=40;
 
+static int MonoNumberInRow=3;
+
 @implementation IntroduceController
 
 #pragma mark Generic methods
@@ -147,7 +149,7 @@ static CGFloat reloadHeaderHeight=40;
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
 			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
 			
-			CGFloat width = ceil(frame.size.width / 3);
+			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
             CGRect frame = {0, reloadHeaderHeight, width, width};
 			NSUInteger i = 0;
@@ -159,7 +161,7 @@ static CGFloat reloadHeaderHeight=40;
 				[_itemPane addSubview:view];
 				
 				//
-				if (++i % 3 == 0)
+				if (++i % MonoNumberInRow == 0)
 				{
 					frame.origin.x = 0;
 					frame.origin.y += frame.size.width;
@@ -171,7 +173,7 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
             if(h<=_itemPane.frame.size.height){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
