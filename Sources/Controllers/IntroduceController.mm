@@ -174,9 +174,11 @@ static int MonoNumberInRow=3;
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
             CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
-            if(h<=_itemPane.frame.size.height){
+            
+            if(h<=_itemPane.frame.size.height+reloadHeaderHeight){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
+            
             ((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, h);
             ((UIScrollView *)_itemPane).contentOffset=CGPointMake(0, reloadHeaderHeight);
             ((UIScrollView *)_itemPane).delegate=self;
