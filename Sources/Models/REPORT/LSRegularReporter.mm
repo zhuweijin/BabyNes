@@ -14,6 +14,9 @@
 @implementation LSRegularReporter
 
 +(void)report{
+    NSString* AT=DataLoader.accessToken; //[[LSUserModel getCurrentUser] accessToken];
+    if(AT==nil)return;
+    
     int bs=[LSDeviceInfo batteryState];
     int bs_p=[LSDeviceInfo batteryState_isPlugIn];
     NSInteger level=[LSDeviceInfo batteryLevel];
@@ -39,8 +42,7 @@
             break;
     }
     long boot_time_second=[LSDeviceInfo bootTimeInSeconds];
-    NSString* AT=DataLoader.accessToken; //[[LSUserModel getCurrentUser] accessToken];
-    if(AT==nil)AT=@"Unlogined";
+    
     
     NSNumber * num = [[NSUserDefaults standardUserDefaults]objectForKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
     if(num==nil){
