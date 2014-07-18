@@ -27,12 +27,12 @@ static CGFloat reloadHeaderHeight=40;
 }
 
 #pragma mark View methods
-/*
+
  -(void)removeObservers{
- [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
+ [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRReceiptSenderDone" object:nil];
  }
  -(void)addObservers{
- [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSRurl:) name:@"SRSelected" object:nil];
+ [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSRReceiptSenderDone:) name:@"SRReceiptSenderDone" object:nil];
  }
  
  -(void)viewDidAppear:(BOOL)animated{
@@ -46,7 +46,7 @@ static CGFloat reloadHeaderHeight=40;
  [super viewWillDisappear:animated];
  [self removeObservers];
  }
- */
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -326,6 +326,11 @@ static CGFloat reloadHeaderHeight=40;
  _Log(@"MessageController showSRurl : %@",[srm logAbstract]);
  }
  */
+
+-(void)onSRReceiptSenderDone:(NSNotification*)notification{
+    //[srTable reloadData];
+}
+
 #pragma mark -
 #pragma mark for dirtyToken test
 -(void)addDTBtn{

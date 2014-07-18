@@ -3,6 +3,7 @@
 
 #import "SinriUIApplication.h"
 
+#import "SRReceiptSender.h"
 
 @implementation RootController
 
@@ -101,8 +102,8 @@
     }
     
     if(_srVC){
-        //[_srVC removeObservers];
-        //[_srVC addObservers];
+        [_srVC removeObservers];
+        [_srVC addObservers];
         
         _Log(@"srVC offset.y=%f",[[_srVC getSRTable] contentOffset].y);
         [_srVC scrollViewDidEndDragging:[_srVC getSRTable] willDecelerate:NO];
@@ -206,6 +207,8 @@
     
     controller.navigationItem.title = [srm title];
     [self.navigationController pushViewController:controller animated:YES];
+    
+    [SRReceiptSender report_have_read:[srm srid]];
     
     /*
      [self presentViewController:controller animated:YES completion:^{

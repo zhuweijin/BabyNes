@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LSConnectionDelegater.h"
 
-@interface SRReceiptSender : NSObject
+@interface SRReceiptSender : LSConnectionDelegater < NSURLConnectionDelegate
+//, NSURLConnectionDownloadDelegate
+, NSURLConnectionDataDelegate>
+
++(void)report_have_read:(int)srid;
+@property NSArray * srids;
 
 @end

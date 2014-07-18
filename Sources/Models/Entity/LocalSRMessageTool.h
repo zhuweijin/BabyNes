@@ -20,4 +20,6 @@
 
 +(int)getSRAPIAfterParamValue;
 +(int)getSRAPIBeforeParamValue;
++(void)saveLocalSRAll;
++(void)setSRArraytoHaveRead:(NSArray*)srids;
 @end

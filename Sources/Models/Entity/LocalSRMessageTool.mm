@@ -78,11 +78,15 @@ static NSMutableArray * SRArray;
     local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
     [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
     _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
+    [LocalSRMessageTool saveLocalSRAll];
+    return [LocalSRMessageTool getLocalSRDict_mine];
+}
+
++(void)saveLocalSRAll{
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:local_sr_all] forKey:@"SR_Messages"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     _Log(@"standardUserDefaults=\n%@",[NSUserDefaults standardUserDefaults]);
     [LocalSRMessageTool getSRArrayIfForce:YES];
-    return [LocalSRMessageTool getLocalSRDict_mine];
 }
 
 +(void)setSRtoHaveRead:(int)srid{
@@ -90,8 +94,23 @@ static NSMutableArray * SRArray;
     SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:srid]];
     if(srm){
         [srm setRead:YES];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        //[[NSUserDefaults standardUserDefaults]synchronize];
     }
+}
+
++(void)setSRArraytoHaveRead:(NSArray*)srids{
+    NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
+    for (NSNumber * num in srids) {
+        SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:[num intValue]]];
+        if(srm){
+            [srm setRead:YES];
+            //[[NSUserDefaults standardUserDefaults]synchronize];
+        }
+    }
+    NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    [LocalSRMessageTool saveLocalSRAll];
 }
 
 #pragma mark OnSRMessage

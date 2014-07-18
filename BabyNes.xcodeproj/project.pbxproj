@@ -95,7 +95,7 @@
 		24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BEF195DA645007478B3 /* LSNewCustomer_BabyCell.mm */; };
 		24E88BF6195DA645007478B3 /* NewCustomerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E88BF1195DA645007478B3 /* NewCustomerController.mm */; };
 		24FC734E195AAF16000F8F7F /* DefaultPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 24FC734D195AAF16000F8F7F /* DefaultPad@2x.png */; };
-		2F05E4C319792E02007C5D28 /* SRReceiptSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F05E4C219792E02007C5D28 /* SRReceiptSender.m */; };
+		2F05E4C319792E02007C5D28 /* SRReceiptSender.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F05E4C219792E02007C5D28 /* SRReceiptSender.mm */; };
 		2F12923D19628B9F00F271AA /* LSDeviceInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923819628B9F00F271AA /* LSDeviceInfo.mm */; };
 		2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923A19628B9F00F271AA /* LSRegularReporter.mm */; };
 		2F12923F19628B9F00F271AA /* Reachability.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923C19628B9F00F271AA /* Reachability.mm */; };
@@ -299,7 +299,7 @@
 		24E88BF1195DA645007478B3 /* NewCustomerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NewCustomerController.mm; sourceTree = "<group>"; };
 		24FC734D195AAF16000F8F7F /* DefaultPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DefaultPad@2x.png"; sourceTree = "<group>"; };
 		2F05E4C119792E02007C5D28 /* SRReceiptSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRReceiptSender.h; sourceTree = "<group>"; };
-		2F05E4C219792E02007C5D28 /* SRReceiptSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRReceiptSender.m; sourceTree = "<group>"; };
+		2F05E4C219792E02007C5D28 /* SRReceiptSender.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SRReceiptSender.mm; sourceTree = "<group>"; };
 		2F12923719628B9F00F271AA /* LSDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDeviceInfo.h; sourceTree = "<group>"; };
 		2F12923819628B9F00F271AA /* LSDeviceInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDeviceInfo.mm; sourceTree = "<group>"; };
 		2F12923919628B9F00F271AA /* LSRegularReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSRegularReporter.h; sourceTree = "<group>"; };
@@ -762,7 +762,7 @@
 				2FF644D81964F1F600A802A9 /* LSDeviceRegister.h */,
 				2FF644D91964F1F600A802A9 /* LSDeviceRegister.mm */,
 				2F05E4C119792E02007C5D28 /* SRReceiptSender.h */,
-				2F05E4C219792E02007C5D28 /* SRReceiptSender.m */,
+				2F05E4C219792E02007C5D28 /* SRReceiptSender.mm */,
 			);
 			path = REPORT;
 			sourceTree = "<group>";
@@ -928,7 +928,7 @@
 				24259EDE194AB36B000FF8A9 /* KBAutoScrollView.mm in Sources */,
 				24259EE1194AB36B000FF8A9 /* ODRefreshControl.m in Sources */,
 				2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */,
-				2F05E4C319792E02007C5D28 /* SRReceiptSender.m in Sources */,
+				2F05E4C319792E02007C5D28 /* SRReceiptSender.mm in Sources */,
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
