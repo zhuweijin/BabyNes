@@ -35,7 +35,9 @@
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
      */
     
-    if(DataLoader.accessToken){
+    if(DataLoader.accessToken
+       //&& [LSDeviceInfo currentNetworkType]!=NotReachable
+       ){
         [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
         [((SinriUIApplication *)application) setLoginController:nil];
     }else{
