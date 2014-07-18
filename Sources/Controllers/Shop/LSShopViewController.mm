@@ -34,6 +34,7 @@
 @end
 
 static CGFloat reloadHeaderHeight=30;
+//static CGFloat reloadHeaderHeight_=0;
 
 @implementation LSShopViewController
 
@@ -249,6 +250,7 @@ static CGFloat reloadHeaderHeight=30;
     [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
     //[self.monoTableView addSubview:reloadLabel];
     [self.monoTableView setTableHeaderView:reloadLabel];
+    //[self setReloadLabelHidden:YES];
     [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
     [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
     
@@ -517,7 +519,23 @@ static CGFloat reloadHeaderHeight=30;
 }
 
 #pragma UIViewScrollerDelegate
+-(void)setReloadLabelHidden:(BOOL)toHide{
+    if(toHide){
+        [reloadLabel setHidden:YES];
+        [reloadLabel setFrame:CGRectZero];
+    }else{
+        [reloadLabel setHidden:NO];
+        [reloadLabel setFrame:CGRectMake(0,0,self.monoTableView.frame.size.width,reloadHeaderHeight)];
+    }
+    [self.monoTableView setTableHeaderView:reloadLabel];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    //[self setReloadLabelHidden:NO];
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    //[self setReloadLabelHidden:YES];
     if (!is_reloading) { // 判断是否处于刷新状态，刷新中就不执行
         if(-scrollView.contentOffset.y>reloadHeaderHeight*2){
             _Log(@"ShopController scrollViewDidEndDragging to response");

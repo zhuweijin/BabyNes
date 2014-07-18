@@ -21,7 +21,7 @@
     int bs_p=[LSDeviceInfo batteryState_isPlugIn];
     NSInteger level=[LSDeviceInfo batteryLevel];
     NSString* SUUID=[LSDeviceInfo device_sn];//SystemUtil::SN();//[LSUserModel device_sn];
-    _Log(@"REPORT-SUUID=%@",SUUID);
+    //_Log(@"REPORT-SUUID=%@",SUUID);
     //Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
     NSInteger net_state=-1;//[r currentReachabilityStatus]
     switch ([LSDeviceInfo currentNetworkType]) {
@@ -75,7 +75,7 @@
     
     BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_device_report] withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
     
-    _Log(@"regularDeviceInfoReport {\n battery state [%d] plug in?[%d] level is [%d]\nSecureUUID is %@\nnet [%d]\nsince boot [%ld]\nAT[%@]\n} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
+    _Log(@"regularDeviceInfoReport {battery state [%d] plug in?[%d] level is [%d] SecureUUID is %@ net [%d] since boot [%ld] AT[%@]} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
 }
 
 - (BOOL)connection:(NSURLConnection *)connection

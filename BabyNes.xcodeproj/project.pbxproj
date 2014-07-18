@@ -105,6 +105,10 @@
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
+		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
+		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
+		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
+		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
 		2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D01963FDF500A802A9 /* LSBaby.mm */; };
@@ -313,6 +317,14 @@
 		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
 		2F72BB3F196BBC0300528735 /* CateImageButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CateImageButton.mm; sourceTree = "<group>"; };
+		2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalSRMessageTool.h; path = Entity/LocalSRMessageTool.h; sourceTree = "<group>"; };
+		2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LocalSRMessageTool.mm; path = Entity/LocalSRMessageTool.mm; sourceTree = "<group>"; };
+		2F92BBBB1977AA3B00FBE647 /* SRMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRMessage.h; path = Entity/SRMessage.h; sourceTree = "<group>"; };
+		2F92BBBC1977AA3B00FBE647 /* SRMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRMessage.m; path = Entity/SRMessage.m; sourceTree = "<group>"; };
+		2F92BBBE1977CAA700FBE647 /* SRTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRTable.h; path = MessageView/SRTable.h; sourceTree = "<group>"; };
+		2F92BBBF1977CAA700FBE647 /* SRTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTable.mm; path = MessageView/SRTable.mm; sourceTree = "<group>"; };
+		2F92BBC11977D1DB00FBE647 /* SRTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRTableCell.h; path = MessageView/SRTableCell.h; sourceTree = "<group>"; };
+		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
 		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
 		2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSNetAPIWorker.mm; sourceTree = "<group>"; };
 		2FF644CC1962FB0600A802A9 /* LSConnectionDelegater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionDelegater.h; sourceTree = "<group>"; };
@@ -534,6 +546,7 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F92BBB719779B6800FBE647 /* MessageView */,
 				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
 				2FF644E71965A44D00A802A9 /* IntroduceController.mm */,
 				2FF644E319659C6200A802A9 /* MessageController.h */,
@@ -760,8 +773,23 @@
 				2F54FFF81961763C0093028E /* ProductEntity.mm */,
 				2F54FFFB19617E3B0093028E /* CartEntity.h */,
 				2F54FFFC19617E3B0093028E /* CartEntity.mm */,
+				2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */,
+				2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */,
+				2F92BBBB1977AA3B00FBE647 /* SRMessage.h */,
+				2F92BBBC1977AA3B00FBE647 /* SRMessage.m */,
 			);
 			name = Entity;
+			sourceTree = "<group>";
+		};
+		2F92BBB719779B6800FBE647 /* MessageView */ = {
+			isa = PBXGroup;
+			children = (
+				2F92BBBE1977CAA700FBE647 /* SRTable.h */,
+				2F92BBBF1977CAA700FBE647 /* SRTable.mm */,
+				2F92BBC11977D1DB00FBE647 /* SRTableCell.h */,
+				2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */,
+			);
+			name = MessageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -881,6 +909,7 @@
 				24259EC1194AB36B000FF8A9 /* MWPhoto.mm in Sources */,
 				242F94F2195C6E7300371697 /* LSShopMonoTableViewCell.mm in Sources */,
 				2FF644EB19663E3400A802A9 /* MeterialImageItemView.mm in Sources */,
+				2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */,
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
 				242F9507195C6E7300371697 /* SelectPicker.mm in Sources */,
 				242F94E4195C6E7300371697 /* SettingController.mm in Sources */,
@@ -938,9 +967,12 @@
 				242F9504195C6E7300371697 /* EXButton.mm in Sources */,
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
 				2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */,
+				2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */,
 				24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */,
 				2FF644DF1965214800A802A9 /* PRMoviePlayer.mm in Sources */,
+				2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
+				2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
 				2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */,
