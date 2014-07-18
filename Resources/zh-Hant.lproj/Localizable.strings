@@ -340,8 +340,14 @@
 /* Province is empty */
 "Province is empty" = "省份未填寫";
 
+/* Pull down to check new SR message */
+"Pull down to check new SR message" = "下拉以查收新的業務消息";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
+
+/* Pull to check SR messages earlier */
+"Pull to check SR messages earlier" = "上拉以加載更早的業務消息";
 
 /* Pull to reload */
 "Pull to reload" = "下拉以刷新";

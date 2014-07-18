@@ -340,8 +340,14 @@
 /* Province is empty */
 "Province is empty" = "Province is empty";
 
+/* Pull down to check new SR message */
+"Pull down to check new SR message" = "Pull down to check new SR message";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "Pull down to refresh";
+
+/* Pull to check SR messages earlier */
+"Pull to check SR messages earlier" = "Pull to check SR messages earlier";
 
 /* Pull to reload */
 "Pull to reload" = "Pull to reload";
