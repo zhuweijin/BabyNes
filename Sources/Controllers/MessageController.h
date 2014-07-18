@@ -19,6 +19,6 @@
 }
 -(UIScrollView*)getSRTable;
 -(CGFloat)getReloadHeaderHeight;
--(void)removeObservers;
--(void)addObservers;
+//-(void)removeObservers;
+//-(void)addObservers;
 @end

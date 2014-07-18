@@ -31,11 +31,17 @@
 	// TODO: Remove navigation controller
 	DataLoader.accessToken = Settings::Get(kAccessToken);
 	/*
-    UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
-	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
-    */
-    [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
-    [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
+     UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
+     UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
+     */
+    
+    if(DataLoader.accessToken){
+        [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
+        [((SinriUIApplication *)application) setLoginController:nil];
+    }else{
+        [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
+        [((SinriUIApplication *)application) setRootController:nil];
+    }
     UIViewController *controller = DataLoader.accessToken ? [((SinriUIApplication *)application) rootController] : [((SinriUIApplication *)application) loginController];
     [((SinriUIApplication *)application) setNavController:[[UINavigationController alloc]initWithRootViewController:controller]];
     UINavigationController *navigator=[((SinriUIApplication *)application) navController];
@@ -58,7 +64,7 @@
 		};
 	}
 #endif
-
+    
 	// Show main view
 	_window.rootViewController = navigator;
 	[_window makeKeyAndVisible];
@@ -74,27 +80,27 @@
     //Report Device Information Regularly
     [LSRegularReporter report];
     [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
-
-     [(SinriUIApplication *)application resetIdleTimer];
+    
+    [(SinriUIApplication *)application resetIdleTimer];
     
     //_Log(@"LOG %@",[LSDeviceInfo check_all]);
     
     //_Log(@"UserDefaultsDic = [%@]", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     /*
-    NSString * uuid=NSUtil::UUID();
-    NSString* sn = SystemUtil::SN();
-    NSData * sn_data=[sn dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-    NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([sn_data length] * 2)];
-    const unsigned char *dataBuffer = (const unsigned char *)[sn_data bytes];
-    int i;
-    for (i = 0; i < [sn_data length]; ++i) {
-        [stringBuffer appendFormat:@"%02lX", (unsigned long)dataBuffer[i]];
-    }
-    NSString* sn_string=[stringBuffer copy];
-
-    
-    _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
-     */    
+     NSString * uuid=NSUtil::UUID();
+     NSString* sn = SystemUtil::SN();
+     NSData * sn_data=[sn dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
+     NSMutableString *stringBuffer = [NSMutableString stringWithCapacity:([sn_data length] * 2)];
+     const unsigned char *dataBuffer = (const unsigned char *)[sn_data bytes];
+     int i;
+     for (i = 0; i < [sn_data length]; ++i) {
+     [stringBuffer appendFormat:@"%02lX", (unsigned long)dataBuffer[i]];
+     }
+     NSString* sn_string=[stringBuffer copy];
+     
+     
+     _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
+     */
     //_Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
     
 	return YES;
@@ -124,14 +130,14 @@
 {
     _Log(@"AppDelegate applicationWillEnterForeground");
     [SinriUIApplication setShouldMonitorIdle:YES];
-     [(SinriUIApplication *)application resetIdleTimer];
+    [(SinriUIApplication *)application resetIdleTimer];
 }
 
 // Tells the delegate that the application is now in the background.
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationDidEnterBackground");
-     [SinriUIApplication setShouldMonitorIdle:NO];
+    [SinriUIApplication setShouldMonitorIdle:NO];
 }
 
 

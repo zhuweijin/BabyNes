@@ -187,10 +187,10 @@ static CGFloat reloadHeaderHeight=40;
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     if(targetContentOffset->y<reloadHeaderHeight){
-        _Log(@"MessageController scrollViewWillEndDragging withVelocity targetContentOffset.y=%f to do",targetContentOffset->y);
+        //_Log(@"MessageController scrollViewWillEndDragging withVelocity targetContentOffset.y=%f to do",targetContentOffset->y);
         [scrollView setContentOffset:{0,static_cast<CGFloat>(reloadHeaderHeight)} animated:YES];
         targetContentOffset->y=scrollView.contentOffset.y;
-        _Log(@"MessageController scrollViewWillEndDragging withVelocity targetContentOffset.y=%f set done",targetContentOffset->y);
+        //_Log(@"MessageController scrollViewWillEndDragging withVelocity targetContentOffset.y=%f set done",targetContentOffset->y);
     }
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -225,18 +225,17 @@ static CGFloat reloadHeaderHeight=40;
     //[self setReloadLabelHidden:YES];
     //[scrollView setContentOffset:{0,reloadHeaderHeight} animated:YES];
     if(!decelerate && scrollView.contentOffset.y<=reloadHeaderHeight){
-        _Log(@"MessageController scrollViewDidEndDragging GO anyway");
+        //_Log(@"MessageController scrollViewDidEndDragging GO anyway");
         [scrollView setContentOffset:{0,static_cast<CGFloat>(reloadHeaderHeight)} animated:YES];
     }
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     @try {
-        _Log(@"MessageController scrollViewDidEndDecelerating as ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
+        //_Log(@"MessageController scrollViewDidEndDecelerating as ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
         if(!is_reloading && scrollView.contentOffset.y<reloadHeaderHeight){
-            _Log(@"MessageController scrollViewDidEndDecelerating as I ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
-            //[scrollView scrollRectToVisible:{0,static_cast<CGFloat>(reloadHeaderHeight),scrollView.frame.size.width,scrollView.frame.size.height} animated:YES];
+            //_Log(@"MessageController scrollViewDidEndDecelerating as I ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
             [scrollView setContentOffset:{0,static_cast<CGFloat>(reloadHeaderHeight)} animated:YES];
-            _Log(@"MessageController scrollViewDidEndDecelerating as II ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
+            //_Log(@"MessageController scrollViewDidEndDecelerating as II ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
         }
         /*
         if(!is_reloading){
@@ -269,7 +268,7 @@ static CGFloat reloadHeaderHeight=40;
             [controller.view toastWithLoading];
             _LogLine();
             
-            _Log(@"MessageController responseForReloadWork to 0,0");
+            //_Log(@"MessageController responseForReloadWork to 0,0");
             _Log(@"MessageController responseForReloadWork begin reload done");
         }else{//CHECK NEW
             NSDictionary * dict=@{@"after":[NSNumber numberWithInt:[LocalSRMessageTool getSRAPIAfterParamValue]]};
@@ -284,7 +283,7 @@ static CGFloat reloadHeaderHeight=40;
             [controller.view toastWithLoading];
             _LogLine();
             
-            _Log(@"MessageController responseForReloadWork to 0,0");
+            //_Log(@"MessageController responseForReloadWork to 0,0");
             _Log(@"MessageController responseForReloadWork begin reload done");
         }
     }else{
@@ -309,7 +308,7 @@ static CGFloat reloadHeaderHeight=40;
         [reloadLabel setText:NSLocalizedString(@"Pull down to check new SR message", @"下拉以查收新的业务消息")];
         
         [srTable scrollRectToVisible:{0,static_cast<CGFloat>(reloadHeaderHeight),srTable.frame.size.width,srTable.frame.size.height} animated:YES];
-        _Log(@"MessageController responseForReloadWork to 0,reloadHeaderHeight");
+        //_Log(@"MessageController responseForReloadWork to 0,reloadHeaderHeight");
         //[self.view.window setUserInteractionEnabled:YES];
         
         //转转 消失

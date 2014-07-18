@@ -59,9 +59,19 @@ static NSMutableArray * SRArray;
 +(NSDictionary*)LocalSRMessageDictionaryMergedWithArray:(NSArray*)array{
     NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
     _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray=%@\nInto dict=%@",array,mine);
-    for (NSDictionary * item in array) {
-        SRMessage * srm=[[SRMessage alloc]initWithItemDictionary:item];
-        [mine setObject:srm forKey:[NSNumber numberWithInt:[srm srid]]];
+    @try {
+        for (NSDictionary * item in array) {
+            if([item[@"srid"] integerValue]>0){
+                SRMessage * srm=[[SRMessage alloc]initWithItemDictionary:item];
+                [mine setObject:srm forKey:[NSNumber numberWithInt:[srm srid]]];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray Exception to purse:%@",exception.debugDescription);
+    }
+    @finally {
+        //Nothing
     }
     NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
     _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray mineReadonly=%@",mineReadonly);
@@ -91,7 +101,7 @@ static NSMutableArray * SRArray;
         SRArray=[[NSMutableArray alloc]init];
         NSDictionary * local_mine=[LocalSRMessageTool getLocalSRDict_mine];
         //NSDictionary * dict=[[NSDictionary alloc]initWithDictionary:local_mine];
-        _Log(@"LocalSRMessageTool getSRArrayIfForce local_mine=%@",local_mine);
+        _Log(@"LocalSRMessageTool getSRArrayIfForce force=[%d] local_mine=%@",force,local_mine);
         NSArray* sortedKeys=[local_mine keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             int v1 = [(SRMessage *)obj1 srid];
             int v2 = [(SRMessage *)obj2 srid];
