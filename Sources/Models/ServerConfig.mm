@@ -16,8 +16,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     self=[super init];
     dict=@{@"kServerUrl":
                 //@"http://uniquebaby.duapp.com/babynesios/admin/api",//BAIDU MOCK
-                @"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
-                //@"https://testbaby.i9i8.com/admin/api",//TESTBABY
+                //@"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
+                @"https://testbaby.i9i8.com/admin/api",//TESTBABY
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
