@@ -4,6 +4,7 @@
 #import "MeterialVideoItemView.h"
 #import "MWPhotoBrowser.h"
 #import "ServerConfig.h"
+#import <QuartzCore/QuartzCore.h>
 
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
@@ -114,7 +115,13 @@ static CGFloat reloadHeaderHeight=40;
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
-	[contentView addSubview:catePane];
+	
+    [[catePane layer] setShadowOffset:{-1, 0.0}];
+    [[catePane layer] setShadowRadius:2];
+    [[catePane layer] setShadowOpacity:1];
+    [[catePane layer] setShadowColor:[UIColor grayColor].CGColor];
+    
+    [contentView addSubview:catePane];
 	
 	NSInteger i = 0;
 	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/4);
@@ -164,7 +171,8 @@ static CGFloat reloadHeaderHeight=40;
 		if ([cate[@"value"] isEqualToString:@"video"])
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
@@ -207,7 +215,8 @@ static CGFloat reloadHeaderHeight=40;
 		else
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};

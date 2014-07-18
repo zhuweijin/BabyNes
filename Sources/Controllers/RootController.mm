@@ -1,5 +1,6 @@
 
 #import "RootController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "SinriUIApplication.h"
 
@@ -67,6 +68,11 @@
      [exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
      [self.tabBar addSubview:exitButton];
      */
+    
+    [[self.tabBar layer] setShadowOffset:{0, 2}];
+    [[self.tabBar layer] setShadowRadius:0.5];
+    [[self.tabBar layer] setShadowOpacity:0.7];
+    [[self.tabBar layer] setShadowColor:[UIColor grayColor].CGColor];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sineToIwareta:) name:kLogoutNotification object:nil];

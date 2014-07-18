@@ -2,6 +2,7 @@
 #import "IntroduceController.h"
 #import "IntroduceItemView.h"
 #import "IntroduceMonoDetailView.h"
+#import <QuartzCore/QuartzCore.h>
 
 static CGFloat reloadHeaderHeight=40;
 
@@ -76,7 +77,13 @@ static int MonoNumberInRow=3;
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
-	[contentView addSubview:catePane];
+	
+    [[catePane layer] setShadowOffset:{-1, 0.0}];
+    [[catePane layer] setShadowRadius:2];
+    [[catePane layer] setShadowOpacity:1];
+    [[catePane layer] setShadowColor:[UIColor grayColor].CGColor];
+    
+    [contentView addSubview:catePane];
 	
 	NSInteger i = 0;
 	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/4);
@@ -123,12 +130,13 @@ static int MonoNumberInRow=3;
              [(UIWebView *)_itemPane loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:cate[@"url"]]]];
              */
             
-            CGRect wvframe = CGRectMake(0, reloadHeaderHeight, _contentView.frame.size.width - 370, _contentView.frame.size.height);
+            CGRect wvframe = CGRectMake(0, reloadHeaderHeight, _contentView.frame.size.width - 370-5, _contentView.frame.size.height);
             UIWebView *webView=[[UIWebView alloc] initWithFrame:wvframe];
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:cate[@"url"]]]];
             
             _itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
             
             [_itemPane addSubview:webView];
             
@@ -147,8 +155,8 @@ static int MonoNumberInRow=3;
 		else
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
-			
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			_itemPane.backgroundColor=[UIColor clearColor];
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
             CGRect frame = {0, reloadHeaderHeight, width, width};
