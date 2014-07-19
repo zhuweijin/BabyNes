@@ -214,7 +214,9 @@
     controller.navigationItem.title = [srm title];
     [self.navigationController pushViewController:controller animated:YES];
     
-    [SRReceiptSender report_have_read:[srm srid]];
+    if(![srm read]){
+        [SRReceiptSender report_have_read:[srm srid]];
+    }
     
     /*
      [self presentViewController:controller animated:YES completion:^{

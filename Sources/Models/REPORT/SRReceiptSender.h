@@ -12,6 +12,9 @@
 @interface SRReceiptSender : LSConnectionDelegater < NSURLConnectionDelegate
 //, NSURLConnectionDownloadDelegate
 , NSURLConnectionDataDelegate>
+{
+    NSMutableData * tmp_data;
+}
 
 +(void)report_have_read:(int)srid;
 @property NSArray * srids;

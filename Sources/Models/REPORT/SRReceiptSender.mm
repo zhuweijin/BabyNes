@@ -25,7 +25,7 @@
     LSNetAPIWorker * worker=[[LSNetAPIWorker alloc]init];
     SRReceiptSender * srrs=[[SRReceiptSender alloc]init];
     srrs.srids=@[[NSNumber numberWithInt: srid]];
-    BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_device_report] withParameterString:param toDelegate:srrs];
+    BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_sr_receipt] withParameterString:param toDelegate:srrs];
     _Log(@"SRReceiptSender report_have_read:%d -> %d",srid,done);
 }
 
@@ -56,28 +56,38 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     //_Log(@"Regular Report didReceiveResponse [%@]",response);
+    tmp_data=[[NSMutableData alloc]init];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    _Log(@"Regular Report didReceiveData:[%@]",data);
-    NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:nil];
-    _Log(@"Regular Report didReceiveData to dict=[%@]",dict);
+    _Log(@"SRReceiptSender didReceiveData:[%@]",data);
+    [tmp_data appendData:data];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    _Log(@"SRReceiptSender didFailWithError [%@]",error);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"SRReceiptSenderError" object:@{@"srids": _srids}];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    _Log(@"SRReceiptSender connectionDidFinishLoading ...");
+    NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:tmp_data options:(NSJSONReadingMutableLeaves) error:nil];
+    _Log(@"SRReceiptSender connectionDidFinishLoading to dict=[%@]",dict);
     if([dict isKindOfClass:[NSDictionary class]]){
-        id done=dict[@"DONE"];
-        id undone=dict[@"UNDONE"];
-        if (![done isEqual:[NSNull null]]) {
-            [LocalSRMessageTool setSRArraytoHaveRead:done];
+        if([dict[@"CODE"] integerValue]==200){
+            NSDictionary * data_dict=dict[@"DATA"];
+            id done=data_dict[@"DONE"];
+            id undone=data_dict[@"UNDONE"];
+            if (done && ![done isEqual:[NSNull null]]) {
+                [LocalSRMessageTool setSRArraytoHaveRead:done];
+            }
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"SRReceiptSenderDone" object:@{@"DoneIds":([done isEqual: [NSNull null]]?[NSNull null]:done),@"UndoneIds":([undone isEqual:[NSNull null]]?[NSNull null]:undone)}];
+        }else{
+            _Log(@"SRReceiptSender connectionDidFinishLoading return error code");
         }
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"SRReceiptSenderDone" object:@{@"DoneIds":([done isEqual: [NSNull null]]?[NSNull null]:done),@"UndoneIds":([undone isEqual:[NSNull null]]?[NSNull null]:undone)}];
     }else{
         [self connection:connection didFailWithError:nil];
     }
 }
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    _Log(@"Regular Report didFailWithError [%@]",error);
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"SRReceiptSenderError" object:@{@"srids": _srids}];
-}
-
 
 @end

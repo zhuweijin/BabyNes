@@ -99,6 +99,7 @@ static NSMutableArray * SRArray;
 }
 
 +(void)setSRArraytoHaveRead:(NSArray*)srids{
+    _Log(@"LocalSRMessageTool setSRArraytoHaveRead:%@",srids);
     NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
     for (NSNumber * num in srids) {
         SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:[num intValue]]];

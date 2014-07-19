@@ -22,5 +22,6 @@
 -(NSString*)getURL_device_register;
 -(NSString*)getURL_device_report;
 -(NSString*)getURL_idle_video;
+-(NSString*)getURL_sr_receipt;
 
 @end
