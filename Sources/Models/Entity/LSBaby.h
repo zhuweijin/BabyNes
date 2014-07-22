@@ -15,5 +15,7 @@
 @property NSString * the_sex;
 @property NSString * the_nick;
 
+@property NSDate * the_birth_date;
+
 -(BOOL)validateBabyInformation:(int)baby_index;
 @end

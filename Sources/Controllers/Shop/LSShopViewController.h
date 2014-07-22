@@ -15,7 +15,7 @@
 //#import "LSShopCartTableViewController.h"
 #import "CartTable.h"
 //#import "LSCustomerSearchViewController.h"
-#import "NewCustomerController.h"
+#import "NewCustomerXController.h"
 
 #import "CartEntity.h"
 

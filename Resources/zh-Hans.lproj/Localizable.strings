@@ -16,6 +16,9 @@
 /* %d Years Before */
 "%d Years Before" = "%d年前";
 
+/* (Expected) Birthday */
+"(Expected) Birthday" = "宝宝的生日/预产期";
+
 /* * City: */
 "* City:" = "* 城市：";
 
@@ -73,8 +76,23 @@
 /* Are you sure to logout? */
 "Are you sure to logout?" = "你要退出当前账户吗?";
 
+/* Area Code */
+"Area Code" = "地区号";
+
+/* Area Code is not correct */
+"Area Code is not correct" = "地区号未填写正确";
+
 /* a_m */
 "a_m" = "上午";
+
+/* Baby Information */
+"Baby Information" = "宝宝信息";
+
+/* Baby's Nickname */
+"Baby's Nickname" = "宝宝的昵称";
+
+/* Baby's sex cannot be edited as baby is not born yet */
+"Baby's sex cannot be edited as baby is not born yet" = "胎儿不能修改性别";
 
 /* Back */
 "Back" = "返回";
@@ -109,6 +127,12 @@
 /* Close */
 "Close" = "取消创建";
 
+/* Confirm */
+"Confirm" = "确认";
+
+/* Contact */
+"Contact" = "联系方式";
+
 /* Continue to view */
 "Continue to view" = "继续观看";
 
@@ -129,6 +153,9 @@
 
 /* Create */
 "Create" = "确认创建";
+
+/* Customer Information */
+"Customer Information" = "顾客信息";
 
 /* Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@ */
 "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@" = "顾客信息：\n%@ 手机号：%@\n宝宝生日：%@";
@@ -156,6 +183,9 @@
 
 /* Email is not correct */
 "Email is not correct" = "电子邮件地址未填写正确";
+
+/* Email(Optional) */
+"Email(Optional)" = "电子邮件(可选)";
 
 /* Email: */
 "Email:" = "电子邮箱：";
@@ -204,6 +234,9 @@
 
 /* Girl */
 "Girl" = "女";
+
+/* I have confirmed it is correct. */
+"I have confirmed it is correct." = "I have confirmed it is correct.";
 
 /* Identity Exception */
 "Identity Exception" = "身份认证异常";
@@ -292,6 +325,9 @@
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
 
+/* Nickname(optional) */
+"Nickname(optional)" = "昵称（可选）";
+
 /* No cache available. */
 "No cache available." = "加载本地缓存失败。";
 
@@ -321,6 +357,15 @@
 
 /* Paid Network Warning */
 "Paid Network Warning" = "付费网络提醒";
+
+/* Please check if the mobile of the customer is correct, it would affect your points. */
+"Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
+
+/* Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
+
+/* Pregnant */
+"Pregnant" = "胎儿";
 
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "产品                              价格           数量";
@@ -373,6 +418,9 @@
 /* Remind Me Later */
 "Remind Me Later" = "以后再说";
 
+/* Reminder */
+"Reminder" = "Reminder";
+
 /* Retry */
 "Retry" = "重试";
 
@@ -412,6 +460,9 @@
 /* Sex */
 "Sex" = "性别";
 
+/* Sex of baby */
+"Sex of baby" = "宝宝的性别";
+
 /* Sex of Baby is not completed yet for No.%d baby */
 "Sex of Baby is not completed yet for No.%d baby" = "第%d个宝宝的性别未填写";
 
@@ -441,6 +492,9 @@
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "认证信息错误，请重新输入。";
+
+/* The mobile needs changing. */
+"The mobile needs changing." = "The mobile needs changing.";
 
 /* There is no need to update. */
 "There is no need to update." = "无需更新";
@@ -498,6 +552,9 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的订单已经确认。";
+
+/* ^852$ */
+"^852$" = "^86$";
 
 /* ^[569][\\d]{7}$ */
 "^[569][\\d]{7}$" = "^1[\\d]{10}$";

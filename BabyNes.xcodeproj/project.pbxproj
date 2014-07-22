@@ -100,9 +100,18 @@
 		2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923A19628B9F00F271AA /* LSRegularReporter.mm */; };
 		2F12923F19628B9F00F271AA /* Reachability.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F12923C19628B9F00F271AA /* Reachability.mm */; };
 		2F12924219629B8D00F271AA /* SecureUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F12924119629B8D00F271AA /* SecureUDID.m */; };
+		2F15DD9E197C9EE4001DD26D /* NCRootSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DD9D197C9EE4001DD26D /* NCRootSubView.mm */; };
+		2F15DDA7197CB644001DD26D /* NCBabySexSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDA6197CB644001DD26D /* NCBabySexSubView.mm */; };
+		2F15DDAA197CB684001DD26D /* NCCustomerTitleSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDA9197CB684001DD26D /* NCCustomerTitleSubView.mm */; };
+		2F15DDAE197CD8EE001DD26D /* NCCustomerNameSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDAD197CD8EE001DD26D /* NCCustomerNameSubView.mm */; };
+		2F15DDB1197CEAC7001DD26D /* NCBabyNickSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDB0197CEAC7001DD26D /* NCBabyNickSubView.mm */; };
+		2F15DDB4197CED36001DD26D /* NCCustomerContactSubView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDB3197CED36001DD26D /* NCCustomerContactSubView.mm */; };
+		2F15DDB9197CF093001DD26D /* NCBabyBirthdaySubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDB8197CF093001DD26D /* NCBabyBirthdaySubView.m */; };
+		2F15DDBC197D0572001DD26D /* NCCustomerAddressSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F15DDBB197D0572001DD26D /* NCCustomerAddressSubView.m */; };
 		2F2D54AC1967A8990050ACFA /* PRPhotoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */; };
 		2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */; };
 		2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */; };
+		2F393D11197E11BB00F28C21 /* NCTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F393D10197E11BB00F28C21 /* NCTableViewCell.mm */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
@@ -110,6 +119,8 @@
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
 		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
+		2FEBDBF0197A6AC000C292FF /* NewCustomerXController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */; };
+		2FEBDBF3197A788700C292FF /* NCTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBF2197A788700C292FF /* NCTableView.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
 		2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D01963FDF500A802A9 /* LSBaby.mm */; };
@@ -308,12 +319,30 @@
 		2F12923C19628B9F00F271AA /* Reachability.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Reachability.mm; sourceTree = "<group>"; };
 		2F12924019629B8D00F271AA /* SecureUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecureUDID.h; sourceTree = "<group>"; };
 		2F12924119629B8D00F271AA /* SecureUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureUDID.m; sourceTree = "<group>"; };
+		2F15DD9C197C9EE4001DD26D /* NCRootSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCRootSubView.h; path = NewCustomerX/NCRootSubView.h; sourceTree = "<group>"; };
+		2F15DD9D197C9EE4001DD26D /* NCRootSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCRootSubView.mm; path = NewCustomerX/NCRootSubView.mm; sourceTree = "<group>"; };
+		2F15DDA5197CB644001DD26D /* NCBabySexSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCBabySexSubView.h; path = NewCustomerX/NCBabySexSubView.h; sourceTree = "<group>"; };
+		2F15DDA6197CB644001DD26D /* NCBabySexSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCBabySexSubView.mm; path = NewCustomerX/NCBabySexSubView.mm; sourceTree = "<group>"; };
+		2F15DDA8197CB684001DD26D /* NCCustomerTitleSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCustomerTitleSubView.h; path = NewCustomerX/NCCustomerTitleSubView.h; sourceTree = "<group>"; };
+		2F15DDA9197CB684001DD26D /* NCCustomerTitleSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCCustomerTitleSubView.mm; path = NewCustomerX/NCCustomerTitleSubView.mm; sourceTree = "<group>"; };
+		2F15DDAC197CD8EE001DD26D /* NCCustomerNameSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCustomerNameSubView.h; path = NewCustomerX/NCCustomerNameSubView.h; sourceTree = "<group>"; };
+		2F15DDAD197CD8EE001DD26D /* NCCustomerNameSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCCustomerNameSubView.mm; path = NewCustomerX/NCCustomerNameSubView.mm; sourceTree = "<group>"; };
+		2F15DDAF197CEAC7001DD26D /* NCBabyNickSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCBabyNickSubView.h; path = NewCustomerX/NCBabyNickSubView.h; sourceTree = "<group>"; };
+		2F15DDB0197CEAC7001DD26D /* NCBabyNickSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCBabyNickSubView.mm; path = NewCustomerX/NCBabyNickSubView.mm; sourceTree = "<group>"; };
+		2F15DDB2197CED36001DD26D /* NCCustomerContactSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCustomerContactSubView.h; path = NewCustomerX/NCCustomerContactSubView.h; sourceTree = "<group>"; };
+		2F15DDB3197CED36001DD26D /* NCCustomerContactSubView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCCustomerContactSubView.mm; path = NewCustomerX/NCCustomerContactSubView.mm; sourceTree = "<group>"; };
+		2F15DDB7197CF093001DD26D /* NCBabyBirthdaySubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCBabyBirthdaySubView.h; path = NewCustomerX/NCBabyBirthdaySubView.h; sourceTree = "<group>"; };
+		2F15DDB8197CF093001DD26D /* NCBabyBirthdaySubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCBabyBirthdaySubView.m; path = NewCustomerX/NCBabyBirthdaySubView.m; sourceTree = "<group>"; };
+		2F15DDBA197D0572001DD26D /* NCCustomerAddressSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCustomerAddressSubView.h; path = NewCustomerX/NCCustomerAddressSubView.h; sourceTree = "<group>"; };
+		2F15DDBB197D0572001DD26D /* NCCustomerAddressSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCCustomerAddressSubView.m; path = NewCustomerX/NCCustomerAddressSubView.m; sourceTree = "<group>"; };
 		2F2D54AA1967A8990050ACFA /* PRPhotoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PRPhotoPlayer.h; path = Sources/Controllers/PRPhotoPlayer.h; sourceTree = SOURCE_ROOT; };
 		2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PRPhotoPlayer.mm; path = Sources/Controllers/PRPhotoPlayer.mm; sourceTree = SOURCE_ROOT; };
 		2F2D54B31967E8BF0050ACFA /* ServerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfig.h; sourceTree = "<group>"; };
 		2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ServerConfig.mm; sourceTree = "<group>"; };
 		2F357F54196A721A0049AB52 /* IntroduceMonoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceMonoDetailView.h; sourceTree = "<group>"; };
 		2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceMonoDetailView.mm; sourceTree = "<group>"; };
+		2F393D0F197E11BB00F28C21 /* NCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCTableViewCell.h; path = NewCustomerX/NCTableViewCell.h; sourceTree = "<group>"; };
+		2F393D10197E11BB00F28C21 /* NCTableViewCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCTableViewCell.mm; path = NewCustomerX/NCTableViewCell.mm; sourceTree = "<group>"; };
 		2F54FFF71961763C0093028E /* ProductEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductEntity.h; path = Entity/ProductEntity.h; sourceTree = "<group>"; };
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
@@ -328,6 +357,10 @@
 		2F92BBBF1977CAA700FBE647 /* SRTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTable.mm; path = MessageView/SRTable.mm; sourceTree = "<group>"; };
 		2F92BBC11977D1DB00FBE647 /* SRTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRTableCell.h; path = MessageView/SRTableCell.h; sourceTree = "<group>"; };
 		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
+		2FEBDBEE197A6AC000C292FF /* NewCustomerXController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCustomerXController.h; path = NewCustomerX/NewCustomerXController.h; sourceTree = "<group>"; };
+		2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NewCustomerXController.mm; path = NewCustomerX/NewCustomerXController.mm; sourceTree = "<group>"; };
+		2FEBDBF1197A788700C292FF /* NCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCTableView.h; path = NewCustomerX/NCTableView.h; sourceTree = "<group>"; };
+		2FEBDBF2197A788700C292FF /* NCTableView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NCTableView.mm; path = NewCustomerX/NCTableView.mm; sourceTree = "<group>"; };
 		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
 		2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSNetAPIWorker.mm; sourceTree = "<group>"; };
 		2FF644CC1962FB0600A802A9 /* LSConnectionDelegater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionDelegater.h; sourceTree = "<group>"; };
@@ -549,6 +582,7 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2FEBDBED197A6A6600C292FF /* NewCustomerX */,
 				2F92BBB719779B6800FBE647 /* MessageView */,
 				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
 				2FF644E71965A44D00A802A9 /* IntroduceController.mm */,
@@ -767,6 +801,43 @@
 			path = REPORT;
 			sourceTree = "<group>";
 		};
+		2F15DDAB197CB698001DD26D /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				2F15DDB6197CED83001DD26D /* ForBaby */,
+				2F15DDB5197CED7B001DD26D /* ForCustomer */,
+			);
+			name = SubView;
+			sourceTree = "<group>";
+		};
+		2F15DDB5197CED7B001DD26D /* ForCustomer */ = {
+			isa = PBXGroup;
+			children = (
+				2F15DDA8197CB684001DD26D /* NCCustomerTitleSubView.h */,
+				2F15DDA9197CB684001DD26D /* NCCustomerTitleSubView.mm */,
+				2F15DDAC197CD8EE001DD26D /* NCCustomerNameSubView.h */,
+				2F15DDAD197CD8EE001DD26D /* NCCustomerNameSubView.mm */,
+				2F15DDB2197CED36001DD26D /* NCCustomerContactSubView.h */,
+				2F15DDB3197CED36001DD26D /* NCCustomerContactSubView.mm */,
+				2F15DDBA197D0572001DD26D /* NCCustomerAddressSubView.h */,
+				2F15DDBB197D0572001DD26D /* NCCustomerAddressSubView.m */,
+			);
+			name = ForCustomer;
+			sourceTree = "<group>";
+		};
+		2F15DDB6197CED83001DD26D /* ForBaby */ = {
+			isa = PBXGroup;
+			children = (
+				2F15DDA5197CB644001DD26D /* NCBabySexSubView.h */,
+				2F15DDA6197CB644001DD26D /* NCBabySexSubView.mm */,
+				2F15DDAF197CEAC7001DD26D /* NCBabyNickSubView.h */,
+				2F15DDB0197CEAC7001DD26D /* NCBabyNickSubView.mm */,
+				2F15DDB7197CF093001DD26D /* NCBabyBirthdaySubView.h */,
+				2F15DDB8197CF093001DD26D /* NCBabyBirthdaySubView.m */,
+			);
+			name = ForBaby;
+			sourceTree = "<group>";
+		};
 		2F54FFFA196176410093028E /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +866,22 @@
 				2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */,
 			);
 			name = MessageView;
+			sourceTree = "<group>";
+		};
+		2FEBDBED197A6A6600C292FF /* NewCustomerX */ = {
+			isa = PBXGroup;
+			children = (
+				2F15DDAB197CB698001DD26D /* SubView */,
+				2FEBDBEE197A6AC000C292FF /* NewCustomerXController.h */,
+				2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */,
+				2FEBDBF1197A788700C292FF /* NCTableView.h */,
+				2FEBDBF2197A788700C292FF /* NCTableView.mm */,
+				2F15DD9C197C9EE4001DD26D /* NCRootSubView.h */,
+				2F15DD9D197C9EE4001DD26D /* NCRootSubView.mm */,
+				2F393D0F197E11BB00F28C21 /* NCTableViewCell.h */,
+				2F393D10197E11BB00F28C21 /* NCTableViewCell.mm */,
+			);
+			name = NewCustomerX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -911,12 +998,14 @@
 				24259EDB194AB36B000FF8A9 /* CacheImageView.mm in Sources */,
 				242F94E1195C6E7300371697 /* TableController.mm in Sources */,
 				242F94F1195C6E7300371697 /* LSShopCartTableViewCell.mm in Sources */,
+				2F15DDB4197CED36001DD26D /* NCCustomerContactSubView.mm in Sources */,
 				24259EC1194AB36B000FF8A9 /* MWPhoto.mm in Sources */,
 				242F94F2195C6E7300371697 /* LSShopMonoTableViewCell.mm in Sources */,
 				2FF644EB19663E3400A802A9 /* MeterialImageItemView.mm in Sources */,
 				2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */,
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
 				242F9507195C6E7300371697 /* SelectPicker.mm in Sources */,
+				2FEBDBF0197A6AC000C292FF /* NewCustomerXController.mm in Sources */,
 				242F94E4195C6E7300371697 /* SettingController.mm in Sources */,
 				2F12923F19628B9F00F271AA /* Reachability.mm in Sources */,
 				24259ED3194AB36B000FF8A9 /* iVersion.m in Sources */,
@@ -930,6 +1019,7 @@
 				2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */,
 				2F05E4C319792E02007C5D28 /* SRReceiptSender.mm in Sources */,
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
+				2F15DDAE197CD8EE001DD26D /* NCCustomerNameSubView.mm in Sources */,
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
 				2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */,
@@ -941,6 +1031,7 @@
 				24259ECE194AB36B000FF8A9 /* UMFeedbackTableViewCellLeft.m in Sources */,
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
 				24259ED0194AB36B000FF8A9 /* UMFeedbackViewController.mm in Sources */,
+				2F393D11197E11BB00F28C21 /* NCTableViewCell.mm in Sources */,
 				24259ECA194AB36B000FF8A9 /* UMContactViewController.m in Sources */,
 				2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */,
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,
@@ -949,6 +1040,7 @@
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
 				24259EEE194AB36B000FF8A9 /* unzip.c in Sources */,
 				24259EDF194AB36B000FF8A9 /* KBCustomTextField.mm in Sources */,
+				2F15DD9E197C9EE4001DD26D /* NCRootSubView.mm in Sources */,
 				24410041195EF50400CEF5C9 /* DataController.mm in Sources */,
 				24259EEF194AB36B000FF8A9 /* zip.c in Sources */,
 				242F94DC195C6E7300371697 /* BaseController.mm in Sources */,
@@ -957,6 +1049,7 @@
 				242F94F4195C6E7300371697 /* MonoTable.mm in Sources */,
 				24259ECC194AB36B000FF8A9 /* UMEGORefreshTableHeaderView.m in Sources */,
 				24E88BF2195DA645007478B3 /* LSComboBox.mm in Sources */,
+				2FEBDBF3197A788700C292FF /* NCTableView.mm in Sources */,
 				242F94E3195C6E7300371697 /* RootController.mm in Sources */,
 				242F9501195C6E7300371697 /* DataLoader.mm in Sources */,
 				24259ED9194AB36B000FF8A9 /* UIUtil.mm in Sources */,
@@ -978,6 +1071,7 @@
 				2FF644DF1965214800A802A9 /* PRMoviePlayer.mm in Sources */,
 				2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
+				2F15DDB9197CF093001DD26D /* NCBabyBirthdaySubView.m in Sources */,
 				2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
@@ -987,14 +1081,18 @@
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
+				2F15DDB1197CEAC7001DD26D /* NCBabyNickSubView.mm in Sources */,
+				2F15DDBC197D0572001DD26D /* NCCustomerAddressSubView.m in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
 				242F94E2195C6E7300371697 /* WizardController.mm in Sources */,
 				2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */,
 				24259EC3194AB36B000FF8A9 /* MWTapDetectingImageView.m in Sources */,
+				2F15DDA7197CB644001DD26D /* NCBabySexSubView.mm in Sources */,
 				242F9505195C6E7300371697 /* InputBox.mm in Sources */,
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,
 				24E88BF6195DA645007478B3 /* NewCustomerController.mm in Sources */,
+				2F15DDAA197CB684001DD26D /* NCCustomerTitleSubView.mm in Sources */,
 				242F94F0195C6E7300371697 /* CartTable.mm in Sources */,
 				2FF644E219659AFD00A802A9 /* MaterialController.mm in Sources */,
 				2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */,

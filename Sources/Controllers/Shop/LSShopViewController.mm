@@ -296,7 +296,8 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)show_new_customer_VC:(id)sender{
     _Log(@"show_new_customer_VC called");
-    NewCustomerController * nc=[[NewCustomerController alloc]init];
+    //NewCustomerController * nc=[[NewCustomerController alloc]init];
+    NewCustomerXController * nc=[[NewCustomerXController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];

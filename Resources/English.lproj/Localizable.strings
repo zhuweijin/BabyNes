@@ -16,6 +16,9 @@
 /* %d Years Before */
 "%d Years Before" = "%d Years Before";
 
+/* (Expected) Birthday */
+"(Expected) Birthday" = "(Expected) Birthday";
+
 /* * City: */
 "* City:" = "* City:";
 
@@ -73,8 +76,23 @@
 /* Are you sure to logout? */
 "Are you sure to logout?" = "Are you sure to logout?";
 
+/* Area Code */
+"Area Code" = "Area Code";
+
+/* Area Code is not correct */
+"Area Code is not correct" = "Area Code is not correct";
+
 /* a_m */
 "a_m" = "a_m";
+
+/* Baby Information */
+"Baby Information" = "Baby Information";
+
+/* Baby's Nickname */
+"Baby's Nickname" = "Baby's Nickname";
+
+/* Baby's sex cannot be edited as baby is not born yet */
+"Baby's sex cannot be edited as baby is not born yet" = "Baby's sex cannot be edited as baby is not born yet";
 
 /* Back */
 "Back" = "Back";
@@ -109,6 +127,12 @@
 /* Close */
 "Close" = "Close";
 
+/* Confirm */
+"Confirm" = "Confirm";
+
+/* Contact */
+"Contact" = "Contact";
+
 /* Continue to view */
 "Continue to view" = "Continue to view";
 
@@ -129,6 +153,9 @@
 
 /* Create */
 "Create" = "Create";
+
+/* Customer Information */
+"Customer Information" = "Customer Information";
 
 /* Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@ */
 "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@" = "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@";
@@ -156,6 +183,9 @@
 
 /* Email is not correct */
 "Email is not correct" = "Email is not correct";
+
+/* Email(Optional) */
+"Email(Optional)" = "Email(Optional)";
 
 /* Email: */
 "Email:" = "Email:";
@@ -204,6 +234,9 @@
 
 /* Girl */
 "Girl" = "Girl";
+
+/* I have confirmed it is correct. */
+"I have confirmed it is correct." = "I have confirmed it is correct.";
 
 /* Identity Exception */
 "Identity Exception" = "Identity Exception";
@@ -292,6 +325,9 @@
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "Nickname of Baby is not completed yet for No.%d baby";
 
+/* Nickname(optional) */
+"Nickname(optional)" = "Nickname(optional)";
+
 /* No cache available. */
 "No cache available." = "No cache available.";
 
@@ -321,6 +357,15 @@
 
 /* Paid Network Warning */
 "Paid Network Warning" = "Paid Network Warning";
+
+/* Please check if the mobile of the customer is correct, it would affect your points. */
+"Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
+
+/* Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
+
+/* Pregnant */
+"Pregnant" = "Pregnant";
 
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "Product                     Price         Quantity";
@@ -373,6 +418,9 @@
 /* Remind Me Later */
 "Remind Me Later" = "Remind Me Later";
 
+/* Reminder */
+"Reminder" = "Reminder";
+
 /* Retry */
 "Retry" = "Retry";
 
@@ -412,6 +460,9 @@
 /* Sex */
 "Sex" = "Sex";
 
+/* Sex of baby */
+"Sex of baby" = "Sex of baby";
+
 /* Sex of Baby is not completed yet for No.%d baby */
 "Sex of Baby is not completed yet for No.%d baby" = "Sex of Baby is not completed yet for No.%d baby";
 
@@ -441,6 +492,9 @@
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "The identification information is not correct, please use the correct pair.";
+
+/* The mobile needs changing. */
+"The mobile needs changing." = "The mobile needs changing.";
 
 /* There is no need to update. */
 "There is no need to update." = "There is no need to update.";
@@ -498,6 +552,9 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "Your order has been confirmed.";
+
+/* ^852$ */
+"^852$" = "^852$";
 
 /* ^[569][\\d]{7}$ */
 "^[569][\\d]{7}$" = "^[569][\\d]{7}$";
