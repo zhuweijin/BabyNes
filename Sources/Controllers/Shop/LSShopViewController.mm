@@ -235,7 +235,7 @@ static CGFloat reloadHeaderHeight=30;
     
     [ProductEntity updateProductDictionaryWithJSON:dict];
     
-    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 15, 550, 670))  style:(UITableViewStylePlain)];
+    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 5, 550, 690))  style:(UITableViewStylePlain)];
     //[self.monoTableView setBackgroundColor:[UIColor greenColor]];
     //[self.monoTableView setPdtArrayWithNSDic:dict];
     [self.monoTableView setDelegate:self.monoTableView];
@@ -509,6 +509,8 @@ static CGFloat reloadHeaderHeight=30;
       cc.theMobile,
       baby_info
       ]];
+    [self.the_customer_new_button setHidden:YES];
+    [self.the_order_confirm_button setHidden:NO];
 }
 
 -(void)resetShopView{

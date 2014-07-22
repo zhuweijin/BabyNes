@@ -53,9 +53,11 @@
         if([selection isEqualToString:[baby the_sex]]){
             [self pickerView:_pickerView didSelectRow:i inComponent:0];
             [[self pickerView]selectRow:i inComponent:0 animated:YES];
-            break;
+            return;
         }
     }
+    [[self pickerView]selectRow:0 inComponent:0 animated:YES];
+    [self pickerView:_pickerView didSelectRow:0 inComponent:0];
 }
 
 

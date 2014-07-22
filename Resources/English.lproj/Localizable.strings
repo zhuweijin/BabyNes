@@ -40,6 +40,9 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*Sex of baby:";
 
+/* 852 */
+"852" = "852";
+
 /* About */
 "About" = "About";
 
@@ -244,6 +247,15 @@
 /* Ignore */
 "Ignore" = "Ignore";
 
+/* Input the Area Code and mobile here. */
+"Input the Area Code and mobile here." = "Input the Area Code and mobile here.";
+
+/* Input the nickname of the baby here. It is optional. */
+"Input the nickname of the baby here. It is optional." = "Input the nickname of the baby here. It is optional.";
+
+/* Input your email here. It is optional. */
+"Input your email here. It is optional." = "Input your email here. It is optional.";
+
 /* Introduce */
 "Introduce" = "Introduce";
 
@@ -361,8 +373,8 @@
 /* Please check if the mobile of the customer is correct, it would affect your points. */
 "Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
 
-/* Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
+/* Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
 
 /* Pregnant */
 "Pregnant" = "Pregnant";

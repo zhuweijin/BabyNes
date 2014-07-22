@@ -40,6 +40,9 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*寶寶的性別：";
 
+/* 852 */
+"852" = "86";
+
 /* About */
 "About" = "關於";
 
@@ -244,6 +247,15 @@
 /* Ignore */
 "Ignore" = "忽略";
 
+/* Input the Area Code and mobile here. */
+"Input the Area Code and mobile here." = "請填寫地區代號和手機號。";
+
+/* Input the nickname of the baby here. It is optional. */
+"Input the nickname of the baby here. It is optional." = "請填寫寶寶的昵稱。這是一個可選項。";
+
+/* Input your email here. It is optional. */
+"Input your email here. It is optional." = "請填寫電子郵箱。這是一個可選項。";
+
 /* Introduce */
 "Introduce" = "產品介紹";
 
@@ -361,8 +373,8 @@
 /* Please check if the mobile of the customer is correct, it would affect your points. */
 "Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
 
-/* Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
+/* Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼(%@-%@)正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
 
 /* Pregnant */
 "Pregnant" = "胎兒";

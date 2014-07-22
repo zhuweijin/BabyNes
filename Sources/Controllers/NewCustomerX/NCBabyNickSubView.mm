@@ -27,10 +27,16 @@
         
         _textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 10, self.contentView.frame.size.width-20, 30)];
         [_textField setBorderStyle:(UITextBorderStyleRoundedRect)];
-        [_textField setPlaceholder:NSLocalizedString(@"Nickname", @"昵称")];
+        [_textField setPlaceholder:NSLocalizedString(@"Baby's Nickname", @"宝宝的昵称")];
         [_textField setReturnKeyType:(UIReturnKeyDone)];
         [_textField setDelegate:self];
         [self.contentView addSubview:_textField];
+        
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(10, 50, self.contentView.frame.size.width-20, 30)];
+        [label setLineBreakMode:(NSLineBreakByWordWrapping)];
+        [label setNumberOfLines:0];
+        [label setText:NSLocalizedString(@"Input the nickname of the baby here. It is optional.",@"请填写宝宝的昵称。这是一个可选项。")];
+        [self.contentView addSubview:label];
     }
     return self;
 }

@@ -134,15 +134,35 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSLog(@"pickerView didSelectRow:%d inComponent:%d",row,component);
-    if(component==0){
+    @try {
         _value_province=[_provinceArray objectAtIndex:row];
+    }
+    @catch (NSException *exception) {
+        //
+    }
+    @finally {
+        //
+    }
+
+    if(component==0){
         _cityArray = [_province_city_dict objectForKey:_value_province];
         [pickerView reloadComponent:1];
     }else{
-        _value_city=[_cityArray objectAtIndex:row];
-        [self.delegate confirmCustomerProperty:(NCSubViewPropertyTypeCustomerProvince) withValue:_value_province];
-        [self.delegate confirmCustomerProperty:(NCSubViewPropertyTypeCustomerCity) withValue:_value_city];
+        //
     }
+    
+    @try {
+        _value_city=[_cityArray objectAtIndex:row];
+    }
+    @catch (NSException *exception) {
+        //
+    }
+    @finally {
+        //
+    }
+    
+    [self.delegate confirmCustomerProperty:(NCSubViewPropertyTypeCustomerProvince) withValue:_value_province];
+    [self.delegate confirmCustomerProperty:(NCSubViewPropertyTypeCustomerCity) withValue:_value_city];
     
 }
 

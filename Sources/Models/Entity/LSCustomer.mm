@@ -53,7 +53,7 @@ static LSCustomer * currentCustomer=nil;
     self.theProvince=@"";
     self.theCity=@"";
     self.theAddress=@"";
-    self.theAreaCode=@"";
+    self.theAreaCode=NSLocalizedString(@"852", @"86");
     self.theMobile=@"";
     self.theEmail=@"";
     self.theBabies=[[NSMutableArray alloc]init];
@@ -136,11 +136,14 @@ static LSCustomer * currentCustomer=nil;
 -(NSString*)createCustomer{
     _Log(@"createCustomer called");
     if([self validateCustomerInformation]){
-        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"") message:NSLocalizedString(@"Please ensure that the mobile of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。") cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
+        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@-%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theAreaCode,_theMobile];
+        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
         int r=[dav showDialog];
         if(r!=0){
             //DO STH
-            return @"MOCKED RETURN CUSTOMER ID";
+            self.theID=@"MOCKED RETURN CUSTOMER ID";
+            currentCustomer=self;
+            return self.theID;
         }
     }
     return nil;

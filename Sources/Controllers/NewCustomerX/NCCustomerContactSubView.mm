@@ -38,12 +38,24 @@
         [_textField_mobile setDelegate:self];
         [self.contentView addSubview:_textField_mobile];
         
-        _textField_email = [[UITextField alloc]initWithFrame:CGRectMake(10, 50, self.contentView.frame.size.width-20, 30)];
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(10, 50, self.contentView.frame.size.width-20, 30)];
+        [label setLineBreakMode:(NSLineBreakByWordWrapping)];
+        [label setNumberOfLines:0];
+        [label setText:NSLocalizedString(@"Input the Area Code and mobile here.",@"请填写地区代号和手机号。")];
+        [self.contentView addSubview:label];
+        
+        _textField_email = [[UITextField alloc]initWithFrame:CGRectMake(10, 90, self.contentView.frame.size.width-20, 30)];
         [_textField_email setBorderStyle:(UITextBorderStyleRoundedRect)];
         [_textField_email setPlaceholder:NSLocalizedString(@"Email(Optional)", @"电子邮件(可选)")];
         [_textField_email setReturnKeyType:(UIReturnKeyDone)];
         [_textField_email setDelegate:self];
         [self.contentView addSubview:_textField_email];
+        
+        UILabel * label_2=[[UILabel alloc]initWithFrame:CGRectMake(10, 130, self.contentView.frame.size.width-20, 30)];
+        [label_2 setLineBreakMode:(NSLineBreakByWordWrapping)];
+        [label_2 setNumberOfLines:0];
+        [label_2 setText:NSLocalizedString(@"Input your email here. It is optional.",@"请填写电子邮箱。这是一个可选项。")];
+        [self.contentView addSubview:label_2];
     }
     return self;
 }
