@@ -10,7 +10,7 @@
 #import "SRMessage.h"
 
 @interface LocalSRMessageTool : NSObject
-
++(void)cleanMyLocalSR;
 //+(NSMutableDictionary*) getLocalSRDict_all;
 +(NSMutableDictionary*) getLocalSRDict_mine;
 +(NSDictionary*)LocalSRMessageDictionaryMergedWithArray:(NSArray*)array;

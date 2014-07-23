@@ -8,12 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DialogUIAlertView : NSObject{
+typedef enum : NSInteger {
+	NCDialogAlertViewTypeDefault=0,
+    NCDialogAlertViewTypeBigger=1
+} NCDialogAlertViewType;
+
+@interface DialogUIAlertView : NSObject<UIAlertViewDelegate>{
     BOOL isWaiting4Tap;
     UIAlertView * alv;
     int alertViewRetValue;
     
 }
+
+@property NSInteger alert_view_type;
+
 - (id)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
 - (int)showDialog;
 

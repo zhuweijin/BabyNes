@@ -73,8 +73,8 @@
 /* Are you forced to log out for the incorrect token. */
 "Are you forced to log out for the incorrect token." = "Are you forced to log out for the incorrect token.";
 
-/* Are you sure to clear cache? */
-"Are you sure to clear cache?" = "Are you sure to clear cache?";
+/* Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on. */
+"Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on." = "Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on.";
 
 /* Are you sure to logout? */
 "Are you sure to logout?" = "Are you sure to logout?";
@@ -238,17 +238,17 @@
 /* Girl */
 "Girl" = "Girl";
 
-/* I have confirmed it is correct. */
-"I have confirmed it is correct." = "I have confirmed it is correct.";
-
 /* Identity Exception */
 "Identity Exception" = "Identity Exception";
 
 /* Ignore */
 "Ignore" = "Ignore";
 
-/* Input the Area Code and mobile here. */
-"Input the Area Code and mobile here." = "Input the Area Code and mobile here.";
+/* Input Mobile Number here. */
+"Input Mobile Number here." = "Input Mobile Number here.";
+
+/* Input the Area Code and Phone Number here. It is optional. */
+"Input the Area Code and Phone Number here. It is optional." = "Input the Area Code and Phone Number here. It is optional.";
 
 /* Input the nickname of the baby here. It is optional. */
 "Input the nickname of the baby here. It is optional." = "Input the nickname of the baby here. It is optional.";
@@ -370,11 +370,11 @@
 /* Paid Network Warning */
 "Paid Network Warning" = "Paid Network Warning";
 
-/* Please check if the mobile of the customer is correct, it would affect your points. */
-"Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
+/* Phone */
+"Phone" = "Phone";
 
-/* Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
 
 /* Pregnant */
 "Pregnant" = "Pregnant";
@@ -504,9 +504,6 @@
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "The identification information is not correct, please use the correct pair.";
-
-/* The mobile needs changing. */
-"The mobile needs changing." = "The mobile needs changing.";
 
 /* There is no need to update. */
 "There is no need to update." = "There is no need to update.";

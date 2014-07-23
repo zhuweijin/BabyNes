@@ -25,8 +25,8 @@
         [self setBarTitle:NSLocalizedString(@"Address", @"地址")];
         
         CGRect pickerViewFrame = self.contentView.frame;
-        pickerViewFrame.origin.y=10;
-        pickerViewFrame.size.height-=100;
+        pickerViewFrame.origin.y=0;
+        pickerViewFrame.size.height-=130;
         
         _provinceArray=provinces;
         _province_city_dict=cities;

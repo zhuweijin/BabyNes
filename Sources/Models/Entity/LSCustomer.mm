@@ -8,6 +8,7 @@
 
 #import "LSCustomer.h"
 #import "DialogUIAlertView.h"
+#import "LSDialoger.h"
 
 static LSCustomer * currentCustomer=nil;
 
@@ -53,7 +54,9 @@ static LSCustomer * currentCustomer=nil;
     self.theProvince=@"";
     self.theCity=@"";
     self.theAddress=@"";
-    self.theAreaCode=NSLocalizedString(@"852", @"86");
+    self.theRegionCode=NSLocalizedString(@"852", @"86");
+    self.theAreaCode=@"";
+    self.thePhone=@"";
     self.theMobile=@"";
     self.theEmail=@"";
     self.theBabies=[[NSMutableArray alloc]init];
@@ -80,6 +83,7 @@ static LSCustomer * currentCustomer=nil;
         UIUtil::ShowAlert(NSLocalizedString(@"Address is empty", @"地址未填写"));
         return NO;
     }
+    /*
     if(![self.theAreaCode isEqualToString:@""]){
         NSString *string = self.theAreaCode;
         NSError  *error  = nil;
@@ -92,6 +96,7 @@ static LSCustomer * currentCustomer=nil;
             return NO;
         }
     }
+     */
     if([self.theMobile isEqualToString:@""]){
         UIUtil::ShowAlert(NSLocalizedString(@"Mobile is empty", @"手机号未填写"));
         return NO;
@@ -136,15 +141,22 @@ static LSCustomer * currentCustomer=nil;
 -(NSString*)createCustomer{
     _Log(@"createCustomer called");
     if([self validateCustomerInformation]){
-        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@-%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theAreaCode,_theMobile];
+        /*
+        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theMobile];
+        
         DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
+        [dav setAlert_view_type:NCDialogAlertViewTypeBigger];
         int r=[dav showDialog];
+        
         if(r!=0){
+            */
             //DO STH
             self.theID=@"MOCKED RETURN CUSTOMER ID";
             currentCustomer=self;
             return self.theID;
-        }
+        /*
+         }
+         */
     }
     return nil;
 }

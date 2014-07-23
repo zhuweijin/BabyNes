@@ -493,7 +493,8 @@ static NSString *_accessToken = nil;
 	{
 		// 延迟是为了解决网络没连接时，下拉松开后，快速返回错误后弹框，点击后导致不能下拉
 		// 同时也是为了解决要求登录时弹出 Toast 被遮住的问题
-		[[ErrorAlertView alertWithError:error loader:self] performSelector:@selector(show) withObject:nil afterDelay:0.2];
+		//[[ErrorAlertView alertWithError:error loader:self] performSelector:@selector(show) withObject:nil afterDelay:0.2];
+        _Log(@"DataLoader->loadError _checkError should show alert of error[%@]",error);
 	}
 }
 

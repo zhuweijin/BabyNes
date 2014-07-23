@@ -114,6 +114,8 @@
 		2F393D11197E11BB00F28C21 /* NCTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F393D10197E11BB00F28C21 /* NCTableViewCell.mm */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
+		2F62B12E197F9EA600448560 /* LSDialoger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F62B12D197F9EA600448560 /* LSDialoger.m */; };
+		2F62B131197FAF8300448560 /* NCCreateReconfrimSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
 		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
@@ -347,6 +349,10 @@
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
 		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
+		2F62B12C197F9EA600448560 /* LSDialoger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDialoger.h; sourceTree = "<group>"; };
+		2F62B12D197F9EA600448560 /* LSDialoger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDialoger.m; sourceTree = "<group>"; };
+		2F62B12F197FAF8300448560 /* NCCreateReconfrimSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCreateReconfrimSubView.h; path = NewCustomerX/NCCreateReconfrimSubView.h; sourceTree = "<group>"; };
+		2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCCreateReconfrimSubView.m; path = NewCustomerX/NCCreateReconfrimSubView.m; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
 		2F72BB3F196BBC0300528735 /* CateImageButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CateImageButton.mm; sourceTree = "<group>"; };
 		2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalSRMessageTool.h; path = Entity/LocalSRMessageTool.h; sourceTree = "<group>"; };
@@ -763,6 +769,8 @@
 				2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */,
 				2F72BB3E196BBC0300528735 /* CateImageButton.h */,
 				2F72BB3F196BBC0300528735 /* CateImageButton.mm */,
+				2F62B12C197F9EA600448560 /* LSDialoger.h */,
+				2F62B12D197F9EA600448560 /* LSDialoger.m */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -806,6 +814,8 @@
 			children = (
 				2F15DDB6197CED83001DD26D /* ForBaby */,
 				2F15DDB5197CED7B001DD26D /* ForCustomer */,
+				2F62B12F197FAF8300448560 /* NCCreateReconfrimSubView.h */,
+				2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */,
 			);
 			name = SubView;
 			sourceTree = "<group>";
@@ -1017,6 +1027,7 @@
 				24259EDE194AB36B000FF8A9 /* KBAutoScrollView.mm in Sources */,
 				24259EE1194AB36B000FF8A9 /* ODRefreshControl.m in Sources */,
 				2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */,
+				2F62B131197FAF8300448560 /* NCCreateReconfrimSubView.m in Sources */,
 				2F05E4C319792E02007C5D28 /* SRReceiptSender.mm in Sources */,
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
 				2F15DDAE197CD8EE001DD26D /* NCCustomerNameSubView.mm in Sources */,
@@ -1062,6 +1073,7 @@
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
+				2F62B12E197F9EA600448560 /* LSDialoger.m in Sources */,
 				24259F31194AB539000FF8A9 /* AppDelegate.mm in Sources */,
 				242F9504195C6E7300371697 /* EXButton.mm in Sources */,
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,

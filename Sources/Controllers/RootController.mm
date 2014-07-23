@@ -216,6 +216,7 @@
     
     if(![srm read]){
         [SRReceiptSender report_have_read:[srm srid]];
+        _Log(@"已读！ srm=%d",srm.srid);
     }
     
     /*

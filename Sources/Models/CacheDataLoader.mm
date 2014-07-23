@@ -54,7 +54,8 @@
 			if (error == DataLoaderNoError)
 			{
 				[data writeToFile:cache atomically:YES];
-                _Log(@"CacheDataLoader loadData online done data written to cache[%@]",cache);
+                //_Log(@"CacheDataLoader loadData online done data written to cache[%@]",cache);
+                _Log(@"CacheDataLoader loadData online done data [%@]=[%@] written to cache[%@]",data,[NSString stringWithContentsOfFile:cache encoding:NSUTF8StringEncoding error:nil],cache);
 			}else{
                 _Log(@"CacheDataLoader loadData online ERROR data=[%@] not written to cache[%@]",data,cache);
             }

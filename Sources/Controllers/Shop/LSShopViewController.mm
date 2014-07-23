@@ -82,6 +82,8 @@ static CGFloat reloadHeaderHeight=30;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCacheKilled:) name:@"CacheKilled" object:nil];
+    
     _Log(@"LSShopVC addObservers");
 }
 -(void)removeObservers{
@@ -93,6 +95,7 @@ static CGFloat reloadHeaderHeight=30;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
     
+     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
     _Log(@"LSShopVC removeObservers");
 }
 
@@ -204,6 +207,11 @@ static CGFloat reloadHeaderHeight=30;
     [super viewDidAppear:animated];
     [self removeObservers];
     [self addObservers];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //[self.monoTableView reloadData];
+    //[self.cartTableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -598,6 +606,11 @@ static CGFloat reloadHeaderHeight=30;
         
         _Log(@"ShopController responseForReloadWork end reload done");
     }
+}
+
+-(void)onCacheKilled:(NSNotification*)notification{
+    _Log(@"MessageController onCacheKilled - -");
+    [self loadBegan:_loader];
 }
 
 @end

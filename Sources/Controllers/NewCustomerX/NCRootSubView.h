@@ -18,7 +18,8 @@ typedef enum : NSInteger {
     NCSubViewPropertyTypeCustomerProvince=14,
     NCSubViewPropertyTypeCustomerCity=15,
     NCSubViewPropertyTypeCustomerHome=16,
-    NCSubViewPropertyTypeCustomerAreaCode=17,
+    NCSubViewPropertyTypeCustomerAreaCode=171,
+    NCSubViewPropertyTypeCustomerPhone=172,
     NCSubViewPropertyTypeCustomerMobile=18,
     NCSubViewPropertyTypeCustomerEmail=19,
 
@@ -51,6 +52,7 @@ typedef enum : NSInteger {
 //@property UIButton * cancelButton;
 
 @property UIView *contentView;
+-(void)onBackButton:(id)sender;
 
 -(id)initWithFrame:(CGRect)frame withDelegate:(id<NCSubViewDelegate>) delegate;
 -(void)setBarTitle:(NSString*)title;

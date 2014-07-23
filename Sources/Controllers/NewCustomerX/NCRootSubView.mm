@@ -8,7 +8,7 @@
 
 #import "NCRootSubView.h"
 
-static CGFloat BarHeight=60;
+static CGFloat BarHeight=40;
 
 @implementation NCRootSubView
 
@@ -42,7 +42,7 @@ static CGFloat BarHeight=60;
         
         //_backButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, self.frame.size.width/4, 40)];
         _backButton=[UIButton buttonWithType:(UIButtonTypeRoundedRect)];
-        [_backButton setFrame:CGRectMake(10, 10, 60, 40)];
+        [_backButton setFrame:CGRectMake(10, 5, 80, 30)];
         //[[_backButton titleLabel] setText:@"BACK"];
         [[_backButton titleLabel]setFont:[UIFont systemFontOfSize:20]];
         [_backButton setTitle:@"Back" forState:(UIControlStateNormal)];
@@ -65,7 +65,7 @@ static CGFloat BarHeight=60;
 
 -(void)setBarTitle:(NSString*)title{
     if(_barTitleLabel)[_barTitleLabel removeFromSuperview];
-    _barTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(100, 10, self.frame.size.width-200, 40)];
+    _barTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(100, 5, self.frame.size.width-200, 30)];
     [_barTitleLabel setText:title];
     [_barTitleLabel setFont:[UIFont systemFontOfSize:20]];
     [_barTitleLabel setTextAlignment:(NSTextAlignmentCenter)];

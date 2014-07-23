@@ -10,6 +10,8 @@
 
 @interface ProductEntity : NSObject
 
++(void)resetProductsAsEmpty;
+
 +(BOOL)updateProductDictionaryWithJSON:(NSDictionary*)json;
 +(NSDictionary*)getProductDictionary;
 +(NSArray*)getProductArray;

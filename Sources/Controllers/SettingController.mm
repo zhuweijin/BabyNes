@@ -92,7 +92,7 @@
 - (void)clearButtonClicked:(UIButton *)sender
 {
 	UIAlertView *alertView = UIUtil::ShowAlert(NSLocalizedString(@"Clean Cache", @"清除缓存"),
-											   NSLocalizedString(@"Are you sure to clear cache?", @"你确定要清除网络缓存吗？"),
+											   NSLocalizedString(@"Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on.", @"你确定要清除缓存吗？这将会同时中止购物车、业务消息等任务并删除本地记录。"),
 											   self,
 											   NSLocalizedString(@"Cancel", @"取消"),
 											   NSLocalizedString(@"Clean", @"清除"));
@@ -112,6 +112,7 @@
 	//UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
     
     DialogUIAlertView * logout_dialog=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Logout", @"注销") message:NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?") cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"OK", @"确定")];
+    //[logout_dialog setAlert_view_type:NCDialogAlertViewTypeBigger];
     int result=[logout_dialog showDialog];
     
     if(result==1){
@@ -137,7 +138,16 @@
 	
 	if (alertView.tag == kCleanCacheAlertViewTag)
 	{
+        //无差别消灭缓存
 		NSUtil::CleanCache();
+        //只消灭自己的Token对应的本地消息记录
+        [LocalSRMessageTool cleanMyLocalSR];
+        //消灭购物车
+        //[ProductEntity resetProductsAsEmpty];
+        [[CartEntity getDefaultCartEntity]resetCart];
+        //顺便昭告天下
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"CacheKilled" object:nil];
+        
 		WizardCell *cell = (WizardCell *)[objc_getAssociatedObject(alertView, (__bridge void *)@"SENDER") superview];
 		cell.detail = nil;
 		UIButton *button = (UIButton *)cell.accessoryView;

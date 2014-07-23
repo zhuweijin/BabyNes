@@ -73,8 +73,8 @@
 /* Are you forced to log out for the incorrect token. */
 "Are you forced to log out for the incorrect token." = "因為當前賬戶有錯，您將被退出。";
 
-/* Are you sure to clear cache? */
-"Are you sure to clear cache?" = "你確定要清除網絡緩存嗎？";
+/* Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on. */
+"Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on." = "你確定要清除緩存嗎？這將會同時中止購物車、業務消息等任務並刪除本地記錄。";
 
 /* Are you sure to logout? */
 "Are you sure to logout?" = "你要退出當前賬戶嗎?";
@@ -238,17 +238,17 @@
 /* Girl */
 "Girl" = "女";
 
-/* I have confirmed it is correct. */
-"I have confirmed it is correct." = "I have confirmed it is correct.";
-
 /* Identity Exception */
 "Identity Exception" = "身份認證異常";
 
 /* Ignore */
 "Ignore" = "忽略";
 
-/* Input the Area Code and mobile here. */
-"Input the Area Code and mobile here." = "請填寫地區代號和手機號。";
+/* Input Mobile Number here. */
+"Input Mobile Number here." = "請填寫手機號。";
+
+/* Input the Area Code and Phone Number here. It is optional. */
+"Input the Area Code and Phone Number here. It is optional." = "請填寫地區代號和電話號碼。這是一個可選項。";
 
 /* Input the nickname of the baby here. It is optional. */
 "Input the nickname of the baby here. It is optional." = "請填寫寶寶的昵稱。這是一個可選項。";
@@ -370,11 +370,11 @@
 /* Paid Network Warning */
 "Paid Network Warning" = "付費網絡提醒";
 
-/* Please check if the mobile of the customer is correct, it would affect your points. */
-"Please check if the mobile of the customer is correct, it would affect your points." = "Please check if the mobile of the customer is correct, it would affect your points.";
+/* Phone */
+"Phone" = "電話號碼";
 
-/* Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼(%@-%@)正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼(%@)正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
 
 /* Pregnant */
 "Pregnant" = "胎兒";
@@ -431,7 +431,7 @@
 "Remind Me Later" = "以後再說";
 
 /* Reminder */
-"Reminder" = "Reminder";
+"Reminder" = "提醒";
 
 /* Retry */
 "Retry" = "重試";
@@ -504,9 +504,6 @@
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "認證信息錯誤，請重新輸入。";
-
-/* The mobile needs changing. */
-"The mobile needs changing." = "The mobile needs changing.";
 
 /* There is no need to update. */
 "There is no need to update." = "無需更新";
