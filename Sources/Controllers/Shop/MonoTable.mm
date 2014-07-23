@@ -91,6 +91,13 @@
 }
 
 #pragma UIViewScrollerDelegate
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if(_theSVDelegate){
+        _Log(@"MonoTable scrollViewWillBeginDragging !");
+        [_theSVDelegate scrollViewWillBeginDragging:scrollView];
+    }
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if(_theSVDelegate){
         _Log(@"MonoTable scrollViewDidEndDragging !");

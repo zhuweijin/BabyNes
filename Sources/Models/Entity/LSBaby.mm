@@ -17,9 +17,11 @@
     self.the_birth_month=0;
     self.the_birth_year=0;
     
-    self.the_sex=nil;
+    self.the_birth_date=nil;
     
-    self.the_nick=nil;
+    self.the_sex=@"";
+    
+    self.the_nick=@"";
     
     return self;
 }
@@ -36,10 +38,12 @@
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Sex of Baby is not completed yet for No.%d baby", @"第%d个宝宝的性别未填写"),baby_index]);
         return NO;
     }
+    /*
     if([self.the_nick isEqualToString:@""]){
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Nickname of Baby is not completed yet for No.%d baby", @"第%d个宝宝的昵称未填写"),baby_index]);
         return NO;
     }
+     */
     return YES;
 }
 

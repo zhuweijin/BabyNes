@@ -1,8 +1,10 @@
 
 #import "RootController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "SinriUIApplication.h"
 
+#import "SRReceiptSender.h"
 
 @implementation RootController
 
@@ -15,14 +17,14 @@
     _shopVC=[[LSShopViewController alloc] init];
     _intrVC=[[IntroduceController alloc] init];
     _mateVC=[[MaterialController alloc] init];
-   _srVC =[[MessageController alloc] init];
+    _srVC =[[MessageController alloc] init];
 	/*
-    self.viewControllers = @[
-							 [[LSShopViewController alloc] init],
-							 [[IntroduceController alloc] init],
-                             [[MaterialController alloc] init],
-							 [[MessageController alloc] init],
-							 ];
+     self.viewControllers = @[
+     [[LSShopViewController alloc] init],
+     [[IntroduceController alloc] init],
+     [[MaterialController alloc] init],
+     [[MessageController alloc] init],
+     ];
      */
     self.viewControllers=@[_shopVC,_intrVC,_mateVC,_srVC];
 	return self;
@@ -61,14 +63,22 @@
 	[newCustomerButton addTarget:self action:@selector(newCustomerButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:newCustomerButton];
 	/*
-	UIButton *exitButton = [UIButton minorButtonWithTitle:NSLocalizedString(@"Exit", @"退出") width:85];
-	exitButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 85/2, self.tabBar.frame.size.height / 2);
-	[exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-	[self.tabBar addSubview:exitButton];
+     UIButton *exitButton = [UIButton minorButtonWithTitle:NSLocalizedString(@"Exit", @"退出") width:85];
+     exitButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 85/2, self.tabBar.frame.size.height / 2);
+     [exitButton addTarget:self action:@selector(exitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+     [self.tabBar addSubview:exitButton];
      */
+    
+    [[self.tabBar layer] setShadowOffset:{0, 2}];
+    [[self.tabBar layer] setShadowRadius:0.5];
+    [[self.tabBar layer] setShadowOpacity:0.7];
+    [[self.tabBar layer] setShadowColor:[UIColor grayColor].CGColor];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sineToIwareta:) name:kLogoutNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSRurl:) name:@"SRSelected" object:nil];
 }
 
 // Called after the view controller's view is released and set to nil.
@@ -76,6 +86,8 @@
 {
 	[super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
 }
 
 // Called when the view is about to made visible.
@@ -94,6 +106,16 @@
         [_shopVC removeObservers];
         [_shopVC addObservers];
     }
+    
+    if(_srVC){
+        [_srVC removeObservers];
+        [_srVC addObservers];
+        
+        _Log(@"srVC offset.y=%f",[[_srVC getSRTable] contentOffset].y);
+        [_srVC scrollViewDidEndDragging:[_srVC getSRTable] willDecelerate:NO];
+        
+    }
+    
 }
 
 // Called after the view was dismissed, covered or otherwise hidden.
@@ -115,11 +137,11 @@
 	UIViewController *controller = [[SettingController alloc] init];
 	[self.navigationController pushViewController:controller animated:YES];//OLD
     /*
-    [controller setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
-    [controller setModalPresentationStyle:(UIModalPresentationFullScreen)];
-    [self.navigationController presentViewController:controller animated:YES completion:^{
-        //DONE
-    }];
+     [controller setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+     [controller setModalPresentationStyle:(UIModalPresentationFullScreen)];
+     [self.navigationController presentViewController:controller animated:YES completion:^{
+     //DONE
+     }];
      */
 }
 
@@ -133,7 +155,7 @@
 
 -(void)newCustomerButtonClicked:(UIButton*)sender{
     _Log(@"ROOT newCustomerButtonClicked called");
-    NewCustomerController * nc=[[NewCustomerController alloc]init];
+    NewCustomerXController * nc=[[NewCustomerXController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
@@ -182,6 +204,25 @@
         self.scrollView.currentPage=self.scrollView.currentPage;
     }
 	[UIView commitAnimations];
+}
+
+-(void)showSRurl:(NSNotification*)notification{
+    SRMessage* srm=notification.object;
+    _Log(@"MessageController showSRurl : %@",[srm logAbstract]);
+    WebController * controller=[[WebController alloc]initWithUrl:[srm url]];
+    
+    controller.navigationItem.title = [srm title];
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    if(![srm read]){
+        [SRReceiptSender report_have_read:[srm srid]];
+    }
+    
+    /*
+     [self presentViewController:controller animated:YES completion:^{
+     _Log(@"showSRurl over");
+     }];
+     */
 }
 
 @end

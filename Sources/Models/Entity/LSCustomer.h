@@ -18,6 +18,7 @@
 @property NSString * theProvince;
 @property NSString * theCity;
 @property NSString * theAddress;
+@property NSString * theAreaCode;
 @property NSString * theMobile;
 @property NSString * theEmail;
 @property NSMutableArray * theBabies;

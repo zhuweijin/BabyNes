@@ -7,6 +7,7 @@
 //
 
 #import "LSCustomer.h"
+#import "DialogUIAlertView.h"
 
 static LSCustomer * currentCustomer=nil;
 
@@ -35,20 +36,26 @@ static LSCustomer * currentCustomer=nil;
 }
 
 +(void)reset{
-    currentCustomer.theTitle=nil;
-    currentCustomer.theName=nil;
-    currentCustomer.theProvince=nil;
-    currentCustomer.theCity=nil;
-    currentCustomer.theMobile=nil;
-    currentCustomer.theBabies=[[NSMutableArray alloc]init];
+    currentCustomer=[[LSCustomer alloc]init];
+}
+
+-(id)init{
+    self=[super init];
+    if(self){
+        [self reset];
+    }
+    return self;
 }
 
 -(void)reset{
-    self.theTitle=nil;
-    self.theName=nil;
-    self.theProvince=nil;
-    self.theCity=nil;
-    self.theMobile=nil;
+    self.theTitle=@"";
+    self.theName=@"";
+    self.theProvince=@"";
+    self.theCity=@"";
+    self.theAddress=@"";
+    self.theAreaCode=NSLocalizedString(@"852", @"86");
+    self.theMobile=@"";
+    self.theEmail=@"";
     self.theBabies=[[NSMutableArray alloc]init];
 }
 
@@ -72,6 +79,18 @@ static LSCustomer * currentCustomer=nil;
     if([self.theAddress isEqualToString:@""]){
         UIUtil::ShowAlert(NSLocalizedString(@"Address is empty", @"地址未填写"));
         return NO;
+    }
+    if(![self.theAreaCode isEqualToString:@""]){
+        NSString *string = self.theAreaCode;
+        NSError  *error  = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^852$", @"^86$") options:0 error:&error];
+        
+        NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+        if(range.location==NSNotFound){
+            //NSString *result = [string substringWithRange:range];
+            UIUtil::ShowAlert(NSLocalizedString(@"Area Code is not correct", @"地区号未填写正确"));
+            return NO;
+        }
     }
     if([self.theMobile isEqualToString:@""]){
         UIUtil::ShowAlert(NSLocalizedString(@"Mobile is empty", @"手机号未填写"));
@@ -117,8 +136,15 @@ static LSCustomer * currentCustomer=nil;
 -(NSString*)createCustomer{
     _Log(@"createCustomer called");
     if([self validateCustomerInformation]){
-        //DO STH
-        return @"MOCKED RETURN CUSTOMER ID";
+        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@-%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@-%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theAreaCode,_theMobile];
+        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
+        int r=[dav showDialog];
+        if(r!=0){
+            //DO STH
+            self.theID=@"MOCKED RETURN CUSTOMER ID";
+            currentCustomer=self;
+            return self.theID;
+        }
     }
     return nil;
 }

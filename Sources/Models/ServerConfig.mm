@@ -15,11 +15,13 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 -(id)init{
     self=[super init];
     dict=@{@"kServerUrl":
-               //@"http://uniquebaby.duapp.com/babynesios/admin/api",
-                @"https://testbaby.i9i8.com/admin/api",
+                //@"http://uniquebaby.duapp.com/babynesios/admin/api",//BAIDU MOCK
+                //@"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
+                @"https://testbaby.i9i8.com/admin/api",//TESTBABY
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
+           @"sr_receipt":@"SRReceipt.php",
            @"idle_video":@"PR/babynes.mp4"//@"video/video-4.mp4"
            };
     return self;
@@ -56,5 +58,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     return [self findURL:@"idle_video"];
 }
 
+-(NSString*)getURL_sr_receipt{
+    return [self findURL:@"sr_receipt"];
+}
 
 @end

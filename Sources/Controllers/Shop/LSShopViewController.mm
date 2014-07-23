@@ -34,6 +34,7 @@
 @end
 
 static CGFloat reloadHeaderHeight=30;
+//static CGFloat reloadHeaderHeight_=0;
 
 @implementation LSShopViewController
 
@@ -234,7 +235,7 @@ static CGFloat reloadHeaderHeight=30;
     
     [ProductEntity updateProductDictionaryWithJSON:dict];
     
-    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 15, 550, 670))  style:(UITableViewStylePlain)];
+    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 5, 550, 690))  style:(UITableViewStylePlain)];
     //[self.monoTableView setBackgroundColor:[UIColor greenColor]];
     //[self.monoTableView setPdtArrayWithNSDic:dict];
     [self.monoTableView setDelegate:self.monoTableView];
@@ -249,6 +250,7 @@ static CGFloat reloadHeaderHeight=30;
     [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
     //[self.monoTableView addSubview:reloadLabel];
     [self.monoTableView setTableHeaderView:reloadLabel];
+    //[self setReloadLabelHidden:YES];
     [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
     [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
     
@@ -294,7 +296,8 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)show_new_customer_VC:(id)sender{
     _Log(@"show_new_customer_VC called");
-    NewCustomerController * nc=[[NewCustomerController alloc]init];
+    //NewCustomerController * nc=[[NewCustomerController alloc]init];
+    NewCustomerXController * nc=[[NewCustomerXController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
@@ -506,6 +509,8 @@ static CGFloat reloadHeaderHeight=30;
       cc.theMobile,
       baby_info
       ]];
+    [self.the_customer_new_button setHidden:YES];
+    [self.the_order_confirm_button setHidden:NO];
 }
 
 -(void)resetShopView{
@@ -517,7 +522,23 @@ static CGFloat reloadHeaderHeight=30;
 }
 
 #pragma UIViewScrollerDelegate
+-(void)setReloadLabelHidden:(BOOL)toHide{
+    if(toHide){
+        [reloadLabel setHidden:YES];
+        [reloadLabel setFrame:CGRectZero];
+    }else{
+        [reloadLabel setHidden:NO];
+        [reloadLabel setFrame:CGRectMake(0,0,self.monoTableView.frame.size.width,reloadHeaderHeight)];
+    }
+    [self.monoTableView setTableHeaderView:reloadLabel];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    //[self setReloadLabelHidden:NO];
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    //[self setReloadLabelHidden:YES];
     if (!is_reloading) { // 判断是否处于刷新状态，刷新中就不执行
         if(-scrollView.contentOffset.y>reloadHeaderHeight*2){
             _Log(@"ShopController scrollViewDidEndDragging to response");
