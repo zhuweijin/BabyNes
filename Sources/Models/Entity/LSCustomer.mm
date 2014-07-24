@@ -8,7 +8,6 @@
 
 #import "LSCustomer.h"
 #import "DialogUIAlertView.h"
-#import "LSDialoger.h"
 
 static LSCustomer * currentCustomer=nil;
 

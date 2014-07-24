@@ -8,6 +8,8 @@
 
 #import "LSShopViewController.h"
 
+#import "LSOptionalButton.h"
+
 @interface LSShopViewController ()
 
 @property MonoTable * monoTableView;
@@ -28,6 +30,8 @@
 @property UIButton * the_customer_seek_button;
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
+
+@property LSOptionalButton * optionalButton;
 
 //@property CacheImageView * civ;
 
@@ -95,7 +99,7 @@ static CGFloat reloadHeaderHeight=30;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
     
-     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
     _Log(@"LSShopVC removeObservers");
 }
 
@@ -114,7 +118,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.list_icon_image_view setImage:self.list_icon_image];
     [self.view addSubview:self.list_icon_image_view];
     
-    self.list_caption= [[UILabel alloc]initWithFrame:CGRectMake(630, 15, 200, 30)];
+    self.list_caption= [[UILabel alloc]initWithFrame:CGRectMake(630, 15, 150, 30)];
     self.list_caption.text=NSLocalizedString(@"Shopping Cart", @"购物车");
     [self.list_caption setFont: [UIFont systemFontOfSize:20]];
     [self.view addSubview:self.list_caption];
@@ -201,6 +205,14 @@ static CGFloat reloadHeaderHeight=30;
     [self.cartTableView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.cartTableView];
     
+    
+    self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
+    [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.optionalButton];
+}
+
+-(void)onOptionalButton:(id)sender{
+    _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
 }
 
 -(void)viewDidAppear:(BOOL)animated{

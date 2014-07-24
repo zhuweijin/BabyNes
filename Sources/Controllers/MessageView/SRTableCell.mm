@@ -42,7 +42,7 @@
     
     NSString *stringFromDate = [formatter stringFromDate:date];
 
-    NSString * text=[NSString stringWithFormat:@"%d-%@ (%@)",[_msg srid],[_msg title],date];
+    //NSString * text=[NSString stringWithFormat:@"%d-%@ (%@)",[_msg srid],[_msg title],date];
     //[[self textLabel]setText:text];
     if(_titleLabel){
         [_titleLabel removeFromSuperview];

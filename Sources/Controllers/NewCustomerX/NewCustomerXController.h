@@ -10,7 +10,6 @@
 #import "LSCustomer.h"
 #import "NCTableView.h"
 #import "NCRootSubView.h"
-#import "LSDialoger.h"
 
 #import "NCCreateReconfrimSubView.h"
 

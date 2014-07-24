@@ -114,13 +114,13 @@
 		2F393D11197E11BB00F28C21 /* NCTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F393D10197E11BB00F28C21 /* NCTableViewCell.mm */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
-		2F62B12E197F9EA600448560 /* LSDialoger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F62B12D197F9EA600448560 /* LSDialoger.m */; };
 		2F62B131197FAF8300448560 /* NCCreateReconfrimSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
 		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
 		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
+		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
 		2FEBDBF0197A6AC000C292FF /* NewCustomerXController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */; };
 		2FEBDBF3197A788700C292FF /* NCTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBF2197A788700C292FF /* NCTableView.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
@@ -349,8 +349,6 @@
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
 		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
-		2F62B12C197F9EA600448560 /* LSDialoger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDialoger.h; sourceTree = "<group>"; };
-		2F62B12D197F9EA600448560 /* LSDialoger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSDialoger.m; sourceTree = "<group>"; };
 		2F62B12F197FAF8300448560 /* NCCreateReconfrimSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCreateReconfrimSubView.h; path = NewCustomerX/NCCreateReconfrimSubView.h; sourceTree = "<group>"; };
 		2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCCreateReconfrimSubView.m; path = NewCustomerX/NCCreateReconfrimSubView.m; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
@@ -363,6 +361,8 @@
 		2F92BBBF1977CAA700FBE647 /* SRTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTable.mm; path = MessageView/SRTable.mm; sourceTree = "<group>"; };
 		2F92BBC11977D1DB00FBE647 /* SRTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRTableCell.h; path = MessageView/SRTableCell.h; sourceTree = "<group>"; };
 		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
+		2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSOptionalButton.h; sourceTree = "<group>"; };
+		2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSOptionalButton.mm; sourceTree = "<group>"; };
 		2FEBDBEE197A6AC000C292FF /* NewCustomerXController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCustomerXController.h; path = NewCustomerX/NewCustomerXController.h; sourceTree = "<group>"; };
 		2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NewCustomerXController.mm; path = NewCustomerX/NewCustomerXController.mm; sourceTree = "<group>"; };
 		2FEBDBF1197A788700C292FF /* NCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCTableView.h; path = NewCustomerX/NCTableView.h; sourceTree = "<group>"; };
@@ -769,8 +769,8 @@
 				2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */,
 				2F72BB3E196BBC0300528735 /* CateImageButton.h */,
 				2F72BB3F196BBC0300528735 /* CateImageButton.mm */,
-				2F62B12C197F9EA600448560 /* LSDialoger.h */,
-				2F62B12D197F9EA600448560 /* LSDialoger.m */,
+				2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */,
+				2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -1073,7 +1073,6 @@
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
-				2F62B12E197F9EA600448560 /* LSDialoger.m in Sources */,
 				24259F31194AB539000FF8A9 /* AppDelegate.mm in Sources */,
 				242F9504195C6E7300371697 /* EXButton.mm in Sources */,
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
@@ -1110,6 +1109,7 @@
 				2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */,
 				2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
+				2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */,
 				2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
