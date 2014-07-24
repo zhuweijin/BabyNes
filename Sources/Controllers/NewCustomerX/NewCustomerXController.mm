@@ -17,6 +17,8 @@
 #import "NCBabySexSubView.h"
 #import "NCBabyBirthdaySubView.h"
 
+
+
 @interface NewCustomerXController ()
 
 @property NSArray * provinces_array;
@@ -25,6 +27,11 @@
 
 @property CGFloat baby_cells_top;
 @property CGFloat baby_cell_height;
+
+@property CGRect leftBabyBtnFrame;
+@property CGRect midBabyBtnFrame;
+@property CGRect leftCustomerBtnFrame;
+@property CGRect midCustomerBtnFrame;
 
 @end
 
@@ -39,6 +46,8 @@
     
     _NewCustomer=[[LSCustomer alloc]init];
     //[_NewCustomer addOneBaby:[[LSBaby alloc]init]];
+    
+    selection=-1;
     
 	return self;
 }
@@ -91,16 +100,22 @@
     
     [self.view addSubview:self.theTableView];
     
+    self.midBabyBtnFrame=CGRectMake(100, 450, 100, 30);
+    self.leftBabyBtnFrame=CGRectMake(-500, 450, 100, 30);
+    
     self.theBabyAddButton=[UIButton buttonWithType:UIButtonTypeCustom];
     self.theBabyAddButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
     self.theBabyAddButton.titleLabel.textColor=[UIColor whiteColor];
     self.theBabyAddButton.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
     [self.theBabyAddButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.theBabyAddButton setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
-    self.theBabyAddButton.frame=CGRectMake(130, 450, 100, 30);
+    self.theBabyAddButton.frame=self.midBabyBtnFrame;
     [self.theBabyAddButton setTitle:NSLocalizedString(@"Add Baby", @"添加一个宝宝") forState:UIControlStateNormal];
     [self.theBabyAddButton addTarget:self action:@selector(addBaby:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.theBabyAddButton];
+    
+    self.midCustomerBtnFrame=CGRectMake(self.view.frame.size.width-200, 450, 100, 30);
+    self.leftCustomerBtnFrame=CGRectMake(self.view.frame.size.width-200-600, 450, 100, 30);
     
     self.theCustomerAddButton=[UIButton buttonWithType:UIButtonTypeCustom];
     self.theCustomerAddButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
@@ -108,7 +123,7 @@
     self.theCustomerAddButton.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
     [self.theCustomerAddButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.theCustomerAddButton setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
-    self.theCustomerAddButton.frame=CGRectMake(380, 450, 100, 30);
+    self.theCustomerAddButton.frame=self.midCustomerBtnFrame;
     [self.theCustomerAddButton setTitle:NSLocalizedString(@"Create", @"确认创建") forState:UIControlStateNormal];
     [self.theCustomerAddButton addTarget:self action:@selector(addCustomer:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.theCustomerAddButton];
@@ -172,6 +187,8 @@
         
         //[self.theBabyAddButton setHidden:YES];
         //[self.theCustomerAddButton setHidden:YES];
+        [self.theBabyAddButton setFrame:self.leftBabyBtnFrame];
+        [self.theCustomerAddButton setFrame:self.leftCustomerBtnFrame];
         [self.theBabyAddButton setEnabled:NO];
         [self.theCustomerAddButton setEnabled:NO];
     } completion:^(BOOL finished) {
@@ -187,6 +204,8 @@
         
         //[self.theBabyAddButton setHidden:NO];
         //[self.theCustomerAddButton setHidden:NO];
+        [self.theBabyAddButton setFrame:self.midBabyBtnFrame];
+        [self.theCustomerAddButton setFrame:self.midCustomerBtnFrame];
         [self.theBabyAddButton setEnabled:YES];
         [self.theCustomerAddButton setEnabled:YES];
     } completion:^(BOOL finished) {
@@ -320,32 +339,39 @@
             break;
         case NCSubViewPropertyTypeCustomerAreaCode:
             [_NewCustomer setTheAreaCode:value];
-        {
-            NSString * contact=@"";
-            if([[_NewCustomer theAreaCode] isEqualToString:@""] || [[_NewCustomer theMobile] isEqualToString:@""]){
-                contact=[NSString stringWithFormat:@"%@%@",[_NewCustomer theAreaCode],[_NewCustomer theMobile]];
-            }else{
-                contact=[NSString stringWithFormat:@"%@-%@",[_NewCustomer theAreaCode],[_NewCustomer theMobile]];
+            if([[_NewCustomer theMobile] isEqualToString:@""]){
+                NSString * contact=@"";
+                if([[_NewCustomer theAreaCode] isEqualToString:@""] || [[_NewCustomer theMobile] isEqualToString:@""]){
+                    contact=[NSString stringWithFormat:@"%@%@",[_NewCustomer theAreaCode],[_NewCustomer thePhone]];
+                }else{
+                    contact=[NSString stringWithFormat:@"%@-%@",[_NewCustomer theAreaCode],[_NewCustomer thePhone]];
+                }
+                
+                [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"contact"]setObject:contact forKey:@"value"];
+                [self reloadNewCustomerTableView];
+            }
+            break;
+        case NCSubViewPropertyTypeCustomerPhone:
+            [_NewCustomer setThePhone:value];
+            if([[_NewCustomer theMobile] isEqualToString:@""]){
+                NSString * contact=@"";
+                if([[_NewCustomer theAreaCode] isEqualToString:@""] || [[_NewCustomer theMobile] isEqualToString:@""]){
+                    contact=[NSString stringWithFormat:@"%@%@",[_NewCustomer theAreaCode],[_NewCustomer thePhone]];
+                }else{
+                    contact=[NSString stringWithFormat:@"%@-%@",[_NewCustomer theAreaCode],[_NewCustomer thePhone]];
+                }
+                
+                [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"contact"]setObject:contact forKey:@"value"];
+                [self reloadNewCustomerTableView];
             }
             
-            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"contact"]setObject:contact forKey:@"value"];
-            [self reloadNewCustomerTableView];
-        }
             break;
         case NCSubViewPropertyTypeCustomerMobile:
             [_NewCustomer setTheMobile:value];
             //[[self.theTableView.sectionArrayOfDict objectAtIndex:0] setObject:[NSString stringWithFormat:@"%@     %@",NSLocalizedString(@"Contact", @"联系方式"),value] forKey:@"contact"];
-        {
-            NSString * contact=@"";
-            if([[_NewCustomer theAreaCode] isEqualToString:@""] || [[_NewCustomer theMobile] isEqualToString:@""]){
-                contact=[NSString stringWithFormat:@"%@%@",[_NewCustomer theAreaCode],[_NewCustomer theMobile]];
-            }else{
-                contact=[NSString stringWithFormat:@"%@-%@",[_NewCustomer theAreaCode],[_NewCustomer theMobile]];
-            }
-            
-            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"contact"]setObject:contact forKey:@"value"];
+            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"contact"]setObject:value forKey:@"value"];
             [self reloadNewCustomerTableView];
-        }
+            
             break;
         case NCSubViewPropertyTypeCustomerEmail:
             [_NewCustomer setTheEmail:value];
@@ -432,43 +458,64 @@
 -(void)addCustomer:(id)sender{
     _Log(@"addCustomer called");
     
-    //LSCustomer * cc=[LSCustomer newCustomer];
-    /*
-     [cc setTheTitle:self.theTitleCB.value_string];
-     [cc setTheName:self.theUserNameTextfield.text];
-     [cc setTheProvince:self.theProvinceCB.value_string];
-     [cc setTheCity:self.theCityCB.value_string];
-     [cc setTheAddress:self.theAddressTextfield.text];
-     [cc setTheMobile:self.theMobileTextfield.text];
-     [cc setTheEmail:self.theEmailTextfield.text];
-     
-     for (LSNewCustomer_BabyCell* cell in self.baby_cells) {
-     LSBaby * baby=[[LSBaby alloc]init];
-     _Log(@"FOR BABY:%@-%@-%@ / %d-%d-%d nick[%@] sex[%@]",cell.theBabyBirthday_Year.value_string,cell.theBabyBirthday_Month.value_string,cell.theBabyBirthday_Day.value_string,[cell.theBabyBirthday_Year.value_string intValue],[cell.theBabyBirthday_Month.value_string intValue],[cell.theBabyBirthday_Day.value_string intValue],cell.theBaby_Nick.text,cell.theBaby_Sex.value_string);
-     [baby setThe_birth_day:[cell.theBabyBirthday_Day.value_string intValue]];
-     [baby setThe_birth_month:[cell.theBabyBirthday_Month.value_string intValue]];
-     [baby setThe_birth_year:[cell.theBabyBirthday_Year.value_string intValue]];
-     [baby setThe_nick:cell.theBaby_Nick.text];
-     [baby setThe_sex:cell.theBaby_Sex.value_string];
-     
-     _Log(@"baby before add  %d-%d-%d %@/%@",baby.the_birth_year,baby.the_birth_month,baby.the_birth_day,baby.the_sex,baby.the_nick);
-     
-     [cc addOneBaby:baby];
-     }
-     */
+    if(![_NewCustomer validateCustomerInformation])return;
     
-    /*
-     DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"") message:NSLocalizedString(@"Please check if the mobile of the customer is correct, it would affect your points.", @"") cancelButtonTitle:NSLocalizedString(@"The mobile needs changing.", @"") otherButtonTitles:NSLocalizedString(@"I have confirmed it is correct.", @"")];
-     int r=[dav showDialog];
-     */
-    
-    NSString* result=[_NewCustomer createCustomer];
-    //    [cc reset];
-    if(result!=nil){
-        UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
-        [self closeView:sender];
+    if(selection==-1){
+        
+        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),[_NewCustomer theMobile]];
+        
+        
+        if(_subView){
+            [_subView removeFromSuperview];
+            _subView=nil;
+        }
+        _subView=[[NCCreateReconfrimSubView alloc]initWithFrame:rightFrame WithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") okButtonTitles:NSLocalizedString(@"Confirm", @"确认") withDelegate:self];
+        if(_subView){
+            //[_subView setBackgroundColor:[UIColor greenColor]];
+            [_subView setBackgroundColor:[UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:0.7]];
+            [self tableLoadSubViewFromRight:_subView];
+        }
+        
+        
+        /*
+         DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
+         [dav setAlert_view_type:NCDialogAlertViewTypeBigger];
+         int r=[dav showDialog];
+         */
+        /*
+         LSDialoger *lsd= [[LSDialoger alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") okButtonTitles:NSLocalizedString(@"Confirm", @"确认") withDelegate:self];
+         [lsd setModalPresentationStyle:(UIModalPresentationFormSheet)];
+         [lsd setModalTransitionStyle:(UIModalTransitionStyleCrossDissolve)];
+         [self.navigationController presentViewController:lsd animated:YES completion:^{
+         _LogLine();
+         }];
+         */
+        /*
+         while (selection<0) {
+         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+         }
+         */
+        
     }
+    if(selection!=1){
+        //
+    }else{
+        NSString* result=[_NewCustomer createCustomer];
+        //    [cc reset];
+        if(result!=nil){
+            UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
+            [self closeView:sender];
+        }
+    }
+    selection=-1;
+}
+
+-(int)eranda:(int)sentaku{
+    _Log(@"eranda:%d",sentaku);
+    selection=sentaku;
+    [self addCustomer:self];
+    return selection;
 }
 
 -(void)closeView:(id)sender{

@@ -13,6 +13,11 @@ static NSArray * product_array;
 
 @implementation ProductEntity
 
++(void)resetProductsAsEmpty{
+    products=[[NSDictionary alloc]init];
+    product_array=[[NSArray alloc]init];
+}
+
 +(BOOL)updateProductDictionaryWithJSON:(NSDictionary*)json{
     
     NSMutableDictionary* mdict=[[NSMutableDictionary alloc]init];

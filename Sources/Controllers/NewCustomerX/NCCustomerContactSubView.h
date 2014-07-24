@@ -13,7 +13,9 @@
 @property NSString * value_area;
 @property NSString * value_mobile;
 @property NSString * value_email;
+@property NSString * value_phone;
 @property UITextField * textField_area;
+@property UITextField * textField_phone;
 @property UITextField * textField_mobile;
 @property UITextField * textField_email;
 @end

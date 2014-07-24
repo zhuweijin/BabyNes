@@ -28,30 +28,34 @@ static CGFloat reloadHeaderHeight=40;
 
 #pragma mark View methods
 
- -(void)removeObservers{
- [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRReceiptSenderDone" object:nil];
- }
- -(void)addObservers{
- [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSRReceiptSenderDone:) name:@"SRReceiptSenderDone" object:nil];
- }
- 
- -(void)viewDidAppear:(BOOL)animated{
- [super viewDidAppear:animated];
- [self removeObservers];
- [self addObservers];
- }
- 
- - (void)viewWillDisappear:(BOOL)animated
- {
- [super viewWillDisappear:animated];
- [self removeObservers];
- }
+-(void)removeObservers{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRReceiptSenderDone" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
+}
+-(void)addObservers{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSRReceiptSenderDone:) name:@"SRReceiptSenderDone" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCacheKilled:) name:@"CacheKilled" object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self removeObservers];
+    [self addObservers];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self removeObservers];
+}
 
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     _Log(@"srVC offset.y=%f",[[self getSRTable] contentOffset].y);
     [self scrollViewDidEndDragging:[self getSRTable] willDecelerate:NO];
+    
+    [srTable reloadData];
 }
 
 #pragma Event methods
@@ -63,6 +67,7 @@ static CGFloat reloadHeaderHeight=40;
     _Log(@"MessageController loadContentView with dict=%@",dict);
     //NSDictionary* mySR=
     [LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray:dict[@"messages"]];
+    //_LogLine();
     if(srTable){
         [srTable removeFromSuperview];
         srTable=nil;
@@ -84,11 +89,11 @@ static CGFloat reloadHeaderHeight=40;
         time_label=nil;
     }
     /*
-    if(checkOlderLabel){
-        [checkOlderLabel removeFromSuperview];
-        checkOlderLabel=nil;
-    }
-    */
+     if(checkOlderLabel){
+     [checkOlderLabel removeFromSuperview];
+     checkOlderLabel=nil;
+     }
+     */
     CGFloat header_height=50;
     
     CGRect frame=self.view.frame;
@@ -111,12 +116,12 @@ static CGFloat reloadHeaderHeight=40;
     //[self setReloadLabelHidden:YES];
     [srTable setTableHeaderView:reloadLabel];
     /*
-    checkOlderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,srTable.frame.size.width,reloadHeaderHeight)];
-    [checkOlderLabel setTextColor:[UIColor grayColor]];
-    [checkOlderLabel setTextAlignment:(NSTextAlignmentCenter)];
-    [checkOlderLabel setText:NSLocalizedString(@"Pull to check SR messages earlier", @"上拉以加载更早的业务消息")];
-    [self setCheckOlderLabelHidden:YES];
-    */
+     checkOlderLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,srTable.frame.size.width,reloadHeaderHeight)];
+     [checkOlderLabel setTextColor:[UIColor grayColor]];
+     [checkOlderLabel setTextAlignment:(NSTextAlignmentCenter)];
+     [checkOlderLabel setText:NSLocalizedString(@"Pull to check SR messages earlier", @"上拉以加载更早的业务消息")];
+     [self setCheckOlderLabelHidden:YES];
+     */
     //[(UIScrollView*)srTable addSubview:reloadLabel];
     //[srTable setContentSize:{srTable.frame.size.width,srTable.frame.size.height+reloadHeaderHeight}];
     [srTable setContentSize:{frame.size.width,frame.size.height+reloadHeaderHeight}];
@@ -148,6 +153,8 @@ static CGFloat reloadHeaderHeight=40;
     [time_label setTintColor:[UIColor blackColor]];
     //[time_label setBackgroundColor:[UIColor greenColor]];
     [headerView addSubview:time_label];
+    
+    is_reloading=NO;
 }
 
 
@@ -164,17 +171,17 @@ static CGFloat reloadHeaderHeight=40;
     [srTable setTableHeaderView:reloadLabel];
 }
 /*
--(void)setCheckOlderLabelHidden:(BOOL)toHide{
-    if(toHide){
-        [checkOlderLabel setHidden:YES];
-        [checkOlderLabel setFrame:CGRectZero];
-    }else{
-        [checkOlderLabel setHidden:NO];
-        [checkOlderLabel setFrame:CGRectMake(0,0,srTable.frame.size.width,reloadHeaderHeight)];
-    }
-    [srTable setTableFooterView:checkOlderLabel];
-}
-*/
+ -(void)setCheckOlderLabelHidden:(BOOL)toHide{
+ if(toHide){
+ [checkOlderLabel setHidden:YES];
+ [checkOlderLabel setFrame:CGRectZero];
+ }else{
+ [checkOlderLabel setHidden:NO];
+ [checkOlderLabel setFrame:CGRectMake(0,0,srTable.frame.size.width,reloadHeaderHeight)];
+ }
+ [srTable setTableFooterView:checkOlderLabel];
+ }
+ */
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     //[self setReloadLabelHidden:NO];
     
@@ -208,6 +215,7 @@ static CGFloat reloadHeaderHeight=40;
             //_Log(@"显示查找更久远信息的label");
             //[self setCheckOlderLabelHidden:NO];
         }
+        _Log(@"SR下拉到最底部 %f~%f",scrollView.contentOffset.y , reloadHeaderHeight+((scrollView.contentSize.height - scrollView.frame.size.height)));
         if(scrollView.contentOffset.y > reloadHeaderHeight+((scrollView.contentSize.height - scrollView.frame.size.height))){
             _Log(@"SR下拉到最底部时显示更多数据");
             is_reloading=YES;
@@ -216,9 +224,9 @@ static CGFloat reloadHeaderHeight=40;
             return;
         }
         /*
-        else{
-            [self setCheckOlderLabelHidden:YES];
-        }
+         else{
+         [self setCheckOlderLabelHidden:YES];
+         }
          */
     }
     _Log(@"MessageController scrollViewDidEndDragging not response as ing[%d] %f - %d",is_reloading,scrollView.contentOffset.y,decelerate);
@@ -238,9 +246,9 @@ static CGFloat reloadHeaderHeight=40;
             //_Log(@"MessageController scrollViewDidEndDecelerating as II ing[%d] at offset.y=%f",is_reloading,scrollView.contentOffset.y);
         }
         /*
-        if(!is_reloading){
-            [self setCheckOlderLabelHidden:YES];
-        }
+         if(!is_reloading){
+         [self setCheckOlderLabelHidden:YES];
+         }
          */
     }
     @catch (NSException *exception) {
@@ -256,7 +264,12 @@ static CGFloat reloadHeaderHeight=40;
     _Log(@"MessageController responseForReloadWork isWithError=%@ is_reloading=%d",_loader.errorString,is_reloading);
     if(is_reloading){
         if(isCheckOld){//CHECK OLD
-            NSDictionary * dict=@{@"before":[NSNumber numberWithInt:[LocalSRMessageTool getSRAPIBeforeParamValue]]};
+            NSNumber * num=[NSNumber numberWithInt:[LocalSRMessageTool getSRAPIBeforeParamValue]];
+            if([num integerValue]<=1){
+                is_reloading=NO;
+                return;
+            }
+            NSDictionary * dict=@{@"before":num};
             [_loader setParams:dict];
             [_loader loadBegin];
             //[checkOlderLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
@@ -305,16 +318,16 @@ static CGFloat reloadHeaderHeight=40;
             [controller.view dismissToast];
             _LogLine();
         }else{
-        [reloadLabel setText:NSLocalizedString(@"Pull down to check new SR message", @"下拉以查收新的业务消息")];
-        
-        [srTable scrollRectToVisible:{0,static_cast<CGFloat>(reloadHeaderHeight),srTable.frame.size.width,srTable.frame.size.height} animated:YES];
-        //_Log(@"MessageController responseForReloadWork to 0,reloadHeaderHeight");
-        //[self.view.window setUserInteractionEnabled:YES];
-        
-        //转转 消失
-        UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
-		[controller.view dismissToast];
-		_LogLine();
+            [reloadLabel setText:NSLocalizedString(@"Pull down to check new SR message", @"下拉以查收新的业务消息")];
+            
+            [srTable scrollRectToVisible:{0,static_cast<CGFloat>(reloadHeaderHeight),srTable.frame.size.width,srTable.frame.size.height} animated:YES];
+            //_Log(@"MessageController responseForReloadWork to 0,reloadHeaderHeight");
+            //[self.view.window setUserInteractionEnabled:YES];
+            
+            //转转 消失
+            UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
+            [controller.view dismissToast];
+            _LogLine();
         }
         
         _Log(@"MessageController responseForReloadWork end reload done");
@@ -329,6 +342,11 @@ static CGFloat reloadHeaderHeight=40;
 
 -(void)onSRReceiptSenderDone:(NSNotification*)notification{
     //[srTable reloadData];
+}
+
+-(void)onCacheKilled:(NSNotification*)notification{
+    _Log(@"MessageController onCacheKilled - -");
+    [srTable reloadData];
 }
 
 #pragma mark -

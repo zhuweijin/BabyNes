@@ -10,14 +10,19 @@
 #import "LSCustomer.h"
 #import "NCTableView.h"
 #import "NCRootSubView.h"
+#import "LSDialoger.h"
+
+#import "NCCreateReconfrimSubView.h"
 
 
 @interface NewCustomerXController : DataController//UIViewController
-<NCTableViewDelegate,NCSubViewDelegate>
+<NCTableViewDelegate,NCSubViewDelegate,NCCreateReconfrimSubViewDelegate>
 {
     CGRect midFrame;
     CGRect rightFrame;
     CGRect leftFrame;
+    
+    int selection;
 }
 
 @property LSCustomer * NewCustomer;

@@ -22,7 +22,7 @@
 -(id)initWithItemDictionary:(NSDictionary*)dict{
     self=[super init];
     _srid=[(NSNumber*)[dict objectForKey:@"srid"] integerValue];
-    _read=[(NSNumber*)[dict objectForKey:@"read"] intValue]==0?NO:YES;
+    _read=[(NSNumber*)[dict objectForKey:@"have_read"] intValue]==0?NO:YES;
     _time=[(NSNumber*)[dict objectForKey:@"created"] integerValue];
     _title=[dict objectForKey:@"title"];
     _url=[dict objectForKey:@"url"];

@@ -66,7 +66,7 @@
     }else{
         [[self imageView]setImage:UIUtil::ImageNamed(@"unreadMail")];
     }
-    _Log(@"SRTableCell setSRMessage:%@",text);
+    //_Log(@"SRTableCell setSRMessage:%@",text);
 }
 
 @end

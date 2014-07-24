@@ -29,25 +29,37 @@ static NSMutableArray * SRArray;
 
 @implementation LocalSRMessageTool
 
++(void)cleanMyLocalSR{
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    NSDictionary * mineReadonly=[[NSDictionary alloc]init];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
+    [LocalSRMessageTool saveLocalSRAll];
+}
+
 +(NSMutableDictionary*) getLocalSRDict_all{
     //NSDictionary * inLocalAllSRDict=[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"SR_Messages"];
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    //_LogLine();
     NSData *data = [def objectForKey:@"SR_Messages"];
+    //_LogLine();
     //NSMutableDictionary *
     local_sr_all=[[NSMutableDictionary alloc] init];
     if(data && ![data isEqual:[NSNull null]]){
-        _Log(@"LocalSRMessageTool getLocalSRDict_all get data=%@",data);
+        //_Log(@"LocalSRMessageTool getLocalSRDict_all get data=%@",data);
         NSDictionary *retrievedDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         NSDictionary * inLocalAllSRDict = [[NSDictionary alloc] initWithDictionary:retrievedDictionary];
         if(inLocalAllSRDict){
             [local_sr_all addEntriesFromDictionary:inLocalAllSRDict];
         }
     }
+    //_LogLine();
     return local_sr_all;
 }
 
 +(NSMutableDictionary*) getLocalSRDict_mine{
     NSDictionary * mine=[[LocalSRMessageTool getLocalSRDict_all] objectForKey:[DataLoader accessToken]];
+    //_LogLine();
     NSMutableDictionary * mySR=[[NSMutableDictionary alloc]init];
     if(mine){
         [mySR addEntriesFromDictionary:mine];
@@ -57,7 +69,9 @@ static NSMutableArray * SRArray;
 }
 
 +(NSDictionary*)LocalSRMessageDictionaryMergedWithArray:(NSArray*)array{
+    //_LogLine();
     NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
+    //_LogLine();
     _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray=%@\nInto dict=%@",array,mine);
     @try {
         for (NSDictionary * item in array) {
@@ -74,10 +88,10 @@ static NSMutableArray * SRArray;
         //Nothing
     }
     NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
-    _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray mineReadonly=%@",mineReadonly);
+    //_Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray mineReadonly=%@",mineReadonly);
     local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
     [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
-    _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
+    //_Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
     [LocalSRMessageTool saveLocalSRAll];
     return [LocalSRMessageTool getLocalSRDict_mine];
 }
@@ -121,7 +135,8 @@ static NSMutableArray * SRArray;
         SRArray=[[NSMutableArray alloc]init];
         NSDictionary * local_mine=[LocalSRMessageTool getLocalSRDict_mine];
         //NSDictionary * dict=[[NSDictionary alloc]initWithDictionary:local_mine];
-        _Log(@"LocalSRMessageTool getSRArrayIfForce force=[%d] local_mine=%@",force,local_mine);
+        //_Log(@"LocalSRMessageTool getSRArrayIfForce force=[%d] local_mine=%@",force,local_mine);
+        _Log(@"LocalSRMessageTool getSRArrayIfForce force=[%d]",force);
         NSArray* sortedKeys=[local_mine keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             int v1 = [(SRMessage *)obj1 srid];
             int v2 = [(SRMessage *)obj2 srid];
@@ -137,7 +152,7 @@ static NSMutableArray * SRArray;
         for (id key in sortedKeys) {
             SRMessage * srm=[local_mine objectForKey:key];
             [SRArray addObject:srm];
-            _Log(@"LocalSRMessageTool getSRArrayIfForce sorted key (%@)",[srm logAbstract]);
+            //_Log(@"LocalSRMessageTool getSRArrayIfForce sorted key (%@)",[srm logAbstract]);
         }
     }
     

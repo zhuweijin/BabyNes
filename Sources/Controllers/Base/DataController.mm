@@ -77,7 +77,7 @@
 		[self.view addSubview:_contentView];
 		[self loadContentView:_contentView withDict:loader.dict];
 	}else{
-        is_reloading=false;
+        is_reloading=NO;
         if(_thePullReloadDelegate){
             [_thePullReloadDelegate responseForReloadWork];
         }
