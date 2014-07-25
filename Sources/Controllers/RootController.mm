@@ -59,7 +59,7 @@
 	[self.tabBar addSubview:logoView];
     
     UIButton *newCustomerButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"New Customer", @"招募顾客") width:120];
-	newCustomerButton.center = CGPointMake(self.tabBar.frame.size.width - 20 - 120/2, self.tabBar.frame.size.height / 2);
+	newCustomerButton.center = CGPointMake(self.tabBar.frame.size.width - 10 - 120/2, self.tabBar.frame.size.height / 2);
 	[newCustomerButton addTarget:self action:@selector(newCustomerButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 	[self.tabBar addSubview:newCustomerButton];
 	/*

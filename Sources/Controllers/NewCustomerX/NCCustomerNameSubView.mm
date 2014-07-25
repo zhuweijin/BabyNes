@@ -30,6 +30,10 @@
         [_textField setReturnKeyType:(UIReturnKeyDone)];
         [_textField setDelegate:self];
         [self.contentView addSubview:_textField];
+        
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(10, 50, self.contentView.frame.size.width-20, 30)];
+        [label setText:NSLocalizedString(@"Input the name of the customer.", @"请填写顾客姓名。")];
+        [self.contentView addSubview:label];
     }
     return self;
 }

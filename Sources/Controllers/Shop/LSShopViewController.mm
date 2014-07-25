@@ -151,11 +151,18 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_mobile_textfield setPlaceholder:NSLocalizedString(@"Mobile", @"手机号")];
     [self.the_customer_mobile_textfield setTextAlignment:(NSTextAlignmentLeft)];
     [self.the_customer_mobile_textfield setKeyboardType:(UIKeyboardTypeNumberPad)];
-    [self.the_customer_mobile_textfield setBorderStyle:(UITextBorderStyleLine)];
+    [self.the_customer_mobile_textfield setBorderStyle:(UITextBorderStyleRoundedRect)];
     [self.the_customer_mobile_textfield setBackgroundColor:[UIColor whiteColor]];
     [self.the_customer_mobile_textfield setDelegate:self];
     [self.the_customer_mobile_textfield setReturnKeyType:(UIReturnKeySearch)];
+    self.the_customer_mobile_textfield.layer.borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1].CGColor;
+    //self.the_customer_mobile_textfield.layer.borderWidth=1;
+    //self.the_customer_mobile_textfield.layer.cornerRadius = 4;
     [self.view addSubview:self.the_customer_mobile_textfield];
+    
+    //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
+    //self.the_customer_mobile_textfield.leftView = view;
+    //self.the_customer_mobile_textfield.leftViewMode = UITextFieldViewModeAlways;
     
     self.the_customer_search_result=[[UILabel alloc]initWithFrame:CGRectMake(590, 490, 400, 100)];
     [self.the_customer_search_result setText:@""
@@ -173,6 +180,7 @@ static CGFloat reloadHeaderHeight=30;
     self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
     [self.the_customer_seek_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
+    self.the_customer_seek_button.layer.cornerRadius = 5;
     [self.view addSubview:self.the_customer_seek_button];
     
     self.the_customer_new_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -184,6 +192,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.the_customer_new_button setHidden:YES];
+    self.the_customer_new_button.layer.cornerRadius = 5;
     [self.view addSubview:self.the_customer_new_button];
     
     self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -195,6 +204,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_order_confirm_button];
+    self.the_order_confirm_button.layer.cornerRadius = 5;
     [self.the_order_confirm_button setHidden:YES];
     
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
@@ -205,14 +215,36 @@ static CGFloat reloadHeaderHeight=30;
     [self.cartTableView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.cartTableView];
     
+    self.cartTableView.layer.cornerRadius = 10;
     
     self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
     [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.optionalButton];
+    
+    self.optionalButton.layer.cornerRadius = 10;
+    self.optionalButton.layer.masksToBounds=YES;
+    
 }
 
 -(void)onOptionalButton:(id)sender{
     _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
+    
+    if([[[CartEntity getDefaultCartEntity]cart_array]count]>0){
+        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:@"Warning" message:@"Cart is not empty." cancelButtonTitle:@"Cancel" otherButtonTitles:@"Clean and Continue"];
+        int r=[dav showDialog];
+        if(r==0){
+            [self.optionalButton setButtonSelected:[CartEntity getCartMode]];
+            return;
+        }else{
+            /*
+             这里的逻辑需要确认，最好能够在见到实际的API之后再做设计。
+             */
+            [[CartEntity getDefaultCartEntity]resetCart];
+            _LogLine();
+        }
+    }
+    _LogLine();
+    [CartEntity setCartMode:(CartMode)[self.optionalButton getSelectedButton]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -263,6 +295,8 @@ static CGFloat reloadHeaderHeight=30;
     [self.monoTableView setRowHeight:70];
     [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
     [contentView addSubview:self.monoTableView];
+    
+    self.monoTableView.layer.cornerRadius = 10;
     
     reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
     [reloadLabel setTextColor:[UIColor grayColor]];

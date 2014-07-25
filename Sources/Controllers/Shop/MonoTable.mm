@@ -59,8 +59,6 @@
     _Log(@"MonoTable 第%d个section中第%d行的被点击",indexPath.section, indexPath.row);
     ProductEntity*pe=[[ProductEntity getProductArray]objectAtIndex:indexPath.row];
     
-    //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-    
     //Only Icon of product do animation
     int no=[tableView.visibleCells indexOfObject:[tableView cellForRowAtIndexPath:indexPath]];
     CGRect civFrame;//=[[tableView cellForRowAtIndexPath:indexPath] frame];
@@ -80,13 +78,7 @@
                                 };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MonoCellSelected" object:anime_dict];
-    /*
-    [UIView animateWithDuration:0.4 animations:^{
-        LSShopMonoTableViewCell * cell=(LSShopMonoTableViewCell*)[self cellForRowAtIndexPath:indexPath];
-        [cell setSelected:NO animated:YES];
-        _Log(@"MonoTable 0.4s Over cancel selection");
-    }];
-     */
+    
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

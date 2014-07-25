@@ -115,6 +115,9 @@
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2F62B131197FAF8300448560 /* NCCreateReconfrimSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */; };
+		2F6513AA1981E74800F2D1F9 /* LSSoapWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */; };
+		2F6513AB1981E74800F2D1F9 /* LSXMLWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */; };
+		2F6513AE1981EA6400F2D1F9 /* LSSoapLoginWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
 		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
@@ -351,6 +354,12 @@
 		2F54FFFC19617E3B0093028E /* CartEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CartEntity.mm; path = Entity/CartEntity.mm; sourceTree = "<group>"; };
 		2F62B12F197FAF8300448560 /* NCCreateReconfrimSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCCreateReconfrimSubView.h; path = NewCustomerX/NCCreateReconfrimSubView.h; sourceTree = "<group>"; };
 		2F62B130197FAF8300448560 /* NCCreateReconfrimSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCCreateReconfrimSubView.m; path = NewCustomerX/NCCreateReconfrimSubView.m; sourceTree = "<group>"; };
+		2F6513A61981E74800F2D1F9 /* LSSoapWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSoapWorker.h; path = Soap/LSSoapWorker.h; sourceTree = "<group>"; };
+		2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSSoapWorker.m; path = Soap/LSSoapWorker.m; sourceTree = "<group>"; };
+		2F6513A81981E74800F2D1F9 /* LSXMLWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSXMLWorker.h; path = Soap/LSXMLWorker.h; sourceTree = "<group>"; };
+		2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSXMLWorker.m; path = Soap/LSXMLWorker.m; sourceTree = "<group>"; };
+		2F6513AC1981EA6400F2D1F9 /* LSSoapLoginWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSoapLoginWorker.h; path = Soap/LSSoapLoginWorker.h; sourceTree = "<group>"; };
+		2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSSoapLoginWorker.mm; path = Soap/LSSoapLoginWorker.mm; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
 		2F72BB3F196BBC0300528735 /* CateImageButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CateImageButton.mm; sourceTree = "<group>"; };
 		2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalSRMessageTool.h; path = Entity/LocalSRMessageTool.h; sourceTree = "<group>"; };
@@ -661,6 +670,7 @@
 		242F94C0195C6E7300371697 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F6513A51981E73B00F2D1F9 /* Soap */,
 				2F12923619628B9F00F271AA /* REPORT */,
 				2F54FFFA196176410093028E /* Entity */,
 				242F94C3195C6E7300371697 /* CacheDataLoader.h */,
@@ -867,6 +877,19 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
+		2F6513A51981E73B00F2D1F9 /* Soap */ = {
+			isa = PBXGroup;
+			children = (
+				2F6513A61981E74800F2D1F9 /* LSSoapWorker.h */,
+				2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */,
+				2F6513A81981E74800F2D1F9 /* LSXMLWorker.h */,
+				2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */,
+				2F6513AC1981EA6400F2D1F9 /* LSSoapLoginWorker.h */,
+				2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */,
+			);
+			name = Soap;
+			sourceTree = "<group>";
+		};
 		2F92BBB719779B6800FBE647 /* MessageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,6 +1056,7 @@
 				2F15DDAE197CD8EE001DD26D /* NCCustomerNameSubView.mm in Sources */,
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
+				2F6513AE1981EA6400F2D1F9 /* LSSoapLoginWorker.mm in Sources */,
 				2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */,
 				242F9508195C6E7300371697 /* SelectSheet.mm in Sources */,
 				24259EC6194AB36B000FF8A9 /* SDWebImageDecoder.m in Sources */,
@@ -1049,6 +1073,7 @@
 				24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
+				2F6513AB1981E74800F2D1F9 /* LSXMLWorker.m in Sources */,
 				24259EEE194AB36B000FF8A9 /* unzip.c in Sources */,
 				24259EDF194AB36B000FF8A9 /* KBCustomTextField.mm in Sources */,
 				2F15DD9E197C9EE4001DD26D /* NCRootSubView.mm in Sources */,
@@ -1085,6 +1110,7 @@
 				2F15DDB9197CF093001DD26D /* NCBabyBirthdaySubView.m in Sources */,
 				2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */,
 				242F94FF195C6E7300371697 /* CacheDataLoader.mm in Sources */,
+				2F6513AA1981E74800F2D1F9 /* LSSoapWorker.m in Sources */,
 				24259ED5194AB36B000FF8A9 /* NSUtil.mm in Sources */,
 				2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */,
 				2FF644D7196448EE00A802A9 /* SinriUIApplication.mm in Sources */,

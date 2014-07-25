@@ -19,4 +19,6 @@
 -(int)getSelectedButton;
 -(int)getButtonNumber;
 
+-(void)setButtonSelected:(int)button_tag;
+
 @end

@@ -9,9 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "ProductEntity.h"
 
+typedef enum : NSInteger {
+	CartModeSale=0,
+    CartModeReturn=1,
+    CartModeExchange=2
+} CartMode;
+
 @interface CartEntity : NSObject
 
 @property NSMutableArray * cart_array;
+
+//@property CartMode cartMode;
++(CartMode)getCartMode;
++(void)setCartMode:(CartMode)cartMode;
 
 +(BOOL)getChangeState;
 +(void)setChangeState:(BOOL)isChangeStart;

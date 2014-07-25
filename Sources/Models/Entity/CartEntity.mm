@@ -11,7 +11,16 @@
 static CartEntity * defaultCartEntity=nil;
 static BOOL isChanging=false;
 
+static CartMode theCartMode=CartModeSale;
+
 @implementation CartEntity
+
++(CartMode)getCartMode{
+    return theCartMode;
+}
++(void)setCartMode:(CartMode)cartMode{
+    theCartMode=cartMode;
+}
 
 +(BOOL)getChangeState{
     return isChanging;

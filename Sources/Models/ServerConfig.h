@@ -24,4 +24,6 @@
 -(NSString*)getURL_idle_video;
 -(NSString*)getURL_sr_receipt;
 
+-(NSString*)getSoapLoginURL;
+
 @end

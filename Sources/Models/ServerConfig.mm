@@ -14,7 +14,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 
 -(id)init{
     self=[super init];
-    dict=@{@"kServerUrl":
+    dict=@{@"SoapLogin":@"https://babynes-asia.ocentric.com/api/v2_soap/index",
+           @"kServerUrl":
                 //@"http://uniquebaby.duapp.com/babynesios/admin/api",//BAIDU MOCK
                 //@"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
                 @"https://testbaby.i9i8.com/admin/api",//TESTBABY
@@ -36,6 +37,10 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
         defaultServerConfig=[[ServerConfig alloc]init];
     }
     return defaultServerConfig;
+}
+
+-(NSString*)getSoapLoginURL{
+    return dict[@"SoapLogin"];
 }
 
 -(NSString*)getURL_root{

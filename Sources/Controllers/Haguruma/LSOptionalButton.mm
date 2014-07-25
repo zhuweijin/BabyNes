@@ -83,6 +83,20 @@
     }
 }
 
+-(void)setButtonSelected:(int)button_tag{
+    _Log(@"LSOptionalButton setButtonSelected:%d",button_tag);
+    buttonSelected=button_tag;
+    for (UIButton * btn in buttonArray) {
+        if(btn.tag==buttonSelected){
+            [[btn titleLabel] setFont:[UIFont systemFontOfSize:18]];
+            [btn setEnabled:NO];
+        }else{
+            [[btn titleLabel] setFont:[UIFont systemFontOfSize:15]];
+            [btn setEnabled:YES];
+        }
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

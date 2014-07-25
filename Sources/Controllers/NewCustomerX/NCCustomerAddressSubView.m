@@ -50,7 +50,11 @@
         [_homeTextField setDelegate:self];
         [self.contentView addSubview:_homeTextField];
         
-        
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(10, pickerViewFrame.origin.y+pickerViewFrame.size.height+10+30, self.contentView.frame.size.width-20, 50)];
+        [label setText:NSLocalizedString(@"Select the area and input the address of the customer.", @"请填写顾客的所在地区和住所。")];
+        [label setLineBreakMode:(NSLineBreakByWordWrapping)];
+        [label setNumberOfLines:0];
+        [self.contentView addSubview:label];
     }
     return self;
 }

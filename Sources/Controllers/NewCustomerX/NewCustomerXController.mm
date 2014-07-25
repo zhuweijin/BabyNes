@@ -17,7 +17,7 @@
 #import "NCBabySexSubView.h"
 #import "NCBabyBirthdaySubView.h"
 
-
+static UIColor * borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:0.9];
 
 @interface NewCustomerXController ()
 
@@ -97,6 +97,9 @@
     [self.theTableView setDelegate:self.theTableView];
     [self.theTableView setNCDelegate:self];
     self.theTableView.sectionArrayOfDict = [[NSMutableArray alloc]initWithArray:@[customer_info_dict]];
+    
+    [self.theTableView.layer setBorderColor:borderColor.CGColor];
+    [self.theTableView.layer setBorderWidth:1];
     
     [self.view addSubview:self.theTableView];
     
@@ -181,6 +184,10 @@
     _Log(@"NewCustomerXController tableLoadSubViewFromRight");
     view.frame=rightFrame;
     [self.view addSubview:view];
+    
+    [view.layer setBorderColor:borderColor.CGColor];
+    [view.layer setBorderWidth:1];
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.theTableView.frame=leftFrame;
         view.frame=midFrame;
@@ -387,10 +394,11 @@
         case NCSubViewPropertyTypeCustomerCity:
             [_NewCustomer setTheCity:value];
             //[[self.theTableView.sectionArrayOfDict objectAtIndex:0] setObject:[NSString stringWithFormat:@"%@     %@ %@",NSLocalizedString(@"Address", @"地址"),[_NewCustomer theProvince],[_NewCustomer theCity]] forKey:@"address"];
-            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"address"]setObject:[NSString stringWithFormat:@"%@ %@",[_NewCustomer theProvince],[_NewCustomer theCity]] forKey:@"value"];
+            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"address"]setObject:[NSString stringWithFormat:@"%@ %@ %@",[_NewCustomer theProvince],[_NewCustomer theCity],[_NewCustomer theAddress]] forKey:@"value"];
             break;
         case NCSubViewPropertyTypeCustomerHome:
             [_NewCustomer setTheAddress:value];
+            [[[self.theTableView.sectionArrayOfDict objectAtIndex:0] objectForKey:@"address"]setObject:[NSString stringWithFormat:@"%@ %@ %@",[_NewCustomer theProvince],[_NewCustomer theCity],[_NewCustomer theAddress]] forKey:@"value"];
             break;
         default:
             break;
