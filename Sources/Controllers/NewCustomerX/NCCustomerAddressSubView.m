@@ -139,7 +139,7 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     NSLog(@"pickerView didSelectRow:%d inComponent:%d",row,component);
     @try {
-        _value_province=[_provinceArray objectAtIndex:row];
+        _value_province=[_provinceArray objectAtIndex:[pickerView selectedRowInComponent:0]];
     }
     @catch (NSException *exception) {
         //
@@ -156,7 +156,7 @@
     }
     
     @try {
-        _value_city=[_cityArray objectAtIndex:row];
+        _value_city=[_cityArray objectAtIndex:[pickerView selectedRowInComponent:1]];
     }
     @catch (NSException *exception) {
         //

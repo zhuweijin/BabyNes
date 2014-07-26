@@ -155,7 +155,7 @@
 
 -(void)newCustomerButtonClicked:(UIButton*)sender{
     _Log(@"ROOT newCustomerButtonClicked called");
-    NewCustomerXController * nc=[[NewCustomerXController alloc]init];
+    NewCustomerYController * nc=[[NewCustomerYController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];

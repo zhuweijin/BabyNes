@@ -31,7 +31,7 @@
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
 
-@property LSOptionalButton * optionalButton;
+//@property LSOptionalButton * optionalButton;
 
 //@property CacheImageView * civ;
 
@@ -217,15 +217,16 @@ static CGFloat reloadHeaderHeight=30;
     
     self.cartTableView.layer.cornerRadius = 10;
     
+    /*
     self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
     [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.optionalButton];
     
     self.optionalButton.layer.cornerRadius = 10;
     self.optionalButton.layer.masksToBounds=YES;
-    
+    */
 }
-
+/*
 -(void)onOptionalButton:(id)sender{
     _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
     
@@ -236,9 +237,9 @@ static CGFloat reloadHeaderHeight=30;
             [self.optionalButton setButtonSelected:[CartEntity getCartMode]];
             return;
         }else{
-            /*
-             这里的逻辑需要确认，最好能够在见到实际的API之后再做设计。
-             */
+ 
+            // 这里的逻辑需要确认，最好能够在见到实际的API之后再做设计。
+ 
             [[CartEntity getDefaultCartEntity]resetCart];
             _LogLine();
         }
@@ -246,7 +247,7 @@ static CGFloat reloadHeaderHeight=30;
     _LogLine();
     [CartEntity setCartMode:(CartMode)[self.optionalButton getSelectedButton]];
 }
-
+*/
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self removeObservers];

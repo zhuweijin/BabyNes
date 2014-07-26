@@ -118,12 +118,16 @@
 		2F6513AA1981E74800F2D1F9 /* LSSoapWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */; };
 		2F6513AB1981E74800F2D1F9 /* LSXMLWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */; };
 		2F6513AE1981EA6400F2D1F9 /* LSSoapLoginWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */; };
+		2F65140219827B1900F2D1F9 /* LSMixTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513FD19827B1900F2D1F9 /* LSMixTable.mm */; };
+		2F65140319827B1900F2D1F9 /* LSMixTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */; };
+		2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
 		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
 		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
+		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
 		2FEBDBF0197A6AC000C292FF /* NewCustomerXController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */; };
 		2FEBDBF3197A788700C292FF /* NCTableView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FEBDBF2197A788700C292FF /* NCTableView.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
@@ -360,6 +364,12 @@
 		2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSXMLWorker.m; path = Soap/LSXMLWorker.m; sourceTree = "<group>"; };
 		2F6513AC1981EA6400F2D1F9 /* LSSoapLoginWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSoapLoginWorker.h; path = Soap/LSSoapLoginWorker.h; sourceTree = "<group>"; };
 		2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSSoapLoginWorker.mm; path = Soap/LSSoapLoginWorker.mm; sourceTree = "<group>"; };
+		2F6513FC19827B1900F2D1F9 /* LSMixTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSMixTable.h; path = NewCustomerY/LSMixTable.h; sourceTree = "<group>"; };
+		2F6513FD19827B1900F2D1F9 /* LSMixTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSMixTable.mm; path = NewCustomerY/LSMixTable.mm; sourceTree = "<group>"; };
+		2F6513FE19827B1900F2D1F9 /* LSMixTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSMixTableCell.h; path = NewCustomerY/LSMixTableCell.h; sourceTree = "<group>"; };
+		2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSMixTableCell.mm; path = NewCustomerY/LSMixTableCell.mm; sourceTree = "<group>"; };
+		2F65140019827B1900F2D1F9 /* NewCustomerYController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCustomerYController.h; path = NewCustomerY/NewCustomerYController.h; sourceTree = "<group>"; };
+		2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NewCustomerYController.mm; path = NewCustomerY/NewCustomerYController.mm; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
 		2F72BB3F196BBC0300528735 /* CateImageButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CateImageButton.mm; sourceTree = "<group>"; };
 		2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalSRMessageTool.h; path = Entity/LocalSRMessageTool.h; sourceTree = "<group>"; };
@@ -372,6 +382,8 @@
 		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
 		2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSOptionalButton.h; sourceTree = "<group>"; };
 		2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSOptionalButton.mm; sourceTree = "<group>"; };
+		2FB63CCB198352A400F344E9 /* LSDuoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDuoPicker.h; sourceTree = "<group>"; };
+		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
 		2FEBDBEE197A6AC000C292FF /* NewCustomerXController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCustomerXController.h; path = NewCustomerX/NewCustomerXController.h; sourceTree = "<group>"; };
 		2FEBDBEF197A6AC000C292FF /* NewCustomerXController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NewCustomerXController.mm; path = NewCustomerX/NewCustomerXController.mm; sourceTree = "<group>"; };
 		2FEBDBF1197A788700C292FF /* NCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCTableView.h; path = NewCustomerX/NCTableView.h; sourceTree = "<group>"; };
@@ -597,6 +609,7 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F6513FB19827AC700F2D1F9 /* NewCustomerY */,
 				2FEBDBED197A6A6600C292FF /* NewCustomerX */,
 				2F92BBB719779B6800FBE647 /* MessageView */,
 				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
@@ -781,6 +794,8 @@
 				2F72BB3F196BBC0300528735 /* CateImageButton.mm */,
 				2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */,
 				2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */,
+				2FB63CCB198352A400F344E9 /* LSDuoPicker.h */,
+				2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -888,6 +903,19 @@
 				2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */,
 			);
 			name = Soap;
+			sourceTree = "<group>";
+		};
+		2F6513FB19827AC700F2D1F9 /* NewCustomerY */ = {
+			isa = PBXGroup;
+			children = (
+				2F6513FC19827B1900F2D1F9 /* LSMixTable.h */,
+				2F6513FD19827B1900F2D1F9 /* LSMixTable.mm */,
+				2F6513FE19827B1900F2D1F9 /* LSMixTableCell.h */,
+				2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */,
+				2F65140019827B1900F2D1F9 /* NewCustomerYController.h */,
+				2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */,
+			);
+			name = NewCustomerY;
 			sourceTree = "<group>";
 		};
 		2F92BBB719779B6800FBE647 /* MessageView */ = {
@@ -1028,6 +1056,7 @@
 			files = (
 				2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */,
 				24259ED7194AB36B000FF8A9 /* SettingUtil.mm in Sources */,
+				2F65140319827B1900F2D1F9 /* LSMixTableCell.mm in Sources */,
 				24259EDB194AB36B000FF8A9 /* CacheImageView.mm in Sources */,
 				242F94E1195C6E7300371697 /* TableController.mm in Sources */,
 				242F94F1195C6E7300371697 /* LSShopCartTableViewCell.mm in Sources */,
@@ -1094,6 +1123,8 @@
 				24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */,
 				24259EBE194AB36B000FF8A9 /* Main.m in Sources */,
 				24E88BF5195DA645007478B3 /* LSNewCustomer_BabyCell.mm in Sources */,
+				2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */,
+				2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */,
 				2FF644E519659C6200A802A9 /* MessageController.mm in Sources */,
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
@@ -1134,6 +1165,7 @@
 				2FF644E219659AFD00A802A9 /* MaterialController.mm in Sources */,
 				2F12923E19628B9F00F271AA /* LSRegularReporter.mm in Sources */,
 				2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */,
+				2F65140219827B1900F2D1F9 /* LSMixTable.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
 				2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */,
 				2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */,
@@ -1198,7 +1230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "BD541B57-98EB-4850-9537-0CD6B3D6CBE8";
@@ -1236,7 +1268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
 				PROVISIONING_PROFILE = "68F16053-396E-4D0D-B858-DB0F47983076";
 				SDKROOT = iphoneos;

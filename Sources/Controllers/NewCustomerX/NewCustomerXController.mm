@@ -54,7 +54,7 @@ static UIColor * borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blu
 
 -(void)designView{
     //self.view.backgroundColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:0.7];
-    self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=UIUtil::Color(240, 240, 240);
     
     self.theExitButton=[UIButton buttonWithType:UIButtonTypeCustom];
     self.theExitButton.titleLabel.font = [UIFont systemFontOfSize: 16.0];
@@ -77,11 +77,11 @@ static UIColor * borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blu
     [self.theTitleLabel setTextAlignment:(NSTextAlignmentCenter)];
     [self.view addSubview:self.theTitleLabel];
     
-    midFrame=CGRectMake(10, 60, 520, 350);
+    midFrame=CGRectMake(0, 60, 540, 350);
     rightFrame=midFrame;
     leftFrame=midFrame;
-    rightFrame.origin.x+=midFrame.origin.x+midFrame.size.width+10;
-    leftFrame.origin.x-=midFrame.origin.x+midFrame.size.width+10;
+    rightFrame.origin.x+=midFrame.origin.x+midFrame.size.width+0;
+    leftFrame.origin.x-=midFrame.origin.x+midFrame.size.width+0;
     
     NSMutableDictionary * customer_info_dict=[[NSMutableDictionary alloc]initWithDictionary:
                                               @{
@@ -98,8 +98,10 @@ static UIColor * borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blu
     [self.theTableView setNCDelegate:self];
     self.theTableView.sectionArrayOfDict = [[NSMutableArray alloc]initWithArray:@[customer_info_dict]];
     
-    [self.theTableView.layer setBorderColor:borderColor.CGColor];
-    [self.theTableView.layer setBorderWidth:1];
+    [self.theTableView setBackgroundColor:UIUtil::Color(240, 240, 240)];
+    
+    //[self.theTableView.layer setBorderColor:borderColor.CGColor];
+    //[self.theTableView.layer setBorderWidth:1];
     
     [self.view addSubview:self.theTableView];
     
@@ -237,6 +239,11 @@ static UIColor * borderColor=[UIColor colorWithRed:157/255.0 green:153/255.0 blu
                 break;
             case 3:
                 _subView=[[NCCustomerContactSubView alloc]initWithFrame:rightFrame withDelegate:self];
+            if(NO){
+                NSIndexPath * nextIP=[NSIndexPath indexPathForItem:indexPath.row+1 inSection:indexPath.section];
+                UITableViewCell*cell=[self.theTableView tableView:self.theTableView cellForRowAtIndexPath:nextIP];
+                [cell setHidden:NO];
+            }
                 break;
             default:
                 break;

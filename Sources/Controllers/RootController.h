@@ -2,6 +2,7 @@
 #import "PivotController.h"
 #import "NewCustomerController.h"
 #import "NewCustomerXController.h"
+#import "NewCustomerYController.h"
 #import "LoginController.h"
 #import "SettingController.h"
 #import "LSShopViewController.h"

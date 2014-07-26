@@ -50,27 +50,35 @@
     }
     
     //[[cell textLabel]setText:[NSString stringWithFormat:@"Section %d Row %d",indexPath.section,indexPath.row]];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
     
     NSDictionary* dict=[_sectionArrayOfDict objectAtIndex:indexPath.section];
     if(indexPath.section==0){
         switch (indexPath.row) {
             case 0:
                 //[[cell textLabel]setText:dict[@"title"]];
-                [cell setCellWithTitle:[dict[@"title"] objectForKey:@"name"] withPreview:[dict[@"title"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"title"] objectForKey:@"name"] withPreview:[dict[@"title"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
+                
                 break;
             case 1:
                 //[[cell textLabel]setText:dict[@"name"]];
-                [cell setCellWithTitle:[dict[@"name"] objectForKey:@"name"] withPreview:[dict[@"name"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"name"] objectForKey:@"name"] withPreview:[dict[@"name"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
+                cell.accessoryType =  UITableViewCellAccessoryNone;
                 break;
             case 2:
                 //[[cell textLabel]setText:dict[@"address"]];
-                [cell setCellWithTitle:[dict[@"address"] objectForKey:@"name"] withPreview:[dict[@"address"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"address"] objectForKey:@"name"] withPreview:[dict[@"address"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
                 break;
             case 3:
                 //[[cell textLabel]setText:dict[@"contact"]];
-                [cell setCellWithTitle:[dict[@"contact"] objectForKey:@"name"] withPreview:[dict[@"contact"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"contact"] objectForKey:@"name"] withPreview:[dict[@"contact"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
                 break;
-                
+            /*
+            case 4:
+                [cell setCellWithTitle:[dict[@"contact"] objectForKey:@"name"] withPreview:[dict[@"contact"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
+             */
+                break;
+             
             default:
                 [[cell textLabel]setText:@"!"];
                 break;
@@ -79,15 +87,15 @@
         switch (indexPath.row) {
             case 0:
                 //[[cell textLabel]setText:dict[@"nick"]];
-                [cell setCellWithTitle:[dict[@"nick"] objectForKey:@"name"] withPreview:[dict[@"nick"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"nick"] objectForKey:@"name"] withPreview:[dict[@"nick"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
                 break;
             case 1:
                 //[[cell textLabel]setText:dict[@"birthday"]];
-                [cell setCellWithTitle:[dict[@"birthday"] objectForKey:@"name"] withPreview:[dict[@"birthday"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"birthday"] objectForKey:@"name"] withPreview:[dict[@"birthday"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
                 break;
             case 2:
                 //[[cell textLabel]setText:dict[@"sex"]];
-                [cell setCellWithTitle:[dict[@"sex"] objectForKey:@"name"] withPreview:[dict[@"sex"] objectForKey:@"value"]];
+                [cell setCellWithTitle:[dict[@"sex"] objectForKey:@"name"] withPreview:[dict[@"sex"] objectForKey:@"value"] asTag:(indexPath.section*100+indexPath.row)];
                 break;
             default:
                 [[cell textLabel]setText:@"!"];
@@ -96,8 +104,7 @@
     }
     
     
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    
     return cell;
 }
 

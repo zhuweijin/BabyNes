@@ -30,8 +30,10 @@
 
     // Configure the view for the selected state
 }
-
--(void)setCellWithTitle:(NSString *)title withPreview:(NSString*)preview{
+#ifdef NCTableViewCell_USE_LABEL
+-(void)setCellWithTitle:(NSString *)title withPreview:(NSString*)preview asTag:(int)tag{
+    [self setTag:tag];
+    
     if(_cellTitle){
         [_cellTitle removeFromSuperview];
         _cellTitle=nil;
@@ -54,5 +56,35 @@
     [_cellPreview setAlpha:0.8];
     [self addSubview:_cellPreview];
 }
+#endif
+#ifdef NCTableViewCell_USE_TEXTFIELD
+-(void)setCellWithTitle:(NSString *)title withPreview:(NSString*)preview asTag:(int)tag{
+    [self setTag:tag];
+    
+    if(_cellTitle){
+        [_cellTitle removeFromSuperview];
+        _cellTitle=nil;
+    }
+    
+    _cellTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 5, 200, 30)];
+    [_cellTitle setText:title];
+    [self addSubview:_cellTitle];
+    
+    [self setCellWithPreview:preview];
+}
 
+-(void)setCellWithPreview:(NSString*)preview{
+    if(_cellText){
+        [_cellText removeFromSuperview];
+        _cellText = nil;
+    }
+    _cellText=[[UITextField alloc]initWithFrame:CGRectMake(250, 5, 200, 30)];
+    if(_cellTitle){
+        [_cellText setPlaceholder:[_cellTitle text]];
+    }
+    [_cellText setText:preview];
+    [_cellText setAlpha:0.8];
+    [self addSubview:_cellText];
+}
+#endif
 @end
