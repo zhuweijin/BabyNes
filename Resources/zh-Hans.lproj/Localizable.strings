@@ -103,6 +103,9 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
+/* Birthday */
+"Birthday" = "生日";
+
 /* Birthday is not completed yet for No.%d baby */
 "Birthday is not completed yet for No.%d baby" = "第%d个宝宝的生日未填写完整";
 
@@ -250,6 +253,9 @@
 /* Input the Area Code and Phone Number here. It is optional. */
 "Input the Area Code and Phone Number here. It is optional." = "请填写地区代号和电话号码。这是一个可选项。";
 
+/* Input the name of the customer. */
+"Input the name of the customer." = "请填写顾客姓名。";
+
 /* Input the nickname of the baby here. It is optional. */
 "Input the nickname of the baby here. It is optional." = "请填写宝宝的昵称。这是一个可选项。";
 
@@ -346,6 +352,9 @@
 /* No change */
 "No change" = "数据无变化";
 
+/* None */
+"None" = "未选择";
+
 /* Not found */
 "Not found" = "没有找到该顾客";
 
@@ -375,6 +384,9 @@
 
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
+
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
 
 /* Pregnant */
 "Pregnant" = "胎儿";
@@ -456,6 +468,9 @@
 
 /* Search */
 "Search" = "搜索";
+
+/* Select the area and input the address of the customer. */
+"Select the area and input the address of the customer." = "请填写顾客的所在地区和住所。";
 
 /* Send */
 "Send" = "发送";
