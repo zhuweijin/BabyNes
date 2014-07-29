@@ -184,6 +184,7 @@
 +(NSString *)deviceModelOriginal;
 
 +(NetworkStatus)currentNetworkType;
++(BOOL)isNetworkOn;
 
 #pragma hardware over
 

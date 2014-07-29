@@ -47,4 +47,25 @@
     return YES;
 }
 
+- (void) encodeWithCoder: (NSCoder *)coder
+{
+    [coder encodeObject:_the_nick forKey:@"nick"];
+    [coder encodeObject:_the_sex forKey:@"sex"];
+    [coder encodeObject:_the_birth_date forKey:@"birthday"];
+    [coder encodeInteger:_the_birth_year forKey:@"year"];
+    [coder encodeInteger:_the_birth_month forKey:@"month"];
+    [coder encodeInteger:_the_birth_day forKey:@"day"];
+}
+
+- (id) initWithCoder: (NSCoder *) coder
+{
+    _the_nick=[[coder decodeObjectForKey:@"nick"]copy];
+    _the_sex=[[coder decodeObjectForKey:@"sex"]copy];
+    _the_birth_date=[[coder decodeObjectForKey:@"birthday"] copy];
+    _the_birth_year=[coder decodeIntegerForKey:@"year"];
+    _the_birth_month=[coder decodeIntegerForKey:@"month"];
+    _the_birth_day=[coder decodeIntegerForKey:@"day"];
+    return self;
+}
+
 @end

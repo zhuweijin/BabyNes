@@ -213,41 +213,42 @@ static CGFloat reloadHeaderHeight=30;
     [self.cartTableView setRowHeight:50];
     [self.cartTableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     [self.cartTableView setBackgroundColor:[UIColor whiteColor]];
+    [self.cartTableView setScrollsToTop:NO];
     [self.view addSubview:self.cartTableView];
     
     self.cartTableView.layer.cornerRadius = 10;
     
     /*
-    self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
-    [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.view addSubview:self.optionalButton];
-    
-    self.optionalButton.layer.cornerRadius = 10;
-    self.optionalButton.layer.masksToBounds=YES;
-    */
+     self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
+     [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
+     [self.view addSubview:self.optionalButton];
+     
+     self.optionalButton.layer.cornerRadius = 10;
+     self.optionalButton.layer.masksToBounds=YES;
+     */
 }
 /*
--(void)onOptionalButton:(id)sender{
-    _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
-    
-    if([[[CartEntity getDefaultCartEntity]cart_array]count]>0){
-        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:@"Warning" message:@"Cart is not empty." cancelButtonTitle:@"Cancel" otherButtonTitles:@"Clean and Continue"];
-        int r=[dav showDialog];
-        if(r==0){
-            [self.optionalButton setButtonSelected:[CartEntity getCartMode]];
-            return;
-        }else{
+ -(void)onOptionalButton:(id)sender{
+ _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
  
-            // 这里的逻辑需要确认，最好能够在见到实际的API之后再做设计。
+ if([[[CartEntity getDefaultCartEntity]cart_array]count]>0){
+ DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:@"Warning" message:@"Cart is not empty." cancelButtonTitle:@"Cancel" otherButtonTitles:@"Clean and Continue"];
+ int r=[dav showDialog];
+ if(r==0){
+ [self.optionalButton setButtonSelected:[CartEntity getCartMode]];
+ return;
+ }else{
  
-            [[CartEntity getDefaultCartEntity]resetCart];
-            _LogLine();
-        }
-    }
-    _LogLine();
-    [CartEntity setCartMode:(CartMode)[self.optionalButton getSelectedButton]];
-}
-*/
+ // 这里的逻辑需要确认，最好能够在见到实际的API之后再做设计。
+ 
+ [[CartEntity getDefaultCartEntity]resetCart];
+ _LogLine();
+ }
+ }
+ _LogLine();
+ [CartEntity setCartMode:(CartMode)[self.optionalButton getSelectedButton]];
+ }
+ */
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self removeObservers];
@@ -294,6 +295,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.monoTableView setDelegate:self.monoTableView];
     [self.monoTableView setDataSource:self.monoTableView];
     [self.monoTableView setRowHeight:70];
+    [self.monoTableView setScrollsToTop:NO];
     [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
     [contentView addSubview:self.monoTableView];
     
@@ -330,19 +332,25 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_mobile_textfield resignFirstResponder];
     //mock
     BOOL found=NO;
-    if([self.the_customer_mobile_textfield.text longLongValue]>13500000000){
-        found=YES;
-        [self.the_customer_search_result setText:[NSString stringWithFormat:
-                                                  NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
-                                                  @"Mr Wakayama",
-                                                  self.the_customer_mobile_textfield.text,
-                                                  @"2014-01-01"
-                                                  ]
-         ];
-        [self.the_customer_new_button setHidden:YES];
-        [self.the_order_confirm_button setHidden:NO];
+    if([LSDeviceInfo isNetworkOn]){
+        if([self.the_customer_mobile_textfield.text longLongValue]>13500000000){
+            found=YES;
+            [self.the_customer_search_result setText:[NSString stringWithFormat:
+                                                      NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
+                                                      @"Mr Wakayama",
+                                                      self.the_customer_mobile_textfield.text,
+                                                      @"2014-01-01"
+                                                      ]
+             ];
+            [self.the_customer_new_button setHidden:YES];
+            [self.the_order_confirm_button setHidden:NO];
+        }else{
+            [self.the_customer_search_result setText:NSLocalizedString(@"Not found",  @"没有找到该顾客")];
+            [self.the_customer_new_button setHidden:NO];
+            [self.the_order_confirm_button setHidden:YES];
+        }
     }else{
-        [self.the_customer_search_result setText:NSLocalizedString(@"Not found",  @"没有找到该顾客")];
+        [self.the_customer_search_result setText:NSLocalizedString(@"Offline now, please record the information of customer.",  @"目前离线，请登记顾客信息。")];
         [self.the_customer_new_button setHidden:NO];
         [self.the_order_confirm_button setHidden:YES];
     }
@@ -352,7 +360,8 @@ static CGFloat reloadHeaderHeight=30;
 -(void)show_new_customer_VC:(id)sender{
     _Log(@"show_new_customer_VC called");
     //NewCustomerController * nc=[[NewCustomerController alloc]init];
-    NewCustomerXController * nc=[[NewCustomerXController alloc]init];
+    //NewCustomerXController * nc=[[NewCustomerXController alloc]init];
+    NewCustomerYController * nc=[[NewCustomerYController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];

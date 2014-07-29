@@ -274,7 +274,7 @@ static CGFloat reloadHeaderHeight=40;
             [btn setHighlighted:NO];
         }
     }
-    
+    [((UIScrollView*)_itemPane) setScrollsToTop:NO];
 	[_contentView addSubview:_itemPane];
 }
 //

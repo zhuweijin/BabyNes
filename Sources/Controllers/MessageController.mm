@@ -107,6 +107,7 @@ static CGFloat reloadHeaderHeight=40;
     [srTable setDelegate:srTable];
     [srTable setRowHeight:50];
     [srTable setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+    [srTable setScrollsToTop:NO];
     [self.view addSubview:srTable];
     
     reloadLabel=[[UILabel alloc]initWithFrame:CGRectMake(0,-reloadHeaderHeight,srTable.frame.size.width,reloadHeaderHeight)];

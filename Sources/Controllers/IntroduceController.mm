@@ -216,7 +216,7 @@ static int MonoNumberInRow=3;
         }
     }
     
-    
+    [((UIScrollView*)_itemPane) setScrollsToTop:NO];
 	[_contentView addSubview:_itemPane];
 }
 

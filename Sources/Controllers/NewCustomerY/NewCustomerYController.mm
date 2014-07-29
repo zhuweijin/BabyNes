@@ -118,6 +118,7 @@
     [self.view addSubview:self.theCustomerAddButton];
     
     _mixTable=[[LSMixTable alloc]initWithFrame:CGRectMake(0, 60, 540, 350) style:(UITableViewStyleGrouped)];
+    [_mixTable setBackgroundColor:[UIColor whiteColor]];
     [_mixTable setDelegate:self];
     [_mixTable setDataSource:self];
     [self.view addSubview:_mixTable];
@@ -204,7 +205,8 @@
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
         UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *) view;
         //tableViewHeaderFooterView.textLabel.textColor = [UIColor blueColor];
-        tableViewHeaderFooterView.textLabel.font=[UIFont systemFontOfSize:20];
+        //tableViewHeaderFooterView.textLabel.backgroundColor=[UIColor whiteColor];
+        tableViewHeaderFooterView.textLabel.font=[UIFont systemFontOfSize:25];
     }
 }
 
@@ -500,7 +502,7 @@
     [recheckView addSubview:recheckTitleLabel];
     */
     NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),[_NewCustomer theMobile]];
-    UILabel * recheckLabel =[[UILabel alloc]initWithFrame:CGRectMake(50, 20, 440, 250)];
+    UILabel * recheckLabel =[[UILabel alloc]initWithFrame:CGRectMake(50, 20, 440, 350)];
     //[recheckLabel setBackgroundColor:[UIColor redColor]];
     [recheckLabel setText:msg];
     [recheckLabel setFont:[UIFont systemFontOfSize:30]];

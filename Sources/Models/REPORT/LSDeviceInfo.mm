@@ -451,6 +451,10 @@
     return net_state;
      */
 }
++(BOOL)isNetworkOn{
+    if([LSDeviceInfo currentNetworkType] == NotReachable)return NO;
+    else return YES;
+}
 
 +(NSString*) device_sn{
     //NSString *udid =NSUtil::UUID();
