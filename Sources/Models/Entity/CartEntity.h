@@ -12,7 +12,7 @@
 typedef enum : NSInteger {
 	CartModeSale=0,
     CartModeReturn=1,
-    CartModeExchange=2
+    //CartModeExchange=2
 } CartMode;
 
 @interface CartEntity : NSObject
