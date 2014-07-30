@@ -82,7 +82,7 @@ static CartMode theCartMode=CartModeSale;
             }
         }
         if(pe==nil){
-            if(number<=0){
+            if(number==0){
                 _Log(@"07091229 number=%d",number);
                 return;
             }
@@ -93,7 +93,7 @@ static CartMode theCartMode=CartModeSale;
         }
         else{
             _Log(@"sought pe[%@-%d]",[pe product_title],[pe product_id]);
-            if([pe quantity]+number>0){
+            if([pe quantity]+number!=0){
                 [pe setQuantity:[pe quantity]+number];
             }else{
                 [[[CartEntity getDefaultCartEntity] cart_array] removeObject:pe];
