@@ -10,6 +10,7 @@
 #import "LSCustomer.h"
 #import "LSOptionalButton.h"
 #import "LSDuoPicker.h"
+#import "LSSinglePicker.h"
 
 @protocol LSMixTableCellDelegate <NSObject>
 
@@ -28,6 +29,7 @@
     UITextField * textFieldMore;
     //UIPickerView * picker;
     LSDuoPicker * picker;
+    LSSinglePicker * singlePicker;
     UIDatePicker * datePicker;
     
     int baby_id;

@@ -172,39 +172,43 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_search_result setNumberOfLines:0];
     [self.view addSubview:self.the_customer_search_result];
     
-    self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
+    
+    self.the_customer_seek_button=[UIButton minorButtonWithTitle:NSLocalizedString(@"Search", @"搜索") width:80];
+    //self.the_customer_seek_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.the_customer_seek_button setFrame:CGRectMake(920, 460, 80, 30)];
-    [self.the_customer_seek_button setTitle:NSLocalizedString(@"Search", @"搜索")  forState:(UIControlStateNormal)];
-    self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [self.the_customer_seek_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+    //[self.the_customer_seek_button setTitle:NSLocalizedString(@"Search", @"搜索")  forState:(UIControlStateNormal)];
+    //self.the_customer_seek_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    //self.the_customer_seek_button.titleLabel.textColor=[UIColor whiteColor];
+    //self.the_customer_seek_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    //[self.the_customer_seek_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     [self.the_customer_seek_button addTarget:self action:@selector(seek_customer:) forControlEvents:(UIControlEventTouchUpInside)];
-    self.the_customer_seek_button.layer.cornerRadius = 5;
+    //self.the_customer_seek_button.layer.cornerRadius = 5;
     [self.view addSubview:self.the_customer_seek_button];
     
-    self.the_customer_new_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.the_customer_new_button=[UIButton minorButtonWithTitle:NSLocalizedString(@"New Customer", @"招募顾客") width:150];
+    //self.the_customer_new_button =[UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.the_customer_new_button setFrame:CGRectMake(850, 600, 150, 30)];
-    self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
-    [self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
+    //self.the_customer_new_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    //self.the_customer_new_button.titleLabel.textColor=[UIColor whiteColor];
+    //self.the_customer_new_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    //[self.the_customer_new_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+    //[self.the_customer_new_button setTitle:NSLocalizedString(@"New Customer", @"招募顾客")  forState:(UIControlStateNormal)];
     [self.the_customer_new_button addTarget:self action:@selector(show_new_customer_VC:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.the_customer_new_button setHidden:YES];
-    self.the_customer_new_button.layer.cornerRadius = 5;
+    //self.the_customer_new_button.layer.cornerRadius = 5;
     [self.view addSubview:self.the_customer_new_button];
     
-    self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
-    self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [self.the_order_confirm_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+    self.the_order_confirm_button=[UIButton minorButtonWithTitle:NSLocalizedString(@"Order Confirm", @"确认订单") width:150];
+    //self.the_order_confirm_button=[UIButton buttonWithType:UIButtonTypeCustom];
+    //self.the_order_confirm_button.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    //self.the_order_confirm_button.titleLabel.textColor=[UIColor whiteColor];
+    //self.the_order_confirm_button.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    //[self.the_order_confirm_button setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     self.the_order_confirm_button.frame=CGRectMake(850, 600, 150, 30);
-    [self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
+    //[self.the_order_confirm_button setTitle:NSLocalizedString(@"Order Confirm", @"确认订单")  forState:(UIControlStateNormal)];
     [self.the_order_confirm_button addTarget:self action:@selector(order_confirm:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_order_confirm_button];
-    self.the_order_confirm_button.layer.cornerRadius = 5;
+    //self.the_order_confirm_button.layer.cornerRadius = 5;
     [self.the_order_confirm_button setHidden:YES];
     
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
@@ -226,6 +230,7 @@ static CGFloat reloadHeaderHeight=30;
      self.optionalButton.layer.cornerRadius = 10;
      self.optionalButton.layer.masksToBounds=YES;
      */
+     [self setUpForDismissKeyboard];
 }
 /*
  -(void)onOptionalButton:(id)sender{
@@ -249,6 +254,32 @@ static CGFloat reloadHeaderHeight=30;
  [CartEntity setCartMode:(CartMode)[self.optionalButton getSelectedButton]];
  }
  */
+- (void)setUpForDismissKeyboard {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    UITapGestureRecognizer *singleTapGR =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapAnywhereToDismissKeyboard:)];
+    NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
+    [nc addObserverForName:UIKeyboardWillShowNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view addGestureRecognizer:singleTapGR];
+                }];
+    [nc addObserverForName:UIKeyboardWillHideNotification
+                    object:nil
+                     queue:mainQuene
+                usingBlock:^(NSNotification *note){
+                    [self.view removeGestureRecognizer:singleTapGR];
+                }];
+}
+
+- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    //此method会将self.view里所有的subview的first responder都resign掉
+    [self.view endEditing:YES];
+    _LogLine();
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self removeObservers];

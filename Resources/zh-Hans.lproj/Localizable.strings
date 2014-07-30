@@ -158,7 +158,7 @@
 "Could not open" = "无法打开";
 
 /* Create */
-"Create" = "确认创建";
+"Create" = "创建";
 
 /* Customer Information */
 "Customer Information" = "顾客信息";
@@ -364,6 +364,9 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "没有找到\n可以新建顾客账户";
 
+/* Offline now, please record the information of customer. */
+"Offline now, please record the information of customer." = "目前离线，请登记顾客信息。";
+
 /* OK */
 "OK" = "确认";
 
@@ -385,8 +388,8 @@
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
 
-/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择确认以继续创建顾客账号，选择取消可以返回进行检查。";
 
 /* Pregnant */
 "Pregnant" = "胎儿";
@@ -564,6 +567,9 @@
 
 /* Unknown error. */
 "Unknown error." = "未知错误";
+
+/* Unselected */
+"Unselected" = "未选择";
 
 /* Version %@ */
 "Version %@" = "版本 %@";

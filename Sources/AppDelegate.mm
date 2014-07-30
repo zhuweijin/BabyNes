@@ -104,7 +104,14 @@
      _Log(@"uuid=%@ data as [%@] to hex [%@]",uuid,sn_data,sn_string);
      */
     //_Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
-    
+    /*
+    NSDate * now = [NSDate date];
+    _Log(@"now is %@ = %lf",now, [now timeIntervalSince1970]);
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: now];
+    NSDate *localeDate = [now  dateByAddingTimeInterval: interval];
+    NSLog(@"to system zone = %@", localeDate);
+    */
 	return YES;
 }
 

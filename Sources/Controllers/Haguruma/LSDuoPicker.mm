@@ -15,8 +15,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        CGRect pickerViewFrame = self.frame;
-        pickerViewFrame.origin.y=0;
+        CGRect pickerViewFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        //pickerViewFrame.origin.y=0;
         
         level1Array=provinces;
         duoMap=cities;
@@ -48,7 +48,7 @@
     return 2;
 }
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    NSLog(@"pickerView numberOfRowsInComponent:[%d]",component);
+    //NSLog(@"pickerView numberOfRowsInComponent:[%d]",component);
     if (component==0) {
         return [level1Array count];
     }else{
@@ -122,21 +122,24 @@
     int i=0;
     for (i=0; i<[level1Array count];  i++) {
         if([[level1Array objectAtIndex:i] isEqualToString:l1]){
-            _LogLine();
+            //_LogLine();
             [thePickerView selectRow:i inComponent:0 animated:YES];
             [self pickerView:thePickerView didSelectRow:i inComponent:0];
-        }
-    }
-    
-    for (i=0; i<[level2Array count];  i++) {
-        if([[level2Array objectAtIndex:i] isEqualToString:l2]){
-            _LogLine();
-            [thePickerView selectRow:i inComponent:1 animated:YES];
-            [self pickerView:thePickerView didSelectRow:i inComponent:1];
+            break;
         }
     }
     
     [self pickerView:thePickerView didSelectRow:[thePickerView selectedRowInComponent:0] inComponent:0];
+    
+    for (i=0; i<[level2Array count];  i++) {
+        if([[level2Array objectAtIndex:i] isEqualToString:l2]){
+            //_LogLine();
+            [thePickerView selectRow:i inComponent:1 animated:YES];
+            [self pickerView:thePickerView didSelectRow:i inComponent:1];
+            break;
+        }
+    }
+    
     [self pickerView:thePickerView didSelectRow:[thePickerView selectedRowInComponent:1] inComponent:1];
     //[self sendActionsForControlEvents:(UIControlEventValueChanged)];
 }

@@ -16,16 +16,16 @@
 {
     
     UIView * recheckView;
-    /*
+    
     UILabel * recheckLabel;
     UIButton * recheckCancel;
     UIButton * recheckConfirm;
-     */
+    
 }
 @property LSCustomer * NewCustomer;
 
 @property UILabel * theTitleLabel;
-@property UIView * theTopLineView;
+//@property UIView * theTopLineView;
 @property UIButton * theExitButton;
 
 @property UIButton * theBabyAddButton;

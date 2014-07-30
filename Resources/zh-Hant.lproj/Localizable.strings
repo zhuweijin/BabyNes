@@ -158,7 +158,7 @@
 "Could not open" = "無法打開";
 
 /* Create */
-"Create" = "確認創建";
+"Create" = "創建";
 
 /* Customer Information */
 "Customer Information" = "顧客信息";
@@ -364,6 +364,9 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "沒有找到\n可以新建顧客賬戶";
 
+/* Offline now, please record the information of customer. */
+"Offline now, please record the information of customer." = "目前離線，請登記顧客信息。";
+
 /* OK */
 "OK" = "確認";
 
@@ -385,8 +388,8 @@
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼(%@)正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
 
-/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼正確，以免影響員工績效: %@。\n選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "請確保登記的顧客手機號碼正確，以免影響員工績效: %@。\n選擇確認以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
 
 /* Pregnant */
 "Pregnant" = "胎兒";
@@ -564,6 +567,9 @@
 
 /* Unknown error. */
 "Unknown error." = "未知錯誤";
+
+/* Unselected */
+"Unselected" = "未選擇";
 
 /* Version %@ */
 "Version %@" = "版本 %@";

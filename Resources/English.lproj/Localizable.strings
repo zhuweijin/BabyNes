@@ -364,6 +364,9 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "Not sought yet\nMaybe you can invite one.";
 
+/* Offline now, please record the information of customer. */
+"Offline now, please record the information of customer." = "Offline now, please record the information of customer.";
+
 /* OK */
 "OK" = "OK";
 
@@ -385,8 +388,8 @@
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
 
-/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck. */
-"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect ‘Confirm’ to continue create new customer, or cancel it to recheck.";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck.";
 
 /* Pregnant */
 "Pregnant" = "Pregnant";
@@ -564,6 +567,9 @@
 
 /* Unknown error. */
 "Unknown error." = "Unknown error.";
+
+/* Unselected */
+"Unselected" = "Unselected";
 
 /* Version %@ */
 "Version %@" = "Version %@";

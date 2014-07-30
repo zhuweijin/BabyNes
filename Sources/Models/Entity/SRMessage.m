@@ -21,7 +21,7 @@
  **/
 -(id)initWithItemDictionary:(NSDictionary*)dict{
     self=[super init];
-    _srid=[(NSNumber*)[dict objectForKey:@"srid"] integerValue];
+    _srid=[(NSNumber*)[dict objectForKey:@"srid"] intValue];
     _read=[(NSNumber*)[dict objectForKey:@"have_read"] intValue]==0?NO:YES;
     _time=[(NSNumber*)[dict objectForKey:@"created"] integerValue];
     _title=[dict objectForKey:@"title"];
@@ -33,16 +33,16 @@
 {
     [coder encodeInt:self.srid forKey:@"srid"];
     [coder encodeBool:self.read forKey:@"read"];
-    [coder encodeInt32:self.time forKey:@"created"];
+    [coder encodeInteger:self.time forKey:@"created"];
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.url forKey:@"url"];
 }
 
 - (id) initWithCoder: (NSCoder *) coder
 {
-    _srid = [coder decodeIntegerForKey:@"srid"];
+    _srid = [coder decodeIntForKey:@"srid"];
     _read = [coder decodeBoolForKey:@"read"];
-    _time = [coder decodeInt32ForKey:@"created"];
+    _time = [coder decodeIntegerForKey:@"created"];
     _title = [[coder decodeObjectForKey:@"title"] copy];
     _url = [[coder decodeObjectForKey:@"url"] copy];
     return self;
