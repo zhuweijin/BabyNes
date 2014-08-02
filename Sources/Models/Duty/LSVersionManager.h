@@ -7,8 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ServerConfig.h"
 
 @interface LSVersionManager : NSObject
+
 +(NSInteger)currentVerion;
 +(void)setCurrentVersion:(NSInteger)currentVersion;
+
++(BOOL)isNeedUpdateVersion:(NSString**)url;
+
++(BOOL)updateWithDownloadedZip;
+
++(NSString*)allZipFilePath;
++(NSString*)allZipToJsonPath;
++(NSString*)allJsonFilePath;
+
 @end

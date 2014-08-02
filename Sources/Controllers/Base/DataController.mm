@@ -1,5 +1,6 @@
 
 #import "DataController.h"
+#import "LSVersionManager.h"
 
 @implementation DataController
 
@@ -59,6 +60,37 @@
 //}
 
 #pragma Event methods
+
+-(NSData *)loadData:(DataLoader *)loader url:(NSString *)url{
+    _LogLine();
+    NSString* zip_url=nil;
+    BOOL needUpdate=[LSVersionManager isNeedUpdateVersion:&zip_url];
+    if(needUpdate && zip_url){
+        _LogLine();
+        NSString * download_error=HttpUtil::HttpFile(zip_url, [LSVersionManager allZipFilePath]);
+        if(download_error){
+            _LogLine();
+            UIAlertView * av=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"更新失败", @"Failed to update") message:download_error delegate:nil cancelButtonTitle:NSLocalizedString(@"Confirm", @"确认") otherButtonTitles: nil];
+            [av show];
+            return nil;//Later server error to minasareyo
+        }else{
+            _LogLine();
+            //Update with LSVersionManager
+            BOOL updated=[LSVersionManager updateWithDownloadedZip];
+            if(updated){
+                _LogLine();
+                NSData * data=[NSData dataWithContentsOfFile:(NSUtil::CacheUrlPath(url))];
+                return data;
+            }else{
+                _LogLine();
+                return [loader loadData:url];
+            }
+        }
+    }else{
+        _LogLine();
+        return nil;
+    }
+}
 
 //
 - (void)loadEnded:(DataLoader *)loader

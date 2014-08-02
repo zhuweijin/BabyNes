@@ -23,6 +23,7 @@
 -(NSString*)getURL_device_report;
 -(NSString*)getURL_idle_video;
 -(NSString*)getURL_sr_receipt;
+-(NSString*)getURL_version_check;
 
 -(NSString*)getSoapLoginURL;
 

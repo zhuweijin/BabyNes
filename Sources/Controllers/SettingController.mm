@@ -1,6 +1,7 @@
 
 #import "SettingController.h"
 #import "SinriUIApplication.h"
+#import "LSVersionManager.h"
 
 @implementation SettingController
 
@@ -142,6 +143,10 @@
 		NSUtil::CleanCache();
         //只消灭自己的Token对应的本地消息记录
         [LocalSRMessageTool cleanMyLocalSR];
+        //消灭版本
+        [LSVersionManager setCurrentVersion:0];
+        NSUtil::RemovePath(NSUtil::DocumentPath([LSVersionManager allZipFilePath]));
+        NSUtil::RemovePath(NSUtil::DocumentPath([LSVersionManager allZipToJsonPath]));
         //消灭购物车
         //[ProductEntity resetProductsAsEmpty];
         [[CartEntity getDefaultCartEntity]resetCart];

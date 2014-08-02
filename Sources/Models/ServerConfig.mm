@@ -23,7 +23,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
            @"sr_receipt":@"SRReceipt.php",
-           @"idle_video":@"PR/babynes.mp4"//@"video/video-4.mp4"
+           @"idle_video":@"PR/babynes.mp4",//@"video/video-4.mp4"
+           @"version_check":@"check_version.php"
            };
     return self;
 }
@@ -65,6 +66,10 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 
 -(NSString*)getURL_sr_receipt{
     return [self findURL:@"sr_receipt"];
+}
+
+-(NSString*)getURL_version_check{
+    return [self findURL:@"version_check"];
 }
 
 @end

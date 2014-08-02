@@ -26,11 +26,11 @@ static CartMode theCartMode=CartModeSale;
 }
 +(NSString*)getCartModeString:(CartMode)cartMode{
     if(cartMode==CartModeSale){
-        return NSLocalizedString(@"[Sale] To RMA Mode", @"【销售】切换为退货模式");
+        return NSLocalizedString(@"Sale", @"销售");
     }else if(cartMode==CartModeReturn){
-        return NSLocalizedString(@"[RMA] To Sale Mode", @"【退货】切换为销售模式");
+        return NSLocalizedString(@"RMA", @"退货");
     }else{
-        return @"UNKNOWN MODE";
+        return @"(╯‵□′)╯︵┻━┻";
     }
 }
 

@@ -104,7 +104,7 @@
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2F5DA2D51985F1AC00BBA17A /* LSStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5DA2D41985F1AC00BBA17A /* LSStack.m */; };
-		2F5DA2D91985F30F00BBA17A /* LSCustomerStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5DA2D81985F30F00BBA17A /* LSCustomerStack.m */; };
+		2F5DA2D91985F30F00BBA17A /* LSCustomerStack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F5DA2D81985F30F00BBA17A /* LSCustomerStack.mm */; };
 		2F6513AA1981E74800F2D1F9 /* LSSoapWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */; };
 		2F6513AB1981E74800F2D1F9 /* LSXMLWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513A91981E74800F2D1F9 /* LSXMLWorker.m */; };
 		2F6513AE1981EA6400F2D1F9 /* LSSoapLoginWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513AD1981EA6400F2D1F9 /* LSSoapLoginWorker.mm */; };
@@ -118,7 +118,7 @@
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
-		2FE445E7198CBE5000D07D27 /* LSVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.m */; };
+		2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
@@ -327,7 +327,7 @@
 		2F5DA2D31985F1AC00BBA17A /* LSStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSStack.h; sourceTree = "<group>"; };
 		2F5DA2D41985F1AC00BBA17A /* LSStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSStack.m; sourceTree = "<group>"; };
 		2F5DA2D71985F30F00BBA17A /* LSCustomerStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSCustomerStack.h; path = Duty/LSCustomerStack.h; sourceTree = "<group>"; };
-		2F5DA2D81985F30F00BBA17A /* LSCustomerStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSCustomerStack.m; path = Duty/LSCustomerStack.m; sourceTree = "<group>"; };
+		2F5DA2D81985F30F00BBA17A /* LSCustomerStack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSCustomerStack.mm; path = Duty/LSCustomerStack.mm; sourceTree = "<group>"; };
 		2F6513A61981E74800F2D1F9 /* LSSoapWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSoapWorker.h; path = Soap/LSSoapWorker.h; sourceTree = "<group>"; };
 		2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSSoapWorker.m; path = Soap/LSSoapWorker.m; sourceTree = "<group>"; };
 		2F6513A81981E74800F2D1F9 /* LSXMLWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSXMLWorker.h; path = Soap/LSXMLWorker.h; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 		2FB63CCB198352A400F344E9 /* LSDuoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDuoPicker.h; sourceTree = "<group>"; };
 		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
 		2FE445E5198CBE5000D07D27 /* LSVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSVersionManager.h; path = Duty/LSVersionManager.h; sourceTree = "<group>"; };
-		2FE445E6198CBE5000D07D27 /* LSVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSVersionManager.m; path = Duty/LSVersionManager.m; sourceTree = "<group>"; };
+		2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSVersionManager.mm; path = Duty/LSVersionManager.mm; sourceTree = "<group>"; };
 		2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSinglePicker.h; sourceTree = "<group>"; };
 		2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSinglePicker.m; sourceTree = "<group>"; };
 		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
@@ -819,9 +819,9 @@
 			isa = PBXGroup;
 			children = (
 				2F5DA2D71985F30F00BBA17A /* LSCustomerStack.h */,
-				2F5DA2D81985F30F00BBA17A /* LSCustomerStack.m */,
+				2F5DA2D81985F30F00BBA17A /* LSCustomerStack.mm */,
 				2FE445E5198CBE5000D07D27 /* LSVersionManager.h */,
-				2FE445E6198CBE5000D07D27 /* LSVersionManager.m */,
+				2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */,
 			);
 			name = Duty;
 			sourceTree = "<group>";
@@ -1041,7 +1041,7 @@
 				2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */,
 				2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */,
 				2FF644E519659C6200A802A9 /* MessageController.mm in Sources */,
-				2FE445E7198CBE5000D07D27 /* LSVersionManager.m in Sources */,
+				2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */,
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
@@ -1071,7 +1071,7 @@
 				24259EC3194AB36B000FF8A9 /* MWTapDetectingImageView.m in Sources */,
 				242F9505195C6E7300371697 /* InputBox.mm in Sources */,
 				24259EF0194AB36B000FF8A9 /* ZipArchive.mm in Sources */,
-				2F5DA2D91985F30F00BBA17A /* LSCustomerStack.m in Sources */,
+				2F5DA2D91985F30F00BBA17A /* LSCustomerStack.mm in Sources */,
 				2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */,
 				242F94F0195C6E7300371697 /* CartTable.mm in Sources */,
 				2FF644E219659AFD00A802A9 /* MaterialController.mm in Sources */,

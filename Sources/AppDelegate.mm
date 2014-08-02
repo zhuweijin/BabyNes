@@ -28,13 +28,17 @@
 #ifdef SINRI_TEST
 - (void)SINRI_TEST_FUNCTIONS:(bool)cleanVersion{
     if(cleanVersion){
-    NSInteger cv0=[LSVersionManager currentVerion];
-    [LSVersionManager setCurrentVersion:1];
-    NSInteger cv1=[LSVersionManager currentVerion];
-    [LSVersionManager setCurrentVersion:0];
-    NSInteger cv2=[LSVersionManager currentVerion];
-    
-    _Log(@"cv: %ld->%ld->%ld",(long)cv0,(long)cv1,(long)cv2);
+        NSInteger cv0=[LSVersionManager currentVerion];
+        [LSVersionManager setCurrentVersion:1];
+        NSInteger cv1=[LSVersionManager currentVerion];
+        [LSVersionManager setCurrentVersion:0];
+        NSInteger cv2=[LSVersionManager currentVerion];
+        
+        _Log(@"cv: %ld->%ld->%ld",(long)cv0,(long)cv1,(long)cv2);
+        
+        NSString * zipUrl=nil;
+        BOOL r=[LSVersionManager isNeedUpdateVersion:&zipUrl];
+        _Log(@"Check Version r=%d url=%@",r,zipUrl);
     }
 }
 #endif
@@ -49,12 +53,12 @@
      (UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)
      ];
     /*
-    UIAccessibilityRequestGuidedAccessSession(YES,^(BOOL didSucceed){
-        NSLog(@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed);
-        UIAlertView * av=[[UIAlertView alloc]initWithTitle:@"SINGLE MODE" message:[NSString stringWithFormat:@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [av show];
-    });
-    */
+     UIAccessibilityRequestGuidedAccessSession(YES,^(BOOL didSucceed){
+     NSLog(@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed);
+     UIAlertView * av=[[UIAlertView alloc]initWithTitle:@"SINGLE MODE" message:[NSString stringWithFormat:@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+     [av show];
+     });
+     */
 	UIUtil::ShowStatusBar(YES/*, UIStatusBarAnimationSlide*/);
 	
 	// Create window
@@ -138,20 +142,20 @@
      */
     //_Log(@"device_model_original=%@",[LSDeviceInfo deviceModelOriginal]);
     /*
-    NSDate * now = [NSDate date];
-    _Log(@"now is %@ = %lf",now, [now timeIntervalSince1970]);
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: now];
-    NSDate *localeDate = [now  dateByAddingTimeInterval: interval];
-    NSLog(@"to system zone = %@", localeDate);
-    */
+     NSDate * now = [NSDate date];
+     _Log(@"now is %@ = %lf",now, [now timeIntervalSince1970]);
+     NSTimeZone *zone = [NSTimeZone systemTimeZone];
+     NSInteger interval = [zone secondsFromGMTForDate: now];
+     NSDate *localeDate = [now  dateByAddingTimeInterval: interval];
+     NSLog(@"to system zone = %@", localeDate);
+     */
     
     //点击了通知中心的离线推送消息条。
     NSDictionary* offline = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     [self application:application didReceiveOfflineRemoteNotification:offline];
     
 #ifdef SINRI_TEST
-    [self SINRI_TEST_FUNCTIONS:true];
+    [self SINRI_TEST_FUNCTIONS:NO];
 #endif
     
 	return YES;

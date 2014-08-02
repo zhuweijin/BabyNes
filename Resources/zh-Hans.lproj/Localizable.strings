@@ -1,3 +1,6 @@
+/* 更新失败 */
+"更新失败" = "Failed to update";
+
 /* %d Days Before */
 "%d Days Before" = "%d天前";
 
@@ -457,6 +460,9 @@
 /* Return */
 "Return" = "退货";
 
+/* RMA */
+"RMA" = "退货";
+
 /* RMA: Sum $%.2f Quantity %d */
 "RMA: Sum $%.2f Quantity %d" = "退回： 总计：￥%.2f 数量：%d";
 
@@ -603,12 +609,6 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的订单已经确认。";
-
-/* [RMA] To Sale Mode */
-"[RMA] To Sale Mode" = "【退货】切换为销售模式";
-
-/* [Sale] To RMA Mode */
-"[Sale] To RMA Mode" = "【销售】切换为退货模式";
 
 /* ^852$ */
 "^852$" = "^86$";

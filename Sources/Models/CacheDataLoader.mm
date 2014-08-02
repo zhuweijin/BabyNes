@@ -96,12 +96,17 @@
         _Log(@"CacheDataLoader loadStop online with Dict=[%@]",dict);
 		[super loadStop:dict];
 		Settings::Save(self.stampKey, self.date);
+        //这里为了节约流量和版本管理，搞过一次在线后及时灭掉
+        _online=NO;
 	}
 	else
 	{
+        //这里为了节约流量和版本管理，予以封杀
+        /*
         _Log(@"CacheDataLoader loadStop offline with Dict=[%@]",dict);
 		_online = YES;
 		[self performSelector:@selector(loadBegin) withObject:nil afterDelay:1.0];
+         */
 	}
 }
 

@@ -1,3 +1,6 @@
+/* 更新失败 */
+"更新失败" = "更新失败";
+
 /* %d Days Before */
 "%d Days Before" = "%d Days Before";
 
@@ -457,6 +460,9 @@
 /* Return */
 "Return" = "Return";
 
+/* RMA */
+"RMA" = "RMA";
+
 /* RMA: Sum $%.2f Quantity %d */
 "RMA: Sum $%.2f Quantity %d" = "RMA: Sum $%.2f Quantity %d";
 
@@ -603,12 +609,6 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "Your order has been confirmed.";
-
-/* [RMA] To Sale Mode */
-"[RMA] To Sale Mode" = "[RMA] To Sale Mode";
-
-/* [Sale] To RMA Mode */
-"[Sale] To RMA Mode" = "[Sale] To RMA Mode";
 
 /* ^852$ */
 "^852$" = "^852$";
