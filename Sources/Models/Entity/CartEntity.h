@@ -23,6 +23,9 @@ typedef enum : NSInteger {
 +(CartMode)getCartMode;
 +(void)setCartMode:(CartMode)cartMode;
 
++(NSString*)getCurrentCartModeString;
++(NSString*)getCartModeString:(CartMode)cartMode;
+
 +(BOOL)getChangeState;
 +(void)setChangeState:(BOOL)isChangeStart;
 
@@ -36,6 +39,11 @@ typedef enum : NSInteger {
 
 -(int)getTotalQuantity;
 -(int)getTotalCents;
+
+-(int)getTotalSaleQuantity;
+-(int)getTotalSaleCents;
+-(int)getTotalReturnQuantity;
+-(int)getTotalReturnCents;
 
 //-(void)testChange;
 @end

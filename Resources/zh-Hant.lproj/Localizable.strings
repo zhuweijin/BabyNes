@@ -115,6 +115,9 @@
 /* Cancel */
 "Cancel" = "取消";
 
+/* Cart is empty */
+"Cart is empty" = "購物車空無一物";
+
 /* City */
 "City" = "城市";
 
@@ -158,7 +161,7 @@
 "Could not open" = "無法打開";
 
 /* Create */
-"Create" = "創建";
+"Create" = "確認創建";
 
 /* Customer Information */
 "Customer Information" = "顧客信息";
@@ -454,8 +457,17 @@
 /* Return */
 "Return" = "退貨";
 
+/* RMA: Sum $%.2f Quantity %d */
+"RMA: Sum $%.2f Quantity %d" = "退回： 總計：￥%.2f 數量：%d";
+
 /* Sale */
 "Sale" = "銷售";
+
+/* Sale: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d" = "銷售： 總計：￥%.2f 數量：%d";
+
+/* Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d" = "銷售： 總計：￥%.2f 數量：%d\n退回： 總計：￥%.2f 數量：%d";
 
 /* Sales Login */
 "Sales Login" = "促銷員登錄";
@@ -591,6 +603,12 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的訂單已經確認。";
+
+/* [RMA] To Sale Mode */
+"[RMA] To Sale Mode" = "【退貨】切換為銷售模式";
+
+/* [Sale] To RMA Mode */
+"[Sale] To RMA Mode" = "【銷售】切換為退貨模式";
 
 /* ^852$ */
 "^852$" = "^86$";

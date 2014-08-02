@@ -28,4 +28,6 @@
 -(void)addObservers;
 -(void)removeObservers;
 
+-(void)onCacheKilled:(NSNotification*)notification;
+
 @end

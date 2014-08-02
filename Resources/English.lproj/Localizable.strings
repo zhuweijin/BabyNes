@@ -115,6 +115,9 @@
 /* Cancel */
 "Cancel" = "Cancel";
 
+/* Cart is empty */
+"Cart is empty" = "Cart is empty";
+
 /* City */
 "City" = "City";
 
@@ -454,8 +457,17 @@
 /* Return */
 "Return" = "Return";
 
+/* RMA: Sum $%.2f Quantity %d */
+"RMA: Sum $%.2f Quantity %d" = "RMA: Sum $%.2f Quantity %d";
+
 /* Sale */
 "Sale" = "Sale";
+
+/* Sale: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d" = "Sale: Sum $%.2f Quantity %d";
+
+/* Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d" = "Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d";
 
 /* Sales Login */
 "Sales Login" = "Sales Login";
@@ -591,6 +603,12 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "Your order has been confirmed.";
+
+/* [RMA] To Sale Mode */
+"[RMA] To Sale Mode" = "[RMA] To Sale Mode";
+
+/* [Sale] To RMA Mode */
+"[Sale] To RMA Mode" = "[Sale] To RMA Mode";
 
 /* ^852$ */
 "^852$" = "^852$";

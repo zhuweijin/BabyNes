@@ -348,6 +348,7 @@ static CGFloat reloadHeaderHeight=40;
 -(void)onCacheKilled:(NSNotification*)notification{
     _Log(@"MessageController onCacheKilled - -");
     [srTable reloadData];
+    [_loader loadBegin];
 }
 
 #pragma mark -

@@ -21,4 +21,6 @@
 -(CGFloat)getReloadHeaderHeight;
 -(void)removeObservers;
 -(void)addObservers;
+
+-(void)onCacheKilled:(NSNotification*)notification;
 @end

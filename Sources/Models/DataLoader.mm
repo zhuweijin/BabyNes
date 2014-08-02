@@ -304,7 +304,7 @@ static NSString *_accessToken = nil;
 	@autoreleasepool
 	{
 		//[NSThread sleepForTimeInterval:5];
-		
+		_LogLine();
 		id dict =[_delegate respondsToSelector:@selector(loadDoing:)] ? [_delegate loadDoing:self] : [self loadDoing];
 		[self performSelectorOnMainThread:@selector(loadEnded:) withObject:dict waitUntilDone:YES];
 	}
@@ -359,7 +359,7 @@ static NSString *_accessToken = nil;
 //
 - (NSData *)loadData:(NSString *)url
 {
-    //_Log(@"DataLoader loadData url=%@",url);
+    _Log(@"DataLoader loadData url=%@",url);
 	NSError *error = nil;
 	NSURLResponse *response = nil;
 	id params = [_params isKindOfClass:[NSDictionary class]] ? NSUtil::URLQuery((NSDictionary *)_params) : _params;
@@ -397,7 +397,7 @@ static NSString *_accessToken = nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
-    //_Log(@"SinriDigin DataLoader loadEnded");
+    _Log(@"SinriDigin DataLoader loadEnded with dict=%@",dict);
 	_checkChange = YES;
     
 	_loading = NO;

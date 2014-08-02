@@ -118,6 +118,7 @@
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
+		2FE445E7198CBE5000D07D27 /* LSVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.m */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
@@ -353,6 +354,8 @@
 		2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSOptionalButton.mm; sourceTree = "<group>"; };
 		2FB63CCB198352A400F344E9 /* LSDuoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDuoPicker.h; sourceTree = "<group>"; };
 		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
+		2FE445E5198CBE5000D07D27 /* LSVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSVersionManager.h; path = Duty/LSVersionManager.h; sourceTree = "<group>"; };
+		2FE445E6198CBE5000D07D27 /* LSVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSVersionManager.m; path = Duty/LSVersionManager.m; sourceTree = "<group>"; };
 		2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSinglePicker.h; sourceTree = "<group>"; };
 		2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSinglePicker.m; sourceTree = "<group>"; };
 		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
@@ -817,6 +820,8 @@
 			children = (
 				2F5DA2D71985F30F00BBA17A /* LSCustomerStack.h */,
 				2F5DA2D81985F30F00BBA17A /* LSCustomerStack.m */,
+				2FE445E5198CBE5000D07D27 /* LSVersionManager.h */,
+				2FE445E6198CBE5000D07D27 /* LSVersionManager.m */,
 			);
 			name = Duty;
 			sourceTree = "<group>";
@@ -1036,6 +1041,7 @@
 				2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */,
 				2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */,
 				2FF644E519659C6200A802A9 /* MessageController.mm in Sources */,
+				2FE445E7198CBE5000D07D27 /* LSVersionManager.m in Sources */,
 				24410075196107FD00CEF5C9 /* IntroduceItemView.mm in Sources */,
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
@@ -1121,7 +1127,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chunyang Guo (ZP8GS8NGB3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lijun Ni (G57L3H8N4R)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1140,7 +1146,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "BD541B57-98EB-4850-9537-0CD6B3D6CBE8";
+				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Sources/**";
@@ -1163,7 +1169,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Alibaba MicroLoan Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lijun Ni (G57L3H8N4R)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1177,7 +1183,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
-				PROVISIONING_PROFILE = "68F16053-396E-4D0D-B858-DB0F47983076";
+				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Sources/**";
@@ -1191,7 +1197,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: weijin zhu (F6798J5QNG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lijun Ni (G57L3H8N4R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -1201,7 +1207,7 @@
 					"$(PROJECT_DIR)/Utilities/UMFeedback",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7542CA6B-AF26-4360-9F7F-40BC15ED78A2";
+				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1213,7 +1219,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dongguan Leqee Network Technology Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lijun Ni (G57L3H8N4R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Sources/Prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
@@ -1223,7 +1229,7 @@
 					"$(PROJECT_DIR)/Utilities/UMFeedback",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B846BC54-FD4A-415D-BF75-BBA576CBDFF1";
+				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

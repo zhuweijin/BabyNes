@@ -3,6 +3,14 @@
 #import "RootController.h"
 #import "LoginController.h"
 
+#define SINRI_TEST
+
+#ifdef SINRI_TEST
+
+#import "LSVersionManager.h"
+
+#endif
+
 #if defined(DEBUG) || defined(TEST)
 @implementation NSURLRequest (IgnoreSSL)
 + (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
@@ -17,11 +25,36 @@
 
 #pragma mark Generic methods
 
+#ifdef SINRI_TEST
+- (void)SINRI_TEST_FUNCTIONS:(bool)cleanVersion{
+    if(cleanVersion){
+    NSInteger cv0=[LSVersionManager currentVerion];
+    [LSVersionManager setCurrentVersion:1];
+    NSInteger cv1=[LSVersionManager currentVerion];
+    [LSVersionManager setCurrentVersion:0];
+    NSInteger cv2=[LSVersionManager currentVerion];
+    
+    _Log(@"cv: %ld->%ld->%ld",(long)cv0,(long)cv1,(long)cv2);
+    }
+}
+#endif
+
 #pragma mark Monitoring Application State Changes
 
 // The application has launched and may have additional launch options to handle.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // 通知设备需要接收推送通知 Let the device know we want to receive push notifications
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)
+     ];
+    /*
+    UIAccessibilityRequestGuidedAccessSession(YES,^(BOOL didSucceed){
+        NSLog(@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed);
+        UIAlertView * av=[[UIAlertView alloc]initWithTitle:@"SINGLE MODE" message:[NSString stringWithFormat:@"UIAccessibilityRequestGuidedAccessSession: didSucceed=%d",didSucceed] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [av show];
+    });
+    */
 	UIUtil::ShowStatusBar(YES/*, UIStatusBarAnimationSlide*/);
 	
 	// Create window
@@ -112,7 +145,54 @@
     NSDate *localeDate = [now  dateByAddingTimeInterval: interval];
     NSLog(@"to system zone = %@", localeDate);
     */
+    
+    //点击了通知中心的离线推送消息条。
+    NSDictionary* offline = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
+    [self application:application didReceiveOfflineRemoteNotification:offline];
+    
+#ifdef SINRI_TEST
+    [self SINRI_TEST_FUNCTIONS:true];
+#endif
+    
 	return YES;
+}
+
+-(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"我的设备ID(NSData): %@", deviceToken);
+    //对deviceToken进行格式化
+    NSString *strDev = [[[[deviceToken description]
+                          stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                         stringByReplacingOccurrencesOfString: @">" withString: @""]
+                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+    NSLog(@"我的设备ID(NSString): %@", strDev);
+    //可以在此获得设备的device token，以及其他信息，发送给服务器
+    //const void  *devTokenBytes = [deviceToken bytes];
+    //[self sendProviderDeviceToken:devTokenBytes];
+}
+
+-(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"注册失败，无法获取设备ID, 具体错误: %@", error);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"设备收到推送(正常向)：\n%@",userInfo);
+    [self handleRemotePush:userInfo[@"aps"]];
+}
+
+-(void)application:(UIApplication *)application didReceiveOfflineRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"点击了通知中心的离线推送消息项：\n%@",userInfo);
+    NSDictionary *apsInfo = [userInfo objectForKey:@"aps"];
+    if( [apsInfo objectForKey:@"alert"] != NULL)
+    {
+        [self handleRemotePush:userInfo[@"aps"]];
+    }
+}
+
+-(void)handleRemotePush:(NSDictionary *)userInfo{
+    UIAlertView * av=[[UIAlertView alloc]initWithTitle:userInfo[@"alert"] message:userInfo[@"addition"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [av show];
 }
 
 // The application is about to terminate.

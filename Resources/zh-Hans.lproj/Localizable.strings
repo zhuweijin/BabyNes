@@ -115,6 +115,9 @@
 /* Cancel */
 "Cancel" = "取消";
 
+/* Cart is empty */
+"Cart is empty" = "购物车空无一物";
+
 /* City */
 "City" = "城市";
 
@@ -158,7 +161,7 @@
 "Could not open" = "无法打开";
 
 /* Create */
-"Create" = "创建";
+"Create" = "确认创建";
 
 /* Customer Information */
 "Customer Information" = "顾客信息";
@@ -454,8 +457,17 @@
 /* Return */
 "Return" = "退货";
 
+/* RMA: Sum $%.2f Quantity %d */
+"RMA: Sum $%.2f Quantity %d" = "退回： 总计：￥%.2f 数量：%d";
+
 /* Sale */
 "Sale" = "销售";
+
+/* Sale: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d" = "销售： 总计：￥%.2f 数量：%d";
+
+/* Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d" = "销售： 总计：￥%.2f 数量：%d\n退回： 总计：￥%.2f 数量：%d";
 
 /* Sales Login */
 "Sales Login" = "促销员登录";
@@ -591,6 +603,12 @@
 
 /* Your order has been confirmed. */
 "Your order has been confirmed." = "您的订单已经确认。";
+
+/* [RMA] To Sale Mode */
+"[RMA] To Sale Mode" = "【退货】切换为销售模式";
+
+/* [Sale] To RMA Mode */
+"[Sale] To RMA Mode" = "【销售】切换为退货模式";
 
 /* ^852$ */
 "^852$" = "^86$";

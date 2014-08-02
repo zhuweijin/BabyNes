@@ -70,9 +70,16 @@
     CacheImageView * civ=[[CacheImageView alloc]initWithFrame:civFrame];//CGRectMake(40,5,80,60)
     [civ setCacheImageUrl:[pe product_image]];
     
+    int inCartId=0;
+    if([CartEntity getCartMode]==CartModeSale){
+        inCartId=[[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]];
+    }else if([CartEntity getCartMode]==CartModeReturn){
+        inCartId=[[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:-[pe product_id]];
+    }
+    
     NSDictionary * anime_dict=@{@"civ":civ,
                                 @"pe":pe,
-                                @"inCart":[NSNumber numberWithInt: [[CartEntity getDefaultCartEntity]currentArrayIndexOfProductID:[pe product_id]]],
+                                @"inCart":[NSNumber numberWithInt: inCartId],
                                 @"monoIPInTable":indexPath,
                                 @"timestamp":[NSDate date]
                                 };

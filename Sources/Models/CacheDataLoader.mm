@@ -41,7 +41,7 @@
 //
 - (NSData *)loadData
 {
-    //_Log(@"CacheDataLoader loadData called");
+    _Log(@"CacheDataLoader loadData called - online=%d",_online);
 	NSData *data;
 	NSString *cache = self.cachePath;
 	if (_online)
@@ -93,15 +93,26 @@
 	//
 	if (_online)
 	{
-        //_Log(@"CacheDataLoader loadStop online with Dict=[%@]",dict);
+        _Log(@"CacheDataLoader loadStop online with Dict=[%@]",dict);
 		[super loadStop:dict];
 		Settings::Save(self.stampKey, self.date);
 	}
 	else
 	{
-        //_Log(@"CacheDataLoader loadStop offline with Dict=[%@]",dict);
+        _Log(@"CacheDataLoader loadStop offline with Dict=[%@]",dict);
 		_online = YES;
 		[self performSelector:@selector(loadBegin) withObject:nil afterDelay:1.0];
+	}
+}
+
+- (void)loadThread
+{
+	@autoreleasepool
+	{
+		//[NSThread sleepForTimeInterval:5];
+		_LogLine();
+		id dict =[self.delegate respondsToSelector:@selector(loadDoing:)] ? [self.delegate loadDoing:self] : [self loadDoing];
+		[self performSelectorOnMainThread:@selector(loadEnded:) withObject:dict waitUntilDone:YES];
 	}
 }
 

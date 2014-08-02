@@ -80,6 +80,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSRurl:) name:@"SRSelected" object:nil];
     
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCacheKilled:) name:@"CacheKilled" object:nil];
+    
     [self setUpForDismissKeyboard];
 }
 
@@ -116,6 +119,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
 }
 
 // Called when the view is about to made visible.
@@ -254,4 +258,10 @@
      */
 }
 
+-(void)onCacheKilled:(NSNotification*)notification{
+    _Log(@"RootController onCacheKilled - -");
+    [[CartEntity getDefaultCartEntity]resetCart];
+    [_shopVC onCacheKilled:notification];
+    [_srVC onCacheKilled:notification];
+}
 @end

@@ -31,6 +31,8 @@
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
 
+@property UIButton * the_cartModeChangeButton;
+
 //@property LSOptionalButton * optionalButton;
 
 //@property CacheImageView * civ;
@@ -128,10 +130,13 @@ static CGFloat reloadHeaderHeight=30;
     [self.list_header setFont: [UIFont systemFontOfSize:18]];
     [self.view addSubview:self.list_header];
     
-    self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(590, 405, 400, 30)];
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),0/100.0,0];
-    [self.sum_label setFont: [UIFont systemFontOfSize:20]];
+    self.sum_label= [[UILabel alloc]initWithFrame:CGRectMake(590, 390, 400, 60)];
+    //self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),0/100.0,0];
+    //[self.sum_label setBackgroundColor:[UIColor blueColor]];
+    [self.sum_label setFont: [UIFont systemFontOfSize:18]];
     [self.sum_label setTextAlignment:(NSTextAlignmentCenter)];
+    //[self.sum_label setLineBreakMode:(NSLineBreakByWordWrapping)];
+    [self.sum_label setNumberOfLines:0];
     [self.view addSubview:self.sum_label];
     
     
@@ -222,6 +227,10 @@ static CGFloat reloadHeaderHeight=30;
     
     self.cartTableView.layer.cornerRadius = 10;
     
+    self.the_cartModeChangeButton=[UIButton minorButtonWithTitle:[CartEntity getCurrentCartModeString] width:200];
+    self.the_cartModeChangeButton.center=CGPointMake(900, 30);
+    [self.the_cartModeChangeButton addTarget:self action:@selector(onCartModeChangeButton:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.the_cartModeChangeButton];
     /*
      self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
      [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -230,8 +239,25 @@ static CGFloat reloadHeaderHeight=30;
      self.optionalButton.layer.cornerRadius = 10;
      self.optionalButton.layer.masksToBounds=YES;
      */
+    
+    [self dealCartChanged:nil];
+    
      [self setUpForDismissKeyboard];
 }
+
+-(void)onCartModeChangeButton:(id)sender{
+    if([CartEntity getCartMode]==CartModeSale){
+        [CartEntity setCartMode:CartModeReturn];
+        _LogLine();
+    }else if([CartEntity getCartMode]==CartModeReturn){
+        [CartEntity setCartMode:CartModeSale];
+        _LogLine();
+    }
+    //[[self.the_cartModeChangeButton titleLabel]setText:[CartEntity getCurrentCartModeString]];
+    [self.the_cartModeChangeButton setTitle:[CartEntity getCurrentCartModeString] forState:(UIControlStateNormal)];
+    _LogLine();
+}
+
 /*
  -(void)onOptionalButton:(id)sender{
  _Log(@"LSShopVC onOptionalButton:%d",[self.optionalButton getSelectedButton]);
@@ -478,7 +504,22 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"SHOP VC dealCartChanged !");
-    self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+    //self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
+    int moneyOnSale=[[CartEntity getDefaultCartEntity]getTotalSaleCents];
+    int moneyOnRMA=[[CartEntity getDefaultCartEntity]getTotalReturnCents];
+    int qualityOnSale=[[CartEntity getDefaultCartEntity] getTotalSaleQuantity];
+    int qualityOnRMA=-[[CartEntity getDefaultCartEntity] getTotalReturnQuantity];
+    
+    if(qualityOnRMA==0 && qualityOnSale==0){
+        //self.sum_label.text=[NSString stringWithFormat:NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),0/100.0,0];
+        self.sum_label.text=NSLocalizedString(@"Cart is empty", @"购物车空无一物");
+    }else if(qualityOnRMA!=0 && qualityOnSale==0){
+        self.sum_label.text=[NSString stringWithFormat:NSLocalizedString(@"RMA: Sum $%.2f Quantity %d", @"退回： 总计：￥%.2f 数量：%d"),moneyOnRMA/100.0,qualityOnRMA];
+    }else if(qualityOnRMA==0 && qualityOnSale!=0){
+        self.sum_label.text=[NSString stringWithFormat:NSLocalizedString(@"Sale: Sum $%.2f Quantity %d", @"销售： 总计：￥%.2f 数量：%d"),moneyOnSale/100.0,qualityOnSale];
+    }else{
+        self.sum_label.text=[NSString stringWithFormat:NSLocalizedString(@"Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d", @"销售： 总计：￥%.2f 数量：%d\n退回： 总计：￥%.2f 数量：%d"),moneyOnSale/100.0,qualityOnSale,moneyOnRMA/100.0,qualityOnRMA];
+    }
 }
 
 -(void)dealMonoCellSelected:(NSNotification *)notification{
@@ -494,8 +535,10 @@ static CGFloat reloadHeaderHeight=30;
     CacheImageView * civ= [notification.object objectForKey:@"civ"];
     CGRect originalCIVFrame=civ.frame;
     ProductEntity* pe= [notification.object objectForKey:@"pe"];
-    
-    if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
+    NSNumber *index_NS=[notification.object objectForKey:@"inCart"];
+    int index=[index_NS intValue];
+    //if([[CartEntity getDefaultCartEntity] currentQuantityOfProductID:[pe product_id]]==0){
+    if(index<0){
         _Log(@"Should do CartItem Insert Animation");
         CGRect cartItemFromFrame=originalCIVFrame;
         
@@ -528,13 +571,19 @@ static CGFloat reloadHeaderHeight=30;
             cell.backgroundColor = UIUtil::Color(235,238,250);//[UIColor yellowColor];
         } completion:^(BOOL finished) {
             [cell removeFromSuperview];
+            /*
             [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+             */
+            if([CartEntity getCartMode]==CartModeSale){
+                [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+            }else if ([CartEntity getCartMode]==CartModeReturn){
+                [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
+            }
         }];
     }else{
-        NSNumber *index_NS=[notification.object objectForKey:@"inCart"];
-        int index=[index_NS intValue];
+        
         _Log(@"Seek existed index:[%d]",index);
-        if(index>=0){
+        //if(index>=0){
             if(self.cartTableView.contentOffset.y>=50*(index-5) && self.cartTableView.contentOffset.y<=50*(index)){
                 _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
                 UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
@@ -550,7 +599,12 @@ static CGFloat reloadHeaderHeight=30;
                     
                     cell.backgroundColor=[UIColor whiteColor];
                 } completion:^(BOOL finished) {
-                    [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                    //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                    if([CartEntity getCartMode]==CartModeSale){
+                        [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                    }else if ([CartEntity getCartMode]==CartModeReturn){
+                        [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
+                    }
                 }];
             }else{
                 _Log(@"SHOULD NOT BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
@@ -575,11 +629,21 @@ static CGFloat reloadHeaderHeight=30;
                         
                         cell.backgroundColor=[UIColor whiteColor];
                     } completion:^(BOOL finished) {
-                        [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                        //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                        if([CartEntity getCartMode]==CartModeSale){
+                            [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                        }else if ([CartEntity getCartMode]==CartModeReturn){
+                            [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
+                        }
                     }];
                 }];
             }
+        //}
+        /*
+         else {
+            
         }
+         */
     }
     
 }
@@ -696,8 +760,11 @@ static CGFloat reloadHeaderHeight=30;
 }
 
 -(void)onCacheKilled:(NSNotification*)notification{
-    _Log(@"MessageController onCacheKilled - -");
-    [self loadBegan:_loader];
+    _Log(@"ShopController onCacheKilled - -");
+    //[self loadBegan:_loader];
+    [[CartEntity getDefaultCartEntity]resetCart];
+    [self dealCartChanged:notification];
+    [_loader loadBegin];
 }
 
 @end
