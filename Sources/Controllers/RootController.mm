@@ -5,6 +5,7 @@
 #import "SinriUIApplication.h"
 
 #import "SRReceiptSender.h"
+#import "PushHandler.h"
 
 @implementation RootController
 
@@ -83,6 +84,9 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCacheKilled:) name:@"CacheKilled" object:nil];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReceiveForceUpdateVersionPush" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveVerisonUpdatePush:) name:@"ReceiveForceUpdateVersionPush" object:nil];
+    
     [self setUpForDismissKeyboard];
 }
 
@@ -120,6 +124,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SRSelected" object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReceiveForceUpdateVersionPush" object:nil];
 }
 
 // Called when the view is about to made visible.
@@ -161,6 +166,14 @@
 #endif
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if([PushHandler hasOutSingleModePermitted]){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
+}
 #pragma Event methods
 
 //
@@ -264,4 +277,22 @@
     [_shopVC onCacheKilled:notification];
     [_srVC onCacheKilled:notification];
 }
+-(void)receiveVerisonUpdatePush:(NSNotification*)notification{
+    _Log(@"Root ReceiveForceUpdateVersionPush");
+    
+    @try {
+        [_shopVC receiveVerisonUpdatePush];
+        [_intrVC receiveVerisonUpdatePush];
+        [_mateVC receiveVerisonUpdatePush];
+        [_srVC receiveVerisonUpdatePush];
+    }
+    @catch (NSException *exception) {
+        _Log(@"root ReceiveForceUpdateVersionPush exception:%@",exception);
+    }
+    @finally {
+        //
+    }
+    
+}
+
 @end

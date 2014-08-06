@@ -820,12 +820,25 @@
 -(void)submit{
     [self hideRecheckView];
     _LogLine();
+    if([LSDeviceInfo isNetworkOn]){
     NSString* result=[_NewCustomer createCustomer];
     //    [cc reset];
     if(result!=nil){
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
+        [LSCustomer setCurrentCustomer:_NewCustomer];
         [self closeView:self];
+    }
+    }else{
+        BOOL done=[LSOfflineTasks saveCustomer:_NewCustomer];
+        if(done){
+            UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: the customer info has been saved.", @"离线任务：顾客信息已经保存。"));
+            [LSCustomer setCurrentCustomer:_NewCustomer];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:_NewCustomer.theMobile];
+            [self closeView:self];
+        }else{
+            UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: failed to save the customer info.", @"离线任务：顾客信息保存失败。"));
+        }
     }
 }
 -(void)closeView:(id)sender{

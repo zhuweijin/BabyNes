@@ -1,6 +1,3 @@
-/* 更新失败 */
-"更新失败" = "Failed to update";
-
 /* %d Days Before */
 "%d Days Before" = "%d天前";
 
@@ -70,6 +67,9 @@
 /* Address is empty */
 "Address is empty" = "地址未填寫";
 
+/* Address* */
+"Address*" = "地址*";
+
 /* After Tomorrow */
 "After Tomorrow" = "後天";
 
@@ -106,11 +106,11 @@
 /* Before Yesterday */
 "Before Yesterday" = "前天";
 
-/* Birthday */
-"Birthday" = "生日";
-
 /* Birthday is not completed yet for No.%d baby */
 "Birthday is not completed yet for No.%d baby" = "第%d個寶寶的生日未填寫完整";
+
+/* Birthday* */
+"Birthday*" = "生日*";
 
 /* Boy */
 "Boy" = "男";
@@ -126,6 +126,9 @@
 
 /* City is empty */
 "City is empty" = "城市未填寫";
+
+/* City* */
+"City*" = "城市*";
 
 /* Clean */
 "Clean" = "清除";
@@ -144,6 +147,9 @@
 
 /* Contact */
 "Contact" = "聯系方式";
+
+/* Content Update */
+"Content Update" = "內容更新";
 
 /* Continue to view */
 "Continue to view" = "繼續觀看";
@@ -229,6 +235,9 @@
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "加載產品詳情失敗。";
 
+/* Failed to update */
+"Failed to update" = "更新失敗";
+
 /* Feedback */
 "Feedback" = "用戶反饋";
 
@@ -304,6 +313,9 @@
 /* Mobile is not correct */
 "Mobile is not correct" = "手機號未填寫正確";
 
+/* Mobile* */
+"Mobile*" = "手機*";
+
 /* Month */
 "Month" = "月";
 
@@ -318,6 +330,9 @@
 
 /* Name is empty */
 "Name is empty" = "姓名未填寫";
+
+/* Name* */
+"Name*" = "姓名*";
 
 /* Network Cache */
 "Network Cache" = "網絡緩存";
@@ -370,8 +385,20 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "沒有找到\n可以新建顧客賬戶";
 
+/* Nothing to update! */
+"Nothing to update!" = "無需更新。";
+
+/* Now POS App is to download new content, please wait till is completed. */
+"Now POS App is to download new content, please wait till is completed." = "POS應用將要更新內容，請耐心等待。";
+
 /* Offline now, please record the information of customer. */
 "Offline now, please record the information of customer." = "目前離線，請登記顧客信息。";
+
+/* Offline Task: failed to save the customer info. */
+"Offline Task: failed to save the customer info." = "離線任務：顧客信息保存失敗。";
+
+/* Offline Task: the customer info has been saved. */
+"Offline Task: the customer info has been saved." = "離線任務：顧客信息已經保存。";
 
 /* OK */
 "OK" = "確認";
@@ -390,6 +417,9 @@
 
 /* Phone */
 "Phone" = "電話號碼";
+
+/* Please check your network status. */
+"Please check your network status." = "請檢查網絡狀態。";
 
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "請確保登記的顧客手機號碼(%@)正確，以免影響員工績效。選擇‘確認’以繼續創建顧客賬號，選擇取消可以返回進行檢查。";
@@ -520,6 +550,9 @@
 /* Sex of Baby is not completed yet for No.%d baby */
 "Sex of Baby is not completed yet for No.%d baby" = "第%d個寶寶的性別未填寫";
 
+/* Sex* */
+"Sex*" = "性別*";
+
 /* Share */
 "Share" = "分享";
 
@@ -529,8 +562,14 @@
 /* Shopping Cart */
 "Shopping Cart" = "購物車";
 
+/* Single Mode */
+"Single Mode" = "單應用限制";
+
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "抱歉，目前無可用網絡。";
+
+/* Sorry for failing download updating information duo to server error. */
+"Sorry for failing download updating information duo to server error." = "很抱歉，由於服務器問題，下載更新信息失敗。";
 
 /* SR Center */
 "SR Center" = "消息中心";
@@ -567,6 +606,9 @@
 
 /* Title is empty */
 "Title is empty" = "稱呼未填寫";
+
+/* Title* */
+"Title*" = "稱呼*";
 
 /* Today */
 "Today" = "今天";
@@ -607,8 +649,14 @@
 /* Your contact information */
 "Your contact information" = "您的聯系方式";
 
-/* Your order has been confirmed. */
-"Your order has been confirmed." = "您的訂單已經確認。";
+/* Your order [%@] has been confirmed, and saved due to offline now. */
+"Your order [%@] has been confirmed, and saved due to offline now." = "您的訂單【%@】已經確認，由於離線而被保存。";
+
+/* Your order [%@] has been confirmed, but failed to save for offline now. */
+"Your order [%@] has been confirmed, but failed to save for offline now." = "您的訂單【%@】已經確認，但是離線保存失敗。";
+
+/* Your order [%@] has been confirmed. */
+"Your order [%@] has been confirmed." = "您的訂單【%@】已經確認。";
 
 /* ^852$ */
 "^852$" = "^86$";

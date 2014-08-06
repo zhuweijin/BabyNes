@@ -54,6 +54,10 @@ static CartMode theCartMode=CartModeSale;
     return self;
 }
 
++(void)setDefaultCartEntity:(CartEntity*)ce{
+    defaultCartEntity=ce;
+}
+
 -(void)resetCart{
     self.cart_array=[[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
@@ -183,7 +187,7 @@ static CartMode theCartMode=CartModeSale;
     int total=0;
     for (ProductEntity * pe in [[CartEntity getDefaultCartEntity] cart_array]) {
         if([pe product_id]>0)
-        total+=[pe product_price_cents]*[pe quantity];
+            total+=[pe product_price_cents]*[pe quantity];
     }
     return total;
 }
@@ -209,4 +213,36 @@ static CartMode theCartMode=CartModeSale;
  [[NSNotificationCenter defaultCenter] postNotificationName:@"CartChanged" object:nil];
  }
  */
+/*
+-(NSDictionary*)toDictionary{
+    
+}
+*/
+-(NSString*)toJson{
+    NSError * error=nil;
+    
+    NSMutableArray * orderList=[[NSMutableArray alloc]init];
+    for (ProductEntity * pe in self.cart_array) {
+        NSString* mid=[pe product_magento_id];
+        int q=[pe quantity];
+        [orderList addObject:@{@"sku": mid,@"number":[NSNumber numberWithInt:q]}];
+    }
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:orderList
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    if ([jsonData length] > 0 && error == nil){
+        return [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }else{
+        return nil;
+    }
+}
++(CartEntity*)fromJson:(NSString*)json{
+    CartEntity * cart=[[CartEntity alloc]init];
+    NSError * error=nil;
+    NSMutableArray*ma=[[NSMutableArray alloc]initWithArray: [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingMutableLeaves) error:&error]];
+    [cart setCart_array:ma];
+    return cart;
+}
 @end

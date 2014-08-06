@@ -28,7 +28,9 @@ static LSCustomer * currentCustomer=nil;
     }
     return currentCustomer;
 }
-
++(void)setCurrentCustomer:(LSCustomer*)cutomer{
+    currentCustomer=cutomer;
+}
 +(LSCustomer*) newCustomer{
     currentCustomer=[[LSCustomer alloc]init];
     [currentCustomer reset];
@@ -158,6 +160,66 @@ static LSCustomer * currentCustomer=nil;
          */
     }
     return nil;
+}
+
+-(NSString*)toJson{
+    if([self validateCustomerInformation]){
+        NSError * error=nil;
+        NSMutableArray * babyarray=[[NSMutableArray alloc]init];
+        for (LSBaby * baby in self.theBabies) {
+            [babyarray addObject:[baby toJson]];
+        }
+        NSDictionary * jsonDict=@{@"title":self.theTitle,
+                                  @"name":self.theName,
+                                  @"province":self.theProvince,
+                                  @"city":self.theCity,
+                                  @"address":self.theAddress,
+                                  @"regioncode":self.theRegionCode,
+                                  @"areacode":self.theAreaCode,
+                                  @"phone":self.thePhone,
+                                  @"mobile":self.theMobile,
+                                  @"email":self.theEmail,
+                                  @"babies":babyarray
+                                  };
+        
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        
+        if ([jsonData length] > 0 && error == nil){
+            return [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }else{
+            return nil;
+        }
+        
+    }else{
+        return nil;
+    }
+}
+
++(LSCustomer*)fromJson:(NSString*)json{
+    NSError * error=nil;
+    NSDictionary* dict=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
+    
+    LSCustomer * customer=[[LSCustomer alloc]init];
+    
+    customer.theTitle=dict[@"title"];
+    customer.theName=dict[@"name"];
+    customer.theProvince=dict[@"province"];
+    customer.theCity=dict[@"city"];
+    customer.theAddress=dict[@"address"];
+    customer.theRegionCode=dict[@"regioncode"];
+    customer.theAreaCode=dict[@"areacode"];
+    customer.thePhone=dict[@"phone"];
+    customer.theMobile=dict[@"mobile"];
+    customer.theEmail=dict[@"email"];
+    NSArray * babies=dict[@"babies"];
+    for (NSString * babyJson in babies) {
+        [customer addOneBaby:[LSBaby fromJson:babyJson]];
+    }
+    
+    return customer;
 }
 
 @end

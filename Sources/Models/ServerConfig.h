@@ -27,4 +27,6 @@
 
 -(NSString*)getSoapLoginURL;
 
+-(NSString*)getURL_create_order;
+
 @end

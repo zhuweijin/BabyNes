@@ -18,4 +18,7 @@
 @property NSDate * the_birth_date;
 
 -(BOOL)validateBabyInformation:(int)baby_index;
+
+-(NSString*)toJson;
++(LSBaby*)fromJson:(NSString*)json;
 @end

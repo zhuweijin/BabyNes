@@ -22,4 +22,6 @@
 +(int)getSRAPIBeforeParamValue;
 +(void)saveLocalSRAll;
 +(void)setSRArraytoHaveRead:(NSArray*)srids;
+
++(void)killTails;
 @end

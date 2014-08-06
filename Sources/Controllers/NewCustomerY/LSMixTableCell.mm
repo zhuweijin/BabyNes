@@ -20,20 +20,20 @@ static NSDictionary * thePCMap;
     thePCMap=dict;
 }
 
-static NSArray * titleArray_customer=@[NSLocalizedString(@"Title", @"称呼"),
-                                       NSLocalizedString(@"Title", @"称呼"),
-                                       NSLocalizedString(@"Name", @"姓名"),
-                                       NSLocalizedString(@"City", @"城市"),
-                                       NSLocalizedString(@"City", @"城市"),
-                                       NSLocalizedString(@"Address", @"地址"),
-                                       NSLocalizedString(@"Mobile", @"手机"),
+static NSArray * titleArray_customer=@[NSLocalizedString(@"Title*", @"称呼*"),
+                                       NSLocalizedString(@"Title*", @"称呼*"),
+                                       NSLocalizedString(@"Name*", @"姓名*"),
+                                       NSLocalizedString(@"City*", @"城市*"),
+                                       NSLocalizedString(@"City*", @"城市*"),
+                                       NSLocalizedString(@"Address*", @"地址*"),
+                                       NSLocalizedString(@"Mobile*", @"手机*"),
                                        NSLocalizedString(@"Phone", @"电话"),
                                        NSLocalizedString(@"Email", @"电子邮件")
                                        ];
 static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
-                                   NSLocalizedString(@"Birthday", @"生日"),
-                                   NSLocalizedString(@"Birthday", @"生日"),
-                                   NSLocalizedString(@"Sex", @"性别")
+                                   NSLocalizedString(@"Birthday*", @"生日*"),
+                                   NSLocalizedString(@"Birthday*", @"生日*"),
+                                   NSLocalizedString(@"Sex*", @"性别*")
                                    ];
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -235,7 +235,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
                 
                 if(![[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] || [[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:@""]){
                     [previewLabel setText:[NSString stringWithFormat:@"%@",
-                                           [titleArray_customer objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
+                                           [titleArray_baby objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
                                            ]];
                     [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
                 }else{
@@ -271,7 +271,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
                     [previewLabel setTextColor:[UIColor blackColor]];
                 }else{
                     [previewLabel setText:
-                     [titleArray_customer objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
+                     [titleArray_baby objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
                      ];
                     [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
                 }

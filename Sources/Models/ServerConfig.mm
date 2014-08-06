@@ -17,14 +17,15 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     dict=@{@"SoapLogin":@"https://babynes-asia.ocentric.com/api/v2_soap/index",
            @"kServerUrl":
                 //@"http://uniquebaby.duapp.com/babynesios/admin/api",//BAIDU MOCK
-                //@"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
-                @"https://testbaby.i9i8.com/admin/api",//TESTBABY
+                @"https://172.16.0.186:233/babynesios/admin/api",//ERP LOCAL
+                //@"https://testbaby.i9i8.com/admin/api",//TESTBABY
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
            @"sr_receipt":@"SRReceipt.php",
            @"idle_video":@"PR/babynes.mp4",//@"video/video-4.mp4"
-           @"version_check":@"check_version.php"
+           @"version_check":@"check_version.php",
+           @"create_order":@"create_order.php"
            };
     return self;
 }
@@ -71,5 +72,7 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 -(NSString*)getURL_version_check{
     return [self findURL:@"version_check"];
 }
-
+-(NSString*)getURL_create_order{
+    return [self findURL:@"create_order"];
+}
 @end

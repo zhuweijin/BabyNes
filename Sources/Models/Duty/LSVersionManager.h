@@ -22,4 +22,9 @@
 +(NSString*)allZipToJsonPath;
 +(NSString*)allJsonFilePath;
 
++(void)DownloadAllFiles_Material_WithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh;
++(void)DownloadAllFiles_PDT_WithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh;
++(void)DownloadAllFiles_PDetail_WithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh;
++(void)refreshIdlePRVideo:(BOOL)force_refresh;
+
 @end

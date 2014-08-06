@@ -8,7 +8,8 @@
 
 #import "LSShopViewController.h"
 
-#import "LSOptionalButton.h"
+//#import "LSOptionalButton.h"
+#import "LSVersionManager.h"
 
 @interface LSShopViewController ()
 
@@ -50,6 +51,7 @@ static CGFloat reloadHeaderHeight=30;
     self = [super initWithService:@"pdt_classify"];
     self.title = NSLocalizedString(@"Shop", @"网上商店");
     self.thePullReloadDelegate=self;
+    
     return self;
 }
 
@@ -231,6 +233,33 @@ static CGFloat reloadHeaderHeight=30;
     self.the_cartModeChangeButton.center=CGPointMake(900, 30);
     [self.the_cartModeChangeButton addTarget:self action:@selector(onCartModeChangeButton:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_cartModeChangeButton];
+    
+    self.monoTableView=[[MonoTable alloc]initWithFrame:(CGRectMake(5, 5, 550, 690))  style:(UITableViewStylePlain)];
+    //[self.monoTableView setBackgroundColor:[UIColor greenColor]];
+    //[self.monoTableView setPdtArrayWithNSDic:dict];
+    //[self.monoTableView setDelegate:self.monoTableView];
+    //[self.monoTableView setDataSource:self.monoTableView];
+    [self.monoTableView setRowHeight:70];
+    [self.monoTableView setScrollsToTop:NO];
+    [self.monoTableView setSeparatorStyle:(UITableViewCellSeparatorStyleSingleLine)];
+    [self.view addSubview:self.monoTableView];
+    
+    self.monoTableView.layer.cornerRadius = 10;
+    /*
+    reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
+    [reloadLabel setTextColor:[UIColor grayColor]];
+    [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+    [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+    //[self.monoTableView addSubview:reloadLabel];
+    [self.monoTableView setTableHeaderView:reloadLabel];
+    //[self setReloadLabelHidden:YES];
+    [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
+    [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+    
+    [self.monoTableView setTheSVDelegate:self];
+    */
+    //[self.monoTableView reloadData];
+    
     /*
      self.optionalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(800, 15, 210, 30) withNames:@[NSLocalizedString(@"Sale", @"销售"),NSLocalizedString(@"Return", @"退货")]];
      [self.optionalButton addTarget:self action:@selector(onOptionalButton:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -242,7 +271,36 @@ static CGFloat reloadHeaderHeight=30;
     
     [self dealCartChanged:nil];
     
-     [self setUpForDismissKeyboard];
+    [self setUpForDismissKeyboard];
+}
+
+-(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh{
+    [LSVersionManager DownloadAllFiles_PDT_WithDict:dict isForce:force_refresh];
+    /*
+    if([LSDeviceInfo isNetworkOn]){
+        for (NSDictionary *cate in dict[@"category"]){
+            if([cate objectForKey:@"image"]){
+                _Log(@"cate-image:%@",[cate objectForKey:@"image"]);
+                NSString* image_level_url=[cate objectForKey:@"image"];
+                NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
+                if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
+                    _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
+                    [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
+                }
+            }
+            for (NSDictionary *item in dict[cate[@"value"]]){
+                _Log(@"item image:%@",[item objectForKey:@"image"]);
+                NSString* image_level_url=[item objectForKey:@"image"];
+                NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
+                if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
+                    _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
+                    [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
+                }
+                
+            }
+        }
+    }
+     */
 }
 
 -(void)onCartModeChangeButton:(id)sender{
@@ -333,6 +391,8 @@ static CGFloat reloadHeaderHeight=30;
 
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
     _Log(@"LSShopViewcController loadContentView[%@] withDict[%@]",contentView,dict);
+    
+    [self refreshDownloadAllFilesWithDict:dict isForce:NO];
     
     is_reloading=false;
     [self responseForReloadWork];
@@ -434,8 +494,23 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)order_confirm:(id)sender{
     _Log(@"order_confirm called");
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed.", @"您的订单已经确认。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-    [alertView show];
+    LSOrder * order=[[LSOrder alloc]initWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]];
+    if([LSDeviceInfo isNetworkOn]){
+        //Online
+        NSString * result=[order create];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+        [alertView show];
+    }else{
+        //offline
+        BOOL done=[LSOfflineTasks saveOrder:order];
+        if(done){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order [%@] has been confirmed, and saved due to offline now.", @"您的订单【%@】已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            [alertView show];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order [%@] has been confirmed, but failed to save for offline now.", @"您的订单【%@】已经确认，但是离线保存失败。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            [alertView show];
+        }
+    }
     [self.the_customer_new_button setHidden:YES];
     [self.the_order_confirm_button setHidden:YES];
 }
@@ -572,7 +647,7 @@ static CGFloat reloadHeaderHeight=30;
         } completion:^(BOOL finished) {
             [cell removeFromSuperview];
             /*
-            [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+             [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
              */
             if([CartEntity getCartMode]==CartModeSale){
                 [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
@@ -584,12 +659,42 @@ static CGFloat reloadHeaderHeight=30;
         
         _Log(@"Seek existed index:[%d]",index);
         //if(index>=0){
-            if(self.cartTableView.contentOffset.y>=50*(index-5) && self.cartTableView.contentOffset.y<=50*(index)){
-                _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+        if(self.cartTableView.contentOffset.y>=50*(index-5) && self.cartTableView.contentOffset.y<=50*(index)){
+            _Log(@"SHOULD BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+            UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            _Log(@"Seek existed cell:[%@]",cell);
+            cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
+            [UIView animateWithDuration:whole_animation_duration animations:^{
+                
+                if(index>5){
+                    [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                }else{
+                    [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                }
+                
+                cell.backgroundColor=[UIColor whiteColor];
+            } completion:^(BOOL finished) {
+                //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                if([CartEntity getCartMode]==CartModeSale){
+                    [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
+                }else if ([CartEntity getCartMode]==CartModeReturn){
+                    [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
+                }
+            }];
+        }else{
+            _Log(@"SHOULD NOT BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
+            [UIView animateWithDuration:whole_animation_duration/2 animations:^{
+                
+                if(index>5){
+                    [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
+                }else{
+                    [self.cartTableView setContentOffset:CGPointMake(0, 0)];
+                }
+            } completion:^(BOOL finished) {
                 UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
                 _Log(@"Seek existed cell:[%@]",cell);
                 cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
-                [UIView animateWithDuration:whole_animation_duration animations:^{
+                [UIView animateWithDuration:whole_animation_duration/2 animations:^{
                     
                     if(index>5){
                         [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
@@ -606,43 +711,13 @@ static CGFloat reloadHeaderHeight=30;
                         [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
                     }
                 }];
-            }else{
-                _Log(@"SHOULD NOT BE VISIBLE self.cartTableView.contentOffset.y=%f",self.cartTableView.contentOffset.y);
-                [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-                    
-                    if(index>5){
-                        [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
-                    }else{
-                        [self.cartTableView setContentOffset:CGPointMake(0, 0)];
-                    }
-                } completion:^(BOOL finished) {
-                    UITableViewCell * cell=[self.cartTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-                    _Log(@"Seek existed cell:[%@]",cell);
-                    cell.backgroundColor=UIUtil::Color(235,238,250);//[UIColor yellowColor];
-                    [UIView animateWithDuration:whole_animation_duration/2 animations:^{
-                        
-                        if(index>5){
-                            [self.cartTableView setContentOffset:CGPointMake(0, 50*(index-5))];
-                        }else{
-                            [self.cartTableView setContentOffset:CGPointMake(0, 0)];
-                        }
-                        
-                        cell.backgroundColor=[UIColor whiteColor];
-                    } completion:^(BOOL finished) {
-                        //[[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-                        if([CartEntity getCartMode]==CartModeSale){
-                            [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
-                        }else if ([CartEntity getCartMode]==CartModeReturn){
-                            [[CartEntity getDefaultCartEntity]addToCart:-[pe product_id] withQuantity:-1];
-                        }
-                    }];
-                }];
-            }
+            }];
+        }
         //}
         /*
          else {
-            
-        }
+         
+         }
          */
     }
     
@@ -728,8 +803,23 @@ static CGFloat reloadHeaderHeight=30;
     }
 }
 
+-(void)receiveVerisonUpdatePush{
+    if(!is_reloading){
+        is_reloading=YES;
+        [self responseForReloadWork];
+    }
+}
+
 -(void)responseForReloadWork{
     _Log(@"ShopController responseForReloadWork isWithError=%@ is_reloading=%d",_loader.errorString,is_reloading);
+    if(is_reloading){
+        if(![LSDeviceInfo isNetworkOn]){
+            //UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+            is_reloading=NO;
+            [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+            return;
+        }
+    }
     if(is_reloading){
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];

@@ -1,3 +1,4 @@
+#import <Foundation/Foundation.h>
 
 //
 typedef NS_ENUM(NSInteger, ToastViewType)
@@ -13,7 +14,11 @@ typedef NS_ENUM(NSInteger, ToastViewType)
 //
 @interface ToastView : UIView
 {
+    //UILabel * label;
 }
+
+//@property UILabel * the_label;
+
 - (id)initWithTitle:(NSString *)title type:(ToastViewType)type;
 
 + (ToastView *)toastWithTitle:(NSString *)title type:(ToastViewType)type;

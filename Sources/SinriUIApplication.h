@@ -10,6 +10,8 @@
 #import "PRMoviePlayer.h"
 #import "PRPhotoPlayer.h"
 
+#import "PushHandler.h"
+
 #import "RootController.h"
 #import "LoginController.h"
 

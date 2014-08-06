@@ -27,14 +27,18 @@
 static NSMutableDictionary * local_sr_all;
 static NSMutableArray * SRArray;
 
+static int max_sr_count=100;
+
 @implementation LocalSRMessageTool
 
 +(void)cleanMyLocalSR{
     local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
     NSDictionary * mineReadonly=[[NSDictionary alloc]init];
     [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
-    _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
+    _Log(@"LocalSRMessageTool clean local all=%@",local_sr_all);
     [LocalSRMessageTool saveLocalSRAll];
+    local_sr_all=nil;
+    SRArray=nil;
 }
 
 +(NSMutableDictionary*) getLocalSRDict_all{
@@ -80,6 +84,7 @@ static NSMutableArray * SRArray;
                 [mine setObject:srm forKey:[NSNumber numberWithInt:[srm srid]]];
             }
         }
+        _Log(@"merged SR dict=%@",mine);
     }
     @catch (NSException *exception) {
         _Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray Exception to purse:%@",exception.debugDescription);
@@ -170,6 +175,29 @@ static NSMutableArray * SRArray;
     if(count>0)
         return [[[LocalSRMessageTool getSRArrayIfForce:NO] objectAtIndex:count-1] srid];
     else return -1;
+}
+
++(void)killTails{
+    NSArray* array=[LocalSRMessageTool getSRArrayIfForce:YES];
+    if([array count]<=max_sr_count)return;
+    NSMutableArray * mArray=[[NSMutableArray alloc]init];
+    for (int i=0; i<[array count]; i++) {
+        if(i>=max_sr_count)break;
+        SRMessage * msg = array[i];
+        if(msg){
+            [mArray addObject:msg];
+        }
+    }
+    NSMutableDictionary * mine=[[NSMutableDictionary alloc]init];
+    for (SRMessage * srm in mArray) {
+        [mine setObject:srm forKey:[NSNumber numberWithInt:[srm srid]]];
+    }
+    NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    //_Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
+    [LocalSRMessageTool saveLocalSRAll];
+    _Log(@"LocalSRMessage killTails done");
 }
 
 @end

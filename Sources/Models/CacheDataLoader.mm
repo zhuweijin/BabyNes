@@ -32,6 +32,10 @@
 	}
 }
 
+-(void)forceOnline{
+    _online=YES;
+}
+
 //
 - (void)loadStart
 {
@@ -48,6 +52,7 @@
 	{
 		data = [super loadData];
         NSDictionary* dict = [self parseData:data];
+        _Log(@"breakpoint");
 		if ([dict isKindOfClass:[NSDictionary class]])
 		{
 			DataLoaderError error = (DataLoaderError)[dict[@"CODE"] intValue];
@@ -76,7 +81,7 @@
             }else{
                 NSMutableData *data_t = [[NSMutableData alloc] init];
                 NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data_t];
-                [archiver encodeObject:@"{'CODE':'-1','DATA':'NO CACHE'}" forKey:@"Some Key Value"];
+                [archiver encodeObject:@"{\"CODE\":\"-1\",\"DATA\":\"NO CACHE\"}" forKey:@"Some Key Value"];
                 [archiver finishEncoding];
                 data=data_t;
                 _Log(@"CacheDataLoader loadData offline->online->fail done data=[%@] from cache[%@]",data,cache);
@@ -116,6 +121,9 @@
 	{
 		//[NSThread sleepForTimeInterval:5];
 		_LogLine();
+        if([self.service isEqualToString:@"SRCheck"]){
+            [self forceOnline];
+        }
 		id dict =[self.delegate respondsToSelector:@selector(loadDoing:)] ? [self.delegate loadDoing:self] : [self loadDoing];
 		[self performSelectorOnMainThread:@selector(loadEnded:) withObject:dict waitUntilDone:YES];
 	}

@@ -2,6 +2,7 @@
 #import "AppDelegate.h"
 #import "RootController.h"
 #import "LoginController.h"
+#import "PushHandler.h"
 
 #define SINRI_TEST
 
@@ -11,14 +12,14 @@
 
 #endif
 
-#if defined(DEBUG) || defined(TEST)
+//#if defined(DEBUG) || defined(TEST)
 @implementation NSURLRequest (IgnoreSSL)
 + (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
 {
 	return YES;
 }
 @end
-#endif
+//#endif
 
 //
 @implementation AppDelegate
@@ -118,7 +119,7 @@
     
     //Report Device Information Regularly
     [LSRegularReporter report];
-    [NSTimer scheduledTimerWithTimeInterval:60*2 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(regularDeviceInfoReport:) userInfo:nil repeats:YES];
     
     [(SinriUIApplication *)application resetIdleTimer];
     
@@ -149,13 +150,22 @@
      NSDate *localeDate = [now  dateByAddingTimeInterval: interval];
      NSLog(@"to system zone = %@", localeDate);
      */
+    //[self performSelector:@selector(actIntoSingleMode) withObject:PushHandler afterDelay:3];
+    /*
+    [UIView animateWithDuration:3 animations:^{
+        //
+    } completion:^(BOOL finished) {
+        [PushHandler actIntoSingleMode];
+    }];
+    */
+    [PushHandler actIntoSingleMode];
     
     //点击了通知中心的离线推送消息条。
     NSDictionary* offline = [launchOptions valueForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
     [self application:application didReceiveOfflineRemoteNotification:offline];
     
 #ifdef SINRI_TEST
-    [self SINRI_TEST_FUNCTIONS:NO];
+    //[self SINRI_TEST_FUNCTIONS:NO];
 #endif
     
 	return YES;
@@ -173,11 +183,14 @@
     //可以在此获得设备的device token，以及其他信息，发送给服务器
     //const void  *devTokenBytes = [deviceToken bytes];
     //[self sendProviderDeviceToken:devTokenBytes];
+    
+    [PushHandler setPushToken:strDev];
 }
 
 -(void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
     NSLog(@"注册失败，无法获取设备ID, 具体错误: %@", error);
+    [PushHandler setPushToken:nil];
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
@@ -195,20 +208,25 @@
 }
 
 -(void)handleRemotePush:(NSDictionary *)userInfo{
+    /*
     UIAlertView * av=[[UIAlertView alloc]initWithTitle:userInfo[@"alert"] message:userInfo[@"addition"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [av show];
+     */
+    [PushHandler handlePush:userInfo];
 }
 
 // The application is about to terminate.
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationWillTerminate");
+    [PushHandler actOutSingleMode];
 }
 
 // Tells the delegate that the application is about to become inactive.
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     _Log(@"AppDelegate applicationWillResignActive");
+    [PushHandler actOutSingleMode];
 }
 
 // The application has become active.
@@ -224,6 +242,7 @@
     _Log(@"AppDelegate applicationWillEnterForeground");
     [SinriUIApplication setShouldMonitorIdle:YES];
     [(SinriUIApplication *)application resetIdleTimer];
+    [PushHandler actOutSingleMode];
 }
 
 // Tells the delegate that the application is now in the background.
@@ -231,6 +250,7 @@
 {
     _Log(@"AppDelegate applicationDidEnterBackground");
     [SinriUIApplication setShouldMonitorIdle:NO];
+    [PushHandler actOutSingleMode];
 }
 
 
@@ -277,6 +297,12 @@
 //}
 
 -(void)regularDeviceInfoReport:(NSTimer *)theTimer{
+    if(![PushHandler getPushToken]){
+        // 通知设备需要接收推送通知 Let the device know we want to receive push notifications
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)
+         ];
+    }
     [LSRegularReporter report];
 }
 

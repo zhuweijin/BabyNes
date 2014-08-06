@@ -1,6 +1,3 @@
-/* 更新失败 */
-"更新失败" = "更新失败";
-
 /* %d Days Before */
 "%d Days Before" = "%d Days Before";
 
@@ -70,6 +67,9 @@
 /* Address is empty */
 "Address is empty" = "Address is empty";
 
+/* Address* */
+"Address*" = "Address*";
+
 /* After Tomorrow */
 "After Tomorrow" = "After Tomorrow";
 
@@ -106,11 +106,11 @@
 /* Before Yesterday */
 "Before Yesterday" = "Before Yesterday";
 
-/* Birthday */
-"Birthday" = "Birthday";
-
 /* Birthday is not completed yet for No.%d baby */
 "Birthday is not completed yet for No.%d baby" = "Birthday is not completed yet for No.%d baby";
+
+/* Birthday* */
+"Birthday*" = "Birthday*";
 
 /* Boy */
 "Boy" = "Boy";
@@ -126,6 +126,9 @@
 
 /* City is empty */
 "City is empty" = "City is empty";
+
+/* City* */
+"City*" = "City*";
 
 /* Clean */
 "Clean" = "Clean";
@@ -144,6 +147,9 @@
 
 /* Contact */
 "Contact" = "Contact";
+
+/* Content Update */
+"Content Update" = "Content Update";
 
 /* Continue to view */
 "Continue to view" = "Continue to view";
@@ -229,6 +235,9 @@
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "Failed to load the details of the product.";
 
+/* Failed to update */
+"Failed to update" = "Failed to update";
+
 /* Feedback */
 "Feedback" = "Feedback";
 
@@ -304,6 +313,9 @@
 /* Mobile is not correct */
 "Mobile is not correct" = "Mobile is not correct";
 
+/* Mobile* */
+"Mobile*" = "Mobile*";
+
 /* Month */
 "Month" = "Month";
 
@@ -318,6 +330,9 @@
 
 /* Name is empty */
 "Name is empty" = "Name is empty";
+
+/* Name* */
+"Name*" = "Name*";
 
 /* Network Cache */
 "Network Cache" = "Network Cache";
@@ -370,8 +385,20 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "Not sought yet\nMaybe you can invite one.";
 
+/* Nothing to update! */
+"Nothing to update!" = "Nothing to update!";
+
+/* Now POS App is to download new content, please wait till is completed. */
+"Now POS App is to download new content, please wait till is completed." = "Now POS App is to download new content, please wait till is completed.";
+
 /* Offline now, please record the information of customer. */
 "Offline now, please record the information of customer." = "Offline now, please record the information of customer.";
+
+/* Offline Task: failed to save the customer info. */
+"Offline Task: failed to save the customer info." = "Offline Task: failed to save the customer info.";
+
+/* Offline Task: the customer info has been saved. */
+"Offline Task: the customer info has been saved." = "Offline Task: the customer info has been saved.";
 
 /* OK */
 "OK" = "OK";
@@ -390,6 +417,9 @@
 
 /* Phone */
 "Phone" = "Phone";
+
+/* Please check your network status. */
+"Please check your network status." = "Please check your network status.";
 
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.";
@@ -520,6 +550,9 @@
 /* Sex of Baby is not completed yet for No.%d baby */
 "Sex of Baby is not completed yet for No.%d baby" = "Sex of Baby is not completed yet for No.%d baby";
 
+/* Sex* */
+"Sex*" = "Sex*";
+
 /* Share */
 "Share" = "Share";
 
@@ -529,8 +562,14 @@
 /* Shopping Cart */
 "Shopping Cart" = "Shopping Cart";
 
+/* Single Mode */
+"Single Mode" = "Single Mode";
+
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "Sorry but there is no network available.";
+
+/* Sorry for failing download updating information duo to server error. */
+"Sorry for failing download updating information duo to server error." = "Sorry for failing download updating information duo to server error.";
 
 /* SR Center */
 "SR Center" = "SR Center";
@@ -567,6 +606,9 @@
 
 /* Title is empty */
 "Title is empty" = "Title is empty";
+
+/* Title* */
+"Title*" = "Title*";
 
 /* Today */
 "Today" = "Today";
@@ -607,8 +649,14 @@
 /* Your contact information */
 "Your contact information" = "Your contact information";
 
-/* Your order has been confirmed. */
-"Your order has been confirmed." = "Your order has been confirmed.";
+/* Your order [%@] has been confirmed, and saved due to offline now. */
+"Your order [%@] has been confirmed, and saved due to offline now." = "Your order [%@] has been confirmed, and saved due to offline now.";
+
+/* Your order [%@] has been confirmed, but failed to save for offline now. */
+"Your order [%@] has been confirmed, but failed to save for offline now." = "Your order [%@] has been confirmed, but failed to save for offline now.";
+
+/* Your order [%@] has been confirmed. */
+"Your order [%@] has been confirmed." = "Your order [%@] has been confirmed.";
 
 /* ^852$ */
 "^852$" = "^852$";

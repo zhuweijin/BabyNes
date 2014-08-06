@@ -7,6 +7,9 @@
 //
 
 #import "LSDeviceInfo.h"
+#import "PushHandler.h"
+#import "LSOfflineTasks.h"
+#import "LSVersionManager.h"
 //AppStore 无法通过的私有API，用于解决获取iPad的卡号 BUT DISAPPEARED since iOS7
 //extern NSString *CTSettingCopyMyPhoneNumber();
 
@@ -64,7 +67,15 @@
 
     NSString* vendor=[LSDeviceInfo identifierForVendor];
     
-    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@\nBattery: IN[%d] LEVEL[%d]\n[%@]\nvendor: %@",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type,isPlugIn,battery_level,batteryStateText,vendor];
+    NSString * pushToken=[PushHandler getPushToken];
+    NSInteger version= [LSVersionManager currentVerion];
+    NSDictionary * array=[LSOfflineTasks getOrderTaskArray];
+    NSInteger offline_orders=(array==nil?0:[array count]);
+    
+    BOOL isSingleMode=UIAccessibilityIsGuidedAccessEnabled();
+    
+    
+    NSString * result=[ NSString stringWithFormat:@"Check All Device Info\nSN: %@\nMachine: %@\nSysname: %@\nNodename: %@\nRelease: %@\nVersion: %@\nApp Version: %@\nApp Desc: %@\nApp Country: %@\nappVerionDetails: %@\nPhone Number: %@\nLocation: %@\nWLAN: %@\nReachability: %@\nBattery: IN[%d] LEVEL[%d]\n[%@]\nvendor: %@\npushToken: %@\nversion: %d\nOffline Orders: %d\nSingleMode: %@",sn,result_machine,result_sysname,result_nodename,result_release,result_version,appVerion,appBundleID,appCountry,appVerionDetails,my_number,my_location,wlan_status,net_type,isPlugIn,battery_level,batteryStateText,vendor,pushToken,version,offline_orders,(isSingleMode?@"YES":@"NO")];
     return  result;
 }
 

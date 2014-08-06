@@ -31,11 +31,15 @@
     if((self.the_birth_day<1 || self.the_birth_day>31)
        || (self.the_birth_month<1 || self.the_birth_month>12)
        || (self.the_birth_year<1)){
+        if(baby_index>=0){
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Birthday is not completed yet for No.%d baby", @"第%d个宝宝的生日未填写完整"),baby_index]);
+        }
         return NO;
     }
     if([self.the_sex isEqualToString:@""]){
+        if(baby_index>=0){
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Sex of Baby is not completed yet for No.%d baby", @"第%d个宝宝的性别未填写"),baby_index]);
+        }
         return NO;
     }
     /*
@@ -66,6 +70,45 @@
     _the_birth_month=[coder decodeIntegerForKey:@"month"];
     _the_birth_day=[coder decodeIntegerForKey:@"day"];
     return self;
+}
+
+-(NSString*)toJson{
+    if([self validateBabyInformation:-1]){
+        NSError * error=nil;
+        NSDictionary * jsonDict=@{@"year": [NSNumber numberWithInt: self.the_birth_year],
+                             @"month": [NSNumber numberWithInt: self.the_birth_month],
+                             @"day": [NSNumber numberWithInt: self.the_birth_day],
+                             @"sex": self.the_sex,
+                             @"nick": self.the_nick,
+                             @"date": [NSNumber numberWithDouble: [self.the_birth_date timeIntervalSince1970]]};
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        
+        if ([jsonData length] > 0 && error == nil){
+            return [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }else{
+            return nil;
+        }
+        
+    }else{
+        return nil;
+    }
+}
++(LSBaby*)fromJson:(NSString*)json{
+    NSError * error=nil;
+    NSDictionary* dict=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
+    
+    LSBaby * baby=[[LSBaby alloc]init];
+    
+    baby.the_birth_year=[[dict objectForKey:@"year"] intValue];
+    baby.the_birth_month=[[dict objectForKey:@"month"] intValue];
+    baby.the_birth_day=[[dict objectForKey:@"day"] intValue];
+    baby.the_birth_date=[[NSDate alloc]initWithTimeIntervalSince1970: [[dict objectForKey:@"date"] doubleValue]];
+    baby.the_sex=[dict objectForKey:@"sex"];
+    baby.the_nick=[dict objectForKey:@"nick"];
+    
+    return baby;
 }
 
 @end

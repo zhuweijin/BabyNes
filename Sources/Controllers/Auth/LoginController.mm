@@ -3,6 +3,8 @@
 #import "RootController.h"
 #import "CartEntity.h"
 #import "SinriUIApplication.h"
+#import "LSRegularReporter.h"
+#import "PushHandler.h"
 
 @implementation LoginController
 
@@ -151,6 +153,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+    
+    if([PushHandler hasOutSingleModePermitted]){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(keyboardWillShow:)
@@ -261,6 +269,11 @@
 //
 - (void)doneAction
 {
+    if(![LSDeviceInfo isNetworkOn]){
+        UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+        return;
+    }
+    
 	Settings::Set(kUsername, _usernameField.text);
 	[UIView animateWithDuration:0.3 animations:^()
 	 {
@@ -292,6 +305,8 @@
                  }else{
                      _Log(@"registered_device");
                  }
+             }else{
+                 [LSRegularReporter report];
              }
              
              [[CartEntity getDefaultCartEntity]resetCart];

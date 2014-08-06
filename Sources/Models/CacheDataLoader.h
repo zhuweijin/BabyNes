@@ -18,5 +18,6 @@
 @property(nonatomic,assign) BOOL online;
 
 - (void)loadIfOffline;
+-(void)forceOnline;
 
 @end

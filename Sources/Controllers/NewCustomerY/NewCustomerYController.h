@@ -11,6 +11,8 @@
 #import "LSCustomer.h"
 #import "DataController.h"
 
+#import "LSOfflineTasks.h"
+
 @interface NewCustomerYController : DataController//UIViewController
 <UITableViewDataSource,UITableViewDelegate,LSMixTableCellDelegate>
 {

@@ -8,6 +8,8 @@
 
 #import "LSRegularReporter.h"
 #import "ServerConfig.h"
+#import "PushHandler.h"
+#import "LSVersionManager.h"
 
 //static NSString * ReportURL=@"https://172.16.0.186:233/babynesios/admin/api/device_status.php";
 
@@ -15,6 +17,13 @@
 
 +(void)report{
     NSString* AT=DataLoader.accessToken; //[[LSUserModel getCurrentUser] accessToken];
+    
+    if([PushHandler hasOutSingleModePermitted]){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
+    
     if(AT==nil)return;
     
     int bs=[LSDeviceInfo batteryState];
@@ -49,6 +58,16 @@
         num=[NSNumber numberWithLong:-1];
     }
     
+    NSString * pushToken=[PushHandler getPushToken];
+    if(!pushToken){
+        pushToken=@"";
+    }
+    
+    NSInteger ver=[LSVersionManager currentVerion];
+    NSNumber * verNum=[NSNumber numberWithInteger:ver];
+    
+    NSString * inSM = (UIAccessibilityIsGuidedAccessEnabled()?@"1":@"0");
+    
     NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
                         @"update_status",@"act",
                         AT,@"token",
@@ -59,6 +78,11 @@
                         [NSString stringWithFormat:@"%d",net_state],@"net",
                         SUUID,@"SUUID",
                         NSLocalizedString(@"EN", @"CN"),@"language",//TO DELETED
+                        //ADDED 0804
+                        pushToken,@"pushToken",
+                        verNum,@"version",
+                        inSM,@"singleMode",
+                        @"1",@"taskNum",
                         nil
                         ];
     
@@ -75,7 +99,7 @@
     
     BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_device_report] withParameterString:param toDelegate:[[LSRegularReporter alloc]init]];
     
-    _Log(@"regularDeviceInfoReport {battery state [%d] plug in?[%d] level is [%d] SecureUUID is %@ net [%d] since boot [%ld] AT[%@]} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
+    NSLog(@"regularDeviceInfoReport {battery state [%d] plug in?[%d] level is [%d] SecureUUID is %@ net [%d] since boot [%ld] AT[%@]} POSTED=%d",bs,bs_p,level,SUUID,net_state,boot_time_second,AT,done);
 }
 
 - (BOOL)connection:(NSURLConnection *)connection

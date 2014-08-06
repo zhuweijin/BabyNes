@@ -290,7 +290,8 @@ static NSString *_accessToken = nil;
     _Log(@"SinriDigin DataLoader loadStart");
     
 	UIUtil::ShowNetworkIndicator(YES);
-	if (!_dict && _showLoading)
+	//if (!_dict && _showLoading)
+    if(_showLoading)
 	{
 		UIViewController *controller = [_delegate respondsToSelector:@selector(view)] ? (UIViewController *)_delegate : UIUtil::VisibleViewController();
 		[controller.view toastWithLoading];
@@ -369,6 +370,7 @@ static NSString *_accessToken = nil;
 		params = params ? [NSString stringWithFormat:@"%@&%@", token, params] : token;
 	}
 	_Log(@"DataLoader: curl -d \"%@\" %@", params, url);
+    _Log(@"breakpoint");
 	NSData *post = [params dataUsingEncoding:NSUTF8StringEncoding];
 	NSData *data = HttpUtil::HttpData(url, post, NSURLRequestReloadIgnoringCacheData, &response, &error);
 	if (data == nil)
@@ -386,7 +388,7 @@ static NSString *_accessToken = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:_jsonOptions error:&error];
         if (dict == nil)
         {
-            _Log(@"Data: %@\n\n Error: %@", (data==nil?@"nil":[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]), error);
+            _Log(@"DataLoader parseData Data: %@\n\n Error: %@", (data==nil?@"nil":[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]), error);
         }
         return dict;
     }else{

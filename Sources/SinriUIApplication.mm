@@ -54,6 +54,12 @@ static BOOL shouldMonitorIdle=YES;
         UITouchPhase phase =((UITouch *)[allTouches anyObject]).phase;
         if (phase ==UITouchPhaseBegan || phase == UITouchPhaseEnded){
             [self resetIdleTimer];
+            //SINGLE MODE
+            if([PushHandler hasOutSingleModePermitted]){
+                [PushHandler actOutSingleMode];
+            }else{
+                [PushHandler actIntoSingleMode];
+            }
         }
     }
 }

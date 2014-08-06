@@ -3,6 +3,7 @@
 #import "IntroduceItemView.h"
 #import "IntroduceMonoDetailView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "LSVersionManager.h"
 
 static CGFloat reloadHeaderHeight=40;
 
@@ -21,6 +22,8 @@ static int MonoNumberInRow=3;
     
     self.thePullReloadDelegate=self;
     cate_id=0;
+    
+
     
 	return self;
 }
@@ -65,6 +68,8 @@ static int MonoNumberInRow=3;
     is_reloading=false;
     [self responseForReloadWork];
     _Log(@"IntroduceController reload (loadContentView) !");
+    
+    [LSVersionManager DownloadAllFiles_PDT_WithDict:dict isForce:NO];
     
 	_itemPanes = [[NSMutableDictionary alloc]init];
     cateButtonDict=[[NSMutableDictionary alloc]init];
@@ -295,8 +300,23 @@ static int MonoNumberInRow=3;
     
 }
 
+-(void)receiveVerisonUpdatePush{
+    if(!is_reloading){
+        is_reloading=YES;
+        [self responseForReloadWork];
+    }
+}
+
 -(void)responseForReloadWork{
     _Log(@"IntroduceController responseForReloadWork isWithError=%@",_loader.errorString);
+    if(is_reloading){
+        if(![LSDeviceInfo isNetworkOn]){
+            //UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+            is_reloading=NO;
+            [((UIScrollView *)_itemPane) scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+            return;
+        }
+    }
     if(is_reloading){
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];

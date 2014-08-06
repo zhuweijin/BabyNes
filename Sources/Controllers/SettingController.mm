@@ -3,6 +3,8 @@
 #import "SinriUIApplication.h"
 #import "LSVersionManager.h"
 
+#import "PushHandler.h"
+
 @implementation SettingController
 
 #pragma mark Generic methods
@@ -67,6 +69,13 @@
 	
 		
 	[self spaceWithHeight:kDefaultHeaderHeight];
+	{
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		[self cellWithName:NSLocalizedString(@"Single Mode", @"单应用限制") detail:nil action:@selector(onSingleMode:)];
+	}
+    
+    //SINRI TEST
+    [self spaceWithHeight:kDefaultHeaderHeight];
 	{
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"About", @"关于") detail:nil action:@selector(logoButtonClicked:)];
@@ -139,6 +148,7 @@
 	
 	if (alertView.tag == kCleanCacheAlertViewTag)
 	{
+        /*
         //无差别消灭缓存
 		NSUtil::CleanCache();
         //只消灭自己的Token对应的本地消息记录
@@ -153,17 +163,22 @@
         //顺便昭告天下
         [[NSNotificationCenter defaultCenter]postNotificationName:@"CacheKilled" object:nil];
         
+         //Log time for cleaning cache
+         long time;
+         NSDate *fromdate=[NSDate date];
+         time=(long)[fromdate timeIntervalSince1970];
+         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+         */
+        [PushHandler actCleanCache];
+         
+         
 		WizardCell *cell = (WizardCell *)[objc_getAssociatedObject(alertView, (__bridge void *)@"SENDER") superview];
 		cell.detail = nil;
 		UIButton *button = (UIButton *)cell.accessoryView;
 		[button setTitle:NSLocalizedString(@"Cleaned", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
         
-        //Log time for cleaning cache
-        long time;
-        NSDate *fromdate=[NSDate date];
-        time=(long)[fromdate timeIntervalSince1970];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+        
         
 		return;
 	}
@@ -236,6 +251,17 @@
 		 [sender removeFromSuperview];
 	 }];
 }
+
+-(void)onSingleMode:(id)sender{
+    DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:@"Single Mode" message:@"It is a switch for tester to turn off the Single Mode... Do you want to quit Single Mode?" cancelButtonTitle:@"Into" otherButtonTitles:@"Quit",nil];
+    int r=[dav showDialog];
+    if(r>0){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
+}
+
 /*
 -(void) check_cache_files{
     _Log(@"check_cache_files");

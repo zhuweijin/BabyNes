@@ -27,10 +27,13 @@
 
 -(void)addOneBaby:(LSBaby *)baby;
 +(LSCustomer*) getCurrentCustomer;
++(void)setCurrentCustomer:(LSCustomer*)cutomer;
 +(LSCustomer*) newCustomer;
 +(void)reset;
 -(void)reset;
 -(BOOL)validateCustomerInformation;
 -(NSString*)createCustomer;
 
+-(NSString*)toJson;
++(LSCustomer*)fromJson:(NSString*)json;
 @end

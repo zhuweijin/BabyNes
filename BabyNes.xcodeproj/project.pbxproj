@@ -120,6 +120,9 @@
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
 		2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
+		2FF0190C198F1C1B0042982C /* PushHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0190B198F1C1B0042982C /* PushHandler.mm */; };
+		2FF0190F198F284F0042982C /* LSOfflineTasks.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0190E198F284F0042982C /* LSOfflineTasks.mm */; };
+		2FF01912198F2C780042982C /* LSOrder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF01911198F2C780042982C /* LSOrder.mm */; };
 		2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */; };
 		2FF644CE1962FB0600A802A9 /* LSConnectionDelegater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644CD1962FB0600A802A9 /* LSConnectionDelegater.mm */; };
 		2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644D01963FDF500A802A9 /* LSBaby.mm */; };
@@ -135,6 +138,9 @@
 		2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644ED19663E9D00A802A9 /* MeterialVideoItemView.mm */; };
 		2FF644F119667DB200A802A9 /* FileDownloader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644F019667DB200A802A9 /* FileDownloader.mm */; };
 		2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */; };
+		2FFF26F11991BF410096547F /* JDStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF26EC1991BF410096547F /* JDStatusBarNotification.m */; };
+		2FFF26F21991BF410096547F /* JDStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF26EE1991BF410096547F /* JDStatusBarStyle.m */; };
+		2FFF26F31991BF410096547F /* JDStatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF26F01991BF410096547F /* JDStatusBarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -358,6 +364,12 @@
 		2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSVersionManager.mm; path = Duty/LSVersionManager.mm; sourceTree = "<group>"; };
 		2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSinglePicker.h; sourceTree = "<group>"; };
 		2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSSinglePicker.m; sourceTree = "<group>"; };
+		2FF0190A198F1C1B0042982C /* PushHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushHandler.h; path = Duty/PushHandler.h; sourceTree = "<group>"; };
+		2FF0190B198F1C1B0042982C /* PushHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PushHandler.mm; path = Duty/PushHandler.mm; sourceTree = "<group>"; };
+		2FF0190D198F284F0042982C /* LSOfflineTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSOfflineTasks.h; path = Duty/LSOfflineTasks.h; sourceTree = "<group>"; };
+		2FF0190E198F284F0042982C /* LSOfflineTasks.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSOfflineTasks.mm; path = Duty/LSOfflineTasks.mm; sourceTree = "<group>"; };
+		2FF01910198F2C780042982C /* LSOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSOrder.h; path = Entity/LSOrder.h; sourceTree = "<group>"; };
+		2FF01911198F2C780042982C /* LSOrder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSOrder.mm; path = Entity/LSOrder.mm; sourceTree = "<group>"; };
 		2FF644C91962FAB900A802A9 /* LSNetAPIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNetAPIWorker.h; sourceTree = "<group>"; };
 		2FF644CA1962FAB900A802A9 /* LSNetAPIWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSNetAPIWorker.mm; sourceTree = "<group>"; };
 		2FF644CC1962FB0600A802A9 /* LSConnectionDelegater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSConnectionDelegater.h; sourceTree = "<group>"; };
@@ -387,6 +399,12 @@
 		2FF644F019667DB200A802A9 /* FileDownloader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileDownloader.mm; sourceTree = "<group>"; };
 		2FF644F219668EFB00A802A9 /* DialogUIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogUIAlertView.h; sourceTree = "<group>"; };
 		2FF644F319668EFB00A802A9 /* DialogUIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUIAlertView.m; sourceTree = "<group>"; };
+		2FFF26EB1991BF410096547F /* JDStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarNotification.h; sourceTree = "<group>"; };
+		2FFF26EC1991BF410096547F /* JDStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarNotification.m; sourceTree = "<group>"; };
+		2FFF26ED1991BF410096547F /* JDStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarStyle.h; sourceTree = "<group>"; };
+		2FFF26EE1991BF410096547F /* JDStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarStyle.m; sourceTree = "<group>"; };
+		2FFF26EF1991BF410096547F /* JDStatusBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDStatusBarView.h; sourceTree = "<group>"; };
+		2FFF26F01991BF410096547F /* JDStatusBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDStatusBarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,6 +582,7 @@
 		24259EF8194AB539000FF8A9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2FFF26EA1991BF410096547F /* JDStatusBarNotification */,
 				24259F23194AB539000FF8A9 /* Prefix.pch */,
 				24259EF9194AB539000FF8A9 /* AppDelegate.h */,
 				24259EFA194AB539000FF8A9 /* AppDelegate.mm */,
@@ -811,6 +830,8 @@
 				2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */,
 				2F92BBBB1977AA3B00FBE647 /* SRMessage.h */,
 				2F92BBBC1977AA3B00FBE647 /* SRMessage.m */,
+				2FF01910198F2C780042982C /* LSOrder.h */,
+				2FF01911198F2C780042982C /* LSOrder.mm */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -822,6 +843,10 @@
 				2F5DA2D81985F30F00BBA17A /* LSCustomerStack.mm */,
 				2FE445E5198CBE5000D07D27 /* LSVersionManager.h */,
 				2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */,
+				2FF0190A198F1C1B0042982C /* PushHandler.h */,
+				2FF0190B198F1C1B0042982C /* PushHandler.mm */,
+				2FF0190D198F284F0042982C /* LSOfflineTasks.h */,
+				2FF0190E198F284F0042982C /* LSOfflineTasks.mm */,
 			);
 			name = Duty;
 			sourceTree = "<group>";
@@ -861,6 +886,19 @@
 				2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */,
 			);
 			name = MessageView;
+			sourceTree = "<group>";
+		};
+		2FFF26EA1991BF410096547F /* JDStatusBarNotification */ = {
+			isa = PBXGroup;
+			children = (
+				2FFF26EB1991BF410096547F /* JDStatusBarNotification.h */,
+				2FFF26EC1991BF410096547F /* JDStatusBarNotification.m */,
+				2FFF26ED1991BF410096547F /* JDStatusBarStyle.h */,
+				2FFF26EE1991BF410096547F /* JDStatusBarStyle.m */,
+				2FFF26EF1991BF410096547F /* JDStatusBarView.h */,
+				2FFF26F01991BF410096547F /* JDStatusBarView.m */,
+			);
+			path = JDStatusBarNotification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1004,6 +1042,7 @@
 				24259EE2194AB36B000FF8A9 /* PredictScrollView.mm in Sources */,
 				24259EC2194AB36B000FF8A9 /* MWPhotoBrowser.mm in Sources */,
 				242F94DE195C6E7300371697 /* PivotController.mm in Sources */,
+				2FF01912198F2C780042982C /* LSOrder.mm in Sources */,
 				2F6513AE1981EA6400F2D1F9 /* LSSoapLoginWorker.mm in Sources */,
 				2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */,
 				242F9508195C6E7300371697 /* SelectSheet.mm in Sources */,
@@ -1015,9 +1054,11 @@
 				24259EC0194AB36B000FF8A9 /* MWCaptionView.m in Sources */,
 				24259ED0194AB36B000FF8A9 /* UMFeedbackViewController.mm in Sources */,
 				24259ECA194AB36B000FF8A9 /* UMContactViewController.m in Sources */,
+				2FFF26F11991BF410096547F /* JDStatusBarNotification.m in Sources */,
 				2FF644D31963FDF500A802A9 /* LSBaby.mm in Sources */,
 				242F94F3195C6E7300371697 /* LSShopViewController.mm in Sources */,
 				24E88BF4195DA645007478B3 /* LSTabButton.mm in Sources */,
+				2FFF26F31991BF410096547F /* JDStatusBarView.m in Sources */,
 				242F9509195C6E7300371697 /* WizardCell.mm in Sources */,
 				2F12924219629B8D00F271AA /* SecureUDID.m in Sources */,
 				2F6513AB1981E74800F2D1F9 /* LSXMLWorker.m in Sources */,
@@ -1028,6 +1069,7 @@
 				242F94DC195C6E7300371697 /* BaseController.mm in Sources */,
 				24259ED4194AB36B000FF8A9 /* NetworkUtil.mm in Sources */,
 				24259EC5194AB36B000FF8A9 /* MWZoomingScrollView.m in Sources */,
+				2FFF26F21991BF410096547F /* JDStatusBarStyle.m in Sources */,
 				242F94F4195C6E7300371697 /* MonoTable.mm in Sources */,
 				24259ECC194AB36B000FF8A9 /* UMEGORefreshTableHeaderView.m in Sources */,
 				24E88BF2195DA645007478B3 /* LSComboBox.mm in Sources */,
@@ -1064,6 +1106,7 @@
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
+				2FF0190F198F284F0042982C /* LSOfflineTasks.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
 				242F94E2195C6E7300371697 /* WizardController.mm in Sources */,
@@ -1079,6 +1122,7 @@
 				2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */,
 				2F65140219827B1900F2D1F9 /* LSMixTable.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
+				2FF0190C198F1C1B0042982C /* PushHandler.mm in Sources */,
 				2F5DA2D51985F1AC00BBA17A /* LSStack.m in Sources */,
 				2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */,
 				2FF644F419668EFB00A802A9 /* DialogUIAlertView.m in Sources */,
@@ -1146,7 +1190,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
+				PROVISIONING_PROFILE = "66445B9C-A104-4395-ACB7-E5554E87D4F8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Sources/**";
@@ -1183,7 +1227,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "Sources/**";
-				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
+				PROVISIONING_PROFILE = "2A1B1880-47FB-4BA4-9EA8-CCF9CC407076";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Sources/**";
@@ -1207,7 +1251,7 @@
 					"$(PROJECT_DIR)/Utilities/UMFeedback",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
+				PROVISIONING_PROFILE = "66445B9C-A104-4395-ACB7-E5554E87D4F8";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1229,7 +1273,7 @@
 					"$(PROJECT_DIR)/Utilities/UMFeedback",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9500DA09-0252-4BCD-BE1A-FA44F3D6BE19";
+				PROVISIONING_PROFILE = "2A1B1880-47FB-4BA4-9EA8-CCF9CC407076";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};

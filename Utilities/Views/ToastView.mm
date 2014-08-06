@@ -62,7 +62,7 @@
 
 //
 #ifndef _ToastLoadingTitle
-#define _ToastLoadingTitle @"正在加载"
+#define _ToastLoadingTitle @"......" //@"正在加载"
 #endif
 - (ToastView *)toastWithLoading
 {
@@ -125,7 +125,14 @@
 	}
 	
 	//
-	UILabel *label = UIUtil::LabelWithFrame(frame, title, font, UIUtil::Color(0xf9f9f9), NSTextAlignmentCenter);
+	UILabel *label =
+    /*
+    if(label){
+        [label removeFromSuperview];
+    }
+    label =
+     */
+    UIUtil::LabelWithFrame(frame, title, font, UIUtil::Color(0xf9f9f9), NSTextAlignmentCenter);
 	label.numberOfLines = 0;
 
 	self = [super initWithFrame:CGRectMake(0, 0, width, CGRectGetMaxY(frame) + 8)];

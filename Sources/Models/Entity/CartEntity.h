@@ -30,6 +30,7 @@ typedef enum : NSInteger {
 +(void)setChangeState:(BOOL)isChangeStart;
 
 +(CartEntity*)getDefaultCartEntity;
++(void)setDefaultCartEntity:(CartEntity*)ce;
 -(void)resetCart;
 
 -(int)currentQuantityOfProductID:(int)pid;
@@ -46,4 +47,7 @@ typedef enum : NSInteger {
 -(int)getTotalReturnCents;
 
 //-(void)testChange;
+
+-(NSString*)toJson;
++(CartEntity*)fromJson:(NSString*)json;
 @end
