@@ -211,6 +211,9 @@
 /* EN */
 "EN" = "CN";
 
+/* en */
+"en" = "zh";
+
 /* Error */
 "Error" = "错误";
 
@@ -250,11 +253,17 @@
 /* For Baby [%d]: */
 "For Baby [%d]:" = "第%d个宝宝信息：";
 
+/* Force Execute Offline Tasks */
+"Force Execute Offline Tasks" = "尝试执行离线任务";
+
 /* Full Screen */
 "Full Screen" = "全屏幕";
 
 /* Girl */
 "Girl" = "女";
+
+/* HK */
+"HK" = "CN";
 
 /* Identity Exception */
 "Identity Exception" = "身份认证异常";
@@ -375,6 +384,9 @@
 
 /* None */
 "None" = "未选择";
+
+/* None registered */
+"None registered" = "没有登记";
 
 /* Not found */
 "Not found" = "没有找到该顾客";
@@ -649,14 +661,17 @@
 /* Your contact information */
 "Your contact information" = "您的联系方式";
 
-/* Your order [%@] has been confirmed, and saved due to offline now. */
-"Your order [%@] has been confirmed, and saved due to offline now." = "您的订单【%@】已经确认，由于离线而被保存。";
+/* Your order failed to save for offline now. */
+"Your order failed to save for offline now." = "您的订单离线保存失败。";
 
-/* Your order [%@] has been confirmed, but failed to save for offline now. */
-"Your order [%@] has been confirmed, but failed to save for offline now." = "您的订单【%@】已经确认，但是离线保存失败。";
+/* Your order has been confirmed, and saved due to offline now. */
+"Your order has been confirmed, and saved due to offline now." = "您的订单已经确认，由于离线而被保存。";
 
 /* Your order [%@] has been confirmed. */
 "Your order [%@] has been confirmed." = "您的订单【%@】已经确认。";
+
+/* Your order [%@] has failed to be confirmed. */
+"Your order [%@] has failed to be confirmed." = "您的订单【%@】递交失败。";
 
 /* ^852$ */
 "^852$" = "^86$";

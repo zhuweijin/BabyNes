@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface LSBaby : NSObject<NSCoding>
+@property NSString* the_ID;
+
 @property int the_birth_year;
 @property int the_birth_month;
 @property int the_birth_day;

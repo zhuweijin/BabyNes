@@ -3,6 +3,7 @@
 #import "RootController.h"
 #import "LoginController.h"
 #import "PushHandler.h"
+#import "LSOfflineTasks.h"
 
 #define SINRI_TEST
 
@@ -68,6 +69,12 @@
 	// Create controller
 	// TODO: Remove navigation controller
 	DataLoader.accessToken = Settings::Get(kAccessToken);
+    [DataLoader setUsername:Settings::Get(kUsername)];
+    [DataLoader setPassword:Settings::Get(kPassword)];
+    [DataLoader setStoreID:Settings::Get(kStoreId)];
+    [DataLoader setStoreProvince:Settings::Get(kStoreProvince)];
+    [DataLoader setStoreCity:Settings::Get(kStoreCity)];
+    [DataLoader setStoreAddress:Settings::Get(kStoreAddress)];
 	/*
      UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -304,6 +311,17 @@
          ];
     }
     [LSRegularReporter report];
+    
+    @try {
+        [LSOfflineTasks attemptProcess];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"定时离线订单处理 最外层异常：%@",exception);
+    }
+    @finally {
+        //
+    }
+    
 }
 
 @end

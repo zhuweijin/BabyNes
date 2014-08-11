@@ -73,6 +73,11 @@
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"Single Mode", @"单应用限制") detail:nil action:@selector(onSingleMode:)];
 	}
+    [self spaceWithHeight:kDefaultHeaderHeight];
+	{
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		[self cellWithName:NSLocalizedString(@"Force Execute Offline Tasks", @"尝试执行离线任务") detail:nil action:@selector(onSendOfflineTasks:)];
+	}
     
     //SINRI TEST
     [self spaceWithHeight:kDefaultHeaderHeight];
@@ -259,6 +264,19 @@
         [PushHandler actOutSingleMode];
     }else{
         [PushHandler actIntoSingleMode];
+    }
+}
+
+-(void)onSendOfflineTasks:(id)sender{
+    @try {
+        NSLog(@"手动开始离线任务处理。。。。");
+        [LSOfflineTasks attemptProcess];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"定时离线订单处理 最外层异常：%@",exception);
+    }
+    @finally {
+        //
     }
 }
 

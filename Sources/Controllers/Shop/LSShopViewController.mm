@@ -450,13 +450,14 @@ static CGFloat reloadHeaderHeight=30;
     //mock
     BOOL found=NO;
     if([LSDeviceInfo isNetworkOn]){
-        if([self.the_customer_mobile_textfield.text longLongValue]>13500000000){
+        LSCustomer*resultCustomer=[LSCustomer searchCustomer:self.the_customer_mobile_textfield.text];
+        if(resultCustomer.theID){
             found=YES;
             [self.the_customer_search_result setText:[NSString stringWithFormat:
                                                       NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
-                                                      @"Mr Wakayama",
-                                                      self.the_customer_mobile_textfield.text,
-                                                      @"2014-01-01"
+                                                      resultCustomer.theName,
+                                                      resultCustomer.theMobile,
+                                                      [resultCustomer getOneBabyBirthday]
                                                       ]
              ];
             [self.the_customer_new_button setHidden:YES];
@@ -494,25 +495,49 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)order_confirm:(id)sender{
     _Log(@"order_confirm called");
-    LSOrder * order=[[LSOrder alloc]initWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]];
+    //BOOL done=NO;
+    /*
+    if([LSOrder getCurrentOrder]==nil){
+        [LSOrder setCurrentOrder: [[LSOrder alloc]initWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]]];
+    }
+     */
+    
+    [LSOrder updateCurrentOrderWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]];
+    LSOrder * order=[LSOrder getCurrentOrder];
+    
     if([LSDeviceInfo isNetworkOn]){
         //Online
         NSString * result=[order create];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-        [alertView show];
+        if(result){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            [alertView show];
+            [self resetShopView];
+            NSLog(@"订单确认成功 收到了Magento的结果：%@",result);
+        }else{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has failed to be confirmed.", @"您的订单【%@】递交失败。"),result] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            [alertView show];
+            
+            NSLog(@"订单确认失败 收到了Magento的结果：%@",result);
+        }
     }else{
         //offline
         BOOL done=[LSOfflineTasks saveOrder:order];
         if(done){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order [%@] has been confirmed, and saved due to offline now.", @"您的订单【%@】已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed, and saved due to offline now.", @"您的订单已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
             [alertView show];
+            [self resetShopView];
         }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order [%@] has been confirmed, but failed to save for offline now.", @"您的订单【%@】已经确认，但是离线保存失败。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order failed to save for offline now.", @"您的订单离线保存失败。") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
             [alertView show];
         }
     }
-    [self.the_customer_new_button setHidden:YES];
-    [self.the_order_confirm_button setHidden:YES];
+    /*
+    if(done){
+        [self.the_customer_new_button setHidden:YES];
+        [self.the_order_confirm_button setHidden:YES];
+    }
+     */
 }
 
 //
@@ -567,7 +592,7 @@ static CGFloat reloadHeaderHeight=30;
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     _Log(@"alertView clickedButtonAtIndex %d",buttonIndex);
-    [self resetShopView];
+    //[self resetShopView];
 }
 
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
@@ -579,6 +604,9 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)dealCartChanged:(NSNotification*) notification{
     _Log(@"SHOP VC dealCartChanged !");
+    
+    [LSOrder emptyCurrentOrder];
+    
     //self.sum_label.text=[NSString stringWithFormat: NSLocalizedString(@"Sum $%.2f     Quantity %d", @"总计：￥%.2f       数量：%d"),[[CartEntity getDefaultCartEntity]getTotalCents]/100.0,[[CartEntity getDefaultCartEntity]getTotalQuantity]];
     int moneyOnSale=[[CartEntity getDefaultCartEntity]getTotalSaleCents];
     int moneyOnRMA=[[CartEntity getDefaultCartEntity]getTotalReturnCents];
@@ -604,6 +632,7 @@ static CGFloat reloadHeaderHeight=30;
     }else{
         [CartEntity setChangeState:YES];
     }
+    
     
     double whole_animation_duration=0.4;
     
@@ -730,16 +759,18 @@ static CGFloat reloadHeaderHeight=30;
         LSBaby*baby=[cc.theBabies objectAtIndex:0];
         baby_info=[NSString stringWithFormat:@"%d-%d-%d",baby.the_birth_year,baby.the_birth_month,baby.the_birth_day];
     }
+    /*
     NSString* customer_namae=@"Unknown";
     if([NSLocalizedString(@"EN", @"CN") isEqualToString:@"EN"]){
         customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theTitle,cc.theName];
     }else{
         customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theName,cc.theTitle];
     }
+     */
     [self.the_customer_search_result setText:
      [NSString stringWithFormat:
       NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
-      customer_namae,
+      cc.theName,//customer_namae,
       cc.theMobile,
       baby_info
       ]];
@@ -748,6 +779,7 @@ static CGFloat reloadHeaderHeight=30;
 }
 
 -(void)resetShopView{
+    [LSOrder resetCurrentOrder];
     [[CartEntity getDefaultCartEntity]  resetCart];
     [self.the_customer_search_result setText:@""];
     [self.the_customer_mobile_textfield setText:@""];

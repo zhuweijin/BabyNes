@@ -825,8 +825,8 @@
     //    [cc reset];
     if(result!=nil){
         UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
         [LSCustomer setCurrentCustomer:_NewCustomer];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
         [self closeView:self];
     }
     }else{

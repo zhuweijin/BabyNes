@@ -290,9 +290,21 @@
 		 //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
          [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {
              DataLoader.accessToken = loader.dict[@"token"];
+             [DataLoader setStoreID:loader.dict[@"store_id"]];
+             [DataLoader setStoreProvince:loader.dict[@"storeProvince"]];
+             [DataLoader setStoreCity:loader.dict[@"storeCity"]];
+             [DataLoader setStoreAddress:loader.dict[@"storeAddress"]];
+             [DataLoader setUsername:_usernameField.text];
+             [DataLoader setPassword:_passwordField.text];
              if (_rememberButton.selected)
              {
                  Settings::Save(kAccessToken, DataLoader.accessToken);
+                 Settings::Save(kUsername, DataLoader.username);
+                 Settings::Save(kPassword, DataLoader.password);
+                 Settings::Save(kStoreId,[DataLoader storeID]);
+                 Settings::Save(kStoreProvince,[DataLoader storeProvince]);
+                 Settings::Save(kStoreCity,[DataLoader storeCity]);
+                 Settings::Save(kStoreAddress,[DataLoader storeAddress]);
              }
              
              //DO REGISTER

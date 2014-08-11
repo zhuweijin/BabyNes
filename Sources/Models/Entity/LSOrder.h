@@ -19,9 +19,20 @@
 @property CartEntity * theCart;
 @property NSString * theOrderType;
 
+@property NSString * store_province;
+@property NSString * store_city;
+@property NSString * store_address;
+
++(LSOrder*)getCurrentOrder;
++(void)setCurrentOrder:(LSOrder*)order;
++(void)resetCurrentOrder;
++(void)emptyCurrentOrder;
+
 -(id)initWithCart:(CartEntity*)cart forCustomer:(LSCustomer*)customer;
++(void)updateCurrentOrderWithCart:(CartEntity*)cart forCustomer:(LSCustomer*)customer;
 
 -(NSString*)create;
+-(NSString*)createIsAtBack:(BOOL)isBack;
 
 -(NSString*)toJson;
 

@@ -219,8 +219,8 @@ static CartMode theCartMode=CartModeSale;
 }
 */
 -(NSString*)toJson{
+    _LogLine();
     NSError * error=nil;
-    
     NSMutableArray * orderList=[[NSMutableArray alloc]init];
     for (ProductEntity * pe in self.cart_array) {
         NSString* mid=[pe product_magento_id];
@@ -242,7 +242,18 @@ static CartMode theCartMode=CartModeSale;
     CartEntity * cart=[[CartEntity alloc]init];
     NSError * error=nil;
     NSMutableArray*ma=[[NSMutableArray alloc]initWithArray: [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:(NSJSONReadingMutableLeaves) error:&error]];
-    [cart setCart_array:ma];
+    NSLog(@"CaerEntity fromJson ma=%@",ma);
+    NSMutableArray*cartMA=[[NSMutableArray alloc]init];
+    for (NSDictionary * cart_rec in ma) {
+        NSString* sku= cart_rec[@"sku"];
+        int num=[cart_rec[@"number"] intValue];
+        ProductEntity * original_pe=[[ProductEntity getMagentoProductDictionary] objectForKey:sku];
+        ProductEntity * pe_in_cart=[[ProductEntity alloc]initProductWithId:original_pe.product_id withTitle:original_pe.product_title withCents:original_pe.product_price_cents withMagentoID:original_pe.product_magento_id withImageName:original_pe.product_image];
+        [pe_in_cart setQuantity:num];
+        [cartMA addObject:pe_in_cart];
+    }
+    NSLog(@"CaerEntity fromJson cartMA=%@",cartMA);
+    [cart setCart_array:cartMA];
     return cart;
 }
 @end

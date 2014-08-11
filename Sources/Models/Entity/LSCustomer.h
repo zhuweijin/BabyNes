@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LSBaby.h"
+#import "APIWorker.h"
 
 @interface LSCustomer : NSObject
 
@@ -33,6 +34,10 @@
 -(void)reset;
 -(BOOL)validateCustomerInformation;
 -(NSString*)createCustomer;
+-(NSString*)createCustomer:(BOOL)isSlient;
++(LSCustomer*)searchCustomer:(NSString*)number;
+
+-(NSString*)getOneBabyBirthday;
 
 -(NSString*)toJson;
 +(LSCustomer*)fromJson:(NSString*)json;

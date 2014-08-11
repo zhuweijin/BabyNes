@@ -116,6 +116,15 @@ static ErrorAlertView *_alertView = nil;
 
 static NSString *_accessToken = nil;
 
+static NSString *_storeProvince = nil;
+static NSString *_storeCity = nil;
+static NSString *_storeAddress = nil;
+
+static NSString *_storeID = nil;
+
+static NSString *_username=nil;
+static NSString *_password=nil;
+
 //
 + (void)setAccessToken:(NSString *)accessToken
 {
@@ -126,6 +135,45 @@ static NSString *_accessToken = nil;
 + (NSString *)accessToken
 {
 	return _accessToken;
+}
++ (NSString *)storeID{
+    if(!_storeID) return @"null";
+    else return _storeID;
+}
++ (void)setStoreID:(NSString *)storeID{
+    _storeID=storeID;
+}
++ (NSString *)storeProvince{
+    if(!_storeProvince) return @"null";
+    else return _storeProvince;
+}
++ (void)setStoreProvince:(NSString *)storeProvince{
+    _storeProvince=storeProvince;
+}
++ (NSString *)storeCity{
+    if(!_storeCity) return @"null";
+    else return _storeCity;
+}
++ (void)setStoreCity:(NSString *)storeCity{
+    _storeCity=storeCity;
+}
++ (NSString *)storeAddress{
+    return _storeAddress;
+}
++ (void)setStoreAddress:(NSString *)storeAddress{
+    _storeAddress=storeAddress;
+}
++ (NSString*)username{
+    return _username;
+}
++ (void)setUsername:(NSString*)username{
+    _username=username;
+}
++ (NSString*)password{
+    return _password;
+}
++ (void)setPassword:(NSString*)password{
+    _password=password;
 }
 
 //

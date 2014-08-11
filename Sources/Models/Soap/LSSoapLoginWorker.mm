@@ -25,6 +25,7 @@
                     </soapenv:Body> \
                     </soapenv:Envelope>",username,password];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    _Log(@"SOAP LOGIN XML = %@",str);
     [request setHTTPBody:data];
     //第三步，连接服务器
     

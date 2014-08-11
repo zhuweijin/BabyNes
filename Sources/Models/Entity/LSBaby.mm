@@ -12,6 +12,7 @@
 
 -(id)init{
     self=[super init];
+    self.the_ID=nil;
     
     self.the_birth_day=0;
     self.the_birth_month=0;

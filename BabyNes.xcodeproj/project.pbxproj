@@ -111,6 +111,7 @@
 		2F65140219827B1900F2D1F9 /* LSMixTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513FD19827B1900F2D1F9 /* LSMixTable.mm */; };
 		2F65140319827B1900F2D1F9 /* LSMixTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */; };
 		2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */; };
+		2F6DDB5819934C200045014C /* APIWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F6DDB5719934C200045014C /* APIWorker.mm */; };
 		2F72BB40196BBC0300528735 /* CateImageButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F72BB3F196BBC0300528735 /* CateImageButton.mm */; };
 		2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBB91977A58B00FBE647 /* LocalSRMessageTool.mm */; };
 		2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBC1977AA3B00FBE647 /* SRMessage.m */; };
@@ -346,6 +347,8 @@
 		2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSMixTableCell.mm; path = NewCustomerY/LSMixTableCell.mm; sourceTree = "<group>"; };
 		2F65140019827B1900F2D1F9 /* NewCustomerYController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCustomerYController.h; path = NewCustomerY/NewCustomerYController.h; sourceTree = "<group>"; };
 		2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NewCustomerYController.mm; path = NewCustomerY/NewCustomerYController.mm; sourceTree = "<group>"; };
+		2F6DDB5619934C200045014C /* APIWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIWorker.h; sourceTree = "<group>"; };
+		2F6DDB5719934C200045014C /* APIWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APIWorker.mm; sourceTree = "<group>"; };
 		2F72BB3E196BBC0300528735 /* CateImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CateImageButton.h; sourceTree = "<group>"; };
 		2F72BB3F196BBC0300528735 /* CateImageButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CateImageButton.mm; sourceTree = "<group>"; };
 		2F92BBB81977A58B00FBE647 /* LocalSRMessageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalSRMessageTool.h; path = Entity/LocalSRMessageTool.h; sourceTree = "<group>"; };
@@ -854,6 +857,8 @@
 		2F6513A51981E73B00F2D1F9 /* Soap */ = {
 			isa = PBXGroup;
 			children = (
+				2F6DDB5619934C200045014C /* APIWorker.h */,
+				2F6DDB5719934C200045014C /* APIWorker.mm */,
 				2F6513A61981E74800F2D1F9 /* LSSoapWorker.h */,
 				2F6513A71981E74800F2D1F9 /* LSSoapWorker.m */,
 				2F6513A81981E74800F2D1F9 /* LSXMLWorker.h */,
@@ -1105,6 +1110,7 @@
 				2FF644CB1962FAB900A802A9 /* LSNetAPIWorker.mm in Sources */,
 				2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */,
 				2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */,
+				2F6DDB5819934C200045014C /* APIWorker.mm in Sources */,
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				2FF0190F198F284F0042982C /* LSOfflineTasks.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,

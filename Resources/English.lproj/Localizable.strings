@@ -211,6 +211,9 @@
 /* EN */
 "EN" = "EN";
 
+/* en */
+"en" = "en";
+
 /* Error */
 "Error" = "Error";
 
@@ -250,11 +253,17 @@
 /* For Baby [%d]: */
 "For Baby [%d]:" = "For Baby [%d]:";
 
+/* Force Execute Offline Tasks */
+"Force Execute Offline Tasks" = "Force Execute Offline Tasks";
+
 /* Full Screen */
 "Full Screen" = "Full Screen";
 
 /* Girl */
 "Girl" = "Girl";
+
+/* HK */
+"HK" = "HK";
 
 /* Identity Exception */
 "Identity Exception" = "Identity Exception";
@@ -375,6 +384,9 @@
 
 /* None */
 "None" = "None";
+
+/* None registered */
+"None registered" = "None registered";
 
 /* Not found */
 "Not found" = "Not found";
@@ -649,14 +661,17 @@
 /* Your contact information */
 "Your contact information" = "Your contact information";
 
-/* Your order [%@] has been confirmed, and saved due to offline now. */
-"Your order [%@] has been confirmed, and saved due to offline now." = "Your order [%@] has been confirmed, and saved due to offline now.";
+/* Your order failed to save for offline now. */
+"Your order failed to save for offline now." = "Your order failed to save for offline now.";
 
-/* Your order [%@] has been confirmed, but failed to save for offline now. */
-"Your order [%@] has been confirmed, but failed to save for offline now." = "Your order [%@] has been confirmed, but failed to save for offline now.";
+/* Your order has been confirmed, and saved due to offline now. */
+"Your order has been confirmed, and saved due to offline now." = "Your order has been confirmed, and saved due to offline now.";
 
 /* Your order [%@] has been confirmed. */
 "Your order [%@] has been confirmed." = "Your order [%@] has been confirmed.";
+
+/* Your order [%@] has failed to be confirmed. */
+"Your order [%@] has failed to be confirmed." = "Your order [%@] has failed to be confirmed.";
 
 /* ^852$ */
 "^852$" = "^852$";
