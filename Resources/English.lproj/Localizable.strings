@@ -601,9 +601,6 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "Sum $%.2f     Quantity %d";
 
-/* Test Signature Pad */
-"Test Signature Pad" = "Test Signature Pad";
-
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "The identification information is not correct, please use the correct pair.";
 

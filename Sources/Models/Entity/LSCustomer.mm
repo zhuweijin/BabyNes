@@ -428,7 +428,8 @@ static LSCustomer * currentCustomer=nil;
         for (LSBaby * baby in self.theBabies) {
             [babyarray addObject:[baby toJson]];
         }
-        NSDictionary * jsonDict=@{@"title":self.theTitle,
+        NSDictionary * jsonDict=@{@"customer_id":(self.theID!=nil?self.theID:@""),
+                                  @"title":self.theTitle,
                                   @"name":self.theName,
                                   @"province":self.theProvince,
                                   @"city":self.theCity,
@@ -464,6 +465,8 @@ static LSCustomer * currentCustomer=nil;
     NSDictionary* dict=[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:&error];
     
     LSCustomer * customer=[[LSCustomer alloc]init];
+    
+    customer.theID=([dict[@"customer_id"] isEqualToString:@""]?nil:dict[@"customer_id"]);
     
     customer.theTitle=dict[@"title"];
     customer.theName=dict[@"name"];

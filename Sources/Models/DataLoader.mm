@@ -256,7 +256,7 @@ static NSString *_password=nil;
         NSData*data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         {
             NSString * getStr=(data?[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]:nil);
-            NSLog(@"relogin : [%@] ...(response=%@,error=%@) get %@ ",url,response,error,getStr);
+            NSLog(@"relogin : [%@](%@) ...(response=%@,error=%@) get %@ ",url,param,response,error,getStr);
         }
         if(data){
             NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];

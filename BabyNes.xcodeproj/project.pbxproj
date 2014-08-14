@@ -122,7 +122,6 @@
 		2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */; };
 		2FAD3A81199A6CA2006A93AB /* sign_en.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7F199A6CA2006A93AB /* sign_en.htm */; };
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
-		2FD2DFB5199A5DA100E0FCF3 /* sign.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FD2DFB4199A5DA100E0FCF3 /* sign.htm */; };
 		2FD2DFB8199A5DF500E0FCF3 /* UISignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */; };
 		2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
@@ -372,7 +371,6 @@
 		2FAD3A7F199A6CA2006A93AB /* sign_en.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sign_en.htm; path = NewCustomerY/Sign/sign_en.htm; sourceTree = "<group>"; };
 		2FB63CCB198352A400F344E9 /* LSDuoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDuoPicker.h; sourceTree = "<group>"; };
 		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
-		2FD2DFB4199A5DA100E0FCF3 /* sign.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sign.htm; sourceTree = "<group>"; };
 		2FD2DFB6199A5DF500E0FCF3 /* UISignController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISignController.h; path = NewCustomerY/UISignController.h; sourceTree = "<group>"; };
 		2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISignController.m; path = NewCustomerY/UISignController.m; sourceTree = "<group>"; };
 		2FE445E5198CBE5000D07D27 /* LSVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSVersionManager.h; path = Duty/LSVersionManager.h; sourceTree = "<group>"; };
@@ -770,7 +768,6 @@
 		246A3231186838ED00903EF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2FD2DFB4199A5DA100E0FCF3 /* sign.htm */,
 				246A333E1868394000903EF4 /* Assets */,
 				246A324D186838ED00903EF4 /* Info.plist */,
 				246A3249186838ED00903EF4 /* Icon.png */,
@@ -998,7 +995,6 @@
 				246A3301186838ED00903EF4 /* IconPad.png in Resources */,
 				246A3300186838ED00903EF4 /* Icon@2x.png in Resources */,
 				24259ECD194AB36B000FF8A9 /* UMFeedback.bundle in Resources */,
-				2FD2DFB5199A5DA100E0FCF3 /* sign.htm in Resources */,
 				2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */,
 				246A32FF186838ED00903EF4 /* Icon7@2x.png in Resources */,
 				246A333F1868394000903EF4 /* Assets in Resources */,

@@ -601,9 +601,6 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
 
-/* Test Signature Pad */
-"Test Signature Pad" = "簽名測試";
-
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "認證信息錯誤，請重新輸入。";
 

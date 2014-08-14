@@ -80,12 +80,16 @@
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
      */
     
-    if(DataLoader.accessToken
-       && ([LSDeviceInfo currentNetworkType]==NotReachable || [DataLoader refreshAccessToken] )
-       ){
+    if(DataLoader.accessToken){
+        if([LSDeviceInfo currentNetworkType]!=NotReachable){
+            [DataLoader refreshAccessToken];
+            _LogLine();
+        }
+        _LogLine();
         [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
         [((SinriUIApplication *)application) setLoginController:nil];
     }else{
+        _LogLine();
         [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
         [((SinriUIApplication *)application) setRootController:nil];
     }
