@@ -200,18 +200,47 @@
 
 -(void)newCustomerButtonClicked:(UIButton*)sender{
     _Log(@"ROOT newCustomerButtonClicked called");
+    
+    //[self onNewsShow:@"NEWS"];
+    //return;
+    
     NewCustomerYController * nc=[[NewCustomerYController alloc]init];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
+    //[nc setModalPresentationStyle:(UIModalPresentationCurrentContext)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+    //[nc setModalTransitionStyle:(UIModalTransitionStyleCrossDissolve)];
+    
+    
+    //UIViewController* controller = self.view.window.rootViewController;
+    //controller.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //[self setModalPresentationStyle:(UIModalPresentationCurrentContext)];
+    
     [self presentViewController:nc animated:YES completion:^{
         _Log(@"ROOT NewCustomerVC presented");
+        [nc.view.superview setBackgroundColor:[UIColor clearColor]];
     }];
+    /*
+    // iOS6まではこれでよかった。
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        nc.view.superview.frame = CGRectMake(0, 0, 810, 610);
+        nc.view.superview.center = CGPointMake(384, 512);
+    }else{ //iOS7ではview.supserViewではなくviewに対して指定する。
+        CGRect superViewFrame = nc.view.superview.frame;
+        nc.view.frame = CGRectMake(0, 0, 810, 610);
+        nc.view.center  = CGPointMake(superViewFrame.size.width/2, superViewFrame.size.height/2);
+        //nc.view.center  = CGPointMake(0,0);
+        nc.view.superview.backgroundColor = [UIColor clearColor];
+        nc.view.superview.bounds = CGRectMake(0, 0, 810, 610);
+    }
+    */
+    
     CGRect frame=nc.view.frame;
     //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
     frame.size.height=500;
     //frame.size.width+=100;
     [nc.view.superview setFrame:frame];
+    
 }
 
 -(void)sineToIwareta:(id)sender{
@@ -293,6 +322,28 @@
         //
     }
     
+}
+
+-(void)onNewsShow:(NSString*)alert{
+    UIButton * newsBtn=[[UIButton alloc]init];
+    [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+    [newsBtn setFrame:CGRectMake(0, -100, 1024, 70)];
+    [newsBtn setTitle:alert forState:(UIControlStateNormal)];
+    [self.view addSubview:newsBtn];
+    [UIView animateWithDuration:1 animations:^{
+       [newsBtn setFrame:CGRectMake(0, 0, 1024, 70)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:3 animations:^{
+            //[newsBtn setFrame:CGRectMake(0, 0, 1024, 70)];
+            [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+                [newsBtn setFrame:CGRectMake(0, -100, 1024, 70)];
+            } completion:^(BOOL finished) {
+                [newsBtn removeFromSuperview];
+            }];
+        }];
+    }];
 }
 
 @end

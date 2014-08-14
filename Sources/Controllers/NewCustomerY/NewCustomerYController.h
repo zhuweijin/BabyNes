@@ -12,6 +12,8 @@
 #import "DataController.h"
 
 #import "LSOfflineTasks.h"
+#import "LSSigner.h"
+#import "UISignController.h"
 
 @interface NewCustomerYController : DataController//UIViewController
 <UITableViewDataSource,UITableViewDelegate,LSMixTableCellDelegate>
@@ -23,7 +25,14 @@
     UIButton * recheckCancel;
     UIButton * recheckConfirm;
     
+    LSSigner * signer;
+    
+    
+    
 }
+
+@property (readonly) UIView * honbuView;
+
 @property LSCustomer * NewCustomer;
 
 @property UILabel * theTitleLabel;

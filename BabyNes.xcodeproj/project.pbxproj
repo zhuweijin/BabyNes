@@ -118,7 +118,12 @@
 		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
+		2FAD3A7D199A6B8B006A93AB /* LSSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7C199A6B8B006A93AB /* LSSigner.m */; };
+		2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */; };
+		2FAD3A81199A6CA2006A93AB /* sign_en.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7F199A6CA2006A93AB /* sign_en.htm */; };
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
+		2FD2DFB5199A5DA100E0FCF3 /* sign.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FD2DFB4199A5DA100E0FCF3 /* sign.htm */; };
+		2FD2DFB8199A5DF500E0FCF3 /* UISignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */; };
 		2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
 		2FF0190C198F1C1B0042982C /* PushHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0190B198F1C1B0042982C /* PushHandler.mm */; };
@@ -361,8 +366,15 @@
 		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
 		2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSOptionalButton.h; sourceTree = "<group>"; };
 		2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSOptionalButton.mm; sourceTree = "<group>"; };
+		2FAD3A7B199A6B8B006A93AB /* LSSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSigner.h; path = NewCustomerY/Sign/LSSigner.h; sourceTree = "<group>"; };
+		2FAD3A7C199A6B8B006A93AB /* LSSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSSigner.m; path = NewCustomerY/Sign/LSSigner.m; sourceTree = "<group>"; };
+		2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sign_cn.htm; path = NewCustomerY/Sign/sign_cn.htm; sourceTree = "<group>"; };
+		2FAD3A7F199A6CA2006A93AB /* sign_en.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sign_en.htm; path = NewCustomerY/Sign/sign_en.htm; sourceTree = "<group>"; };
 		2FB63CCB198352A400F344E9 /* LSDuoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSDuoPicker.h; sourceTree = "<group>"; };
 		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
+		2FD2DFB4199A5DA100E0FCF3 /* sign.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sign.htm; sourceTree = "<group>"; };
+		2FD2DFB6199A5DF500E0FCF3 /* UISignController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISignController.h; path = NewCustomerY/UISignController.h; sourceTree = "<group>"; };
+		2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISignController.m; path = NewCustomerY/UISignController.m; sourceTree = "<group>"; };
 		2FE445E5198CBE5000D07D27 /* LSVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSVersionManager.h; path = Duty/LSVersionManager.h; sourceTree = "<group>"; };
 		2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSVersionManager.mm; path = Duty/LSVersionManager.mm; sourceTree = "<group>"; };
 		2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSinglePicker.h; sourceTree = "<group>"; };
@@ -758,6 +770,7 @@
 		246A3231186838ED00903EF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FD2DFB4199A5DA100E0FCF3 /* sign.htm */,
 				246A333E1868394000903EF4 /* Assets */,
 				246A324D186838ED00903EF4 /* Info.plist */,
 				246A3249186838ED00903EF4 /* Icon.png */,
@@ -872,12 +885,15 @@
 		2F6513FB19827AC700F2D1F9 /* NewCustomerY */ = {
 			isa = PBXGroup;
 			children = (
+				2FAD3A7A199A6B48006A93AB /* Sign */,
 				2F6513FC19827B1900F2D1F9 /* LSMixTable.h */,
 				2F6513FD19827B1900F2D1F9 /* LSMixTable.mm */,
 				2F6513FE19827B1900F2D1F9 /* LSMixTableCell.h */,
 				2F6513FF19827B1900F2D1F9 /* LSMixTableCell.mm */,
 				2F65140019827B1900F2D1F9 /* NewCustomerYController.h */,
 				2F65140119827B1900F2D1F9 /* NewCustomerYController.mm */,
+				2FD2DFB6199A5DF500E0FCF3 /* UISignController.h */,
+				2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */,
 			);
 			name = NewCustomerY;
 			sourceTree = "<group>";
@@ -891,6 +907,17 @@
 				2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */,
 			);
 			name = MessageView;
+			sourceTree = "<group>";
+		};
+		2FAD3A7A199A6B48006A93AB /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */,
+				2FAD3A7F199A6CA2006A93AB /* sign_en.htm */,
+				2FAD3A7B199A6B8B006A93AB /* LSSigner.h */,
+				2FAD3A7C199A6B8B006A93AB /* LSSigner.m */,
+			);
+			name = Sign;
 			sourceTree = "<group>";
 		};
 		2FFF26EA1991BF410096547F /* JDStatusBarNotification */ = {
@@ -971,11 +998,14 @@
 				246A3301186838ED00903EF4 /* IconPad.png in Resources */,
 				246A3300186838ED00903EF4 /* Icon@2x.png in Resources */,
 				24259ECD194AB36B000FF8A9 /* UMFeedback.bundle in Resources */,
+				2FD2DFB5199A5DA100E0FCF3 /* sign.htm in Resources */,
+				2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */,
 				246A32FF186838ED00903EF4 /* Icon7@2x.png in Resources */,
 				246A333F1868394000903EF4 /* Assets in Resources */,
 				24259ED1194AB36B000FF8A9 /* UMFeedbackViewController.xib in Resources */,
 				246A32FB186838ED00903EF4 /* InfoPlist.strings in Resources */,
 				246A32FE186838ED00903EF4 /* Icon.png in Resources */,
+				2FAD3A81199A6CA2006A93AB /* sign_en.htm in Resources */,
 				24FC734E195AAF16000F8F7F /* DefaultPad@2x.png in Resources */,
 				246A32FC186838ED00903EF4 /* Localizable.strings in Resources */,
 			);
@@ -1085,6 +1115,7 @@
 				24259EB5194AB36B000FF8A9 /* ShareComposer.mm in Sources */,
 				24259EE5194AB36B000FF8A9 /* ToastView.mm in Sources */,
 				24259EBE194AB36B000FF8A9 /* Main.m in Sources */,
+				2FD2DFB8199A5DF500E0FCF3 /* UISignController.m in Sources */,
 				2F65140419827B1900F2D1F9 /* NewCustomerYController.mm in Sources */,
 				2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */,
 				2FF644E519659C6200A802A9 /* MessageController.mm in Sources */,
@@ -1099,6 +1130,7 @@
 				2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */,
 				24E88BF3195DA645007478B3 /* LSComboBoxCell.mm in Sources */,
 				2FF644DF1965214800A802A9 /* PRMoviePlayer.mm in Sources */,
+				2FAD3A7D199A6B8B006A93AB /* LSSigner.m in Sources */,
 				2F92BBBA1977A58B00FBE647 /* LocalSRMessageTool.mm in Sources */,
 				24259EB3194AB36B000FF8A9 /* MoviePlayer.mm in Sources */,
 				2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */,

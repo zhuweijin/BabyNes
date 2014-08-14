@@ -25,7 +25,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
            @"sr_receipt":@"SRReceipt.php",
            @"idle_video":@"PR/babynes.mp4",//@"video/video-4.mp4"
            @"version_check":@"check_version.php",
-           @"create_order":@"create_order.php"
+           @"create_order":@"create_order.php",
+           @"customer_signature":@"customer_signature.php",
            };
     return self;
 }
@@ -74,5 +75,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 }
 -(NSString*)getURL_create_order{
     return [self findURL:@"create_order"];
+}
+-(NSString*)getURL_customer_signature{
+    return [self findURL:@"customer_signature"];
 }
 @end

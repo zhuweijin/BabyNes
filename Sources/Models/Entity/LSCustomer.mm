@@ -52,6 +52,8 @@ static LSCustomer * currentCustomer=nil;
 -(void)reset{
     self.theID=nil;
     
+    self.theSign=@"";
+    
     self.theTitle=@"";
     self.theName=@"";
     self.theProvince=@"";
@@ -94,18 +96,18 @@ static LSCustomer * currentCustomer=nil;
         return NO;
     }
     /*
-    if(![self.theAreaCode isEqualToString:@""]){
-        NSString *string = self.theAreaCode;
-        NSError  *error  = nil;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^852$", @"^86$") options:0 error:&error];
-        
-        NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
-        if(range.location==NSNotFound){
-            //NSString *result = [string substringWithRange:range];
-            UIUtil::ShowAlert(NSLocalizedString(@"Area Code is not correct", @"地区号未填写正确"));
-            return NO;
-        }
-    }
+     if(![self.theAreaCode isEqualToString:@""]){
+     NSString *string = self.theAreaCode;
+     NSError  *error  = nil;
+     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^852$", @"^86$") options:0 error:&error];
+     
+     NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+     if(range.location==NSNotFound){
+     //NSString *result = [string substringWithRange:range];
+     UIUtil::ShowAlert(NSLocalizedString(@"Area Code is not correct", @"地区号未填写正确"));
+     return NO;
+     }
+     }
      */
     if([self.theMobile isEqualToString:@""]){
         _LogLine();
@@ -113,17 +115,17 @@ static LSCustomer * currentCustomer=nil;
         return NO;
     }else{
         /*
-        NSString *string = self.theMobile;
-        NSError  *error  = nil;
-        
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^[569][\\d]{7}$", @"^1[\\d]{10}$") options:0 error:&error];
-        
-        NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
-        if(range.location==NSNotFound){
-            //NSString *result = [string substringWithRange:range];
-            UIUtil::ShowAlert(NSLocalizedString(@"Mobile is not correct", @"手机号未填写正确"));
-            return NO;
-        }
+         NSString *string = self.theMobile;
+         NSError  *error  = nil;
+         
+         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^[569][\\d]{7}$", @"^1[\\d]{10}$") options:0 error:&error];
+         
+         NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
+         if(range.location==NSNotFound){
+         //NSString *result = [string substringWithRange:range];
+         UIUtil::ShowAlert(NSLocalizedString(@"Mobile is not correct", @"手机号未填写正确"));
+         return NO;
+         }
          */
         _LogLine();
     }
@@ -172,17 +174,17 @@ static LSCustomer * currentCustomer=nil;
     if([self validateCustomerInformation:isSlient]){
         _LogLine();
         /*
-        NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theMobile];
-        
-        DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
-        [dav setAlert_view_type:NCDialogAlertViewTypeBigger];
-        int r=[dav showDialog];
-        
-        if(r!=0){
-            //DO STH
-            self.theID=@"MOCKED RETURN CUSTOMER ID";
-            currentCustomer=self;
-            return self.theID;
+         NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck.", @"请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。"),_theMobile];
+         
+         DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Reminder", @"提醒") message:msg cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"Confirm", @"确认")];
+         [dav setAlert_view_type:NCDialogAlertViewTypeBigger];
+         int r=[dav showDialog];
+         
+         if(r!=0){
+         //DO STH
+         self.theID=@"MOCKED RETURN CUSTOMER ID";
+         currentCustomer=self;
+         return self.theID;
          }
          */
         
@@ -194,22 +196,22 @@ static LSCustomer * currentCustomer=nil;
         }
         
         NSMutableDictionary * registerDict=[@{
-                                      @"salutation": salutation,//Yes Customer name prefix/salutation
-                                      
-                                      @"firstname": _theName,//Yes Customer firstname, for CN, put customer full name here.
-                                      //@"email": _theEmail,//DELETED No A temporary customer email will be generated by Magento. Ex: QF4yujeGgwQcTEjF-tmp-mag@babynes.com
-                                      @"mobilePrefix": _theRegionCode,//Yes +86
-                                      @"phonePrefix": _theRegionCode,//Yes +86
-                                      @"mobile": _theMobile,//Yes Customer phone number
-                                      //@"phone": @"11111111",//No Home phone number
-                                      //@"phonePrefix": @"86",//No +86
-                                      //@"phoneAreaCode": @"571",//No Customer home phone number area code
-                                      //@"password": @"PW",//DELETED No Customer password. Magento to generate and set temporary password (to send by SMS).
-                                      //@"isNestleNewsletterDeclined": @"Mr",//No Newsletter subscription status(1/0). Will be 0 by default (opt-in by default).
-                                      //@"city": @"Suihua",//No Used to create default billing address
-                                      //@"province": @"Heilongjiang",//No Used to create default billing address
-                                      //@"street": @"Address",//No Used to create default billing address. If not set, set to "unknown" by default (if required for creating                                      the address in Magento)
-                                      } mutableCopy];
+                                              @"salutation": salutation,//Yes Customer name prefix/salutation
+                                              
+                                              @"firstname": _theName,//Yes Customer firstname, for CN, put customer full name here.
+                                              //@"email": _theEmail,//DELETED No A temporary customer email will be generated by Magento. Ex: QF4yujeGgwQcTEjF-tmp-mag@babynes.com
+                                              @"mobilePrefix": _theRegionCode,//Yes +86
+                                              @"phonePrefix": _theRegionCode,//Yes +86
+                                              @"mobile": _theMobile,//Yes Customer phone number
+                                              //@"phone": @"11111111",//No Home phone number
+                                              //@"phonePrefix": @"86",//No +86
+                                              //@"phoneAreaCode": @"571",//No Customer home phone number area code
+                                              //@"password": @"PW",//DELETED No Customer password. Magento to generate and set temporary password (to send by SMS).
+                                              //@"isNestleNewsletterDeclined": @"Mr",//No Newsletter subscription status(1/0). Will be 0 by default (opt-in by default).
+                                              //@"city": @"Suihua",//No Used to create default billing address
+                                              //@"province": @"Heilongjiang",//No Used to create default billing address
+                                              //@"street": @"Address",//No Used to create default billing address. If not set, set to "unknown" by default (if required for creating                                      the address in Magento)
+                                              } mutableCopy];
         if(![_theEmail isEqualToString:@""]){
             [registerDict setObject:_theEmail forKey:@"email"];
         }
@@ -247,6 +249,7 @@ static LSCustomer * currentCustomer=nil;
             NSLog(@"MAIN->register net error");
         }
         if(_theID){
+            //BABIES
             for (LSBaby*baby in _theBabies) {
                 NSString * date_str=[NSString stringWithFormat:@"%d-%d%d-%d%d",baby.the_birth_year,baby.the_birth_month/10,baby.the_birth_month%10,baby.the_birth_day/10,baby.the_birth_day%10];
                 NSString*gender=@"neutral";//NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")
@@ -256,15 +259,15 @@ static LSCustomer * currentCustomer=nil;
                     gender=@"female";
                 }
                 NSMutableDictionary * registerDict=[@{
-                                              @"customerId":_theID,//Yes The customer id returned by the pos_customer/search or pos_customer/register calls.
-                                              @"birthday":date_str,//No Baby date of birth in unix time. Ex 2014-01-30
-                                              
-                                              //@"capsuleSize":@"Standard",//No The type of capsule recommended for the baby. 'Standard'/'Large'(Default 'Standard')
-                                              @"gender":gender,//No Baby gender. 'male'/'female'(Default 'neutral')
-                                              
-                                              //@"firstname":@"BABYNAME",//No Baby name. (Default 'Your Baby')
-                                              
-                                              } mutableCopy];
+                                                      @"customerId":_theID,//Yes The customer id returned by the pos_customer/search or pos_customer/register calls.
+                                                      @"birthday":date_str,//No Baby date of birth in unix time. Ex 2014-01-30
+                                                      
+                                                      //@"capsuleSize":@"Standard",//No The type of capsule recommended for the baby. 'Standard'/'Large'(Default 'Standard')
+                                                      @"gender":gender,//No Baby gender. 'male'/'female'(Default 'neutral')
+                                                      
+                                                      //@"firstname":@"BABYNAME",//No Baby name. (Default 'Your Baby')
+                                                      
+                                                      } mutableCopy];
                 if(![baby.the_nick isEqualToString:@""]){
                     [registerDict setObject:baby.the_nick forKey:@"firstname"];
                 }
@@ -283,7 +286,44 @@ static LSCustomer * currentCustomer=nil;
                     //net error
                     NSLog(@"MAIN->baby net error");
                 }
-
+                
+            }
+            //SIGN
+#warning TODO the signature
+            NSString* AT=DataLoader.accessToken;
+            if(AT!=nil){
+                NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
+                                    _theID,@"customer_id",
+                                    _theSign,@"signature",
+                                    _theMobile,@"mobile",
+                                    AT,@"token",
+                                    nil
+                                    ];
+                NSString* param=NSUtil::URLQuery(dict);
+                
+                NSString * url=[NSString stringWithFormat:@"%@",[[ServerConfig getServerConfig]getURL_customer_signature]];
+                NSData * body=[param dataUsingEncoding:NSUTF8StringEncoding];
+                NSMutableURLRequest * request=[[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:(NSURLRequestReloadIgnoringLocalAndRemoteCacheData) timeoutInterval:30];
+                //[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+                [request addValue:[NSString stringWithFormat:@"%luld",(unsigned long)[body length]] forHTTPHeaderField:@"Content-Length"];
+                [request setHTTPBody:body];
+                [request setHTTPMethod:@"POST"];
+                
+                NSURLResponse * response=nil;
+                NSError * error=nil;
+                
+                NSData*data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+                {
+                    NSString * getStr=(data?[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]:nil);
+                    NSLog(@"log customer signature: [%@] ...(response=%@,error=%@) get %@ ",url,response,error,getStr);
+                }
+                if(data){
+                    NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
+                    //dict[@"CODE"];
+                    NSLog(@"SIGN return:%@",dict);
+                }
+            }else{
+                NSLog(@"Sign upload- -not executed duo to no access token");
             }
         }
     }
@@ -323,6 +363,15 @@ static LSCustomer * currentCustomer=nil;
             }else if([[customer theName] hasPrefix:@"Mrs "]){
                 [customer setTheName:[[customer theName] substringFromIndex:4]];
             }
+            
+            if([[customer theName] hasPrefix:@"{{{Ms}}{{Ms}}{{Ms}}{{BabyNes_Customer}}}"]
+               || [[customer theName] hasPrefix:@"{{{Mr}}{{Mr}}{{Mr}}{{BabyNes_Customer}}}"]){
+                [customer setTheName:[[customer theName] substringFromIndex:[@"{{{Ms}}{{Ms}}{{Ms}}{{BabyNes_Customer}}}" length]]];
+            }else if([[customer theName] hasPrefix:@"{{{Mrs}}{{Mrs}}{{Mrs}}{{BabyNes_Customer}}}"]){
+                [customer setTheName:[[customer theName] substringFromIndex:[@"{{{Mrs}}{{Mrs}}{{Mrs}}{{BabyNes_Customer}}}" length]]];
+            }
+            
+            [customer setTheName:[[customer theName] stringByTrimmingCharactersInSet:([NSCharacterSet whitespaceAndNewlineCharacterSet])]];
             
             if(dict[@"babies"]){
                 _LogLine();
@@ -389,7 +438,8 @@ static LSCustomer * currentCustomer=nil;
                                   @"phone":self.thePhone,
                                   @"mobile":self.theMobile,
                                   @"email":self.theEmail,
-                                  @"babies":babyarray
+                                  @"babies":babyarray,
+                                  @"sign":self.theSign
                                   };
         
         
@@ -425,6 +475,8 @@ static LSCustomer * currentCustomer=nil;
     customer.thePhone=dict[@"phone"];
     customer.theMobile=dict[@"mobile"];
     customer.theEmail=dict[@"email"];
+    customer.theSign=dict[@"sign"];
+    
     NSArray * babies=dict[@"babies"];
     for (NSString * babyJson in babies) {
         [customer addOneBaby:[LSBaby fromJson:babyJson]];

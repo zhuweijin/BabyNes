@@ -81,7 +81,7 @@
      */
     
     if(DataLoader.accessToken
-       //&& [LSDeviceInfo currentNetworkType]!=NotReachable
+       && ([LSDeviceInfo currentNetworkType]==NotReachable || [DataLoader refreshAccessToken] )
        ){
         [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
         [((SinriUIApplication *)application) setLoginController:nil];
@@ -269,9 +269,10 @@
 //}
 
 // The interface orientation of the status bar has changed.
-//- (void)application:(UIApplication *)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation
-//{
-//}
+- (void)application:(UIApplication *)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation
+{
+    //NSNotificationCenter
+}
 
 // The frame of the status bar is about to change.
 //- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame

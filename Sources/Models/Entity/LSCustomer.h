@@ -26,6 +26,8 @@
 @property NSString * theEmail;
 @property NSMutableArray * theBabies;
 
+@property NSString * theSign;
+
 -(void)addOneBaby:(LSBaby *)baby;
 +(LSCustomer*) getCurrentCustomer;
 +(void)setCurrentCustomer:(LSCustomer*)cutomer;

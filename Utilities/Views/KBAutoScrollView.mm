@@ -67,6 +67,7 @@
 //
 - (void)keyboardWillShow:(NSNotification *)notification
 {
+    NSLog(@"KBAutoScrollView keyboardWillShow");
 	UIView *view = UIUtil::FindFirstResponder(self);
 	if (view)
 	{

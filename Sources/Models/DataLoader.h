@@ -106,6 +106,8 @@ typedef enum {
 + (void)logout;		// 注销
 + (BOOL)isLogon;	// 是否已登录
 
++(BOOL)refreshAccessToken;
+
 + (NSString *)accessToken;
 + (void)setAccessToken:(NSString *)accessToken;
 + (NSString *)storeProvince;

@@ -7,6 +7,8 @@
 //
 
 #import "NewCustomerYController.h"
+#import "DialogUIAlertView.h"
+
 
 @interface NewCustomerYController ()
 @property BOOL showingCell01;
@@ -68,7 +70,17 @@
 }
 
 -(void) designView{
-    self.view.backgroundColor=UIUtil::Color(240, 240, 240);
+    //[self.view setOpaque:NO];
+    //self.view.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+    
+    //self.view.backgroundColor=[UIColor clearColor]; //UIUtil::Color(240, 240, 240);
+    //[self.view setAlpha:0.1];
+    
+    _honbuView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 540, 500)];
+    [self.view addSubview:_honbuView];
+    [_honbuView setCenter:self.view.center];
+    
+    self.honbuView.backgroundColor=UIUtil::Color(240, 240, 240);
     
     self.theExitButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"Cancel", @"取消") width:100];
     //self.theExitButton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,19 +91,19 @@
     self.theExitButton.frame=CGRectMake(10, 10, 100, 30);
     //[self.theExitButton setTitle:NSLocalizedString(@"Close", @"取消创建") forState:UIControlStateNormal];
     [self.theExitButton addTarget:self action:@selector(closeView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.theExitButton];
+    [self.honbuView addSubview:self.theExitButton];
     /*
      self.theTopLineView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 540, 8)];
      self.theTopLineView.backgroundColor =[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
      [self.view addSubview:self.theTopLineView];
      */
     self.theTitleLabel=[[UILabel alloc]initWithFrame:CGRectMake(160, 10, 200, 30)];
-    [self.theTitleLabel setCenter:CGPointMake(self.view.frame.size.width/2, 25)];
+    [self.theTitleLabel setCenter:CGPointMake(self.honbuView.frame.size.width/2, 25)];
     [self.theTitleLabel setText:NSLocalizedString(@"New Customer", @"招募顾客")];
     [self.theTitleLabel setFont:[UIFont systemFontOfSize:20]];
     [self.theTitleLabel setTextColor:[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]];
     [self.theTitleLabel setTextAlignment:(NSTextAlignmentCenter)];
-    [self.view addSubview:self.theTitleLabel];
+    [self.honbuView addSubview:self.theTitleLabel];
     
     //self.midBabyBtnFrame=CGRectMake(100, 450, 100, 30);
     self.midBabyBtnFrame=CGRectMake(100, 460, 100, 30);
@@ -105,10 +117,10 @@
     //[self.theBabyAddButton setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
     //[self.theBabyAddButton setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
     //self.theBabyAddButton.frame=self.midBabyBtnFrame;
-    self.theBabyAddButton.center=CGPointMake(self.view.frame.size.width/2, 460);
+    self.theBabyAddButton.center=CGPointMake(self.honbuView.frame.size.width/2, 460);
     //[self.theBabyAddButton setTitle:NSLocalizedString(@"Add Baby", @"添加一个宝宝") forState:UIControlStateNormal];
     [self.theBabyAddButton addTarget:self action:@selector(addBaby:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.theBabyAddButton];
+    [self.honbuView addSubview:self.theBabyAddButton];
     
     //self.midCustomerBtnFrame=CGRectMake(340, 450, 100, 30);
     self.midCustomerBtnFrame=CGRectMake(430, 10, 100, 30);
@@ -124,13 +136,13 @@
     self.theCustomerAddButton.frame=self.midCustomerBtnFrame;
     //[self.theCustomerAddButton setTitle:NSLocalizedString(@"Create", @"创建") forState:UIControlStateNormal];
     [self.theCustomerAddButton addTarget:self action:@selector(addCustomer:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.theCustomerAddButton];
+    [self.honbuView addSubview:self.theCustomerAddButton];
     
     _mixTable=[[LSMixTable alloc]initWithFrame:CGRectMake(0, 50, 540, 370) style:(UITableViewStyleGrouped)];
     [_mixTable setBackgroundColor:[UIColor whiteColor]];
     [_mixTable setDelegate:self];
     [_mixTable setDataSource:self];
-    [self.view addSubview:_mixTable];
+    [self.honbuView addSubview:_mixTable];
     
     _rowNumberArray=[@[
                        [NSNumber numberWithInt:7],
@@ -159,35 +171,35 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     /*
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
-    
-    [recognizer setNumberOfTapsRequired:1];
-    recognizer.cancelsTouchesInView = NO; //So the user can still interact with controls in the modal view
-    [self.view.window addGestureRecognizer:recognizer];
+     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBehind:)];
+     
+     [recognizer setNumberOfTapsRequired:1];
+     recognizer.cancelsTouchesInView = NO; //So the user can still interact with controls in the modal view
+     [self.view.window addGestureRecognizer:recognizer];
      */
 }
 /*
-- (void)handleTapBehind:(UITapGestureRecognizer *)sender
-{
-    _LogLine();
-    if (sender.state == UIGestureRecognizerStateEnded)
-    {
-        _LogLine();
-        CGPoint location = [sender locationInView:nil]; //Passing nil gives us coordinates in the window
-        
-        //Then we convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
-        
-        if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil])
-        {
-            // Remove the recognizer first so it's view.window is valid.
-            //[self.view.window removeGestureRecognizer:sender];
-            [self.view.window endEditing:YES];
-            _LogLine();
-            //[self dismissModalViewControllerAnimated:YES];
-        }
-    }
-}
-*/
+ - (void)handleTapBehind:(UITapGestureRecognizer *)sender
+ {
+ _LogLine();
+ if (sender.state == UIGestureRecognizerStateEnded)
+ {
+ _LogLine();
+ CGPoint location = [sender locationInView:nil]; //Passing nil gives us coordinates in the window
+ 
+ //Then we convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
+ 
+ if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil])
+ {
+ // Remove the recognizer first so it's view.window is valid.
+ //[self.view.window removeGestureRecognizer:sender];
+ [self.view.window endEditing:YES];
+ _LogLine();
+ //[self dismissModalViewControllerAnimated:YES];
+ }
+ }
+ }
+ */
 - (void)setUpForDismissKeyboard {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     UITapGestureRecognizer *singleTapGR =
@@ -629,7 +641,7 @@
                 v=1;
             }
             if(v>=0)
-            [cellOfSexPreview setBabySexCell:v];
+                [cellOfSexPreview setBabySexCell:v];
         }
         
     }
@@ -737,7 +749,7 @@
         [recheckView removeFromSuperview];
         recheckView=nil;
     }
-    recheckView=[[UIView alloc]initWithFrame:CGRectMake(0, 50, 540, 550)];
+    recheckView=[[UIView alloc]initWithFrame:CGRectMake(0, 50, 540, 500)];
     [recheckView setBackgroundColor:[UIColor whiteColor]];
     
     /*
@@ -760,32 +772,30 @@
     [recheckLabel setNumberOfLines:0];
     [recheckView addSubview:recheckLabel];
     
-    
-    recheckCancel = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    //[recheckCancel setFrame:CGRectMake(100, 390, 100, 30)];
+    recheckCancel = [UIButton minorButtonWithTitle:NSLocalizedString(@"Cancel", @"取消") width:100];
+    //recheckCancel = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [recheckCancel setFrame:CGRectMake(10, 10, 100, 30)];
-    [recheckCancel setTitle:NSLocalizedString(@"Cancel", @"取消") forState:(UIControlStateNormal)];
-    [[recheckCancel titleLabel] setFont:[UIFont systemFontOfSize:20]];
+    //[recheckCancel setTitle:NSLocalizedString(@"Cancel", @"取消") forState:(UIControlStateNormal)];
+    //[[recheckCancel titleLabel] setFont:[UIFont systemFontOfSize:20]];
     [recheckCancel addTarget:self action:@selector(hideRecheckView) forControlEvents:(UIControlEventTouchUpInside)];
-    recheckCancel.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    recheckCancel.titleLabel.textColor=[UIColor whiteColor];
-    recheckCancel.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [recheckCancel setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
-    [recheckCancel setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
+    //recheckCancel.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    //recheckCancel.titleLabel.textColor=[UIColor whiteColor];
+    //recheckCancel.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    //[recheckCancel setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+    //[recheckCancel setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
     //[recheckView addSubview:recheckCancel];
     
-    
-    recheckConfirm = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    //[recheckConfirm setFrame:CGRectMake(340, 390, 100, 30)];
+    recheckConfirm = [UIButton minorButtonWithTitle:NSLocalizedString(@"Confirm", @"确认") width:100];
+    //recheckConfirm = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [recheckConfirm setFrame:CGRectMake(430, 10, 100, 30)];
-    [recheckConfirm setTitle:NSLocalizedString(@"Confirm", @"确认") forState:(UIControlStateNormal)];
+    //[recheckConfirm setTitle:NSLocalizedString(@"Confirm", @"确认") forState:(UIControlStateNormal)];
     [recheckConfirm addTarget:self action:@selector(submit) forControlEvents:(UIControlEventTouchUpInside)];
-    [[recheckConfirm titleLabel] setFont:[UIFont systemFontOfSize:20]];
-    recheckConfirm.titleLabel.font = [UIFont systemFontOfSize: 16.0];
-    recheckConfirm.titleLabel.textColor=[UIColor whiteColor];
-    recheckConfirm.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
-    [recheckConfirm setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
-    [recheckConfirm setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
+    //[[recheckConfirm titleLabel] setFont:[UIFont systemFontOfSize:20]];
+    //recheckConfirm.titleLabel.font = [UIFont systemFontOfSize: 16.0];
+    //recheckConfirm.titleLabel.textColor=[UIColor whiteColor];
+    //recheckConfirm.backgroundColor = [UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1];
+    //[recheckConfirm setBackgroundImage:UIUtil::ImageWithColor(117, 114, 184) forState:UIControlStateHighlighted];
+    //[recheckConfirm setBackgroundImage:UIUtil::ImageWithColor(100,100,100) forState:UIControlStateDisabled];
     //[recheckView addSubview:recheckConfirm];
     
     
@@ -796,10 +806,10 @@
         [_theBabyAddButton setHidden:YES];
         
         //[self.view addSubview:recheckLabel];
-        [self.view addSubview:recheckCancel];
-        [self.view addSubview:recheckConfirm];
+        [self.honbuView addSubview:recheckCancel];
+        [self.honbuView addSubview:recheckConfirm];
         
-        [self.view addSubview:recheckView];
+        [self.honbuView addSubview:recheckView];
     } completion:^(BOOL finished) {
         //
     }];
@@ -817,18 +827,124 @@
         //
     }];
 }
+
 -(void)submit{
     [self hideRecheckView];
     _LogLine();
-    if([LSDeviceInfo isNetworkOn]){
-    NSString* result=[_NewCustomer createCustomer];
-    //    [cc reset];
-    if(result!=nil){
-        UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
-        [LSCustomer setCurrentCustomer:_NewCustomer];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
-        [self closeView:self];
+    
+    //SIGN
+    
+    
+    //signer = [[LSSigner alloc]initWithFrame:CGRectMake(0, 0, 540, 500)];
+    signer = [[LSSigner alloc]initWithFrame:CGRectMake(0, 0, 810, 610)];
+    
+    [signer addTarget:self action:@selector(submitToServer) forControlEvents:(UIControlEventEditingDidEnd)];
+    [signer addTarget:self action:@selector(closeSignPad) forControlEvents:(UIControlEventEditingDidEndOnExit)];
+    
+    //[self.view addSubview:signer];
+    
+    [self.view.window addSubview:signer];
+    
+    NSLog(@"[[UIDevice currentDevice] orientation] = %d\n[[UIApplication sharedApplication] statusBarOrientation]=%d",[[UIDevice currentDevice] orientation],[[UIApplication sharedApplication] statusBarOrientation]);
+    
+    //if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+    if([[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationLandscapeRight)
+	{
+        _Log(@"Sign UIDeviceOrientationLandscapeRight Turn around the image");
+		CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
+        [signer setTransform:rotation];
     }
+    else
+        //if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+        if([[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationLandscapeLeft)
+        {
+            _Log(@"Sign UIDeviceOrientationLandscapeLeft");
+            CGAffineTransform rotation = CGAffineTransformMakeRotation(-M_PI_2);
+            [signer setTransform:rotation];
+        }
+    /*
+     else{
+     CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
+     [signer setTransform:rotation];
+     }
+     */
+    
+    
+    
+    [signer setCenter:self.view.window.center];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTurning:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+    /*
+     [[NSNotificationCenter defaultCenter]addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification object:signer queue:([NSOperationQueue mainQueue]) usingBlock:^(NSNotification *note) {
+     NSLog(@"lalilalila");
+     
+     UIInterfaceOrientation orient =(UIInterfaceOrientation) [note.userInfo[UIApplicationStatusBarOrientationUserInfoKey] integerValue];
+     
+     if(orient==UIInterfaceOrientationLandscapeRight)
+     {
+     _Log(@"Signing UIDeviceOrientationLandscapeRight Turn around the image");
+     CGAffineTransform rotation = CGAffineTransformMakeRotation(-M_PI);
+     [signer setTransform:rotation];
+     }
+     else
+     //if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
+     if(orient==UIInterfaceOrientationLandscapeLeft)
+     {
+     _Log(@"Signing UIDeviceOrientationLandscapeLeft");
+     CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI);
+     [signer setTransform:rotation];
+     }
+     }];
+     */
+    //[self submitToServer];
+}
+
+-(void)onTurning:(NSNotification*)notification{
+    NSLog(@"lalilalila");
+    
+    if(signer){
+        
+        UIInterfaceOrientation orient =(UIInterfaceOrientation) [notification.userInfo[UIApplicationStatusBarOrientationUserInfoKey] integerValue];
+        
+        if(orient==UIInterfaceOrientationLandscapeRight)
+        {
+            _Log(@"Signing UIDeviceOrientationLandscapeRight Turn around the image");
+            CGAffineTransform rotation = CGAffineTransformMakeRotation(-M_PI_2);
+            [signer setTransform:rotation];
+        }
+        else if(orient==UIInterfaceOrientationLandscapeLeft)
+        {
+            _Log(@"Signing UIDeviceOrientationLandscapeLeft");
+            CGAffineTransform rotation = CGAffineTransformMakeRotation(M_PI_2);
+            [signer setTransform:rotation];
+        }
+    }
+}
+
+-(void)closeSignPad{
+    if(signer){
+        if(signer.dataurl){
+            [_NewCustomer setTheSign:signer.dataurl];
+        }
+        [[NSNotificationCenter defaultCenter]removeObserver:signer name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+        [signer removeFromSuperview];
+        signer=nil;
+    }
+}
+-(void)submitToServer{
+    [self closeSignPad];
+    
+    if([LSDeviceInfo isNetworkOn]){
+        NSString* result=[_NewCustomer createCustomer];
+        //    [cc reset];
+        if(result!=nil){
+            UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
+            [LSCustomer setCurrentCustomer:_NewCustomer];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
+            [self closeView:self];
+        }else{
+            UIUtil::ShowAlert(NSLocalizedString(@"Registered as Failed", @"注册失败"));
+        }
     }else{
         BOOL done=[LSOfflineTasks saveCustomer:_NewCustomer];
         if(done){

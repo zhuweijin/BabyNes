@@ -489,7 +489,6 @@ static CGFloat reloadHeaderHeight=30;
     CGRect frame=nc.view.frame;
     //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
     frame.size.height=500;
-    //frame.size.width+=100;
     [nc.view.superview setFrame:frame];
 }
 
@@ -540,10 +539,11 @@ static CGFloat reloadHeaderHeight=30;
      */
 }
 
-//
+
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    _Log(@"SHOP VC keyboardWillShow");
+    _Log(@"SHOP VC keyboardWillShow:%@",notification);
+    if(![_the_customer_mobile_textfield isFirstResponder])return;
     CGRect rect;
     NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     [value getValue:&rect];
@@ -563,6 +563,7 @@ static CGFloat reloadHeaderHeight=30;
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     _Log(@"SHOP VC keyboardWillHide");
+    if(![_the_customer_mobile_textfield isFirstResponder])return;
     CGRect rect;
     NSValue *value = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     [value getValue:&rect];

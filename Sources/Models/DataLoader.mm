@@ -217,9 +217,9 @@ static NSString *_password=nil;
         
         //UIViewController *controller = [[LoginController alloc] initWithMessage:msg];//Yonsm's
         /*
-        [(SinriUIApplication *)[UIApplication sharedApplication] setLoginController:[[LoginController alloc] initWithMessage:msg]];
-        UIViewController *controller=[(SinriUIApplication *)[UIApplication sharedApplication] loginController];
-        UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
+         [(SinriUIApplication *)[UIApplication sharedApplication] setLoginController:[[LoginController alloc] initWithMessage:msg]];
+         UIViewController *controller=[(SinriUIApplication *)[UIApplication sharedApplication] loginController];
+         UIUtil::PresentModalNavigationController(UIUtil::RootViewController(), controller);
          */
         //Mine
         
@@ -228,6 +228,65 @@ static NSString *_password=nil;
     }else{
         _Log(@"DataLoader login has been running");
     }
+}
+
++(BOOL)refreshAccessToken{
+    NSString* at=[DataLoader accessToken];
+    NSString* u=[DataLoader username];
+    NSString* p=[DataLoader password];
+    if(at && u && p){
+        NSDictionary* dict=@{
+                             @"username": u,
+                             @"password":p,
+                             @"uuid":[LSDeviceInfo device_sn]
+                             };
+        NSString* param=NSUtil::URLQuery(dict);
+        
+        NSString * url=[NSString stringWithFormat:@"%@",[[ServerConfig getServerConfig]getURL_login]];
+        NSData * body=[param dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableURLRequest * request=[[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:(NSURLRequestReloadIgnoringLocalAndRemoteCacheData) timeoutInterval:30];
+        //[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request addValue:[NSString stringWithFormat:@"%luld",(unsigned long)[body length]] forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody:body];
+        [request setHTTPMethod:@"POST"];
+        
+        NSURLResponse * response=nil;
+        NSError * error=nil;
+        
+        NSData*data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        {
+            NSString * getStr=(data?[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]:nil);
+            NSLog(@"relogin : [%@] ...(response=%@,error=%@) get %@ ",url,response,error,getStr);
+        }
+        if(data){
+            NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
+            NSLog(@"relogin return:%@",dict);
+            if(dict){
+                if([dict[@"CODE"] isEqualToString:@"200"]){
+                    NSDictionary * loaderdict=dict[@"DATA"];
+                    //GET
+                    DataLoader.accessToken = loaderdict[@"token"];
+                    [DataLoader setStoreID:loaderdict[@"store_id"]];
+                    [DataLoader setStoreProvince:loaderdict[@"storeProvince"]];
+                    [DataLoader setStoreCity:loaderdict[@"storeCity"]];
+                    [DataLoader setStoreAddress:loaderdict[@"storeAddress"]];
+                    [DataLoader setUsername:u];
+                    [DataLoader setPassword:p];
+                    //SAVE
+                    Settings::Save(kAccessToken, DataLoader.accessToken);
+                    Settings::Save(kUsername, DataLoader.username);
+                    Settings::Save(kPassword, DataLoader.password);
+                    Settings::Save(kStoreId,[DataLoader storeID]);
+                    Settings::Save(kStoreProvince,[DataLoader storeProvince]);
+                    Settings::Save(kStoreCity,[DataLoader storeCity]);
+                    Settings::Save(kStoreAddress,[DataLoader storeAddress]);
+                    NSLog(@"RELOGIN DOWN at=%@",[DataLoader accessToken]);
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
 }
 
 //

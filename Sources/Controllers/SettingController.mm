@@ -3,6 +3,8 @@
 #import "SinriUIApplication.h"
 #import "LSVersionManager.h"
 
+#import "UISignController.h"
+
 #import "PushHandler.h"
 
 @implementation SettingController
@@ -77,6 +79,11 @@
 	{
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"Force Execute Offline Tasks", @"尝试执行离线任务") detail:nil action:@selector(onSendOfflineTasks:)];
+	}
+    [self spaceWithHeight:kDefaultHeaderHeight];
+	{
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		[self cellWithName:NSLocalizedString(@"Test Signature Pad", @"签名测试") detail:nil action:@selector(onSignaturePadTest:)];
 	}
     
     //SINRI TEST
@@ -278,6 +285,11 @@
     @finally {
         //
     }
+}
+
+-(void)onSignaturePadTest:(id)sender{
+    UISignController * signVC = [[UISignController alloc]init];
+    [self.navigationController pushViewController:signVC animated:YES];
 }
 
 /*

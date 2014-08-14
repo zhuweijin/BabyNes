@@ -481,6 +481,9 @@
 /* Register or update device information failed! */
 "Register or update device information failed!" = "登記或更新設備失敗！";
 
+/* Registered as Failed */
+"Registered as Failed" = "註冊失敗";
+
 /* Registered as [%@] */
 "Registered as [%@]" = "成功註冊為[%@]";
 
@@ -574,6 +577,9 @@
 /* Shopping Cart */
 "Shopping Cart" = "購物車";
 
+/* sign_en */
+"sign_en" = "sign_cn";
+
 /* Single Mode */
 "Single Mode" = "單應用限制";
 
@@ -594,6 +600,9 @@
 
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
+
+/* Test Signature Pad */
+"Test Signature Pad" = "簽名測試";
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "認證信息錯誤，請重新輸入。";

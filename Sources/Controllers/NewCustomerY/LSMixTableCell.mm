@@ -291,11 +291,15 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
         [textFieldMain setBorderStyle:(UITextBorderStyleNone)];
         [textFieldMain setDelegate:self];
         [textFieldMain setReturnKeyType:(UIReturnKeyDone)];
+        [textFieldMain setAutocapitalizationType:(UITextAutocapitalizationTypeNone)];
+        [textFieldMain setAutocorrectionType:UITextAutocorrectionTypeNo];
     }
     if(textFieldMore){
         [textFieldMore setBorderStyle:(UITextBorderStyleNone)];
         [textFieldMore setDelegate:self];
         [textFieldMore setReturnKeyType:(UIReturnKeyNext)];
+        [textFieldMore setAutocapitalizationType:(UITextAutocapitalizationTypeNone)];
+        [textFieldMore setAutocorrectionType:UITextAutocorrectionTypeNo];
     }
 }
 

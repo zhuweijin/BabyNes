@@ -28,5 +28,6 @@
 -(NSString*)getSoapLoginURL;
 
 -(NSString*)getURL_create_order;
+-(NSString*)getURL_customer_signature;
 
 @end
