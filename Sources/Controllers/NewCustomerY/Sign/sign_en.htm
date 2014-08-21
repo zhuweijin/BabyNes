@@ -129,18 +129,17 @@
         cancelButton.addEventListener("click", function (event) {
                                       window.open("http://sinri.net.tf");
                                       });
-                                      
-                                      clearButton.addEventListener("click", function (event) {
-                                                                   signaturePad.clear();
-                                                                   });
+        clearButton.addEventListener("click", function (event) {
+                                     signaturePad.clear();
+                                     });
                                                                    
-                                                                   saveButton.addEventListener("click", function (event) {
-                                                                                               if (signaturePad.isEmpty()) {
-                                                                                               //alert("Please provide signature first.");
-                                                                                               } else {
-                                                                                               window.open(signaturePad.toDataURL());
-                                                                                               }
-                                                                                               });
+        saveButton.addEventListener("click", function (event) {
+                                    if (signaturePad.isEmpty()) {
+                                    //alert("Please provide signature first.");
+                                    } else {
+                                        window.open(signaturePad.toDataURL());
+                                    }
+                                    });
             </script>
     </body>
 </html>

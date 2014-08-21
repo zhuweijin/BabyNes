@@ -7,6 +7,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LSVersionManager.h"
 
+#import "MobClick.h"
+
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
 
@@ -113,6 +115,12 @@ static CGFloat reloadHeaderHeight=40;
 {
 	[super viewWillAppear:animated];
     _Log(@"MeterialController viewWillAppear");
+    [MobClick beginLogPageView:@"MeterialController"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _Log(@"MeterialController viewWillDisappear");
+    [MobClick endLogPageView:@"MeterialController"];
 }
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
@@ -420,6 +428,7 @@ static CGFloat reloadHeaderHeight=40;
         }
     }
     if(is_reloading){
+        [MobClick event:@"RefreshMedia" acc:1];
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];

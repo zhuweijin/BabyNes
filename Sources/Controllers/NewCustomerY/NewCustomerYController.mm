@@ -736,7 +736,7 @@
      if(result!=nil){
      UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
      [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
-     [self closeView:sender];
+     [self closeView:nil];
      }
      }
      selection=-1;
@@ -934,24 +934,28 @@
 -(void)submitToServer{
     [self closeSignPad];
     
+    
+    
     if([LSDeviceInfo isNetworkOn]){
+        [MobClick event:@"NewCustomerSubmit" acc:1];
         NSString* result=[_NewCustomer createCustomer];
         //    [cc reset];
         if(result!=nil){
             UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
             [LSCustomer setCurrentCustomer:_NewCustomer];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
-            [self closeView:self];
+            [self closeView:nil];
         }else{
-            UIUtil::ShowAlert(NSLocalizedString(@"Registered as Failed", @"注册失败"));
+            //UIUtil::ShowAlert(NSLocalizedString(@"Registered as Failed", @"注册失败"));
         }
     }else{
+        [MobClick event:@"NewCustomerSubmitOffline" acc:1];
         BOOL done=[LSOfflineTasks saveCustomer:_NewCustomer];
         if(done){
             UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: the customer info has been saved.", @"离线任务：顾客信息已经保存。"));
             [LSCustomer setCurrentCustomer:_NewCustomer];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:_NewCustomer.theMobile];
-            [self closeView:self];
+            [self closeView:nil];
         }else{
             UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: failed to save the customer info.", @"离线任务：顾客信息保存失败。"));
         }
@@ -962,5 +966,8 @@
     [self dismissViewControllerAnimated:YES completion:^{
         _Log(@"New Customer Y VC dismissed");
     }];
+    if(self!=nil){
+        [MobClick event:@"NewCustomerCancel" acc:1];
+    }
 }
 @end

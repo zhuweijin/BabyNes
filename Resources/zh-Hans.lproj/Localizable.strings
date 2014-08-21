@@ -208,11 +208,11 @@
 /* Email: */
 "Email:" = "电子邮箱：";
 
-/* EN */
-"EN" = "CN";
-
 /* en */
 "en" = "zh";
+
+/* EN */
+"EN" = "CN";
 
 /* Error */
 "Error" = "错误";
@@ -228,6 +228,9 @@
 
 /* Failed */
 "Failed" = "失败";
+
+/* Failed due to some issue in server, please try to search the mobile or register again later. */
+"Failed due to some issue in server, please try to search the mobile or register again later." = "由于服务器原因用户注册不顺利，请稍后尝试搜索或重新注册。";
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "身份验证失败。";

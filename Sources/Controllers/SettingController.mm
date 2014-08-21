@@ -33,6 +33,15 @@
 //	[super viewDidLoad];
 //}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"SettingController"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"SettingController"];
+}
+
 //
 - (void)loadPage
 {
@@ -185,7 +194,7 @@
 		[button setTitle:NSLocalizedString(@"Cleaned", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
         
-        
+        [MobClick event:@"CacheClean" acc:1];
         
 		return;
 	}

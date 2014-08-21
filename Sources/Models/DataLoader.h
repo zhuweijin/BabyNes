@@ -1,5 +1,7 @@
 #import "ServerConfig.h"
 
+#import "MobClick.h"
+
 #define TEST
 #ifdef TEST
 //#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"

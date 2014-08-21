@@ -142,6 +142,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    [MobClick beginLogPageView:@"LoginController"];
+    
 //#ifndef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES];
 //#endif
@@ -153,6 +156,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+    
+    [MobClick endLogPageView:@"LoginController"];
     
     if([PushHandler hasOutSingleModePermitted]){
         [PushHandler actOutSingleMode];
@@ -286,6 +291,8 @@
 			 @"password": _passwordField.text,
 			 @"uuid": [LSDeviceInfo device_sn],/*SystemUtil::SN()*//*@"7A626E32-D9F8-4BEF-859F-852071CE0001",*/
 		 };
+         
+         [MobClick event:@"Login" acc:1];
          
 		 //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
          [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {

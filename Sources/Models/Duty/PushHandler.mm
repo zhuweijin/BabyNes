@@ -49,25 +49,31 @@ static BOOL outSingleModePermitted=NO;
         [[[UIAlertView alloc]initWithTitle:userInfo[@"alert"] message:@"The push notification has been shown successfully when you see this alert." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
     else
-    if([act isEqualToString:@"0"]){
-       //Out Single Mode
-        outSingleModePermitted=YES;
-        [PushHandler actOutSingleMode];
-    }else if([act isEqualToString:@"1"]){
-        //Into Single Mode
-        outSingleModePermitted=NO;
-        [PushHandler actIntoSingleMode];
-    }else if([act isEqualToString:@"2"]){
-        //Force Version Update
-        [PushHandler actCleanCache];
-        [PushHandler actVersionUpdate];
-    }else if([act isEqualToString:@"3"]){
-        //Force Clean Cache
-        [PushHandler actCleanCache];
-    }else if([act isEqualToString:@"4"]){
-        //PING
-        [PushHandler actSendStatus];
-    }
+        if([act isEqualToString:@"0"]){
+            //Out Single Mode
+            outSingleModePermitted=YES;
+            [PushHandler actOutSingleMode];
+        }else if([act isEqualToString:@"1"]){
+            //Into Single Mode
+            outSingleModePermitted=NO;
+            [PushHandler actIntoSingleMode];
+        }else if([act isEqualToString:@"2"]){
+            //Force Version Update
+            [PushHandler actCleanCache];
+            [PushHandler actVersionUpdate];
+        }else if([act isEqualToString:@"3"]){
+            //Force Clean Cache
+            [PushHandler actCleanCache];
+        }else if([act isEqualToString:@"4"]){
+            //PING
+            [PushHandler actSendStatus];
+        }else if([act isEqualToString:@"5"]){
+            //MSG PUSH
+            [PushHandler actAlertNewMessage:@{
+                                              @"title":userInfo[@"addition"],
+                                              //@"url":userInfo[@"url"],
+                                              }];
+        }
     NSLog(@"Push act[%@] handled.",act);
 }
 +(void)actIntoSingleMode{
@@ -159,6 +165,12 @@ static BOOL outSingleModePermitted=NO;
 }
 +(void)actSendStatus{
     [LSRegularReporter report];
+}
+
++(void)actAlertNewMessage:(NSDictionary*)msgUnit{
+    if(msgUnit){
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"NewSRMessage" object:msgUnit];
+    }
 }
 
 @end

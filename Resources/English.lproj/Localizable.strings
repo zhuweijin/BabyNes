@@ -208,11 +208,11 @@
 /* Email: */
 "Email:" = "Email:";
 
-/* EN */
-"EN" = "EN";
-
 /* en */
 "en" = "en";
+
+/* EN */
+"EN" = "EN";
 
 /* Error */
 "Error" = "Error";
@@ -228,6 +228,9 @@
 
 /* Failed */
 "Failed" = "Failed";
+
+/* Failed due to some issue in server, please try to search the mobile or register again later. */
+"Failed due to some issue in server, please try to search the mobile or register again later." = "Failed due to some issue in server, please try to search the mobile or register again later.";
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "Failed in examine the identification.";

@@ -22,4 +22,6 @@
 +(void)actCleanCache;
 +(void)actCleanSR;
 +(void)actSendStatus;
+
++(void)actAlertNewMessage:(NSDictionary*)msgUnit;
 @end

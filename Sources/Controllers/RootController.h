@@ -15,6 +15,8 @@
 //
 @interface RootController : PivotController
 {
+    UIButton * newsBtn;
+    BOOL isNeedHideStatusBar;
 }
 
 @property LSShopViewController * shopVC;

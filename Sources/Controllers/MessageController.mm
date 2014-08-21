@@ -17,6 +17,7 @@ static CGFloat reloadHeaderHeight=40;
 	self.title = NSLocalizedString(@"SR Center", @"消息中心");
     self.thePullReloadDelegate=self;
     [self setForceOnline:YES];
+    _isNeedRefresh=NO;
     [((CacheDataLoader*)_loader) forceOnline];
     
 //    [self loadContentView_init];
@@ -44,6 +45,7 @@ static CGFloat reloadHeaderHeight=40;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [MobClick beginLogPageView:@"MessageController"];
     [self removeObservers];
     [self addObservers];
 }
@@ -51,6 +53,7 @@ static CGFloat reloadHeaderHeight=40;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"MessageController"];
     [self removeObservers];
 }
 
@@ -61,6 +64,12 @@ static CGFloat reloadHeaderHeight=40;
     [self scrollViewDidEndDragging:[self getSRTable] willDecelerate:NO];
     
     [srTable reloadData];
+    
+    if(_isNeedRefresh && !is_reloading){
+        is_reloading=YES;
+        isCheckOld=NO;
+        [self responseForReloadWork];
+    }
 }
 
 -(void)viewDidLoad{
@@ -396,6 +405,9 @@ static CGFloat reloadHeaderHeight=40;
             }
             NSDictionary * dict=@{@"before":num};
             _Log(@"SR Message seek old with dict:%@",dict);
+            
+            [MobClick event:@"RefreshMsgOld" acc:1];
+            
             [_loader setParams:dict];
             [_loader loadBegin];
             //[checkOlderLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
@@ -413,6 +425,9 @@ static CGFloat reloadHeaderHeight=40;
             NSDictionary * dict=@{@"after":[NSNumber numberWithInt:[LocalSRMessageTool getSRAPIAfterParamValue]]};
             _Log(@"SR Message seek new with dict:%@",dict);
             [_loader setParams:dict];
+            
+            [MobClick event:@"RefreshMsgNew" acc:1];
+            
             [_loader loadBegin];
             [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
             //[self.view.window setUserInteractionEnabled:NO];

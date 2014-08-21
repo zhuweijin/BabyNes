@@ -61,19 +61,22 @@
  */
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    //NSLog(@"webview shouldStartLoadWithRequest request:%@[URL=%@] navigationType=%d",request,request.URL.absoluteString,navigationType);
+    NSLog(@"webview shouldStartLoadWithRequest request:%@[URL=%@] navigationType=%d",request,request.URL.absoluteString,navigationType);
     if([request.URL.absoluteString hasPrefix:@"data:image/png;base64"]){
         NSLog(@"GET BASE64 IMAGE DATA:\n%@",request.URL.absoluteString);
         //[self.navigationController popViewControllerAnimated:YES];
         _dataurl=request.URL.absoluteString;
         [self sendActionsForControlEvents:(UIControlEventEditingDidEnd)];
+        _LogLine();
         return NO;
     }else if([request.URL.absoluteString hasPrefix:@"http://sinri.net.tf"]){
         NSLog(@"GET SIGN CANCELLED:\n%@",request.URL.absoluteString);
         [self sendActionsForControlEvents:(UIControlEventEditingDidEndOnExit)];
+        _LogLine();
         return NO;
     }
     else{
+        _LogLine();
         return YES;
     }
 }

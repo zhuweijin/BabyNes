@@ -449,6 +449,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_mobile_textfield resignFirstResponder];
     //mock
     BOOL found=NO;
+    [MobClick event:@"SearchCustomer" acc:1];
     if([LSDeviceInfo isNetworkOn]){
         LSCustomer*resultCustomer=[LSCustomer searchCustomer:self.the_customer_mobile_textfield.text];
         if(resultCustomer.theID){
@@ -490,6 +491,8 @@ static CGFloat reloadHeaderHeight=30;
     //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
     frame.size.height=500;
     [nc.view.superview setFrame:frame];
+    
+    [MobClick event:@"NewCustomerShop" acc:1];
 }
 
 -(void)order_confirm:(id)sender{
@@ -506,6 +509,7 @@ static CGFloat reloadHeaderHeight=30;
     
     if([LSDeviceInfo isNetworkOn]){
         //Online
+        [MobClick event:@"SubmitOrder" acc:1];
         NSString * result=[order create];
         if(result){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
@@ -521,6 +525,7 @@ static CGFloat reloadHeaderHeight=30;
         }
     }else{
         //offline
+        [MobClick event:@"SubmitOrderOffline" acc:1];
         BOOL done=[LSOfflineTasks saveOrder:order];
         if(done){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed, and saved due to offline now.", @"您的订单已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
@@ -854,6 +859,7 @@ static CGFloat reloadHeaderHeight=30;
         }
     }
     if(is_reloading){
+        [MobClick event:@"RefreshShop" acc:1];
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];

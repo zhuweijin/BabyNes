@@ -22,7 +22,7 @@
 //}
 
 // Do additional setup after loading the view.
-#define kTabButonTag 12312
+//#define kTabButonTag 12312
 - (void)viewDidLoad
 {
 	[super viewDidLoad];

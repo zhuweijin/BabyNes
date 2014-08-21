@@ -7,6 +7,7 @@
 //
 
 #import "PRMoviePlayer.h"
+#import "MobClick.h"
 
 @interface PRMoviePlayer ()
 @property UINavigationBar *navigationBar;
@@ -86,6 +87,14 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"MovieController"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"MovieController"];
+}
 
 - (void)viewDidLoad
 {

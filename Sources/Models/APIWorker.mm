@@ -80,15 +80,15 @@
 -(NSDictionary*)createUserWithDictionary:(NSDictionary*)dict{
     NSString * param=@"";
     /*
-    for (NSString * key in [dict allKeys]) {
-        param=[param stringByAppendingFormat:@"&%@=%@",key,dict[key]];
-    }
-    if([param length]>0){
-        param = [param substringFromIndex:1];
-    }
-    
-    param=[param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    */
+     for (NSString * key in [dict allKeys]) {
+     param=[param stringByAppendingFormat:@"&%@=%@",key,dict[key]];
+     }
+     if([param length]>0){
+     param = [param substringFromIndex:1];
+     }
+     
+     param=[param stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+     */
     param=[APIWorker lineJsonFromObj:dict];
     NSData* body=[param dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -118,14 +118,20 @@
     NSData*data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     {
         NSString * getStr=(data?[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]:nil);
-        NSLog(@"registerCustomer: %@[%@] ...(response=%@,error=%@) get %@ ",BABYNES_REST_REGISTER_CUSTOMER,param,response,error,getStr);
+        NSLog(@"registerCustomer: %@[%@] ...(response=%@,error=%@) get [%@] ",BABYNES_REST_REGISTER_CUSTOMER,param,response,error,getStr);
     }
     if(data){
+        _LogLine();
         NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
-        if([dict objectForKey:@"success"] && [dict[@"success"] boolValue]){
-            return @{@"done":@YES,@"data":dict[@"customerId"]};
+        if(dict){
+            if([dict objectForKey:@"success"] && [dict[@"success"] boolValue]){
+                return @{@"done":@YES,@"data":dict[@"customerId"]};
+            }else{
+                return @{@"done":@YES,@"data":[NSNull null],@"msg":dict[@"message"]};
+            }
         }else{
-            return @{@"done":@YES,@"data":[NSNull null],@"msg":dict[@"message"]};
+            NSLog(@"registerCustomer: analyze failed... server error maybe... JSON error=%@",error);
+            return @{@"done":@YES,@"data":[NSNull null],@"msg":NSLocalizedString(@"Failed due to some issue in server, please try to search the mobile or register again later.", @"由于服务器原因用户注册不顺利，请稍后尝试搜索或重新注册。")};
         }
     }else{
         return @{@"done":@NO};
@@ -135,12 +141,12 @@
 -(NSDictionary*)createBabyWithDictionary:(NSDictionary*)dict{
     NSString * param=@"";
     /*
-    for (NSString * key in [dict allKeys]) {
-        param=[param stringByAppendingFormat:@"&%@=%@",key,dict[key]];
-    }
-    if([param length]>0){
-        param = [param substringFromIndex:1];
-    }
+     for (NSString * key in [dict allKeys]) {
+     param=[param stringByAppendingFormat:@"&%@=%@",key,dict[key]];
+     }
+     if([param length]>0){
+     param = [param substringFromIndex:1];
+     }
      */
     param=[APIWorker lineJsonFromObj:dict];
     NSData* body=[param dataUsingEncoding:NSUTF8StringEncoding];
@@ -253,33 +259,33 @@
     
 }
 /*
--(NSString*)refreshMCToken{
-    NSDictionary *params = @
-    {
-        @"username": [DataLoader username],
-        @"password": [DataLoader password],
-        @"uuid": [LSDeviceInfo device_sn],
-    };
-    isRefreshing=YES;
-    //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
-    [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {
-        DataLoader.accessToken = loader.dict[@"token"];
-        [DataLoader setStoreProvince:loader.dict[@"storeProvince"]];
-        [DataLoader setStoreCity:loader.dict[@"storeCity"]];
-        [DataLoader setStoreAddress:loader.dict[@"storeAddress"]];
-        //[DataLoader setUsername:_usernameField.text];
-        //[DataLoader setPassword:_passwordField.text];
-        if (Settings::Get(kAccessToken))
-        {
-            Settings::Save(kAccessToken, DataLoader.accessToken);
-        }
-        isRefreshing=YES;
-    } failure:^BOOL(DataLoader *loader, NSString *error) {
-        NSLog(@"refreshMCToken..FAILED with error = %@",error);
-        isRefreshing=YES;
-        return NO;
-    }];
-    self per
-}
-*/
+ -(NSString*)refreshMCToken{
+ NSDictionary *params = @
+ {
+ @"username": [DataLoader username],
+ @"password": [DataLoader password],
+ @"uuid": [LSDeviceInfo device_sn],
+ };
+ isRefreshing=YES;
+ //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
+ [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {
+ DataLoader.accessToken = loader.dict[@"token"];
+ [DataLoader setStoreProvince:loader.dict[@"storeProvince"]];
+ [DataLoader setStoreCity:loader.dict[@"storeCity"]];
+ [DataLoader setStoreAddress:loader.dict[@"storeAddress"]];
+ //[DataLoader setUsername:_usernameField.text];
+ //[DataLoader setPassword:_passwordField.text];
+ if (Settings::Get(kAccessToken))
+ {
+ Settings::Save(kAccessToken, DataLoader.accessToken);
+ }
+ isRefreshing=YES;
+ } failure:^BOOL(DataLoader *loader, NSString *error) {
+ NSLog(@"refreshMCToken..FAILED with error = %@",error);
+ isRefreshing=YES;
+ return NO;
+ }];
+ self per
+ }
+ */
 @end

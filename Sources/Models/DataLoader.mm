@@ -189,6 +189,7 @@ static NSString *_password=nil;
 	_accessToken = nil;
 	Settings::Save(kAccessToken);
 	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutNotification object:nil];//My old solution
+    [MobClick event:@"Logout" acc:1];
 }
 
 //

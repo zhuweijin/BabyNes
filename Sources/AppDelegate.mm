@@ -11,6 +11,8 @@
 
 #import "LSVersionManager.h"
 
+#import "MobClick.h"
+
 #endif
 
 //#if defined(DEBUG) || defined(TEST)
@@ -61,6 +63,24 @@
      [av show];
      });
      */
+    
+    //友盟的统计
+    //TEST CHECK
+    /*
+    Class cls = NSClassFromString(@"UMANUtil");
+    SEL deviceIDSelector = @selector(openUDIDString);
+    NSString *deviceID = nil;
+    if(cls && [cls respondsToSelector:deviceIDSelector]){
+        deviceID = [cls performSelector:deviceIDSelector];
+    }
+    NSLog(@"{\"oid\": \"%@\"}", deviceID);
+    */
+    //WORK
+    [MobClick startWithAppkey:@"53f15855fd98c52c7705b4d5" reportPolicy:SEND_INTERVAL channelId:@"POS"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    [MobClick setLogEnabled:YES];
+    
 	UIUtil::ShowStatusBar(YES/*, UIStatusBarAnimationSlide*/);
 	
 	// Create window

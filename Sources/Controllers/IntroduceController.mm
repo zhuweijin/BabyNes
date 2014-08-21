@@ -49,16 +49,18 @@ static int MonoNumberInRow=3;
 //}
 
 // Called when the view is about to made visible.
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//	[super viewWillAppear:animated];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"IntroductionController"];
+}
 
 // Called after the view was dismissed, covered or otherwise hidden.
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//	[super viewWillDisappear:animated];
-//}
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"IntroductionController"];
+}
 
 #pragma Event methods
 
@@ -318,6 +320,7 @@ static int MonoNumberInRow=3;
         }
     }
     if(is_reloading){
+        [MobClick event:@"RefreshIntroduction" acc:1];
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];

@@ -233,7 +233,7 @@ static LSCustomer * currentCustomer=nil;
         
         APIWorker * worker=[[APIWorker alloc]init];
         NSDictionary*newCustomerDict=[worker createUserWithDictionary:[registerDict copy]];
-        
+        _Log(@"API returned newCustomerDict=%@",newCustomerDict);
         if(newCustomerDict[@"done"]){
             //net ok
             if(![[newCustomerDict objectForKey: @"data"] isEqual:[NSNull null]]){
@@ -247,6 +247,7 @@ static LSCustomer * currentCustomer=nil;
         }else{
             //net error
             NSLog(@"MAIN->register net error");
+            if(!isSlient)UIUtil::ShowAlert(NSLocalizedString(@"Registered as Failed", @"注册失败"));
         }
         if(_theID){
             //BABIES
@@ -289,7 +290,6 @@ static LSCustomer * currentCustomer=nil;
                 
             }
             //SIGN
-#warning TODO the signature
             NSString* AT=DataLoader.accessToken;
             if(AT!=nil){
                 NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
@@ -315,7 +315,7 @@ static LSCustomer * currentCustomer=nil;
                 NSData*data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
                 {
                     NSString * getStr=(data?[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]:nil);
-                    NSLog(@"log customer signature: [%@] ...(response=%@,error=%@) get %@ ",url,response,error,getStr);
+                    NSLog(@"log customer signature: [%@] ...(response=%@,error=%@) get [%@] ",url,response,error,getStr);
                 }
                 if(data){
                     NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
@@ -425,24 +425,26 @@ static LSCustomer * currentCustomer=nil;
     if([self validateCustomerInformation:YES]){
         NSError * error=nil;
         NSMutableArray * babyarray=[[NSMutableArray alloc]init];
+        _LogLine();
         for (LSBaby * baby in self.theBabies) {
             [babyarray addObject:[baby toJson]];
         }
+        _LogLine();
         NSDictionary * jsonDict=@{@"customer_id":(self.theID!=nil?self.theID:@""),
-                                  @"title":self.theTitle,
-                                  @"name":self.theName,
-                                  @"province":self.theProvince,
-                                  @"city":self.theCity,
-                                  @"address":self.theAddress,
-                                  @"regioncode":self.theRegionCode,
-                                  @"areacode":self.theAreaCode,
-                                  @"phone":self.thePhone,
-                                  @"mobile":self.theMobile,
-                                  @"email":self.theEmail,
-                                  @"babies":babyarray,
-                                  @"sign":self.theSign
+                                  @"title":(self.theTitle?self.theTitle:@""),
+                                  @"name":(self.theName?self.theName:@""),
+                                  @"province":(self.theProvince?self.theProvince:@""),
+                                  @"city":(self.theCity?self.theCity:@""),
+                                  @"address":(self.theAddress?self.theAddress:@""),
+                                  @"regioncode":(self.theRegionCode?self.theRegionCode:@""),
+                                  @"areacode":(self.theAreaCode?self.theAreaCode:@""),
+                                  @"phone":(self.thePhone?self.thePhone:@""),
+                                  @"mobile":(self.theMobile?self.theMobile:@""),
+                                  @"email":(self.theEmail?self.theEmail:@""),
+                                  @"babies":(babyarray?babyarray:@[]),
+                                  @"sign":(self.theSign?self.theSign:@""),
                                   };
-        
+        _LogLine();
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
                                                            options:NSJSONWritingPrettyPrinted
@@ -478,7 +480,7 @@ static LSCustomer * currentCustomer=nil;
     customer.thePhone=dict[@"phone"];
     customer.theMobile=dict[@"mobile"];
     customer.theEmail=dict[@"email"];
-    customer.theSign=dict[@"sign"];
+    customer.theSign=([dict[@"sign"] isEqualToString:@""]?nil:dict[@"sign"]);
     
     NSArray * babies=dict[@"babies"];
     for (NSString * babyJson in babies) {

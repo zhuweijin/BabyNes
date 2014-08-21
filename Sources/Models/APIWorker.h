@@ -10,6 +10,9 @@
 #import "LSSoapLoginWorker.h"
 #import "DataLoader.h"
 
+//cn-zh
+//hk-en
+
 #define BABYNES_REST_SEARCH_CUSTOMER @"http://babynes-asia.ocentric.com/hk-en/babynes_rest/pos_user/search"
 #define BABYNES_REST_REGISTER_CUSTOMER @"http://babynes-asia.ocentric.com/cn-zh/babynes_rest/pos_user/register"
 #define BABYNES_REST_REGISTER_BABY @"http://babynes-asia.ocentric.com/hk-en/babynes_rest/pos_baby/create"

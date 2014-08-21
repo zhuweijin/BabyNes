@@ -17,6 +17,9 @@
     //UILabel * checkOlderLabel;
     BOOL isCheckOld;
 }
+
+@property BOOL isNeedRefresh;
+
 -(UIScrollView*)getSRTable;
 -(CGFloat)getReloadHeaderHeight;
 -(void)removeObservers;
