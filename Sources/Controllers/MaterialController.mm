@@ -14,6 +14,8 @@ static int MonoNumberInRow=4;
 
 static CGFloat reloadHeaderHeight=40;
 
+//static NSInteger appear_count=0;
+
 @implementation MaterialController
 
 #pragma mark Generic methods
@@ -27,6 +29,7 @@ static CGFloat reloadHeaderHeight=40;
     self.thePullReloadDelegate=self;
     cate_id=0;
 
+    appear_count=0;
     
 	return self;
 }
@@ -116,6 +119,12 @@ static CGFloat reloadHeaderHeight=40;
 	[super viewWillAppear:animated];
     _Log(@"MeterialController viewWillAppear");
     [MobClick beginLogPageView:@"MeterialController"];
+    /*
+    if(appear_count>0 && self.is_expired){
+        [self receiveVerisonUpdatePush];
+    }
+    appear_count++;
+     */
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -138,6 +147,8 @@ static CGFloat reloadHeaderHeight=40;
         [catePane removeFromSuperview];
         catePane=nil;
     }
+    
+    _Log(@"DEBUG0825 MaterialController loadContentView's contentView=%@",contentView);
     
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
@@ -415,6 +426,7 @@ static CGFloat reloadHeaderHeight=40;
         is_reloading=YES;
         [self responseForReloadWork];
     }
+    self.is_expired=NO;
 }
 
 -(void)responseForReloadWork{

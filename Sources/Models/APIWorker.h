@@ -12,11 +12,17 @@
 
 //cn-zh
 //hk-en
-
+/*
+//OLD
 #define BABYNES_REST_SEARCH_CUSTOMER @"http://babynes-asia.ocentric.com/hk-en/babynes_rest/pos_user/search"
 #define BABYNES_REST_REGISTER_CUSTOMER @"http://babynes-asia.ocentric.com/cn-zh/babynes_rest/pos_user/register"
 #define BABYNES_REST_REGISTER_BABY @"http://babynes-asia.ocentric.com/hk-en/babynes_rest/pos_baby/create"
 #define BABYNES_REST_CREATE_ORDER @"http://babynes-asia.ocentric.com/hk-en/babynes_rest/pos_orders/create/"
+*/
+#define BABYNES_REST_SEARCH_CUSTOMER @"http://www.babynesshop.com.cn/e-cn-zh/babynes_rest/pos_user/search"
+#define BABYNES_REST_REGISTER_CUSTOMER @"http://www.babynesshop.com.cn/e-cn-zh/babynes_rest/pos_user/register"
+#define BABYNES_REST_REGISTER_BABY @"http://www.babynesshop.com.cn/e-cn-zh/babynes_rest/pos_baby/create"
+#define BABYNES_REST_CREATE_ORDER @"http://www.babynesshop.com.cn/e-cn-zh/babynes_rest/pos_orders/create/"
 
 @interface APIWorker : NSObject
 {

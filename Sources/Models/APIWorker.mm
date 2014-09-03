@@ -125,13 +125,13 @@
         NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:&error];
         if(dict){
             if([dict objectForKey:@"success"] && [dict[@"success"] boolValue]){
-                return @{@"done":@YES,@"data":dict[@"customerId"]};
+                return @{@"done":@YES,@"data":dict[@"customerId"],@"toOffline":@NO};
             }else{
-                return @{@"done":@YES,@"data":[NSNull null],@"msg":dict[@"message"]};
+                return @{@"done":@YES,@"data":[NSNull null],@"msg":dict[@"message"],@"toOffline":@NO};
             }
-        }else{
+        }else{//NOT 200
             NSLog(@"registerCustomer: analyze failed... server error maybe... JSON error=%@",error);
-            return @{@"done":@YES,@"data":[NSNull null],@"msg":NSLocalizedString(@"Failed due to some issue in server, please try to search the mobile or register again later.", @"由于服务器原因用户注册不顺利，请稍后尝试搜索或重新注册。")};
+            return @{@"done":@YES,@"data":[NSNull null],@"msg":NSLocalizedString(@"Failed due to some issue in server, BabyNes POS is to store customer info offline.", @"由于服务器原因用户注册不顺利，将离线暂存用户信息。"),@"toOffline":@YES};
         }
     }else{
         return @{@"done":@NO};

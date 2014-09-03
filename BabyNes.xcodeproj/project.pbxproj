@@ -101,6 +101,9 @@
 		2F2D54AC1967A8990050ACFA /* PRPhotoPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54AB1967A8990050ACFA /* PRPhotoPlayer.mm */; };
 		2F2D54B51967E8BF0050ACFA /* ServerConfig.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */; };
 		2F357F56196A721A0049AB52 /* IntroduceMonoDetailView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */; };
+		2F37641019B5725700D83A62 /* RMAFeedbackViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F37640F19B5725700D83A62 /* RMAFeedbackViewController.mm */; };
+		2F37641319B5875200D83A62 /* ImageWorker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F37641219B5875200D83A62 /* ImageWorker.mm */; };
+		2F37641619B5ADB400D83A62 /* ImagePreviewListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F37641519B5ADB400D83A62 /* ImagePreviewListView.mm */; };
 		2F54FFF91961763C0093028E /* ProductEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFF81961763C0093028E /* ProductEntity.mm */; };
 		2F54FFFD19617E3B0093028E /* CartEntity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F54FFFC19617E3B0093028E /* CartEntity.mm */; };
 		2F5DA2D51985F1AC00BBA17A /* LSStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5DA2D41985F1AC00BBA17A /* LSStack.m */; };
@@ -331,6 +334,12 @@
 		2F2D54B41967E8BF0050ACFA /* ServerConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ServerConfig.mm; sourceTree = "<group>"; };
 		2F357F54196A721A0049AB52 /* IntroduceMonoDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceMonoDetailView.h; sourceTree = "<group>"; };
 		2F357F55196A721A0049AB52 /* IntroduceMonoDetailView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroduceMonoDetailView.mm; sourceTree = "<group>"; };
+		2F37640E19B5725700D83A62 /* RMAFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMAFeedbackViewController.h; path = RMAFeedback/RMAFeedbackViewController.h; sourceTree = "<group>"; };
+		2F37640F19B5725700D83A62 /* RMAFeedbackViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RMAFeedbackViewController.mm; path = RMAFeedback/RMAFeedbackViewController.mm; sourceTree = "<group>"; };
+		2F37641119B5875200D83A62 /* ImageWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageWorker.h; path = Duty/ImageWorker.h; sourceTree = "<group>"; };
+		2F37641219B5875200D83A62 /* ImageWorker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ImageWorker.mm; path = Duty/ImageWorker.mm; sourceTree = "<group>"; };
+		2F37641419B5ADB400D83A62 /* ImagePreviewListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePreviewListView.h; sourceTree = "<group>"; };
+		2F37641519B5ADB400D83A62 /* ImagePreviewListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImagePreviewListView.mm; sourceTree = "<group>"; };
 		2F54FFF71961763C0093028E /* ProductEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductEntity.h; path = Entity/ProductEntity.h; sourceTree = "<group>"; };
 		2F54FFF81961763C0093028E /* ProductEntity.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ProductEntity.mm; path = Entity/ProductEntity.mm; sourceTree = "<group>"; };
 		2F54FFFB19617E3B0093028E /* CartEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartEntity.h; path = Entity/CartEntity.h; sourceTree = "<group>"; };
@@ -611,6 +620,7 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F37640D19B5722100D83A62 /* RMAFeedback */,
 				2F6513FB19827AC700F2D1F9 /* NewCustomerY */,
 				2F92BBB719779B6800FBE647 /* MessageView */,
 				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
@@ -801,6 +811,8 @@
 				2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */,
 				2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */,
 				2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */,
+				2F37641419B5ADB400D83A62 /* ImagePreviewListView.h */,
+				2F37641519B5ADB400D83A62 /* ImagePreviewListView.mm */,
 			);
 			path = Haguruma;
 			sourceTree = "<group>";
@@ -826,6 +838,15 @@
 				2F05E4C219792E02007C5D28 /* SRReceiptSender.mm */,
 			);
 			path = REPORT;
+			sourceTree = "<group>";
+		};
+		2F37640D19B5722100D83A62 /* RMAFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				2F37640E19B5725700D83A62 /* RMAFeedbackViewController.h */,
+				2F37640F19B5725700D83A62 /* RMAFeedbackViewController.mm */,
+			);
+			name = RMAFeedback;
 			sourceTree = "<group>";
 		};
 		2F54FFFA196176410093028E /* Entity */ = {
@@ -860,6 +881,8 @@
 				2FF0190B198F1C1B0042982C /* PushHandler.mm */,
 				2FF0190D198F284F0042982C /* LSOfflineTasks.h */,
 				2FF0190E198F284F0042982C /* LSOfflineTasks.mm */,
+				2F37641119B5875200D83A62 /* ImageWorker.h */,
+				2F37641219B5875200D83A62 /* ImageWorker.mm */,
 			);
 			name = Duty;
 			sourceTree = "<group>";
@@ -1057,6 +1080,7 @@
 				2FF644EB19663E3400A802A9 /* MeterialImageItemView.mm in Sources */,
 				2F92BBBD1977AA3B00FBE647 /* SRMessage.m in Sources */,
 				24259EB6194AB36B000FF8A9 /* WebController.mm in Sources */,
+				2F37641019B5725700D83A62 /* RMAFeedbackViewController.mm in Sources */,
 				242F9507195C6E7300371697 /* SelectPicker.mm in Sources */,
 				242F94E4195C6E7300371697 /* SettingController.mm in Sources */,
 				2F12923F19628B9F00F271AA /* Reachability.mm in Sources */,
@@ -1106,6 +1130,7 @@
 				24E88BF2195DA645007478B3 /* LSComboBox.mm in Sources */,
 				242F94E3195C6E7300371697 /* RootController.mm in Sources */,
 				242F9501195C6E7300371697 /* DataLoader.mm in Sources */,
+				2F37641319B5875200D83A62 /* ImageWorker.mm in Sources */,
 				24259ED9194AB36B000FF8A9 /* UIUtil.mm in Sources */,
 				24259EED194AB36B000FF8A9 /* ioapi.c in Sources */,
 				24259EB5194AB36B000FF8A9 /* ShareComposer.mm in Sources */,
@@ -1120,6 +1145,7 @@
 				24259ECF194AB36B000FF8A9 /* UMFeedbackTableViewCellRight.m in Sources */,
 				24259EE4194AB36B000FF8A9 /* SegmentLabel.mm in Sources */,
 				24259F31194AB539000FF8A9 /* AppDelegate.mm in Sources */,
+				2F37641619B5ADB400D83A62 /* ImagePreviewListView.mm in Sources */,
 				242F9504195C6E7300371697 /* EXButton.mm in Sources */,
 				24259ED8194AB36B000FF8A9 /* SystemUtil.mm in Sources */,
 				2FF644D41963FDF500A802A9 /* LSCustomer.mm in Sources */,

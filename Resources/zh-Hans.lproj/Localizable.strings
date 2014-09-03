@@ -43,6 +43,9 @@
 /* 852 */
 "852" = "86";
 
+/* A new SR message released: %@! */
+"A new SR message released: %@!" = "新的业务消息已发布：%@";
+
 /* About */
 "About" = "关于";
 
@@ -117,6 +120,9 @@
 
 /* Cancel */
 "Cancel" = "取消";
+
+/* Cannot process the order without mobile. */
+"Cannot process the order without mobile." = "当前顾客信息不完整，因此无法处理您的订单。";
 
 /* Cart is empty */
 "Cart is empty" = "购物车空无一物";
@@ -208,11 +214,11 @@
 /* Email: */
 "Email:" = "电子邮箱：";
 
-/* en */
-"en" = "zh";
-
 /* EN */
 "EN" = "CN";
+
+/* en */
+"en" = "zh";
 
 /* Error */
 "Error" = "错误";
@@ -234,6 +240,9 @@
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "身份验证失败。";
+
+/* Failed to confirm order */
+"Failed to confirm order" = "订单确认失败";
 
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "解析商品数据失败！";
@@ -406,6 +415,12 @@
 /* Now POS App is to download new content, please wait till is completed. */
 "Now POS App is to download new content, please wait till is completed." = "POS应用将要更新内容，请耐心等待。";
 
+/* Now received Content Cache Clean Notification, please wait for a while. */
+"Now received Content Cache Clean Notification, please wait for a while." = "收到缓存清空通知，请等待更新完成。";
+
+/* Now received Content Version Update Notification, please wait for a while. */
+"Now received Content Version Update Notification, please wait for a while." = "收到内容更新通知，请等待更新完成。";
+
 /* Offline now, please record the information of customer. */
 "Offline now, please record the information of customer." = "目前离线，请登记顾客信息。";
 
@@ -440,7 +455,7 @@
 "Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
 
 /* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck. */
-"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择确认以继续创建顾客账号，选择取消可以返回进行检查。";
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "请确保登记的顾客手机号码【%@】的正确性，以便后续给顾客提供高质量的服务。";
 
 /* Pregnant */
 "Pregnant" = "胎儿";
@@ -555,6 +570,9 @@
 
 /* Server response with error. */
 "Server response with error." = "服务器返回错误。";
+
+/* Server timeout, please try again later. */
+"Server timeout, please try again later." = "网络连接超时，请稍后重试。";
 
 /* Settings */
 "Settings" = "设置";

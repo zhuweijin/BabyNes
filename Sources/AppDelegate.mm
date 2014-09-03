@@ -52,6 +52,8 @@
 // The application has launched and may have additional launch options to handle.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [((SinriUIApplication*)application) setIsNeedRotatable:NO];
+    
     // 通知设备需要接收推送通知 Let the device know we want to receive push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert)
@@ -79,7 +81,7 @@
     [MobClick startWithAppkey:@"53f15855fd98c52c7705b4d5" reportPolicy:SEND_INTERVAL channelId:@"POS"];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
-    [MobClick setLogEnabled:YES];
+    //[MobClick setLogEnabled:YES];
     
 	UIUtil::ShowStatusBar(YES/*, UIStatusBarAnimationSlide*/);
 	
@@ -99,17 +101,19 @@
      UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
      */
+#warning Kill after done
+    [DataLoader setAccessToken:@"NiseMono"];
     
     if(DataLoader.accessToken){
         if([LSDeviceInfo currentNetworkType]!=NotReachable){
-            [DataLoader refreshAccessToken];
-            _LogLine();
+            //[DataLoader refreshAccessToken];
+            //_LogLine();
         }
-        _LogLine();
+        //_LogLine();
         [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];
         [((SinriUIApplication *)application) setLoginController:nil];
     }else{
-        _LogLine();
+        //_LogLine();
         [((SinriUIApplication *)application) setLoginController:[[LoginController alloc]init]];
         [((SinriUIApplication *)application) setRootController:nil];
     }
@@ -349,4 +353,61 @@
     
 }
 
+/**
+ 以下两个方法是为了保证照片和相机的利用，因为其要求竖屏。。。但是我们用的是横屏。。。的兼容方法。
+ **/
+
+-(NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window{
+    //_LogLine();
+    if([((SinriUIApplication *)application) isNeedRotatable]){
+        return UIInterfaceOrientationMaskAll;
+    }else{
+        return (UIInterfaceOrientationMaskLandscape);
+    }
+}
+/*
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+*/
+
+@end
+
+@implementation UINavigationController (rotating)
+/*
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationLandscapeRight|UIInterfaceOrientationLandscapeLeft;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationLandscapeRight;
+}
+
+-(BOOL)shouldAutorotate{
+    return NO;
+}
+*/
+/*
+- (BOOL)shouldAutorotate {
+    return [self.visibleViewController shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [self.visibleViewController supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.visibleViewController preferredInterfaceOrientationForPresentation];
+}
+ */
 @end

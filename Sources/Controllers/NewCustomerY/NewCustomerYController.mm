@@ -40,7 +40,7 @@
     self.baby_cell_height=180.0;
     
     _NewCustomer=[[LSCustomer alloc]init];
-    //[_NewCustomer setTheTitle:NSLocalizedString(@"Mr", @"先生")];
+    [_NewCustomer setTheTitle:NSLocalizedString(@"Mr", @"先生")];
     //[_NewCustomer addOneBaby:[[LSBaby alloc]init]];
     //[self addBaby:self];
     
@@ -405,44 +405,66 @@
     return 40;
 }
 
+-(void)killAllExpanseCell{
+#warning TODO
+    if(_showingCell04){
+        _LogLine();
+        [self tableView:self.mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    }
+    for (int i=0; i<[_showingCellInSection count]; i++) {
+        if([[_showingCellInSection[i] objectForKey:@"showingBirthdayPicker"] boolValue] &&
+           ![[_showingCellInSection[i] objectForKey:@"showingSexPicker"] boolValue]){
+            _LogLine();
+            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:i]];
+            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:i]];
+            
+        }
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     int ronriRow=[self getRonriRowTag:indexPath];
     _Log(@"didSelectRowAtIndexPath:%d-%d -> ronriRow=%d",indexPath.section,indexPath.row,ronriRow);
     if(indexPath.section==0){
-        if(ronriRow==0){
-            [tableView beginUpdates];
-            
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
-            
-            // check if 'indexPath' has an attached date picker below it
-            if (_showingCell01)
-            {
-                // found a picker below it, so remove it
-                [tableView deleteRowsAtIndexPaths:indexPaths
-                                 withRowAnimation:UITableViewRowAnimationNone];
-                int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
-                _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old-1];
-            }
-            else
-            {
-                // didn't find a picker below it, so we should insert it
-                [tableView insertRowsAtIndexPaths:indexPaths
-                                 withRowAnimation:UITableViewRowAnimationNone];
-                int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
-                _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old+1];
-            }
-            
-            [tableView endUpdates];
-            
-            _showingCell01=!_showingCell01;
-            
-            [tableView reloadData];
-            
-            if(_showingCell01){
-                [tableView scrollToRowAtIndexPath:indexPaths[0] atScrollPosition:(UITableViewScrollPositionMiddle) animated:YES];
-            }
-            [self refresh];
-        }else if(ronriRow==3){
+        /*
+         if(ronriRow==0){
+         [tableView beginUpdates];
+         
+         NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
+         
+         // check if 'indexPath' has an attached date picker below it
+         
+         if (_showingCell01)
+         {
+         // found a picker below it, so remove it
+         [tableView deleteRowsAtIndexPaths:indexPaths
+         withRowAnimation:UITableViewRowAnimationNone];
+         int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
+         _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old-1];
+         }
+         else
+         {
+         // didn't find a picker below it, so we should insert it
+         [tableView insertRowsAtIndexPaths:indexPaths
+         withRowAnimation:UITableViewRowAnimationNone];
+         int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
+         _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old+1];
+         }
+         
+         [tableView endUpdates];
+         
+         _showingCell01=!_showingCell01;
+         
+         [tableView reloadData];
+         
+         if(_showingCell01){
+         [tableView scrollToRowAtIndexPath:indexPaths[0] atScrollPosition:(UITableViewScrollPositionMiddle) animated:YES];
+         }
+         [self refresh];
+         }
+         else
+         */
+        if(ronriRow==3){
             [tableView beginUpdates];
             
             NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0]];
@@ -475,6 +497,12 @@
                 [tableView scrollToRowAtIndexPath:indexPaths[0] atScrollPosition:(UITableViewScrollPositionMiddle) animated:YES];
             }
             [self refresh];
+        }else{
+            if(_showingCell04){
+                _LogLine();
+                [self tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+                return;
+            }
         }
     }else{
         if(ronriRow==1){
@@ -523,7 +551,7 @@
             }
             
             [self refresh];
-        }else if(ronriRow==3){
+        }else{
             if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingBirthdayPicker"] boolValue] &&
                ![[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
                 _LogLine();
@@ -531,51 +559,59 @@
                 [self tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:indexPath.section]];
                 return;
             }
-            
-            [tableView beginUpdates];
-            
-            NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]];
-            _Log(@"indexPaths=%@",indexPaths);
-            
-            // check if 'indexPath' has an attached date picker below it
-            if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
-                _LogLine();
-                /*
-                 if ([[_rowNumberArray objectAtIndex:indexPath.section]intValue]>3){
-                 */
-                // found a picker below it, so remove it
-                [tableView deleteRowsAtIndexPaths:indexPaths
-                                 withRowAnimation:UITableViewRowAnimationNone];
-                int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
-                _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old-1];
-                [_showingCellInSection[indexPath.section-1] setObject:@NO forKey:@"showingSexPicker"];
-            }
-            else
-            {
-                _LogLine();
-                // didn't find a picker below it, so we should insert it
-                [tableView insertRowsAtIndexPaths:indexPaths
-                                 withRowAnimation:UITableViewRowAnimationNone];
-                _LogLine();
-                int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
-                _LogLine();
-                _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old+1];
-                _LogLine();
-                [_showingCellInSection[indexPath.section-1] setObject:@YES forKey:@"showingSexPicker"];
-                _LogLine();
-            }
-            
-            [tableView endUpdates];
-            _LogLine();
-            [tableView reloadData];
-            _LogLine();
-            if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
-                [tableView scrollToRowAtIndexPath:indexPaths[0] atScrollPosition:(UITableViewScrollPositionMiddle) animated:YES];
-            }
-            _LogLine();
-            [self refresh];
         }
-        
+        /*
+         
+         if(ronriRow==3){
+         if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingBirthdayPicker"] boolValue] &&
+         ![[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
+         _LogLine();
+         [self tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:indexPath.section]];
+         [self tableView:tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:indexPath.section]];
+         return;
+         }
+         
+         [tableView beginUpdates];
+         
+         NSArray *indexPaths = @[[NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section]];
+         _Log(@"indexPaths=%@",indexPaths);
+         
+         // check if 'indexPath' has an attached date picker below it
+         if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
+         _LogLine();
+         // found a picker below it, so remove it
+         [tableView deleteRowsAtIndexPaths:indexPaths
+         withRowAnimation:UITableViewRowAnimationNone];
+         int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
+         _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old-1];
+         [_showingCellInSection[indexPath.section-1] setObject:@NO forKey:@"showingSexPicker"];
+         }
+         else
+         {
+         _LogLine();
+         // didn't find a picker below it, so we should insert it
+         [tableView insertRowsAtIndexPaths:indexPaths
+         withRowAnimation:UITableViewRowAnimationNone];
+         _LogLine();
+         int old=[[_rowNumberArray objectAtIndex:indexPath.section] intValue];
+         _LogLine();
+         _rowNumberArray[indexPath.section]=[NSNumber numberWithInt:old+1];
+         _LogLine();
+         [_showingCellInSection[indexPath.section-1] setObject:@YES forKey:@"showingSexPicker"];
+         _LogLine();
+         }
+         
+         [tableView endUpdates];
+         _LogLine();
+         [tableView reloadData];
+         _LogLine();
+         if([[_showingCellInSection[indexPath.section-1] objectForKey:@"showingSexPicker"] boolValue]){
+         [tableView scrollToRowAtIndexPath:indexPaths[0] atScrollPosition:(UITableViewScrollPositionMiddle) animated:YES];
+         }
+         _LogLine();
+         [self refresh];
+         }
+         */
     }
     
 }
@@ -587,11 +623,13 @@
 -(void)refresh{
     _Log(@"NCY-Refresh showCell01=%d,showCell04=%d",_showingCell01,_showingCell04);
     //[_mixTable reloadData];
-    if(_showingCell01){
-        LSMixTableCell *cell=(LSMixTableCell*)[_mixTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        [cell setPreview:[NSString stringWithFormat:@"%@",[_NewCustomer theTitle]]];
-        _Log(@"REFRESH TITLE: cell=%@" ,cell);
-    }
+    /*
+     if(_showingCell01){
+     LSMixTableCell *cell=(LSMixTableCell*)[_mixTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+     [cell setPreview:[NSString stringWithFormat:@"%@",[_NewCustomer theTitle]]];
+     _Log(@"REFRESH TITLE: cell=%@" ,cell);
+     }
+     */
     if(_showingCell04){
         if(_showingCell01){
             LSMixTableCell *cell=(LSMixTableCell*)[_mixTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
@@ -664,7 +702,7 @@
      [self.InfoScrollView scrollRectToVisible:CGRectMake(0,self.baby_cells_top-self.baby_cell_height+self.baby_cell_height*[self.baby_cells count], 500, self.baby_cell_height) animated:YES];
      */
     LSBaby*baby=[[LSBaby alloc]init];
-    //[baby setThe_sex:NSLocalizedString(@"Boy", @"男")];
+    [baby setThe_sex:NSLocalizedString(@"Boy", @"男")];
     /*
      NSDate *date=[NSDate date];
      //LSBaby * baby=[[[_MTDelegate getTheCustomer] theBabies] objectAtIndex:baby_id];
@@ -761,7 +799,7 @@
      [recheckTitleLabel setNumberOfLines:0];
      [recheckView addSubview:recheckTitleLabel];
      */
-    NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck.", @"请确保登记的顾客手机号码正确，以免影响员工绩效: %@。\n选择确认以继续创建顾客账号，选择取消可以返回进行检查。"),[_NewCustomer theMobile]];
+    NSString * msg=[NSString stringWithFormat:NSLocalizedString(@"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck.", @"请确保登记的顾客手机号码【%@】的正确性，以便后续给顾客提供高质量的服务。"),[_NewCustomer theMobile]];
     recheckLabel =[[UILabel alloc]initWithFrame:CGRectMake(50, 20, 440, 350)];
     //recheckLabel =[[UILabel alloc]initWithFrame:_mixTable.frame];
     [recheckLabel setBackgroundColor:[UIColor whiteColor]];
@@ -941,10 +979,23 @@
         NSString* result=[_NewCustomer createCustomer];
         //    [cc reset];
         if(result!=nil){
-            UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
-            [LSCustomer setCurrentCustomer:_NewCustomer];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
-            [self closeView:nil];
+            if([result isEqualToString:@"!_TO_OFFLINE_CUSTOMER_!"]){
+                //服务器挂了 离线保存
+                BOOL done=[LSOfflineTasks saveCustomer:_NewCustomer];
+                if(done){
+                    //UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: the customer info has been saved.", @"离线任务：顾客信息已经保存。"));
+                    [LSCustomer setCurrentCustomer:_NewCustomer];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:_NewCustomer.theMobile];
+                    [self closeView:nil];
+                }else{
+                    UIUtil::ShowAlert(NSLocalizedString(@"Offline Task: failed to save the customer info.", @"离线任务：顾客信息保存失败。"));
+                }
+            }else{
+                UIUtil::ShowAlert([NSString stringWithFormat: NSLocalizedString(@"Registered as [%@]", @"成功注册为[%@]"),result]);
+                [LSCustomer setCurrentCustomer:_NewCustomer];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UserRegistered" object:result];
+                [self closeView:nil];
+            }
         }else{
             //UIUtil::ShowAlert(NSLocalizedString(@"Registered as Failed", @"注册失败"));
         }

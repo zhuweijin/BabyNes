@@ -10,6 +10,9 @@
 
 //#import "LSOptionalButton.h"
 #import "LSVersionManager.h"
+#import "SinriUIApplication.h"
+
+//static NSInteger appear_count=0;
 
 @interface LSShopViewController ()
 
@@ -32,6 +35,8 @@
 @property UIButton * the_customer_new_button;
 @property UIButton * the_order_confirm_button;
 
+@property UIButton * the_RMA_feedback_button;
+
 @property UIButton * the_cartModeChangeButton;
 
 //@property LSOptionalButton * optionalButton;
@@ -51,6 +56,8 @@ static CGFloat reloadHeaderHeight=30;
     self = [super initWithService:@"pdt_classify"];
     self.title = NSLocalizedString(@"Shop", @"网上商店");
     self.thePullReloadDelegate=self;
+    
+    appear_count=0;
     
     return self;
 }
@@ -88,7 +95,7 @@ static CGFloat reloadHeaderHeight=30;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealCartChanged:) name:@"CartChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealMonoCellSelected:) name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onCacheKilled:) name:@"CacheKilled" object:nil];
     
@@ -101,7 +108,7 @@ static CGFloat reloadHeaderHeight=30;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CartChanged" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MonoCellSelected" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:@"UserRegistered" object:nil];
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"CacheKilled" object:nil];
     _Log(@"LSShopVC removeObservers");
@@ -218,6 +225,13 @@ static CGFloat reloadHeaderHeight=30;
     //self.the_order_confirm_button.layer.cornerRadius = 5;
     [self.the_order_confirm_button setHidden:YES];
     
+    self.the_RMA_feedback_button=[UIButton minorButtonWithTitle:NSLocalizedString(@"RMA Feedback", @"问题反馈") width:150];
+    self.the_RMA_feedback_button.frame=CGRectMake(600, 600, 150, 30);
+    [self.the_RMA_feedback_button addTarget:self action:@selector(rma_feedback:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:self.the_RMA_feedback_button];
+#warning TODO
+    //[self.the_RMA_feedback_button setHidden:YES];
+    
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
     [self.cartTableView setDelegate:self.cartTableView];
     [self.cartTableView setDataSource:self.cartTableView];
@@ -246,18 +260,18 @@ static CGFloat reloadHeaderHeight=30;
     
     self.monoTableView.layer.cornerRadius = 10;
     /*
-    reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
-    [reloadLabel setTextColor:[UIColor grayColor]];
-    [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
-    [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
-    //[self.monoTableView addSubview:reloadLabel];
-    [self.monoTableView setTableHeaderView:reloadLabel];
-    //[self setReloadLabelHidden:YES];
-    [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
-    [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
-    
-    [self.monoTableView setTheSVDelegate:self];
-    */
+     reloadLabel=[[UILabel alloc]initWithFrame:{0,0,self.monoTableView.frame.size.width,reloadHeaderHeight}];
+     [reloadLabel setTextColor:[UIColor grayColor]];
+     [reloadLabel setText:NSLocalizedString(@"Pull to reload", @"下拉以刷新")];
+     [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
+     //[self.monoTableView addSubview:reloadLabel];
+     [self.monoTableView setTableHeaderView:reloadLabel];
+     //[self setReloadLabelHidden:YES];
+     [self.monoTableView setContentSize:{self.monoTableView.frame.size.width,self.monoTableView.frame.size.height+reloadHeaderHeight}];
+     [self.monoTableView scrollRectToVisible:{0,reloadHeaderHeight,self.monoTableView.frame.size.width,self.monoTableView.frame.size.height} animated:YES];
+     
+     [self.monoTableView setTheSVDelegate:self];
+     */
     //[self.monoTableView reloadData];
     
     /*
@@ -272,34 +286,36 @@ static CGFloat reloadHeaderHeight=30;
     [self dealCartChanged:nil];
     
     [self setUpForDismissKeyboard];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(UserRegistered:) name:@"UserRegistered" object:nil];
 }
 
 -(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh{
     [LSVersionManager DownloadAllFiles_PDT_WithDict:dict isForce:force_refresh];
     /*
-    if([LSDeviceInfo isNetworkOn]){
-        for (NSDictionary *cate in dict[@"category"]){
-            if([cate objectForKey:@"image"]){
-                _Log(@"cate-image:%@",[cate objectForKey:@"image"]);
-                NSString* image_level_url=[cate objectForKey:@"image"];
-                NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
-                if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
-                    _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
-                    [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
-                }
-            }
-            for (NSDictionary *item in dict[cate[@"value"]]){
-                _Log(@"item image:%@",[item objectForKey:@"image"]);
-                NSString* image_level_url=[item objectForKey:@"image"];
-                NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
-                if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
-                    _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
-                    [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
-                }
-                
-            }
-        }
-    }
+     if([LSDeviceInfo isNetworkOn]){
+     for (NSDictionary *cate in dict[@"category"]){
+     if([cate objectForKey:@"image"]){
+     _Log(@"cate-image:%@",[cate objectForKey:@"image"]);
+     NSString* image_level_url=[cate objectForKey:@"image"];
+     NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
+     if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
+     _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
+     [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
+     }
+     }
+     for (NSDictionary *item in dict[cate[@"value"]]){
+     _Log(@"item image:%@",[item objectForKey:@"image"]);
+     NSString* image_level_url=[item objectForKey:@"image"];
+     NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
+     if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
+     _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
+     [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
+     }
+     
+     }
+     }
+     }
      */
 }
 
@@ -368,17 +384,40 @@ static CGFloat reloadHeaderHeight=30;
     [super viewDidAppear:animated];
     [self removeObservers];
     [self addObservers];
+    [MobClick beginLogPageView:@"ShopController"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     //[self.monoTableView reloadData];
     //[self.cartTableView reloadData];
+    /*
+     if(appear_count>0 && self.is_expired){
+     [self receiveVerisonUpdatePush];
+     }
+     appear_count++;
+     */
+    
+    /*
+    // 状态栏动画持续时间
+    if([[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationPortraitUpsideDown){
+        CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
+        [UIView animateWithDuration:duration animations:^{
+            // 修改状态栏的方向及view的方向进而强制旋转屏幕
+            [[UIApplication sharedApplication] setStatusBarOrientation: UIInterfaceOrientationLandscapeRight];
+            self.navigationController.view.transform =  CGAffineTransformMakeRotation(M_PI_4);//CGAffineTransformIdentity;
+            self.navigationController.view.bounds = CGRectMake(self.navigationController.view.bounds.origin.x, self.navigationController.view.bounds.origin.y, self.view.frame.size.height, self.view.frame.size.width);
+            _LogLine();
+        }];
+    }
+     */
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self removeObservers];
+    [MobClick endLogPageView:@"ShopController"];
 }
 
 
@@ -443,17 +482,15 @@ static CGFloat reloadHeaderHeight=30;
  // Pass the selected object to the new view controller.
  }
  */
-
--(void)seek_customer:(id)sender{
-    _Log(@"seek_customer called");
-    [self.the_customer_mobile_textfield resignFirstResponder];
-    //mock
-    BOOL found=NO;
-    [MobClick event:@"SearchCustomer" acc:1];
-    if([LSDeviceInfo isNetworkOn]){
-        LSCustomer*resultCustomer=[LSCustomer searchCustomer:self.the_customer_mobile_textfield.text];
+-(void)search_customer:(NSString*)mobile{
+    LSCustomer * resultCustomer=nil;
+    for (int i=0; i<3; i++) {
+        resultCustomer=[LSCustomer searchCustomer:self.the_customer_mobile_textfield.text];
+        if(resultCustomer)break;
+    }
+    if(resultCustomer){
         if(resultCustomer.theID){
-            found=YES;
+            //found=YES;
             [self.the_customer_search_result setText:[NSString stringWithFormat:
                                                       NSLocalizedString(@"Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@", @"顾客信息：\n%@ 手机号：%@\n宝宝生日：%@"),
                                                       resultCustomer.theName,
@@ -469,9 +506,35 @@ static CGFloat reloadHeaderHeight=30;
             [self.the_order_confirm_button setHidden:YES];
         }
     }else{
-        [self.the_customer_search_result setText:NSLocalizedString(@"Offline now, please record the information of customer.",  @"目前离线，请登记顾客信息。")];
-        [self.the_customer_new_button setHidden:NO];
-        [self.the_order_confirm_button setHidden:YES];
+        //offline
+        [self requestOfflineCustomerRecord];
+    }
+    if(searchCustomerAI){
+        [searchCustomerAI stopAnimating];
+        [searchCustomerAI removeFromSuperview];
+        searchCustomerAI=nil;
+    }
+}
+-(void)requestOfflineCustomerRecord{
+    [self.the_customer_search_result setText:NSLocalizedString(@"Offline now, please record the information of customer.",  @"目前离线，请登记顾客信息。")];
+    [self.the_customer_new_button setHidden:NO];
+    [self.the_order_confirm_button setHidden:YES];
+}
+-(void)seek_customer:(id)sender{
+    _Log(@"seek_customer called");
+    [self.the_customer_mobile_textfield resignFirstResponder];
+    //BOOL found=NO;
+    [MobClick event:@"SearchCustomer" acc:1];
+    if([LSDeviceInfo isNetworkOn]){
+        //LSCustomer*resultCustomer=[LSCustomer searchCustomer:self.the_customer_mobile_textfield.text];
+        searchCustomerAI=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [searchCustomerAI setCenter:(CGPointMake(940, 540))];
+        [self.view addSubview:searchCustomerAI];
+        [searchCustomerAI startAnimating];
+        [self performSelector:@selector(search_customer:) withObject:self.the_customer_mobile_textfield.text afterDelay:0.2];
+        //[self search_customer:self.the_customer_mobile_textfield.text];
+    }else{
+        [self requestOfflineCustomerRecord];
     }
     
 }
@@ -494,54 +557,83 @@ static CGFloat reloadHeaderHeight=30;
     
     [MobClick event:@"NewCustomerShop" acc:1];
 }
-
--(void)order_confirm:(id)sender{
-    _Log(@"order_confirm called");
-    //BOOL done=NO;
-    /*
-    if([LSOrder getCurrentOrder]==nil){
-        [LSOrder setCurrentOrder: [[LSOrder alloc]initWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]]];
-    }
-     */
-    
+-(void)confirmCurrentOrder{
     [LSOrder updateCurrentOrderWithCart:[CartEntity getDefaultCartEntity] forCustomer:[LSCustomer getCurrentCustomer]];
     LSOrder * order=[LSOrder getCurrentOrder];
     
-    if([LSDeviceInfo isNetworkOn]){
-        //Online
-        [MobClick event:@"SubmitOrder" acc:1];
-        NSString * result=[order create];
-        if(result){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-            [alertView show];
-            [self resetShopView];
-            NSLog(@"订单确认成功 收到了Magento的结果：%@",result);
+    NSString*cid=[[LSCustomer getCurrentCustomer]theID];
+    NSString * mobile = [[LSCustomer getCurrentCustomer]theMobile];
+    
+    if(mobile && ![mobile isEqualToString:@""]){
+        
+        if([LSDeviceInfo isNetworkOn] && cid && ![cid isEqualToString:@""] ){
+            //Online
+            [MobClick event:@"SubmitOrder" acc:1];
+            NSString * result=[order create];
+            if(result){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+                [alertView show];
+                [self resetShopView];
+                NSLog(@"订单确认成功 收到了Magento的结果：%@",result);
+            }else{
+                
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has failed to be confirmed.", @"您的订单【%@】递交失败。"),result] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+                [alertView show];
+                
+                NSLog(@"订单确认失败 收到了Magento的结果：%@",result);
+            }
         }else{
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has failed to be confirmed.", @"您的订单【%@】递交失败。"),result] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-            [alertView show];
-            
-            NSLog(@"订单确认失败 收到了Magento的结果：%@",result);
+            //offline
+            [MobClick event:@"SubmitOrderOffline" acc:1];
+            BOOL done=[LSOfflineTasks saveOrder:order];
+            if(done){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed, and saved due to offline now.", @"您的订单已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+                [alertView show];
+                [self resetShopView];
+            }else{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order failed to save for offline now.", @"您的订单离线保存失败。") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+                [alertView show];
+            }
         }
     }else{
-        //offline
-        [MobClick event:@"SubmitOrderOffline" acc:1];
-        BOOL done=[LSOfflineTasks saveOrder:order];
-        if(done){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order has been confirmed, and saved due to offline now.", @"您的订单已经确认，由于离线而被保存。") delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-            [alertView show];
-            [self resetShopView];
-        }else{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:NSLocalizedString(@"Your order failed to save for offline now.", @"您的订单离线保存失败。") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-            [alertView show];
-        }
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to confirm order", @"订单确认失败")  message:NSLocalizedString(@"Cannot process the order without mobile.", @"当前顾客信息不完整，因此无法处理您的订单。") delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+        [alertView show];
     }
-    /*
-    if(done){
-        [self.the_customer_new_button setHidden:YES];
-        [self.the_order_confirm_button setHidden:YES];
+    if(searchCustomerAI){
+        [searchCustomerAI stopAnimating];
+        [searchCustomerAI removeFromSuperview];
+        searchCustomerAI=nil;
     }
-     */
+}
+-(void)order_confirm:(id)sender{
+    _Log(@"order_confirm called");
+    searchCustomerAI=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [searchCustomerAI setCenter:(CGPointMake(940, 540))];
+    [self.view addSubview:searchCustomerAI];
+    [searchCustomerAI startAnimating];
+    [self performSelector:@selector(confirmCurrentOrder) withObject:nil afterDelay:0.2];
+}
+
+-(void)rma_feedback:(id)sender{
+#warning TODO
+    RMAFeedbackViewController * rmaVC=[[RMAFeedbackViewController alloc]init];
+    if(NO){
+        [rmaVC setModalPresentationStyle:(UIModalPresentationFormSheet)];
+        [rmaVC setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
+        [self presentViewController:rmaVC animated:YES completion:^{
+            _Log(@"RMA_VC presented");
+        }];
+        //CGRect frame=rmaVC.view.frame;
+        //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
+        //frame.size.height=500;
+        //[rmaVC.view.superview setFrame:frame];
+    }else{
+        SinriUIApplication*app=(SinriUIApplication *)[UIApplication sharedApplication];
+        UINavigationController * nav=[app navController];
+        [nav pushViewController:rmaVC animated:YES];
+        NSLog(@"rma feedback...");
+    }
+    [MobClick event:@"RMAFeedbackOpen" acc:1];
 }
 
 
@@ -766,12 +858,12 @@ static CGFloat reloadHeaderHeight=30;
         baby_info=[NSString stringWithFormat:@"%d-%d-%d",baby.the_birth_year,baby.the_birth_month,baby.the_birth_day];
     }
     /*
-    NSString* customer_namae=@"Unknown";
-    if([NSLocalizedString(@"EN", @"CN") isEqualToString:@"EN"]){
-        customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theTitle,cc.theName];
-    }else{
-        customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theName,cc.theTitle];
-    }
+     NSString* customer_namae=@"Unknown";
+     if([NSLocalizedString(@"EN", @"CN") isEqualToString:@"EN"]){
+     customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theTitle,cc.theName];
+     }else{
+     customer_namae=[NSString stringWithFormat:@"%@ %@",cc.theName,cc.theTitle];
+     }
      */
     [self.the_customer_search_result setText:
      [NSString stringWithFormat:
@@ -846,6 +938,7 @@ static CGFloat reloadHeaderHeight=30;
         is_reloading=YES;
         [self responseForReloadWork];
     }
+    self.is_expired=NO;
 }
 
 -(void)responseForReloadWork{
@@ -894,6 +987,37 @@ static CGFloat reloadHeaderHeight=30;
     [[CartEntity getDefaultCartEntity]resetCart];
     [self dealCartChanged:notification];
     [_loader loadBegin];
+}
+
+/**
+ 旋转问题
+ **/
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    _LogLine();
+    return (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    
+}
+
+- (BOOL)shouldAutorotate
+{
+    _LogLine();
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    _LogLine();
+    return UIInterfaceOrientationMaskLandscape;//只支持这一个方向(正常的方向)
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    if([[UIApplication sharedApplication] statusBarOrientation]==UIInterfaceOrientationPortrait || [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown){
+        if(fromInterfaceOrientation==UIInterfaceOrientationLandscapeLeft || fromInterfaceOrientation==UIInterfaceOrientationLandscapeRight){
+            _LogLine();
+            self.view.layer.transform = CATransform3DMakeRotation((M_PI / 90.0) * 180, 0, 0, 1);
+        }
+    }
 }
 
 @end

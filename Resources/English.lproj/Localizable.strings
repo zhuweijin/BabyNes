@@ -43,6 +43,9 @@
 /* 852 */
 "852" = "852";
 
+/* A new SR message released: %@! */
+"A new SR message released: %@!" = "A new SR message released: %@!";
+
 /* About */
 "About" = "About";
 
@@ -117,6 +120,9 @@
 
 /* Cancel */
 "Cancel" = "Cancel";
+
+/* Cannot process the order without mobile. */
+"Cannot process the order without mobile." = "Cannot process the order without mobile.";
 
 /* Cart is empty */
 "Cart is empty" = "Cart is empty";
@@ -208,11 +214,11 @@
 /* Email: */
 "Email:" = "Email:";
 
-/* en */
-"en" = "en";
-
 /* EN */
 "EN" = "EN";
+
+/* en */
+"en" = "en";
 
 /* Error */
 "Error" = "Error";
@@ -234,6 +240,9 @@
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "Failed in examine the identification.";
+
+/* Failed to confirm order */
+"Failed to confirm order" = "Failed to confirm order";
 
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "Failed to decode the data of products.";
@@ -406,6 +415,12 @@
 /* Now POS App is to download new content, please wait till is completed. */
 "Now POS App is to download new content, please wait till is completed." = "Now POS App is to download new content, please wait till is completed.";
 
+/* Now received Content Cache Clean Notification, please wait for a while. */
+"Now received Content Cache Clean Notification, please wait for a while." = "Now received Content Cache Clean Notification, please wait for a while.";
+
+/* Now received Content Version Update Notification, please wait for a while. */
+"Now received Content Version Update Notification, please wait for a while." = "Now received Content Version Update Notification, please wait for a while.";
+
 /* Offline now, please record the information of customer. */
 "Offline now, please record the information of customer." = "Offline now, please record the information of customer.";
 
@@ -555,6 +570,9 @@
 
 /* Server response with error. */
 "Server response with error." = "Server response with error.";
+
+/* Server timeout, please try again later. */
+"Server timeout, please try again later." = "Server timeout, please try again later.";
 
 /* Settings */
 "Settings" = "Settings";

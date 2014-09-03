@@ -7,6 +7,7 @@
 //
 
 #import "LSOrder.h"
+#import "LSOfflineTasks.h"
 
 static LSOrder * currentOrder=nil;
 
@@ -67,7 +68,8 @@ static LSOrder * currentOrder=nil;
 }
 -(NSString*)createIsAtBack:(BOOL)isBack{
     NSString * OrderID=nil;
-    NSString*json=[self toJson];
+    NSString*json=nil;
+    json=[self toJson];
     if(json){
         //TO MAGENTO
         if([_theOrderType isEqualToString:@"SALE"]){

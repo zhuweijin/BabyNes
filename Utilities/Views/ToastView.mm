@@ -10,6 +10,7 @@
 - (ToastView *)toastWithTitle:(NSString *)title type:(ToastViewType)type
 {
 	ToastView *toastView = (ToastView *)[self viewWithTag:kToastViewTag];
+    _Log(@"ToastView【%@】 toastWithTitle:%@ type:%d Find Original:%@",self,title,type,toastView);
 	if (toastView == nil)
 	{
 		toastView = [[ToastView alloc] initWithTitle:title type:type];
@@ -20,7 +21,7 @@
         toastView.center=self.center;
 		[self addSubview:toastView];
 	}
-    _Log(@"ToastView toastWithTitle[%@] view=[%@]",title,toastView);
+    _Log(@"ToastView【%@】 toastWithTitle[%@] type:%d view=[%@]",self,title,type,toastView);
 	return toastView;
 }
 

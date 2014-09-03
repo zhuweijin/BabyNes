@@ -80,31 +80,36 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
         }
         switch (ronriRow) {
             case 0:
-                /*
-                 optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")]];
-                 [optinalButton addTarget:self action:@selector(onCustomerSex:) forControlEvents:(UIControlEventTouchUpInside)];
-                 
-                 if([[[_MTDelegate getTheCustomer] theTitle] isEqualToString:NSLocalizedString(@"Ms", @"女士")]){
-                 [optinalButton setButtonSelected:1];
-                 }else [optinalButton setButtonSelected:0];
-                 
-                 [self addSubview: optinalButton];
-                 */
-                previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
-            {
-                NSString* p=[[_MTDelegate getTheCustomer] theTitle];
-                if(p && ![p isEqualToString:@""]){
-                    [previewLabel setText:[NSString stringWithFormat:@"%@",p]];
-                    [previewLabel setTextColor:[UIColor blackColor]];
-                }else{
-                    [previewLabel setText:[NSString stringWithFormat:@"%@",
-                                           [titleArray_customer objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
-                                           ]];
-                    [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+                
+                optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")]];
+                [optinalButton addTarget:self action:@selector(onCustomerSex:) forControlEvents:(UIControlEventTouchUpInside)];
+                
+                if([[[_MTDelegate getTheCustomer] theTitle] isEqualToString:NSLocalizedString(@"Ms", @"女士")]){
+                    [optinalButton setButtonSelected:1];
+                }else [optinalButton setButtonSelected:0];
+                
+                [self addSubview: optinalButton];
+                
+                
+                
+                if(NO){
+                    previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
+                    [previewLabel setHidden:YES];
+                    [previewLabel setHidden:NO];
+                    NSString* p=[[_MTDelegate getTheCustomer] theTitle];
+                    if(p && ![p isEqualToString:@""]){
+                        [previewLabel setText:[NSString stringWithFormat:@"%@",p]];
+                        [previewLabel setTextColor:[UIColor blackColor]];
+                    }else{
+                        [previewLabel setText:[NSString stringWithFormat:@"%@",
+                                               [titleArray_customer objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
+                                               ]];
+                        [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+                    }
+                    _LogLine();
+                     [self addSubview:previewLabel];
                 }
-                _LogLine();
-            }
-                [self addSubview:previewLabel];
+               
                 break;
             case 1:
                 singlePicker=[[LSSinglePicker alloc]initWithFrame:CGRectMake(50, 5, 450, 90) withSelection:@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")]];
@@ -216,34 +221,40 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
                 }
                 break;
             case 3:
-                /*
-                 if([[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:NSLocalizedString(@"Pregnant",@"胎儿")]){
-                 previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
-                 [self addSubview:previewLabel];
-                 [previewLabel setText:NSLocalizedString(@"Pregnant",@"胎儿")];
-                 }else{
-                 optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")]];
-                 [optinalButton addTarget:self action:@selector(onBabySex:) forControlEvents:(UIControlEventTouchUpInside)];
-                 if([[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:NSLocalizedString(@"Girl", @"女")]){
-                 [optinalButton setButtonSelected:1];
-                 }else [optinalButton setButtonSelected:0];
-                 [self addSubview: optinalButton];
-                 }
-                 */
-                previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
-                [self addSubview:previewLabel];
                 
-                if(![[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] || [[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:@""]){
-                    [previewLabel setText:[NSString stringWithFormat:@"%@",
-                                           [titleArray_baby objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
-                                           ]];
-                    [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
-                }else{
+                if([[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:NSLocalizedString(@"Pregnant",@"胎儿")]){
                     previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
                     [self addSubview:previewLabel];
-                    [previewLabel setText:[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex]];
-                    [previewLabel setTextColor:[UIColor blackColor]];
+                    [previewLabel setText:NSLocalizedString(@"Pregnant",@"胎儿")];
+                }else{
+                    optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")]];
+                    [optinalButton addTarget:self action:@selector(onBabySex:) forControlEvents:(UIControlEventTouchUpInside)];
+                    if([[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:NSLocalizedString(@"Girl", @"女")]){
+                        [optinalButton setButtonSelected:1];
+                    }else [optinalButton setButtonSelected:0];
+                    [self addSubview: optinalButton];
                 }
+                
+               
+                
+                if(NO){
+                    previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
+                    
+                    if(![[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] || [[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex] isEqualToString:@""]){
+                        [previewLabel setText:[NSString stringWithFormat:@"%@",
+                                               [titleArray_baby objectAtIndex:ronriRow]//NSLocalizedString(@"Unselected", @"未选择")
+                                               ]];
+                        [previewLabel setTextColor:[UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1]];
+                    }else{
+                        previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
+                        [self addSubview:previewLabel];
+                        [previewLabel setText:[[[[_MTDelegate getTheCustomer]theBabies] objectAtIndex:baby_id] the_sex]];
+                        [previewLabel setTextColor:[UIColor blackColor]];
+                    }
+                    [self addSubview:previewLabel];
+                }
+                
+                
                 break;
             case 2:
                 datePicker=[[UIDatePicker alloc]initWithFrame:CGRectMake(50, 5, 450, 150)];
@@ -325,33 +336,34 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 
 -(void)setBabySexCell:(int)v{
     _Log(@"setBabySexCell:%d for baby %d,%@",v,baby_id,titleLabel.text);
-    /*
-    if(v==-1){
-        _LogLine();
-        if(optinalButton){
-            [optinalButton removeFromSuperview];
-            optinalButton=nil;
-        }
-        if(!previewLabel){
-            previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
-            [self addSubview:previewLabel];
-        }
-        [previewLabel setText:NSLocalizedString(@"Pregnant",@"胎儿")];
-        _LogLine();
-    }else{
-        _LogLine();
-        if(previewLabel){
-            [previewLabel removeFromSuperview];
-            previewLabel=nil;
-        }
-        if(!optinalButton){
-            optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")]];
-            [optinalButton addTarget:self action:@selector(onBabySex:) forControlEvents:(UIControlEventTouchUpInside)];
-            [self addSubview: optinalButton];
-        }
-        [optinalButton setButtonSelected:v];
-    }
-     */
+    
+     if(v==-1){
+     _LogLine();
+     if(optinalButton){
+     [optinalButton removeFromSuperview];
+     optinalButton=nil;
+     }
+     if(!previewLabel){
+     previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
+     [self addSubview:previewLabel];
+     }
+     [previewLabel setText:NSLocalizedString(@"Pregnant",@"胎儿")];
+     _LogLine();
+     }else{
+     _LogLine();
+     if(previewLabel){
+     [previewLabel removeFromSuperview];
+     previewLabel=nil;
+     }
+     if(!optinalButton){
+     optinalButton=[[LSOptionalButton alloc]initWithFrame:CGRectMake(150, 5, 380, 30) withNames:@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")]];
+     [optinalButton addTarget:self action:@selector(onBabySex:) forControlEvents:(UIControlEventTouchUpInside)];
+     [self addSubview: optinalButton];
+     }
+     [optinalButton setButtonSelected:v];
+     }
+     
+    if(NO){
     if(!previewLabel){
         previewLabel=[[UILabel alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
         [self addSubview:previewLabel];
@@ -361,6 +373,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
         [previewLabel setText:NSLocalizedString(@"Pregnant",@"胎儿")];
     }else{
         [previewLabel setText:[@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")] objectAtIndex:v]];
+    }
     }
 }
 
@@ -403,12 +416,13 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
     }
     return NO;
 }
-/*
+
 -(void)onCustomerSex:(id)sender{
     _Log(@"onCustomerSex: %d",[optinalButton getSelectedButton]);
     [[_MTDelegate getTheCustomer]setTheTitle:[@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")] objectAtIndex:[optinalButton getSelectedButton]]];
+    [_MTDelegate refresh];
 }
-*/
+
 -(void)babySexValueChanged:(id)sender{
     _Log(@"babySexValueChanged[%d] set Sex: %@",baby_id,[singlePicker level1Value]);
     LSBaby * baby=[[[_MTDelegate getTheCustomer] theBabies] objectAtIndex:baby_id];
@@ -416,13 +430,14 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
     [baby setThe_sex:[singlePicker level1Value]];
     [_MTDelegate refresh];
 }
-/*
+
 -(void)onBabySex:(id)sender{
     _Log(@"onBaby[%d] set Sex: %d",baby_id,[optinalButton getSelectedButton]);
     LSBaby * baby=[[[_MTDelegate getTheCustomer] theBabies] objectAtIndex:baby_id];
     [baby setThe_sex:[@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")] objectAtIndex:[optinalButton getSelectedButton]]];
+    [_MTDelegate refresh];
 }
- */
+
 /*
  -(void)onCustomerName:(id)sender{
  _Log(@"onCustomerName: %@",[textField text]);

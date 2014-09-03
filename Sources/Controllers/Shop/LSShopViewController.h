@@ -18,12 +18,17 @@
 //#import "NewCustomerXController.h"
 #import "NewCustomerYController.h"
 
+#import "RMAFeedbackViewController.h"
+
 #import "CartEntity.h"
 
 @interface LSShopViewController :  DataController//UIViewController
 <UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate,DataControllerPullReloadDelegate>
 {
     UILabel * reloadLabel;
+    NSInteger appear_count;
+    
+    UIActivityIndicatorView * searchCustomerAI;
 }
 -(void)addObservers;
 -(void)removeObservers;

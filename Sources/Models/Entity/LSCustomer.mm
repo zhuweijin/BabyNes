@@ -243,6 +243,9 @@ static LSCustomer * currentCustomer=nil;
             }else{
                 NSLog(@"MAIN->register customer not");
                 if(!isSlient)[[[UIAlertView alloc]initWithTitle:@"FAILED" message:newCustomerDict[@"msg"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
+                if(newCustomerDict[@"toOffline"]){
+                    return @"!_TO_OFFLINE_CUSTOMER_!";
+                }
             }
         }else{
             //net error

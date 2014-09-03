@@ -115,7 +115,7 @@ static BOOL isRunning = NO;
                     NSString * cid=[customer createCustomer:YES];
                     NSLog(@"后台尝试创建用户[%@]结果：%@",customer.theMobile,cid);
                     //尝试注册用户
-                    if(cid){
+                    if(cid && [cid isEqualToString:@"!_TO_OFFLINE_CUSTOMER_!"]){
                         NSLog(@"成功了 可以删掉顾客文件");
                         [LSOfflineTasks doneCustomer:customer.theMobile];
                     }else{

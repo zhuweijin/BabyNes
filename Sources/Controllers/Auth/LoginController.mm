@@ -405,7 +405,7 @@
                        }
                        //else if(loader.error==DataLoaderEmpty){}
                        else{
-                           info=NSLocalizedString(@"Unknown Error", @"未知错误");
+                           info=NSLocalizedString(@"Server timeout, please try again later.", @"网络连接超时，请稍后重试。");
                        }
                        //UIUtil::ShowAlert(info);
                        _passwordField.text = nil;

@@ -59,10 +59,12 @@ static BOOL outSingleModePermitted=NO;
             [PushHandler actIntoSingleMode];
         }else if([act isEqualToString:@"2"]){
             //Force Version Update
+            UIUtil::ShowAlert(NSLocalizedString(@"Now received Content Version Update Notification, please wait for a while.", @"收到内容更新通知，请等待更新完成。"));
             [PushHandler actCleanCache];
             [PushHandler actVersionUpdate];
         }else if([act isEqualToString:@"3"]){
             //Force Clean Cache
+            UIUtil::ShowAlert(NSLocalizedString(@"Now received Content Cache Clean Notification, please wait for a while.", @"收到缓存清空通知，请等待更新完成。"));
             [PushHandler actCleanCache];
         }else if([act isEqualToString:@"4"]){
             //PING
@@ -84,8 +86,8 @@ static BOOL outSingleModePermitted=NO;
                 NSLog(@"%@",news);
                 //[PushHandler showStatusBarNews:news];
             }else{
-                NSString*news=@"Have failed to be into Single Mode!";
-                NSLog(@"%@",news);
+                //NSString*news=@"Have failed to be into Single Mode!";
+                //NSLog(@"%@",news);
                 //[PushHandler showStatusBarNews:news];
             }
         });
@@ -99,8 +101,8 @@ static BOOL outSingleModePermitted=NO;
                 NSLog(@"%@",news);
                 //[PushHandler showStatusBarNews:news];
             }else{
-                NSString*news=@"Have failed to be out of Single Mode!";
-                NSLog(@"%@",news);
+                //NSString*news=@"Have failed to be out of Single Mode!";
+                //NSLog(@"%@",news);
                 //[PushHandler showStatusBarNews:news];
             }
         });

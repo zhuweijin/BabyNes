@@ -15,9 +15,13 @@
 	CacheDataLoader *_loader;
 	UIView *_contentView;
     
+    
+    
     BOOL is_reloading;
     UIActivityIndicatorView * reload_indicator;
 }
+
+@property BOOL is_expired;
 
 @property id<DataControllerPullReloadDelegate> thePullReloadDelegate;
 

@@ -17,6 +17,8 @@
 
 @interface SinriUIApplication : UIApplication
 
+@property BOOL isNeedRotatable;
+
 @property UINavigationController * navController;
 @property RootController * rootController;
 @property LoginController * loginController;

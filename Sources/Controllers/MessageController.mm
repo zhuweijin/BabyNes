@@ -64,8 +64,12 @@ static CGFloat reloadHeaderHeight=40;
     [self scrollViewDidEndDragging:[self getSRTable] willDecelerate:NO];
     
     [srTable reloadData];
-    
-    if(_isNeedRefresh && !is_reloading){
+    /*
+    if(self.is_expired){
+        [self receiveVerisonUpdatePush];
+    }
+    */
+    if((_isNeedRefresh || self.is_expired) && !is_reloading){
         is_reloading=YES;
         isCheckOld=NO;
         [self responseForReloadWork];
@@ -383,6 +387,7 @@ static CGFloat reloadHeaderHeight=40;
         _Log(@"MessageController receiveVerisonUpdatePush go");
         [self responseForReloadWork];
     //}
+    self.is_expired=NO;
 }
 
 -(void)responseForReloadWork{

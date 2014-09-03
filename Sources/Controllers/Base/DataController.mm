@@ -17,6 +17,11 @@
 	_loader.service = service;
 	_loader.params = params;
     
+    //A Test.
+    is_reloading=NO;
+    
+    _is_expired=NO;
+    
     _forceOnline=NO;
     if([service isEqualToString:@"SRCheck"]){
         [((CacheDataLoader*)_loader) forceOnline];
@@ -152,6 +157,8 @@
 		[_contentView removeFromSuperview];
 		
         CGRect contentViewFrame=self.view.bounds;
+        //CGRect contentViewFrame=CGRectMake(0, 0, 1024, 702);
+        
         //_Log(@"DataController loadEnded to init contentView when self.view = [%@]",self.view);
 		_contentView = [[UIView alloc] initWithFrame:contentViewFrame];
         //_Log(@"DataController loadEnded to init contentView with frame[%f,%f,%f,%f]",contentViewFrame.origin.x,contentViewFrame.origin.y,contentViewFrame.size.width,contentViewFrame.size.height);

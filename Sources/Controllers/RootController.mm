@@ -326,6 +326,15 @@
 -(void)receiveVerisonUpdatePush:(NSNotification*)notification{
     _Log(@"Root ReceiveForceUpdateVersionPush");
     
+    _shopVC.is_expired=YES;
+    _intrVC.is_expired=YES;
+    _mateVC.is_expired=YES;
+    _srVC.is_expired=YES;
+    
+    if([self.presentingViewController respondsToSelector:@selector(receiveVerisonUpdatePush)]){
+        [self.presentingViewController performSelector:@selector(receiveVerisonUpdatePush) withObject:nil];
+    }
+    /*
     @try {
         [_shopVC receiveVerisonUpdatePush];
         [_intrVC receiveVerisonUpdatePush];
@@ -338,7 +347,7 @@
     @finally {
         //
     }
-    
+    */
 }
 
 -(BOOL)prefersStatusBarHidden{

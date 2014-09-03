@@ -7,6 +7,8 @@
 
 static CGFloat reloadHeaderHeight=40;
 
+//static NSInteger appear_count=0;
+
 static int MonoNumberInRow=3;
 
 @implementation IntroduceController
@@ -23,7 +25,7 @@ static int MonoNumberInRow=3;
     self.thePullReloadDelegate=self;
     cate_id=0;
     
-
+    appear_count=0;
     
 	return self;
 }
@@ -53,6 +55,12 @@ static int MonoNumberInRow=3;
 {
 	[super viewWillAppear:animated];
     [MobClick beginLogPageView:@"IntroductionController"];
+    /*
+    if(appear_count>0 && self.is_expired){
+        [self receiveVerisonUpdatePush];
+    }
+    appear_count++;
+     */
 }
 
 // Called after the view was dismissed, covered or otherwise hidden.
@@ -80,6 +88,8 @@ static int MonoNumberInRow=3;
         [catePane removeFromSuperview];
         catePane=nil;
     }
+    
+    _Log(@"DEBUG0825 IntroduceController loadContentView's contentView=%@",contentView);
     
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
@@ -303,10 +313,14 @@ static int MonoNumberInRow=3;
 }
 
 -(void)receiveVerisonUpdatePush{
+    _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 0");
     if(!is_reloading){
+        _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 1");
         is_reloading=YES;
         [self responseForReloadWork];
     }
+    _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 2");
+    self.is_expired=NO;
 }
 
 -(void)responseForReloadWork{
@@ -321,7 +335,7 @@ static int MonoNumberInRow=3;
     }
     if(is_reloading){
         [MobClick event:@"RefreshIntroduction" acc:1];
-        [_loader loadBegin];
+        
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];
         [((UIScrollView *)_itemPane) scrollRectToVisible:{0,0,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
@@ -329,6 +343,8 @@ static int MonoNumberInRow=3;
         //转转 开始
         UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
 		[controller.view toastWithLoading];
+        
+        [_loader loadBegin];
 		_LogLine();
         
         //_Log(@"responseForReloadWork to 0,0");

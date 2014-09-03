@@ -78,7 +78,7 @@
 						   width:56];
 	}
 	
-		
+    if(NO){
 	[self spaceWithHeight:kDefaultHeaderHeight];
 	{
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
@@ -89,7 +89,7 @@
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"Force Execute Offline Tasks", @"尝试执行离线任务") detail:nil action:@selector(onSendOfflineTasks:)];
 	}
-    
+    }
     //SINRI TEST
     [self spaceWithHeight:kDefaultHeaderHeight];
 	{

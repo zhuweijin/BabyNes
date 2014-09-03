@@ -14,6 +14,8 @@
     NSMutableDictionary * cateButtonDict;
     
     UILabel * reloadLabel;
+    
+    NSInteger appear_count;
 }
 
 -(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh;
