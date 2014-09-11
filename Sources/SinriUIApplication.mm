@@ -54,6 +54,12 @@ static BOOL shouldMonitorIdle=YES;
         UITouchPhase phase =((UITouch *)[allTouches anyObject]).phase;
         if (phase ==UITouchPhaseBegan || phase == UITouchPhaseEnded){
             [self resetIdleTimer];
+            //SINGLE MODE
+            if([PushHandler hasOutSingleModePermitted]){
+                [PushHandler actOutSingleMode];
+            }else{
+                [PushHandler actIntoSingleMode];
+            }
         }
     }
 }
@@ -61,11 +67,11 @@ static BOOL shouldMonitorIdle=YES;
 - (void)resetIdleTimer {
     if (_idleTimer) {
         [_idleTimer invalidate];
-        _Log(@"SinriUIApplication resetIdleTimer");
+        //_Log(@"SinriUIApplication resetIdleTimer");
     }
     if([SinriUIApplication isToMonitorIdle]){
         _idleTimer = [NSTimer scheduledTimerWithTimeInterval:[self maxIdleTime] target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
-        _Log(@"SinriUIApplication resetIdleTimer start for about %lf seconds",[self maxIdleTime]);
+        //_Log(@"SinriUIApplication resetIdleTimer start for about %lf seconds",[self maxIdleTime]);
     }
     
 } 

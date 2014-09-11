@@ -124,10 +124,17 @@ static NSString *const iVersionMacAppStoreURLFormat = @"macappstore://itunes.app
 @implementation iVersion
 
 //
+/*
 #ifdef iVersionGitHubName
 #define iVersionBundleName		[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
 #define iVersionRemotePlistURL	[NSString stringWithFormat:@"https://raw.githubusercontent.com/%@/%@/master/Release/iVersion.plist", iVersionGitHubName, iVersionBundleName]
 #define iVersionUpdateURL		[NSString stringWithFormat:@"https://raw.githubusercontent.com/%@/%@/master/Release/%@.plist", iVersionGitHubName, iVersionBundleName, iVersionBundleName]
+#endif
+*/
+#ifdef iVersionGitHubName
+#define iVersionBundleName		[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"]
+#define iVersionRemotePlistURL	[NSString stringWithFormat:@"https://erpbrand.leqee.com/admin/babynespos/iVersion.plist"]
+#define iVersionUpdateURL		[NSString stringWithFormat:@"https://erpbrand.leqee.com/admin/babynespos/BabyNes.plist"]
 #endif
 
 + (void)load

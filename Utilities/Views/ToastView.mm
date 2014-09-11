@@ -10,16 +10,18 @@
 - (ToastView *)toastWithTitle:(NSString *)title type:(ToastViewType)type
 {
 	ToastView *toastView = (ToastView *)[self viewWithTag:kToastViewTag];
+    _Log(@"ToastView【%@】 toastWithTitle:%@ type:%d Find Original:%@",self,title,type,toastView);
 	if (toastView == nil)
 	{
 		toastView = [[ToastView alloc] initWithTitle:title type:type];
 		toastView.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		toastView.tag = kToastViewTag;
 		//toastView.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2 - 20);
-        toastView.center = CGPointMake(self.window.frame.size.height / 2,  self.window.frame.size.width / 2);
+        //toastView.center = CGPointMake(self.window.frame.size.height / 2,  self.window.frame.size.width / 2);
+        toastView.center=self.center;
 		[self addSubview:toastView];
 	}
-    _Log(@"ToastView toastWithTitle[%@] view=[%@]",title,toastView);
+    _Log(@"ToastView【%@】 toastWithTitle[%@] type:%d view=[%@]",self,title,type,toastView);
 	return toastView;
 }
 
@@ -61,7 +63,7 @@
 
 //
 #ifndef _ToastLoadingTitle
-#define _ToastLoadingTitle @"正在加载"
+#define _ToastLoadingTitle @"......" //@"正在加载"
 #endif
 - (ToastView *)toastWithLoading
 {
@@ -124,7 +126,14 @@
 	}
 	
 	//
-	UILabel *label = UIUtil::LabelWithFrame(frame, title, font, UIUtil::Color(0xf9f9f9), NSTextAlignmentCenter);
+	UILabel *label =
+    /*
+    if(label){
+        [label removeFromSuperview];
+    }
+    label =
+     */
+    UIUtil::LabelWithFrame(frame, title, font, UIUtil::Color(0xf9f9f9), NSTextAlignmentCenter);
 	label.numberOfLines = 0;
 
 	self = [super initWithFrame:CGRectMake(0, 0, width, CGRectGetMaxY(frame) + 8)];

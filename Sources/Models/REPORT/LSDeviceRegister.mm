@@ -60,12 +60,16 @@
     NSURLResponse *response = nil;
     NSData *post = [param dataUsingEncoding:NSUTF8StringEncoding];
     NSData* return_data = HttpUtil::HttpData([[ServerConfig getServerConfig]getURL_device_register], post, NSURLRequestReloadIgnoringCacheData, &response, &error);
-    
+    //NSString * return_data_string= [[NSString alloc] initWithData:return_data  encoding:NSUTF8StringEncoding];
+    _Log(@"LSDeviceRegister postDeviceDetails get return:%@",[[NSString alloc] initWithData:return_data  encoding:NSUTF8StringEncoding]);
     //TODO MAKE IT REAL
-    
-    NSString * return_data_string= [[NSString alloc] initWithData:return_data  encoding:NSUTF8StringEncoding];
-    _Log(@"LSDeviceRegister postDeviceDetails get return:%@",return_data_string);
-    return YES;
+    NSDictionary* return_dict=[NSJSONSerialization JSONObjectWithData:return_data options:(NSJSONReadingMutableLeaves) error:nil];
+    if(return_dict){
+        if([[return_dict objectForKey:@"CODE"] integerValue]==200){
+            return YES;
+        }
+    }
+    return NO;    
 }
 
 @end

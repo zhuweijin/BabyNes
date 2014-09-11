@@ -2,8 +2,14 @@
 #import "IntroduceController.h"
 #import "IntroduceItemView.h"
 #import "IntroduceMonoDetailView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "LSVersionManager.h"
 
 static CGFloat reloadHeaderHeight=40;
+
+//static NSInteger appear_count=0;
+
+static int MonoNumberInRow=3;
 
 @implementation IntroduceController
 
@@ -18,6 +24,8 @@ static CGFloat reloadHeaderHeight=40;
     
     self.thePullReloadDelegate=self;
     cate_id=0;
+    
+    appear_count=0;
     
 	return self;
 }
@@ -43,16 +51,24 @@ static CGFloat reloadHeaderHeight=40;
 //}
 
 // Called when the view is about to made visible.
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//	[super viewWillAppear:animated];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"IntroductionController"];
+    /*
+    if(appear_count>0 && self.is_expired){
+        [self receiveVerisonUpdatePush];
+    }
+    appear_count++;
+     */
+}
 
 // Called after the view was dismissed, covered or otherwise hidden.
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//	[super viewWillDisappear:animated];
-//}
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"IntroductionController"];
+}
 
 #pragma Event methods
 
@@ -63,6 +79,8 @@ static CGFloat reloadHeaderHeight=40;
     [self responseForReloadWork];
     _Log(@"IntroduceController reload (loadContentView) !");
     
+    [LSVersionManager DownloadAllFiles_PDT_WithDict:dict isForce:NO];
+    
 	_itemPanes = [[NSMutableDictionary alloc]init];
     cateButtonDict=[[NSMutableDictionary alloc]init];
     
@@ -71,13 +89,21 @@ static CGFloat reloadHeaderHeight=40;
         catePane=nil;
     }
     
+    _Log(@"DEBUG0825 IntroduceController loadContentView's contentView=%@",contentView);
+    
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - 370, 0, 370, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
-	[contentView addSubview:catePane];
+	
+    [[catePane layer] setShadowOffset:{-1, 0.0}];
+    [[catePane layer] setShadowRadius:2];
+    [[catePane layer] setShadowOpacity:1];
+    [[catePane layer] setShadowColor:[UIColor grayColor].CGColor];
+    
+    [contentView addSubview:catePane];
 	
 	NSInteger i = 0;
-	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/4);
+	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/[dict[@"category"] count]);
     //CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
 	for (NSDictionary *cate in dict[@"category"])
 	{
@@ -121,12 +147,13 @@ static CGFloat reloadHeaderHeight=40;
              [(UIWebView *)_itemPane loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:cate[@"url"]]]];
              */
             
-            CGRect wvframe = CGRectMake(0, reloadHeaderHeight, _contentView.frame.size.width - 370, _contentView.frame.size.height);
+            CGRect wvframe = CGRectMake(0, reloadHeaderHeight, _contentView.frame.size.width - 370-5, _contentView.frame.size.height);
             UIWebView *webView=[[UIWebView alloc] initWithFrame:wvframe];
             [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:cate[@"url"]]]];
             
             _itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
             
             [_itemPane addSubview:webView];
             
@@ -145,9 +172,9 @@ static CGFloat reloadHeaderHeight=40;
 		else
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
-			
-			CGFloat width = ceil(frame.size.width / 3);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			_itemPane.backgroundColor=[UIColor clearColor];
+			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
             CGRect frame = {0, reloadHeaderHeight, width, width};
 			NSUInteger i = 0;
@@ -159,7 +186,7 @@ static CGFloat reloadHeaderHeight=40;
 				[_itemPane addSubview:view];
 				
 				//
-				if (++i % 3 == 0)
+				if (++i % MonoNumberInRow == 0)
 				{
 					frame.origin.x = 0;
 					frame.origin.y += frame.size.width;
@@ -171,10 +198,12 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
-            if(h<=_itemPane.frame.size.height){
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
+            
+            if(h<=_itemPane.frame.size.height+reloadHeaderHeight){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
+            
             ((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, h);
             ((UIScrollView *)_itemPane).contentOffset=CGPointMake(0, reloadHeaderHeight);
             ((UIScrollView *)_itemPane).delegate=self;
@@ -204,7 +233,7 @@ static CGFloat reloadHeaderHeight=40;
         }
     }
     
-    
+    [((UIScrollView*)_itemPane) setScrollsToTop:NO];
 	[_contentView addSubview:_itemPane];
 }
 
@@ -283,10 +312,30 @@ static CGFloat reloadHeaderHeight=40;
     
 }
 
+-(void)receiveVerisonUpdatePush{
+    _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 0");
+    if(!is_reloading){
+        _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 1");
+        is_reloading=YES;
+        [self responseForReloadWork];
+    }
+    _Log(@"DEBUG0825 IntroduceController receiveVerisonUpdatePush - 2");
+    self.is_expired=NO;
+}
+
 -(void)responseForReloadWork{
     _Log(@"IntroduceController responseForReloadWork isWithError=%@",_loader.errorString);
     if(is_reloading){
-        [_loader loadBegin];
+        if(![LSDeviceInfo isNetworkOn]){
+            //UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+            is_reloading=NO;
+            [((UIScrollView *)_itemPane) scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+            return;
+        }
+    }
+    if(is_reloading){
+        [MobClick event:@"RefreshIntroduction" acc:1];
+        
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];
         [((UIScrollView *)_itemPane) scrollRectToVisible:{0,0,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
@@ -294,6 +343,8 @@ static CGFloat reloadHeaderHeight=40;
         //转转 开始
         UIViewController *controller = [self respondsToSelector:@selector(view)] ? (UIViewController *)self : UIUtil::VisibleViewController();
 		[controller.view toastWithLoading];
+        
+        [_loader loadBegin];
 		_LogLine();
         
         //_Log(@"responseForReloadWork to 0,0");

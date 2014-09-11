@@ -1,5 +1,7 @@
 #import "ServerConfig.h"
 
+#import "MobClick.h"
+
 #define TEST
 #ifdef TEST
 //#define kServerUrl				@"https://testbaby.i9i8.com/admin/api"
@@ -15,7 +17,14 @@
 #define kAuthConsumerSecret		@"XXX"
 
 #define kUsername				@"Username"
-#define kAccessToken				@"Password"
+#define kPassword				@"Password"
+#define kAccessToken			@"AccessToken"
+
+#define kStoreId @"StoreId"
+#define kStoreProvince @"StoreProvince"
+#define kStoreCity @"StoreCity"
+#define kStoreAddress @"StoreAddress"
+
 #define kLogoutNotification		@"LogoutNotification"
 
 // Data error old
@@ -98,8 +107,24 @@ typedef enum {
 + (void)login:(NSString*)msg; // 注销并显示登录界面，并提示错误
 + (void)logout;		// 注销
 + (BOOL)isLogon;	// 是否已登录
+
++(BOOL)refreshAccessToken;
+
 + (NSString *)accessToken;
 + (void)setAccessToken:(NSString *)accessToken;
++ (NSString *)storeProvince;
++ (void)setStoreProvince:(NSString *)storeProvince;
++ (NSString *)storeCity;
++ (void)setStoreCity:(NSString *)storeCity;
++ (NSString *)storeAddress;
++ (void)setStoreAddress:(NSString *)storeAddress;
++ (NSString*)username;
++ (void)setUsername:(NSString*)username;
++ (NSString*)password;
++ (void)setPassword:(NSString*)password;
++ (NSString *)storeID;
++ (void)setStoreID:(NSString *)storeID;
+
 
 //
 - (BOOL)loadBegin;		// 刷新

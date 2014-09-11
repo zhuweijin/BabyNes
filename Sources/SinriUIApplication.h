@@ -10,10 +10,14 @@
 #import "PRMoviePlayer.h"
 #import "PRPhotoPlayer.h"
 
+#import "PushHandler.h"
+
 #import "RootController.h"
 #import "LoginController.h"
 
 @interface SinriUIApplication : UIApplication
+
+@property BOOL isNeedRotatable;
 
 @property UINavigationController * navController;
 @property RootController * rootController;

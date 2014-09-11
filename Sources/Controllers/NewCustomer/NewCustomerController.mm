@@ -33,6 +33,10 @@
 	return self;
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal {
+    return NO;
+}
+
 - (void)designView{
     
     self.baby_cells=[[NSMutableArray alloc]init];

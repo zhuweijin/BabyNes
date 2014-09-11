@@ -9,14 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "ProductEntity.h"
 
+typedef enum : NSInteger {
+	CartModeSale=0,
+    CartModeReturn=1,
+    //CartModeExchange=2
+} CartMode;
+
 @interface CartEntity : NSObject
 
 @property NSMutableArray * cart_array;
+
+//@property CartMode cartMode;
++(CartMode)getCartMode;
++(void)setCartMode:(CartMode)cartMode;
+
++(NSString*)getCurrentCartModeString;
++(NSString*)getCartModeString:(CartMode)cartMode;
 
 +(BOOL)getChangeState;
 +(void)setChangeState:(BOOL)isChangeStart;
 
 +(CartEntity*)getDefaultCartEntity;
++(void)setDefaultCartEntity:(CartEntity*)ce;
 -(void)resetCart;
 
 -(int)currentQuantityOfProductID:(int)pid;
@@ -27,5 +41,13 @@
 -(int)getTotalQuantity;
 -(int)getTotalCents;
 
+-(int)getTotalSaleQuantity;
+-(int)getTotalSaleCents;
+-(int)getTotalReturnQuantity;
+-(int)getTotalReturnCents;
+
 //-(void)testChange;
+
+-(NSString*)toJson;
++(CartEntity*)fromJson:(NSString*)json;
 @end

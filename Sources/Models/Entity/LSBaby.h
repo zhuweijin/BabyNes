@@ -8,12 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LSBaby : NSObject
+@interface LSBaby : NSObject<NSCoding>
+@property NSString* the_ID;
+
 @property int the_birth_year;
 @property int the_birth_month;
 @property int the_birth_day;
 @property NSString * the_sex;
 @property NSString * the_nick;
 
+@property NSDate * the_birth_date;
+
 -(BOOL)validateBabyInformation:(int)baby_index;
+
+-(NSString*)toJson;
++(LSBaby*)fromJson:(NSString*)json;
 @end

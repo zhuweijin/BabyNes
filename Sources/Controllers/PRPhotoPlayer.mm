@@ -7,6 +7,7 @@
 //
 
 #import "PRPhotoPlayer.h"
+#import "MobClick.h"
 
 @interface PRPhotoPlayer ()
 
@@ -29,6 +30,15 @@
     _theImage=image;
     _theTitle=title;
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"PhotoController"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"PhotoController"];
 }
 
 - (void)viewDidLoad

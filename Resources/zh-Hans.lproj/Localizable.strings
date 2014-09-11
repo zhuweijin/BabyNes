@@ -16,6 +16,9 @@
 /* %d Years Before */
 "%d Years Before" = "%d年前";
 
+/* (Expected) Birthday */
+"(Expected) Birthday" = "宝宝的生日/预产期";
+
 /* * City: */
 "* City:" = "* 城市：";
 
@@ -37,20 +40,11 @@
 /* *Sex of baby: */
 "*Sex of baby:" = "*宝宝的性别：";
 
-/* 13-24 Month Standard 8 Oz */
-"13-24 Month Standard 8 Oz" = "13-24个月胶囊奶粉";
+/* 852 */
+"852" = "86";
 
-/* 25-36 Month Standard 8 Oz */
-"25-36 Month Standard 8 Oz" = "25-36个月胶囊奶粉";
-
-/* 3-6 Month Big 7 Oz */
-"3-6 Month Big 7 Oz" = "3-6个月胶囊奶粉 7盎司";
-
-/* 3-6 Month Standard 6 Oz */
-"3-6 Month Standard 6 Oz" = "3-6个月胶囊奶粉 6盎司";
-
-/* 7-12 Month Standard 8 Oz */
-"7-12 Month Standard 8 Oz" = "7-12个月胶囊奶粉";
+/* A new SR message released: %@! */
+"A new SR message released: %@!" = "新的业务消息已发布：%@";
 
 /* About */
 "About" = "关于";
@@ -70,29 +64,47 @@
 /* Add Buyer */
 "Add Buyer" = "添加顾客";
 
+/* Add Photos: */
+"Add Photos:" = "附图：";
+
 /* Address */
 "Address" = "地址";
 
 /* Address is empty */
 "Address is empty" = "地址未填写";
 
+/* Address* */
+"Address*" = "地址*";
+
 /* After Tomorrow */
 "After Tomorrow" = "后天";
-
-/* AnyShop */
-"AnyShop" = "任意店铺";
 
 /* Are you forced to log out for the incorrect token. */
 "Are you forced to log out for the incorrect token." = "因为当前账户有错，您将被退出。";
 
-/* Are you sure to clear cache? */
-"Are you sure to clear cache?" = "你确定要清除网络缓存吗？";
+/* Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on. */
+"Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on." = "你确定要清除缓存吗？这将会同时中止购物车、业务消息等任务并删除本地记录。";
 
 /* Are you sure to logout? */
 "Are you sure to logout?" = "你要退出当前账户吗?";
 
+/* Area Code */
+"Area Code" = "地区号";
+
+/* Area Code is not correct */
+"Area Code is not correct" = "地区号未填写正确";
+
 /* a_m */
 "a_m" = "上午";
+
+/* Baby Information */
+"Baby Information" = "宝宝信息";
+
+/* Baby's Nickname */
+"Baby's Nickname" = "宝宝的昵称";
+
+/* Baby's sex cannot be edited as baby is not born yet */
+"Baby's sex cannot be edited as baby is not born yet" = "胎儿不能修改性别";
 
 /* Back */
 "Back" = "返回";
@@ -103,17 +115,32 @@
 /* Birthday is not completed yet for No.%d baby */
 "Birthday is not completed yet for No.%d baby" = "第%d个宝宝的生日未填写完整";
 
+/* Birthday* */
+"Birthday*" = "生日*";
+
 /* Boy */
 "Boy" = "男";
 
 /* Cancel */
 "Cancel" = "取消";
 
+/* Cannot process the order without mobile. */
+"Cannot process the order without mobile." = "当前顾客信息不完整，因此无法处理您的订单。";
+
+/* Cart is empty */
+"Cart is empty" = "购物车空无一物";
+
+/* Checking new SR messages */
+"Checking new SR messages" = "查收新的业务消息";
+
 /* City */
 "City" = "城市";
 
 /* City is empty */
 "City is empty" = "城市未填写";
+
+/* City* */
+"City*" = "城市*";
 
 /* Clean */
 "Clean" = "清除";
@@ -126,6 +153,15 @@
 
 /* Close */
 "Close" = "取消创建";
+
+/* Confirm */
+"Confirm" = "确认";
+
+/* Contact */
+"Contact" = "联系方式";
+
+/* Content Update */
+"Content Update" = "内容更新";
 
 /* Continue to view */
 "Continue to view" = "继续观看";
@@ -145,11 +181,11 @@
 /* Could not open */
 "Could not open" = "无法打开";
 
-/* Could not send SMS on this device. */
-"Could not send SMS on this device." = "在此设备上无法发送短信。";
-
 /* Create */
 "Create" = "确认创建";
+
+/* Customer Information */
+"Customer Information" = "顾客信息";
 
 /* Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@ */
 "Customer Information:\n%@ Mobile: %@\nBaby Birthday: %@" = "顾客信息：\n%@ 手机号：%@\n宝宝生日：%@";
@@ -178,11 +214,17 @@
 /* Email is not correct */
 "Email is not correct" = "电子邮件地址未填写正确";
 
+/* Email(Optional) */
+"Email(Optional)" = "电子邮件(可选)";
+
 /* Email: */
 "Email:" = "电子邮箱：";
 
 /* EN */
 "EN" = "CN";
+
+/* en */
+"en" = "cn";
 
 /* Error */
 "Error" = "错误";
@@ -199,29 +241,38 @@
 /* Failed */
 "Failed" = "失败";
 
+/* Failed due to some issue in server, BabyNes POS is to store customer info offline. */
+"Failed due to some issue in server, BabyNes POS is to store customer info offline." = "由于服务器原因用户注册不顺利，将离线暂存用户信息。";
+
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "身份验证失败。";
+
+/* Failed to confirm order */
+"Failed to confirm order" = "订单确认失败";
 
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "解析商品数据失败！";
 
+/* Failed to get SR message. (reason: %@) */
+"Failed to get SR message. (reason: %@)" = "获取SR消息失败。（原因：%@）";
+
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "加载产品详情失败。";
 
-/* Failed to send email. */
-"Failed to send email." = "发送邮件失败。";
+/* Failed to post feedback. */
+"Failed to post feedback." = "反馈发送失败。";
 
-/* Failed to send login data */
-"Failed to send login data" = "认证请求发送失败";
+/* Failed to post sr feedback. */
+"Failed to post sr feedback." = "反馈发送失败。";
 
-/* Failed to send login data, please check your network status. */
-"Failed to send login data, please check your network status." = "未能发送认证请求，请检查网络。";
-
-/* Failed to send SMS. */
-"Failed to send SMS." = "发送短信失败。";
+/* Failed to update */
+"Failed to update" = "更新失败";
 
 /* Feedback */
 "Feedback" = "用户反馈";
+
+/* feedback_en */
+"feedback_en" = "feedback_cn";
 
 /* Fill in the Contact1 */
 "Fill in the Contact1" = "填写联系信息";
@@ -229,17 +280,11 @@
 /* Fill in the Contact2 */
 "Fill in the Contact2" = "请留下您的QQ，邮箱，电话等联系方式";
 
-/* First Month Big 4 Oz */
-"First Month Big 4 Oz" = "第1个月胶囊奶粉 4盎司";
-
-/* First Month Standard 3 Oz */
-"First Month Standard 3 Oz" = "第1个月胶囊奶粉 3盎司";
-
 /* For Baby [%d]: */
 "For Baby [%d]:" = "第%d个宝宝信息：";
 
-/* Forget Password */
-"Forget Password" = "忘记密码";
+/* Force Execute Offline Tasks */
+"Force Execute Offline Tasks" = "尝试执行离线任务";
 
 /* Full Screen */
 "Full Screen" = "全屏幕";
@@ -247,14 +292,8 @@
 /* Girl */
 "Girl" = "女";
 
-/* Give password here */
-"Give password here" = "请输入密码";
-
-/* Give username here */
-"Give username here" = "请输入用户名";
-
-/* Guest */
-"Guest" = "游客";
+/* HK */
+"HK" = "CN";
 
 /* Identity Exception */
 "Identity Exception" = "身份认证异常";
@@ -262,11 +301,26 @@
 /* Ignore */
 "Ignore" = "忽略";
 
-/* Incorrect Identity Input */
-"Incorrect Identity Input" = "用户名和密码不正确。";
+/* Input Mobile Number here. */
+"Input Mobile Number here." = "请填写手机号。";
+
+/* Input the Area Code and Phone Number here. It is optional. */
+"Input the Area Code and Phone Number here. It is optional." = "请填写地区代号和电话号码。这是一个可选项。";
+
+/* Input the name of the customer. */
+"Input the name of the customer." = "请填写顾客姓名。";
+
+/* Input the nickname of the baby here. It is optional. */
+"Input the nickname of the baby here. It is optional." = "请填写宝宝的昵称。这是一个可选项。";
+
+/* Input your email here. It is optional. */
+"Input your email here. It is optional." = "请填写电子邮箱。这是一个可选项。";
 
 /* Introduce */
 "Introduce" = "产品介绍";
+
+/* Issue Description: */
+"Issue Description:" = "问题描述：";
 
 /* Last Updated: %@ */
 "Last Updated: %@" = "最近更新：%@";
@@ -278,31 +332,16 @@
 "Loading" = "刷新中...";
 
 /* Loading... */
-"Loading..." = "加载中⋯";
+"Loading..." = "加载中...";
 
 /* Login */
 "Login" = "登录";
 
-/* Login Failed */
-"Login Failed" = "认证失败";
-
-/* Login Request Failed */
-"Login Request Failed" = "发送登录请求失败，请检查网络！";
-
-/* Logined failed! */
-"Logined failed!" = "登陆失败";
-
-/* Logined successfully */
-"Logined successfully" = "登陆成功";
-
 /* Logout */
-"Logout" = "退出登录";
+"Logout" = "注销";
 
 /* Long Long Before */
 "Long Long Before" = "好久好久以前";
-
-/* Machine */
-"Machine" = "奶粉机器";
 
 /* Material */
 "Material" = "媒介中心";
@@ -315,6 +354,9 @@
 
 /* Mobile is not correct */
 "Mobile is not correct" = "手机号未填写正确";
+
+/* Mobile* */
+"Mobile*" = "手机*";
 
 /* Month */
 "Month" = "月";
@@ -330,6 +372,9 @@
 
 /* Name is empty */
 "Name is empty" = "姓名未填写";
+
+/* Name* */
+"Name*" = "姓名*";
 
 /* Network Cache */
 "Network Cache" = "网络缓存";
@@ -361,11 +406,20 @@
 /* Nickname of Baby is not completed yet for No.%d baby */
 "Nickname of Baby is not completed yet for No.%d baby" = "第%d个宝宝的昵称未填写";
 
+/* Nickname(optional) */
+"Nickname(optional)" = "昵称（可选）";
+
 /* No cache available. */
 "No cache available." = "加载本地缓存失败。";
 
 /* No change */
 "No change" = "数据无变化";
+
+/* None */
+"None" = "未选择";
+
+/* None registered */
+"None registered" = "没有登记";
 
 /* Not found */
 "Not found" = "没有找到该顾客";
@@ -376,11 +430,29 @@
 /* Not sought yet\nMaybe you can invite one. */
 "Not sought yet\nMaybe you can invite one." = "没有找到\n可以新建顾客账户";
 
-/* OK */
-"OK" = "确定";
+/* Nothing to update! */
+"Nothing to update!" = "无需更新。";
 
-/* Online Shop */
-"Online Shop" = "网上商店";
+/* Now POS App is to download new content, please wait till is completed. */
+"Now POS App is to download new content, please wait till is completed." = "POS应用将要更新内容，请耐心等待。";
+
+/* Now received Content Cache Clean Notification, please wait for a while. */
+"Now received Content Cache Clean Notification, please wait for a while." = "收到缓存清空通知，请等待更新完成。";
+
+/* Now received Content Version Update Notification, please wait for a while. */
+"Now received Content Version Update Notification, please wait for a while." = "收到内容更新通知，请等待更新完成。";
+
+/* Offline now, please record the information of customer. */
+"Offline now, please record the information of customer." = "目前离线，请登记顾客信息。";
+
+/* Offline Task: failed to save the customer info. */
+"Offline Task: failed to save the customer info." = "离线任务：顾客信息保存失败。";
+
+/* Offline Task: the customer info has been saved. */
+"Offline Task: the customer info has been saved." = "离线任务：顾客信息已经保存。";
+
+/* OK */
+"OK" = "确认";
 
 /* Open with Safari */
 "Open with Safari" = "在 Safari 中打开";
@@ -394,14 +466,20 @@
 /* Paid Network Warning */
 "Paid Network Warning" = "付费网络提醒";
 
-/* Password */
-"Password" = "密码";
+/* Phone */
+"Phone" = "电话号码";
 
-/* Please setup your email account first. */
-"Please setup your email account first." = "请先设置您的邮件账户。";
+/* Please check your network status. */
+"Please check your network status." = "请检查网络状态。";
 
-/* Please wait */
-"Please wait" = "请等待";
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points. Select ‘Confirm’ to continue create new customer, or cancel it to recheck." = "请确保登记的顾客手机号码(%@)正确，以免影响员工绩效。选择‘确认’以继续创建顾客账号，选择取消可以返回进行检查。";
+
+/* Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck. */
+"Please ensure that the mobile (%@) of the customer is correct, which would affect your points.\nSelect Confirm to continue create new customer, or Cancel it to recheck." = "请确保登记的顾客手机号码【%@】的正确性，以便后续给顾客提供高质量的服务。";
+
+/* Pregnant */
+"Pregnant" = "胎儿";
 
 /* Product                     Price         Quantity */
 "Product                     Price         Quantity" = "产品                              价格           数量";
@@ -412,12 +490,6 @@
 /* Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@ */
 "Product Name： %@\n\nSKU Number： %@\n\nNet Wt./Specification： %@\n\nCapacity： %@\n\nOrigin: %@\n\nPrice： %@" = "产品名称： %@\n\nSKU 编号： %@\n\n净含量/规格： %@\n\n容量： %@\n\n产地: %@\n\n价格： %@";
 
-/* Products */
-"Products" = "介绍产品";
-
-/* Promotor Login */
-"Promotor Login" = "导购员登录";
-
 /* Province */
 "Province" = "省份";
 
@@ -427,11 +499,14 @@
 /* Province is empty */
 "Province is empty" = "省份未填写";
 
+/* Pull down to check new SR message */
+"Pull down to check new SR message" = "下拉以查收新的业务消息";
+
 /* Pull down to refresh */
 "Pull down to refresh" = "下拉可以刷新...";
 
-/* Pull down to refresh... */
-"Pull down to refresh..." = "下拉可以更新⋯";
+/* Pull to check SR messages earlier */
+"Pull to check SR messages earlier" = "上拉以加载更早的业务消息";
 
 /* Pull to reload */
 "Pull to reload" = "下拉以刷新";
@@ -445,11 +520,11 @@
 /* Register or update device information failed! */
 "Register or update device information failed!" = "登记或更新设备失败！";
 
+/* Registered as Failed */
+"Registered as Failed" = "注册失败";
+
 /* Registered as [%@] */
 "Registered as [%@]" = "成功注册为[%@]";
-
-/* Release to refresh... */
-"Release to refresh..." = "松开立即更新⋯";
 
 /* Release_to_refresh */
 "Release_to_refresh" = "松开即可刷新...";
@@ -460,8 +535,35 @@
 /* Remind Me Later */
 "Remind Me Later" = "以后再说";
 
+/* Reminder */
+"Reminder" = "提醒";
+
+/* Remove Selected Photos */
+"Remove Selected Photos" = "移除选中的照片";
+
 /* Retry */
 "Retry" = "重试";
+
+/* Return */
+"Return" = "退货";
+
+/* RMA */
+"RMA" = "退货";
+
+/* RMA Feedback */
+"RMA Feedback" = "问题反馈";
+
+/* RMA: Sum $%.2f Quantity %d */
+"RMA: Sum $%.2f Quantity %d" = "退回： 总计：￥%.2f 数量：%d";
+
+/* Sale */
+"Sale" = "销售";
+
+/* Sale: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d" = "销售： 总计：￥%.2f 数量：%d";
+
+/* Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d */
+"Sale: Sum $%.2f Quantity %d\nRMA: Sum $%.2f Quantity %d" = "销售： 总计：￥%.2f 数量：%d\n退回： 总计：￥%.2f 数量：%d";
 
 /* Sales Login */
 "Sales Login" = "促销员登录";
@@ -478,23 +580,20 @@
 /* Search */
 "Search" = "搜索";
 
-/* Second Month Big 6 Oz */
-"Second Month Big 6 Oz" = "第2个月胶囊奶粉 6盎司";
+/* Select Images */
+"Select Images" = "选择图片";
 
-/* Second Month Standard 5 Oz */
-"Second Month Standard 5 Oz" = "第2个月胶囊奶粉 5盎司";
+/* Select the area and input the address of the customer. */
+"Select the area and input the address of the customer." = "请填写顾客的所在地区和住所。";
 
 /* Send */
 "Send" = "发送";
 
-/* Send SMS successfully. */
-"Send SMS successfully." = "发送短信成功。";
-
 /* Send via Email */
 "Send via Email" = "发送邮件链接";
 
-/* Server Down. */
-"Server Down." = "服务器错误";
+/* Sent Time */
+"Sent Time" = "发布时间";
 
 /* Server response with empty. */
 "Server response with empty." = "未获得数据。";
@@ -502,14 +601,23 @@
 /* Server response with error. */
 "Server response with error." = "服务器返回错误。";
 
+/* Server timeout, please try again later. */
+"Server timeout, please try again later." = "网络连接超时，请稍后重试。";
+
 /* Settings */
 "Settings" = "设置";
 
 /* Sex */
 "Sex" = "性别";
 
+/* Sex of baby */
+"Sex of baby" = "宝宝的性别";
+
 /* Sex of Baby is not completed yet for No.%d baby */
 "Sex of Baby is not completed yet for No.%d baby" = "第%d个宝宝的性别未填写";
+
+/* Sex* */
+"Sex*" = "性别*";
 
 /* Share */
 "Share" = "分享";
@@ -520,14 +628,26 @@
 /* Shopping Cart */
 "Shopping Cart" = "购物车";
 
-/* Soothe Standard 7 Oz */
-"Soothe Standard 7 Oz" = "Sooth";
+/* sign_en */
+"sign_en" = "sign_cn";
+
+/* Single Mode */
+"Single Mode" = "单应用限制";
 
 /* Sorry but there is no network available. */
 "Sorry but there is no network available." = "抱歉，目前无可用网络。";
 
+/* Sorry for failing download updating information duo to server error. */
+"Sorry for failing download updating information duo to server error." = "很抱歉，由于服务器问题，下载更新信息失败。";
+
 /* SR Center */
 "SR Center" = "消息中心";
+
+/* SR Feedback */
+"SR Feedback" = "业务消息阅读报告";
+
+/* Subject */
+"Subject" = "消息主题";
 
 /* Success */
 "Success" = "成功";
@@ -535,11 +655,20 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "总计：￥%.2f       数量：%d";
 
-/* Sum $%.2f Quantity %d */
-"Sum $%.2f Quantity %d" = "总计：￥%.2f   数量：%d";
+/* Take Photos */
+"Take Photos" = "拍摄照片";
 
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "认证信息错误，请重新输入。";
+
+/* The response from server is in incorrect format. */
+"The response from server is in incorrect format." = "服务器返回格式不正确";
+
+/* There is no available camera! */
+"There is no available camera!" = "没有可用的摄像头";
+
+/* There is no available photo library! */
+"There is no available photo library!" = "没有可用的相册";
 
 /* There is no need to update. */
 "There is no need to update." = "无需更新";
@@ -559,6 +688,9 @@
 /* Title is empty */
 "Title is empty" = "称呼未填写";
 
+/* Title* */
+"Title*" = "称呼*";
+
 /* Today */
 "Today" = "今天";
 
@@ -577,20 +709,14 @@
 /* Unknown error. */
 "Unknown error." = "未知错误";
 
-/* Username */
-"Username" = "用户名";
+/* Unselected */
+"Unselected" = "未选择";
 
 /* Version %@ */
 "Version %@" = "版本 %@";
 
 /* Version %@ %@© %@ */
 "Version %@ %@© %@" = "版本 %@ %@© %@";
-
-/* Waiting for authority information from server... */
-"Waiting for authority information from server..." = "认证请求发送完毕，等待认证";
-
-/* Wrong Username-Password Pair! */
-"Wrong Username-Password Pair!" = "用户名和密码有误";
 
 /* Year */
 "Year" = "年份";
@@ -604,8 +730,20 @@
 /* Your contact information */
 "Your contact information" = "您的联系方式";
 
-/* Your order has been confirmed. */
-"Your order has been confirmed." = "您的订单已经确认。";
+/* Your order failed to save for offline now. */
+"Your order failed to save for offline now." = "您的订单离线保存失败。";
+
+/* Your order has been confirmed, and saved due to offline now. */
+"Your order has been confirmed, and saved due to offline now." = "您的订单已经确认，由于离线而被保存。";
+
+/* Your order [%@] has been confirmed. */
+"Your order [%@] has been confirmed." = "您的订单【%@】已经确认。";
+
+/* Your order [%@] has failed to be confirmed. */
+"Your order [%@] has failed to be confirmed." = "您的订单【%@】递交失败。";
+
+/* ^852$ */
+"^852$" = "^86$";
 
 /* ^[569][\\d]{7}$ */
 "^[569][\\d]{7}$" = "^1[\\d]{10}$";

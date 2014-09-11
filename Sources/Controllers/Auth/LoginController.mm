@@ -3,6 +3,8 @@
 #import "RootController.h"
 #import "CartEntity.h"
 #import "SinriUIApplication.h"
+#import "LSRegularReporter.h"
+#import "PushHandler.h"
 
 @implementation LoginController
 
@@ -140,6 +142,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    [MobClick beginLogPageView:@"LoginController"];
+    
 //#ifndef _CustomHeader
 	[self.navigationController setNavigationBarHidden:YES];
 //#endif
@@ -151,6 +156,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+    
+    [MobClick endLogPageView:@"LoginController"];
+    
+    if([PushHandler hasOutSingleModePermitted]){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(keyboardWillShow:)
@@ -261,6 +274,11 @@
 //
 - (void)doneAction
 {
+    if(![LSDeviceInfo isNetworkOn]){
+        UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+        return;
+    }
+    
 	Settings::Set(kUsername, _usernameField.text);
 	[UIView animateWithDuration:0.3 animations:^()
 	 {
@@ -274,12 +292,26 @@
 			 @"uuid": [LSDeviceInfo device_sn],/*SystemUtil::SN()*//*@"7A626E32-D9F8-4BEF-859F-852071CE0001",*/
 		 };
          
+         [MobClick event:@"Login" acc:1];
+         
 		 //[DataLoader loadWithService:@"login" params:params completion:^(DataLoader *loader)
          [DataLoader loadWithService:@"login" params:params success:^(DataLoader *loader) {
              DataLoader.accessToken = loader.dict[@"token"];
+             [DataLoader setStoreID:loader.dict[@"store_id"]];
+             [DataLoader setStoreProvince:loader.dict[@"storeProvince"]];
+             [DataLoader setStoreCity:loader.dict[@"storeCity"]];
+             [DataLoader setStoreAddress:loader.dict[@"storeAddress"]];
+             [DataLoader setUsername:_usernameField.text];
+             [DataLoader setPassword:_passwordField.text];
              if (_rememberButton.selected)
              {
                  Settings::Save(kAccessToken, DataLoader.accessToken);
+                 Settings::Save(kUsername, DataLoader.username);
+                 Settings::Save(kPassword, DataLoader.password);
+                 Settings::Save(kStoreId,[DataLoader storeID]);
+                 Settings::Save(kStoreProvince,[DataLoader storeProvince]);
+                 Settings::Save(kStoreCity,[DataLoader storeCity]);
+                 Settings::Save(kStoreAddress,[DataLoader storeAddress]);
              }
              
              //DO REGISTER
@@ -292,6 +324,8 @@
                  }else{
                      _Log(@"registered_device");
                  }
+             }else{
+                 [LSRegularReporter report];
              }
              
              [[CartEntity getDefaultCartEntity]resetCart];
@@ -371,7 +405,7 @@
                        }
                        //else if(loader.error==DataLoaderEmpty){}
                        else{
-                           info=NSLocalizedString(@"Unknown Error", @"未知错误");
+                           info=NSLocalizedString(@"Server timeout, please try again later.", @"网络连接超时，请稍后重试。");
                        }
                        //UIUtil::ShowAlert(info);
                        _passwordField.text = nil;

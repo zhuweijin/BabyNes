@@ -1,6 +1,11 @@
 
 #import "SettingController.h"
 #import "SinriUIApplication.h"
+#import "LSVersionManager.h"
+
+#import "UISignController.h"
+
+#import "PushHandler.h"
 
 @implementation SettingController
 
@@ -28,11 +33,20 @@
 //	[super viewDidLoad];
 //}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"SettingController"];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"SettingController"];
+}
+
 //
 - (void)loadPage
 {
 	BOOL iPhone5 = UIUtil::IsPhone5();
-	UIImage *image = [UIImage imageNamed:@"Icon"];
+	UIImage *image = UIUtil::ImageNamed(@"Icon");//[UIImage imageNamed:@"Icon"];
 	_logoButton = [UIButton buttonWithImage:image];
 	_logoButton.layer.cornerRadius = 8;
 	_logoButton.clipsToBounds = YES;
@@ -64,8 +78,20 @@
 						   width:56];
 	}
 	
-		
+    if(YES){
 	[self spaceWithHeight:kDefaultHeaderHeight];
+	{
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		[self cellWithName:NSLocalizedString(@"Single Mode", @"单应用限制") detail:nil action:@selector(onSingleMode:)];
+	}
+    [self spaceWithHeight:kDefaultHeaderHeight];
+	{
+		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
+		[self cellWithName:NSLocalizedString(@"Force Execute Offline Tasks", @"尝试执行离线任务") detail:nil action:@selector(onSendOfflineTasks:)];
+	}
+    }
+    //SINRI TEST
+    [self spaceWithHeight:kDefaultHeaderHeight];
 	{
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];
 		[self cellWithName:NSLocalizedString(@"About", @"关于") detail:nil action:@selector(logoButtonClicked:)];
@@ -92,7 +118,7 @@
 - (void)clearButtonClicked:(UIButton *)sender
 {
 	UIAlertView *alertView = UIUtil::ShowAlert(NSLocalizedString(@"Clean Cache", @"清除缓存"),
-											   NSLocalizedString(@"Are you sure to clear cache?", @"你确定要清除网络缓存吗？"),
+											   NSLocalizedString(@"Are you sure to clear cache? This action would abort and delete the record about cart, local SR messages and so on.", @"你确定要清除缓存吗？这将会同时中止购物车、业务消息等任务并删除本地记录。"),
 											   self,
 											   NSLocalizedString(@"Cancel", @"取消"),
 											   NSLocalizedString(@"Clean", @"清除"));
@@ -112,6 +138,7 @@
 	//UIUtil::ShowAlert(NSLocalizedString(@"Logout", @"注销"), NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?"), self, NSLocalizedString(@"Cancel", @"取消"), NSLocalizedString(@"OK", @"确定"));
     
     DialogUIAlertView * logout_dialog=[[DialogUIAlertView alloc]initWithTitle:NSLocalizedString(@"Logout", @"注销") message:NSLocalizedString(@"Are you sure to logout?", @"你要退出当前账户吗?") cancelButtonTitle:NSLocalizedString(@"Cancel", @"取消") otherButtonTitles:NSLocalizedString(@"OK", @"确定")];
+    //[logout_dialog setAlert_view_type:NCDialogAlertViewTypeBigger];
     int result=[logout_dialog showDialog];
     
     if(result==1){
@@ -137,18 +164,37 @@
 	
 	if (alertView.tag == kCleanCacheAlertViewTag)
 	{
+        /*
+        //无差别消灭缓存
 		NSUtil::CleanCache();
+        //只消灭自己的Token对应的本地消息记录
+        [LocalSRMessageTool cleanMyLocalSR];
+        //消灭版本
+        [LSVersionManager setCurrentVersion:0];
+        NSUtil::RemovePath(NSUtil::DocumentPath([LSVersionManager allZipFilePath]));
+        NSUtil::RemovePath(NSUtil::DocumentPath([LSVersionManager allZipToJsonPath]));
+        //消灭购物车
+        //[ProductEntity resetProductsAsEmpty];
+        [[CartEntity getDefaultCartEntity]resetCart];
+        //顺便昭告天下
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"CacheKilled" object:nil];
+        
+         //Log time for cleaning cache
+         long time;
+         NSDate *fromdate=[NSDate date];
+         time=(long)[fromdate timeIntervalSince1970];
+         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+         */
+        [PushHandler actCleanCache];
+         
+         
 		WizardCell *cell = (WizardCell *)[objc_getAssociatedObject(alertView, (__bridge void *)@"SENDER") superview];
 		cell.detail = nil;
 		UIButton *button = (UIButton *)cell.accessoryView;
 		[button setTitle:NSLocalizedString(@"Cleaned", @"已清除") forState:UIControlStateNormal];
 		button.enabled = NO;
         
-        //Log time for cleaning cache
-        long time;
-        NSDate *fromdate=[NSDate date];
-        time=(long)[fromdate timeIntervalSince1970];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithLong:time] forKey:@"BabyNesPOS_LastCleanCache_UnixTime"];
+        [MobClick event:@"CacheClean" acc:1];
         
 		return;
 	}
@@ -221,6 +267,30 @@
 		 [sender removeFromSuperview];
 	 }];
 }
+
+-(void)onSingleMode:(id)sender{
+    DialogUIAlertView * dav=[[DialogUIAlertView alloc]initWithTitle:@"Single Mode" message:@"It is a switch for tester to turn off the Single Mode... Do you want to quit Single Mode?" cancelButtonTitle:@"Into" otherButtonTitles:@"Quit",nil];
+    int r=[dav showDialog];
+    if(r>0){
+        [PushHandler actOutSingleMode];
+    }else{
+        [PushHandler actIntoSingleMode];
+    }
+}
+
+-(void)onSendOfflineTasks:(id)sender{
+    @try {
+        NSLog(@"手动开始离线任务处理。。。。");
+        [LSOfflineTasks attemptProcess];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"定时离线订单处理 最外层异常：%@",exception);
+    }
+    @finally {
+        //
+    }
+}
+
 /*
 -(void) check_cache_files{
     _Log(@"check_cache_files");

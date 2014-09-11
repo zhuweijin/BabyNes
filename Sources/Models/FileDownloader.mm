@@ -7,6 +7,7 @@
 //
 
 #import "FileDownloader.h"
+//#import "DataLoader.h"
 
 static NSString * LogSignature=@"FileDownloaderLog";
 static NSString * FileDownloaderNotificationTypeSuccess=@"FILE_DOWNLOADED_SUCCESS";
@@ -52,13 +53,73 @@ static NSMutableDictionary * fileTaskDict=[[NSMutableDictionary alloc]init];
 }
 
 +(void)ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT{
+    [FileDownloader sync_ariseNewDownloadTaskForURL:URL withAccessToken:AT];
+}
+
++(void)blockBased_ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT{
+    if(NSUtil::IsFileExist(NSUtil::CacheUrlPath(URL))){
+        _Log(@"FileDownloader URL %@ existed,PASSOVER",URL);
+        return;
+    }
+    //第一步，创建URL
+    NSURL *url = [NSURL URLWithString:URL];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = [@"token=" stringByAppendingString:AT];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    UIUtil::ShowNetworkIndicator(YES);
+    [NSURLConnection sendAsynchronousRequest:request queue:([NSOperationQueue mainQueue]) completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if(data){
+            _Log(@"FileDownloader end with data, error=%@ url=%@",connectionError,URL);
+            [data writeToFile:NSUtil::CacheUrlPath(URL) atomically:YES];
+        }else{
+            _Log(@"FileDownloader failed with data, error=%@ url=%@",connectionError,URL);
+        }
+    }];
+    UIUtil::ShowNetworkIndicator(NO);
+}
+
++(void)sync_ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT{
+    if(NSUtil::IsFileExist(NSUtil::CacheUrlPath(URL))){
+        _Log(@"FileDownloader URL %@ existed,PASSOVER",URL);
+        return;
+    }
+    UIUtil::ShowNetworkIndicator(YES);
+    //第一步，创建URL
+    NSURL *url = [NSURL URLWithString:URL];
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:120];
+    [request setHTTPMethod:@"POST"];//设置请求方式为POST，默认为GET
+    NSString *str = [@"token=" stringByAppendingString:AT];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    //第三步，连接服务器
+    _Log(@"FileDownloader start download: %@",URL);
+    NSData *res = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    _Log(@"FileDownloader end download: %@",URL);
+    [res writeToFile:NSUtil::CacheUrlPath(URL) atomically:YES];
+    UIUtil::ShowNetworkIndicator(NO);
+}
+
+
++(void)delegateBased_ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT{
     FileDownloader *fd=[[FileDownloader alloc]init];
+    //[FileDownloader addFileTask:URL withFD:fd];
     [fd doAsyncDownloadByURL:URL withParameterString:AT toDelegate:fd];
+    /*
+     while(!fd.finished) {
+     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+     }
+     */
+    //[FileDownloader removeFileTask:URL];
 }
 
 - (BOOL)doAsyncDownloadByURL:(NSString *)URL withParameterString:(NSString*)parameterString toDelegate:delegate
 {
     source_url=URL;
+    _finished=YES;
     
     if([FileDownloader isNotRunningFileTask:source_url]){
         [FileDownloader addFileTask:source_url withFD:self];
@@ -88,7 +149,7 @@ static NSMutableDictionary * fileTaskDict=[[NSMutableDictionary alloc]init];
         the_data=[[NSMutableData alloc]init];
         the_cache_path=NSUtil::CacheUrlPath(URL);
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
-        
+        _finished=NO;
         
         
         if (connection == nil) {
@@ -98,7 +159,20 @@ static NSMutableDictionary * fileTaskDict=[[NSMutableDictionary alloc]init];
         }else{
             [delegate setConnection:connection];
             _Log(@"FileDownloader doAsyncAPIRequestByURL [%@] arised",URL);
-            return YES;
+            
+            @try {
+                return YES;
+            }
+            @catch (NSException *exception) {
+                //
+            }
+            @finally {
+                while(!_finished) {
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+                }
+            }
+            
+            //return YES;
         }
     }else{
         _Log(@"FileDownloader PASSOVER: URL[%@] has been running.",URL);
@@ -119,7 +193,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 		 isEqualToString:NSURLAuthenticationMethodServerTrust])
 	{
 		// we only trust our own domain
-		if ([challenge.protectionSpace.host isEqualToString:[LSNetAPIWorker getTrustHost]])
+		//if ([challenge.protectionSpace.host isEqualToString:[LSNetAPIWorker getTrustHost]])
 		{
 			NSURLCredential *credential =
             [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
@@ -152,9 +226,11 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     [the_data appendData:data];
     done_length+=[data length];
+    
     //NSString * url=[[[connection currentRequest]URL]absoluteString];
     //[FileDownloader MyLog:[NSString stringWithFormat:@"FileDownloader didReceiveData length=%d from [%@]",[data length],url]];
-    //_Log(@"FileDownloader didReceiveData length=%d now done %f%%",[data length],(100.0*done_length/expected_length));
+    //_Log(@"FileDownloader didReceiveData length=%d now done %f%% for URL[%@]",[data length],(100.0*done_length/expected_length),source_url);
+    
     NSDictionary * obj=@{
                          @"url":[[[connection currentRequest]URL]absoluteString],
                          @"ThisLength":[NSNumber numberWithLongLong: [data length]],
@@ -174,6 +250,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
         [[NSNotificationCenter defaultCenter] postNotificationName:[FileDownloader getFileDownloaderNotificationTypeFailed] object:url];
     }
     [FileDownloader removeFileTask:source_url];
+    _finished=YES;
     _Log(@"FileDownloader connectionDidFinishLoading for url [%@] written=%d",url,written);
 }
 
@@ -182,6 +259,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     [FileDownloader removeFileTask:source_url];
     _Log(@"FileDownloader didFailWithError url = %@",url);
     [[NSNotificationCenter defaultCenter] postNotificationName:[FileDownloader getFileDownloaderNotificationTypeFailed] object:url];
+    _finished=YES;
 }
 -(NSString*)getURL{
     return source_url;

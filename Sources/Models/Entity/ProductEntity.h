@@ -10,8 +10,11 @@
 
 @interface ProductEntity : NSObject
 
++(void)resetProductsAsEmpty;
+
 +(BOOL)updateProductDictionaryWithJSON:(NSDictionary*)json;
 +(NSDictionary*)getProductDictionary;
++(NSDictionary*)getMagentoProductDictionary;
 +(NSArray*)getProductArray;
 
 

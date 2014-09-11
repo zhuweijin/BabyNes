@@ -97,6 +97,8 @@
     }
     [self.quantity setBorderStyle:(UITextBorderStyleNone)];
     self.quantity.text=[NSString stringWithFormat:@"%d",quantity];
+    if(quantity>=0)self.quantity.textColor=[UIColor blackColor];
+    else self.quantity.textColor=[UIColor redColor];
     [self.quantity setTextAlignment:(NSTextAlignmentCenter)];
     [self.quantity setEnabled:NO];
     

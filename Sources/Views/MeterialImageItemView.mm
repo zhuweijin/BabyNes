@@ -46,7 +46,7 @@
 	
 	//
 	CacheImageView *imageView = [[CacheImageView alloc] initWithFrame:imageFrame];
-	imageView.contentMode = UIViewContentModeScaleAspectFit;
+	imageView.contentMode = UIViewContentModeScaleToFill;//UIViewContentModeScaleAspectFill;//UIViewContentModeScaleAspectFit;
 	imageView.cacheImageUrl = dict[@"file"];
 	[self addSubview:imageView];
 	

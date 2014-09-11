@@ -7,6 +7,7 @@
 //
 
 #import "IntroduceMonoDetailView.h"
+#import "LSVersionManager.h"
 
 @implementation IntroduceMonoDetailView
 
@@ -50,6 +51,9 @@
 }
 
 -(void)loadProduct:(NSDictionary*)dict{
+    
+    [LSVersionManager DownloadAllFiles_PDetail_WithDict:dict isForce:NO];
+    
     /*
     if(mono_info_label){
         [mono_info_label removeFromSuperview];

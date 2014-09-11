@@ -1,7 +1,7 @@
 
 
 #import "BaseController.h"
-
+#define kTabButonTag 12312
 //
 @interface PivotController : BaseController <PredictScrollViewDelegate>
 {
@@ -19,5 +19,7 @@
 @property(nonatomic,retain) NSArray *viewControllers;
 @property(nonatomic,readonly) UIView *tabBar;
 @property(nonatomic,readonly) PredictScrollView *scrollView;
+
+- (void)onTabButton:(UIButton *)button;
 
 @end

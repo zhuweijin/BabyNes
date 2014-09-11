@@ -55,6 +55,7 @@
     //[cell loadMono:[[LSMonoInfo getMonoArray] objectAtIndex:row]];
     //[cell loadCartMonoWithName:[NSString stringWithFormat:@"Product %d",indexPath.row] andPrice:indexPath.row andQuantity:1 andID:indexPath.row];
     
+    //这是CA里的购物PE列表，所以pid应该是有负数的。然后这个有符号pid就完全化为了按钮的tag
     ProductEntity* pe= [[[CartEntity getDefaultCartEntity]cart_array] objectAtIndex:indexPath.row];
     [cell loadCartMonoWithName:[pe product_title] andPrice:[pe product_price_cents] andQuantity:[pe quantity] andID:[pe product_id]];
     
@@ -82,8 +83,12 @@
 
 -(void)cart_mono_minus:(id)sender{
     _Log(@"IN TABLE cart_mono_minus[%d] called",[sender tag]);
+    /*
+     //这个是原来正常向的代码
     ProductEntity* pe = [[ProductEntity getProductDictionary] objectForKey:[NSString stringWithFormat:@"%d",[sender tag]]];
     [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:-1];
+     */
+    [[CartEntity getDefaultCartEntity]addToCart:[sender tag] withQuantity:-1];
     /*
     if([self.quantity.text intValue]>1){
         self.quantity.text=[NSString stringWithFormat:@"%d",[self.quantity.text intValue]-1];
@@ -94,12 +99,16 @@
 }
 -(void)cart_mono_plus:(id)sender{
     _Log(@"IN TABLE cart_mono_plus[%d] called",[sender tag]);
+    /*
+     //这个是原来正常向的代码
     ProductEntity* pe = [[ProductEntity getProductDictionary] objectForKey:[NSString stringWithFormat:@"%d",[sender tag]]];
     if(pe){
         [[CartEntity getDefaultCartEntity]addToCart:[pe product_id] withQuantity:1];
     }else{
         UIUtil::ShowAlert(@"No such tag...");
     }
+     */
+    [[CartEntity getDefaultCartEntity]addToCart:[sender tag] withQuantity:1];
     //self.quantity.text=[NSString stringWithFormat:@"%d",[self.quantity.text intValue]+1];
     
 }

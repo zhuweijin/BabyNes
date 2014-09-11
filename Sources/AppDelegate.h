@@ -1,5 +1,6 @@
 #import "LSRegularReporter.h"
 #import "SinriUIApplication.h"
+#import "PushHandler.h"
 
 //
 @interface AppDelegate : NSObject <UIApplicationDelegate>

@@ -46,7 +46,7 @@
 	
 	//
 	CacheImageView *imageView = [[CacheImageView alloc] initWithFrame:imageFrame];
-	imageView.contentMode = UIViewContentModeScaleAspectFit;
+	imageView.contentMode = UIViewContentModeScaleToFill;//UIViewContentModeScaleAspectFill;// UIViewContentModeScaleAspectFit;
 	imageView.cacheImageUrl = dict[@"image"];
     _Log(@"SINRI DEBUG MVV_PREVIEW_IMAGE=%@",dict[@"image"]);
 	[self addSubview:imageView];

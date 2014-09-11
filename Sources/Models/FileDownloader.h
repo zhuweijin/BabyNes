@@ -21,6 +21,7 @@
     long long done_length;
 }
 @property (strong,atomic) NSURLConnection* connection;
+@property BOOL finished;
 
 +(void)ariseNewDownloadTaskForURL:(NSString *)URL withAccessToken:(NSString *)AT;
 - (BOOL)doAsyncDownloadByURL:(NSString *)URL withParameterString:(NSString*)parameterString toDelegate:delegate;

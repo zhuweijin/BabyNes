@@ -14,13 +14,22 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 
 -(id)init{
     self=[super init];
-    dict=@{@"kServerUrl":
-               //@"http://uniquebaby.duapp.com/babynesios/admin/api",
-                @"https://testbaby.i9i8.com/admin/api",
+    dict=@{@"SoapLogin":@"http://www.babynesshop.com.cn/e-cn-zh/api/v2_soap",
+           //@"https://babynes-asia.ocentric.com/api/v2_soap/index",
+           @"kServerUrl":
+                //@"http://uniquebaby.duapp.com/babynesios/admin/api",//BAIDU MOCK
+                @"https://172.16.0.186:233/babynes/admin/api",//ERP LOCAL
+                //@"https://testbaby.i9i8.com/admin/api",//TESTBABY
            @"login": @"login.php",
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
-           @"idle_video":@"PR/babynes.mp4"//@"video/video-4.mp4"
+           @"sr_receipt":@"SRReceipt.php",
+           @"sr_feedback":@"SRFeedback.php",
+           @"idle_video":@"PR/babynes.mp4",//@"video/video-4.mp4"
+           @"version_check":@"check_version.php",
+           @"create_order":@"create_order.php",
+           @"customer_signature":@"customer_signature.php",
+           @"rma_feedback":@"after_sale_feedback.php",
            };
     return self;
 }
@@ -34,6 +43,10 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
         defaultServerConfig=[[ServerConfig alloc]init];
     }
     return defaultServerConfig;
+}
+
+-(NSString*)getSoapLoginURL{
+    return dict[@"SoapLogin"];
 }
 
 -(NSString*)getURL_root{
@@ -56,5 +69,25 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     return [self findURL:@"idle_video"];
 }
 
+-(NSString*)getURL_sr_receipt{
+    return [self findURL:@"sr_receipt"];
+}
+
+-(NSString*)getURL_sr_feedback{
+    return [self findURL:@"sr_feedback"];
+}
+
+-(NSString*)getURL_version_check{
+    return [self findURL:@"version_check"];
+}
+-(NSString*)getURL_create_order{
+    return [self findURL:@"create_order"];
+}
+-(NSString*)getURL_customer_signature{
+    return [self findURL:@"customer_signature"];
+}
+-(NSString*)getURL_rma_feedback{
+    return [self findURL:@"rma_feedback"];
+}
 
 @end

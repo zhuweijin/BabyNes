@@ -4,11 +4,17 @@
 #import "MeterialVideoItemView.h"
 #import "MWPhotoBrowser.h"
 #import "ServerConfig.h"
+#import <QuartzCore/QuartzCore.h>
+#import "LSVersionManager.h"
+
+#import "MobClick.h"
 
 static CGFloat CateItemWidth=200;//370;
 static int MonoNumberInRow=4;
 
 static CGFloat reloadHeaderHeight=40;
+
+//static NSInteger appear_count=0;
 
 @implementation MaterialController
 
@@ -22,6 +28,8 @@ static CGFloat reloadHeaderHeight=40;
     
     self.thePullReloadDelegate=self;
     cate_id=0;
+
+    appear_count=0;
     
 	return self;
 }
@@ -61,8 +69,11 @@ static CGFloat reloadHeaderHeight=40;
 #pragma Event methods
 
 -(void)refreshIdlePRVideo:(BOOL)force_refresh{
-    NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
-    if(network_status==ReachableViaWiFi){
+    //[LSVersionManager refreshIdlePRVideo:force_refresh];
+    
+    //NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
+    //if(network_status==ReachableViaWiFi){
+    if([LSDeviceInfo isNetworkOn]){
         NSString*idle_video_url=[[ServerConfig getServerConfig]getURL_idle_video];
         NSString * cache_path = NSUtil::CacheUrlPath(idle_video_url);
         if(force_refresh || !NSUtil::IsFileExist(cache_path)){
@@ -70,29 +81,55 @@ static CGFloat reloadHeaderHeight=40;
             [FileDownloader ariseNewDownloadTaskForURL:idle_video_url withAccessToken:[DataLoader accessToken]];
         }
     }
-   
+    
 }
 
 -(void)refreshDownloadAllFilesWithDict:(NSDictionary *)dict isForce:(BOOL)force_refresh{
+    //[LSVersionManager DownloadAllFiles_Material_WithDict:dict isForce:force_refresh];
+    
     // NotReachable = 0,ReachableViaWiFi,ReachableViaWWAN
-    NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
-    if(network_status==ReachableViaWiFi){
+    //NetworkStatus network_status=[LSDeviceInfo currentNetworkType];
+    //if(network_status==ReachableViaWiFi){
+    if([LSDeviceInfo isNetworkOn]){
         for (NSDictionary *cate in dict[@"category"]){
             for (NSDictionary *item in dict[cate[@"value"]]){
-                NSString* file_level_url=[item objectForKey:@"file"];
-                NSString * cache_path = NSUtil::CacheUrlPath(file_level_url);
-                if(force_refresh || !NSUtil::IsFileExist(cache_path)){
-                    _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",file_level_url,cache_path);
-                    [FileDownloader ariseNewDownloadTaskForURL:file_level_url withAccessToken:[DataLoader accessToken]];
+                {
+                    NSString* file_level_url=[item objectForKey:@"file"];
+                    NSString * cache_path = NSUtil::CacheUrlPath(file_level_url);
+                    if(force_refresh || !NSUtil::IsFileExist(cache_path)){
+                        _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",file_level_url,cache_path);
+                        [FileDownloader ariseNewDownloadTaskForURL:file_level_url withAccessToken:[DataLoader accessToken]];
+                    }
+                }
+                {
+                    NSString* image_level_url=[item objectForKey:@"image"];
+                    NSString * image_cache_path = NSUtil::CacheUrlPath(image_level_url);
+                    if(force_refresh || !NSUtil::IsFileExist(image_cache_path)){
+                        _Log(@"refreshDownloadAllFilesWithDict[%@]->[%@]",image_level_url,image_cache_path);
+                        [FileDownloader ariseNewDownloadTaskForURL:image_level_url withAccessToken:[DataLoader accessToken]];
+                    }
                 }
             }
         }
     }
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
     _Log(@"MeterialController viewWillAppear");
+    [MobClick beginLogPageView:@"MeterialController"];
+    /*
+    if(appear_count>0 && self.is_expired){
+        [self receiveVerisonUpdatePush];
+    }
+    appear_count++;
+     */
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _Log(@"MeterialController viewWillDisappear");
+    [MobClick endLogPageView:@"MeterialController"];
 }
 //
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict
@@ -111,10 +148,18 @@ static CGFloat reloadHeaderHeight=40;
         catePane=nil;
     }
     
+    _Log(@"DEBUG0825 MaterialController loadContentView's contentView=%@",contentView);
+    
     catePane = [[UIView alloc] initWithFrame:CGRectMake(contentView.frame.size.width - CateItemWidth, 0, CateItemWidth, contentView.frame.size.height)];
 	catePane.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin;
 	catePane.backgroundColor = UIUtil::Color(150,150,150);//UIUtil::Color(148, 189, 233);
-	[contentView addSubview:catePane];
+	
+    [[catePane layer] setShadowOffset:{-1, 0.0}];
+    [[catePane layer] setShadowRadius:2];
+    [[catePane layer] setShadowOpacity:1];
+    [[catePane layer] setShadowColor:[UIColor grayColor].CGColor];
+    
+    [contentView addSubview:catePane];
 	
 	NSInteger i = 0;
 	//CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * MonoNumberInRow)/4);
@@ -140,7 +185,7 @@ static CGFloat reloadHeaderHeight=40;
 	
     //[self cateButtonClicked:nil];
     [self cateButtonClicked:nil anywayCateId:cate_id];
-
+    
 }
 
 - (void)cateButtonClicked:(UIButton *)sender{
@@ -164,7 +209,8 @@ static CGFloat reloadHeaderHeight=40;
 		if ([cate[@"value"] isEqualToString:@"video"])
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
@@ -190,7 +236,7 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
             if(h<=_itemPane.frame.size.height){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
@@ -207,7 +253,8 @@ static CGFloat reloadHeaderHeight=40;
 		else
 		{
 			_itemPane = [[UIScrollView alloc] initWithFrame:frame];
-			_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+			//_itemPane.backgroundColor = UIUtil::Color(242,244,246);
+            _itemPane.backgroundColor=[UIColor clearColor];
 			
 			CGFloat width = ceil(frame.size.width / MonoNumberInRow);
 			//CGRect frame = {0, 0, width, width};
@@ -233,7 +280,7 @@ static CGFloat reloadHeaderHeight=40;
 			}
             CGFloat gap=20;
 			//((UIScrollView *)_itemPane).contentSize = CGSizeMake(_itemPane.frame.size.width, frame.origin.y + (i % 3 != 0) * (frame.size.height + gap));
-            CGFloat h=frame.origin.y + (i % 3 != 0) * (frame.size.height + gap);
+            CGFloat h=frame.origin.y + (i % MonoNumberInRow != 0) * (frame.size.height + gap);
             if(h<=_itemPane.frame.size.height){
                 h=_itemPane.frame.size.height+reloadHeaderHeight;
             }
@@ -254,7 +301,7 @@ static CGFloat reloadHeaderHeight=40;
 	}
     
     //_Log(@"cate btn dict= [%@]",cateButtonDict);
-
+    
     for (UIButton * btn in [cateButtonDict allValues]) {
         //_Log(@"btn.tag = %d ~ sender.tag = %d",btn.tag,sender_tag);
         if(btn.tag==sender_tag){
@@ -265,7 +312,7 @@ static CGFloat reloadHeaderHeight=40;
             [btn setHighlighted:NO];
         }
     }
-    
+    [((UIScrollView*)_itemPane) setScrollsToTop:NO];
 	[_contentView addSubview:_itemPane];
 }
 //
@@ -374,9 +421,26 @@ static CGFloat reloadHeaderHeight=40;
     }
 }
 
+-(void)receiveVerisonUpdatePush{
+    if(!is_reloading){
+        is_reloading=YES;
+        [self responseForReloadWork];
+    }
+    self.is_expired=NO;
+}
+
 -(void)responseForReloadWork{
     _Log(@"MaterialController responseForReloadWork isWithError=%@",_loader.errorString);
     if(is_reloading){
+        if(![LSDeviceInfo isNetworkOn]){
+            //UIUtil::ShowAlert(NSLocalizedString(@"Please check your network status.", @"请检查网络状态。"));
+            is_reloading=NO;
+            [((UIScrollView *)_itemPane) scrollRectToVisible:{0,reloadHeaderHeight,_itemPane.frame.size.width,_itemPane.frame.size.height} animated:YES];
+            return;
+        }
+    }
+    if(is_reloading){
+        [MobClick event:@"RefreshMedia" acc:1];
         [_loader loadBegin];
         [reloadLabel setText:NSLocalizedString(@"Loading...", @"加载中...")];
         //[self.view.window setUserInteractionEnabled:NO];

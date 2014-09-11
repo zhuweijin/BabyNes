@@ -10,13 +10,21 @@
 
 static NSDictionary * products;
 static NSArray * product_array;
+static NSDictionary * magento_product_dict;
 
 @implementation ProductEntity
+
++(void)resetProductsAsEmpty{
+    products=[[NSDictionary alloc]init];
+    product_array=[[NSArray alloc]init];
+}
 
 +(BOOL)updateProductDictionaryWithJSON:(NSDictionary*)json{
     
     NSMutableDictionary* mdict=[[NSMutableDictionary alloc]init];
+    NSMutableDictionary* magento_dict=[[NSMutableDictionary alloc]init];
     NSMutableArray *marray=[[NSMutableArray alloc]init];
+    
     @try {
         id dic_category = [json objectForKey:@"category"];
         _Log(@"setPdtArrayWithNSDic dic_category=[%@] class=[%@]",dic_category,[dic_category class]);
@@ -53,11 +61,13 @@ static NSArray * product_array;
                     
                     ProductEntity * pe=[[ProductEntity alloc]initProductWithId:[pid intValue] withTitle:product_name withCents:(int)([price floatValue]*100) withMagentoID:sku_no withImageName:good_image_url];
                     
+                    [magento_dict setObject:pe forKey:sku_no];
                     [mdict setObject:pe forKey: pid];
                     [marray addObject:pe];
                 }
             }
         }
+        magento_product_dict=[[NSDictionary alloc]initWithDictionary:magento_dict];
         products=[[NSDictionary alloc]initWithDictionary:mdict];
         product_array=[[NSArray alloc]initWithArray:marray];
         return YES;
@@ -70,6 +80,9 @@ static NSArray * product_array;
     @finally {
         //Nothing
     }
+}
++(NSDictionary*)getMagentoProductDictionary{
+    return magento_product_dict;
 }
 
 +(NSDictionary*)getProductDictionary{

@@ -15,7 +15,11 @@
 //#import "LSShopCartTableViewController.h"
 #import "CartTable.h"
 //#import "LSCustomerSearchViewController.h"
-#import "NewCustomerController.h"
+//#import "NewCustomerXController.h"
+#import "NewCustomerYController.h"
+
+#import "RMAFeedbackViewController.h"
+#import "RMAFeedbackHTMLViewController.h"
 
 #import "CartEntity.h"
 
@@ -23,7 +27,13 @@
 <UITextFieldDelegate,UIAlertViewDelegate,UIScrollViewDelegate,DataControllerPullReloadDelegate>
 {
     UILabel * reloadLabel;
+    NSInteger appear_count;
+    
+    UIActivityIndicatorView * searchCustomerAI;
 }
+-(void)addObservers;
+-(void)removeObservers;
 
+-(void)onCacheKilled:(NSNotification*)notification;
 
 @end

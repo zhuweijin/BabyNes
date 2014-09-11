@@ -15,6 +15,8 @@
     NSMutableDictionary * cateButtonDict;
     
     UILabel * reloadLabel;
+    
+    NSInteger appear_count;
 }
 
 @end
