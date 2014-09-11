@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Signature Pad</title>
+        <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <style type="text/css">
+            body{
+                /*
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                */
+                /*width:800px;*/
+                
+                background-color:rgb(240,240,240);
+            }
+            input[type='file']{
+                display:block;
+                float: left;
+                width: 240px;
+                padding: 0;
+                margin:20px 5px 20px 5px;
+            }
+            input[type='button']{
+                border: 1px solid black;
+                outline: none;
+                background-color: purple;
+            }
+            input[type='submit']{
+                border: 1px solid black;
+                outline: none;
+                background-color: purple;
+            }
+            button {
+                font-size: 20px ! important;
+                padding:3px 0;
+                width: 150px;
+                outline: none;
+                border: none;
+                background-color: rgb(157,153,190);
+                -webkit-border-radius:2px;
+                color:#fff;
+                text-align: center;
+                /*
+                display: block;
+                border: 1px solid black
+                */
+            }
+            textarea{
+                font-size: 20px;
+                border:none;
+                background-color: #fff;
+                border-radius: 10px;
+                -webkit-border-radius:10px;
+                -o-border-radius:10px;
+            }
+            .sub_wrap{
+                overflow: hidden;
+                height: 80px;
+                line-height: 80px;
+                
+            }
+            .sub_wrap h1,.sub_wrap div {
+                float: left;
+                margin: 0px;
+                color: rgb(117, 114, 184);
+            }
+            .sub_wrap div button{
+                margin:25px 20px;
+            }
+            .sub_wrap button:active{
+                position: relative;
+                top:1px;
+                background-color: rgb(117, 114, 184);
+            }
+            .clear{
+                clear:both;
+            }
+
+            #loading{
+                z-index:1;
+                padding:5px 0 5px 9px;
+                width:390px;
+                /*
+                color:#fff;
+                background:#c44;
+                
+                left:0;
+                top:0;
+                position:fixed;
+                */
+            }
+        </style>
+        <script type="text/javascript">
+            function addImage(){
+                document.getElementById('images_div').innerHTML+='<p><input type="file" name="images[]"></p>';
+            }
+        </script>
+        <script type="text/javascript">
+            var image_count=0;
+            function addinput()//增加input节点
+            {
+                var input=document.createElement('input');//创建一个input节点
+                //var p=document.createElement('span');//创建一个br节点
+                input.setAttribute('id','image_'+image_count);
+                input.setAttribute('type','file');// 设置input节点type属性为file
+                input.setAttribute('name','images[]');//设置input节点 name属性为files[]，以 数组的方式传递给服务器端
+                //p.appendChild(input);
+                //document.getElementById('images_div').appendChild(p);//把节点添加到 form1表单中
+                document.getElementById('images_div').appendChild(input);//把节点添加到 form1表单中
+
+                image_count+=1;
+
+                event.preventDefault();
+                return false;
+            }
+            function testFuc(){
+                var text=document.feedbackForm.text.value;
+                alert(text);
+                var imageArray= new Array();
+                for (var i = image_count - 1; i >= 0; i--) {
+                    imageArray.push(document.getElementById('image_'+i).value);
+                };
+                alert(imageArray);
+            }
+            function submitFeedback(){
+                document.getElementById("loading").style.display="block";
+                //.innerHTML="正在加载";
+                //alert(1);
+                document.getElementById("feedbackForm").submit();
+                //alert(2);
+            }
+        </script>
+    </head>
+    <body onload="addinput();">
+        <form id="feedbackForm" name="feedbackForm" action="{$ACTION_URL}" method="POST" enctype="multipart/form-data">
+            <div>
+                <!--<p style="font-size: 30px;">反馈文本</p>-->
+                <textarea id="text" name='text' style="width:100%;height: 250px;"></textarea>
+            </div>
+            <div>
+               <div class="sub_wrap">
+                <h1>附图</h1>
+                <div>
+                    <!--<input type="button" value="增加图片" onclick="addinput();">-->
+                    <button onclick="addinput();" id="add_img">增加图片</button>
+
+                    <!--<input type="submit">-->
+                    <!--<button id="submit">提交</button>-->
+                    <!--<input type="button" value="test" onclick="submitFeedback();">-->
+                    
+                </div>
+                <div id='loading' style="display:none">正在发送反馈，请耐心等待………</div>
+               </div>
+                <p name="images_div" id="images_div" style="">
+                    <!--<input type="file" name="images[]">-->
+                </p>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div>
+                <!-- general -->
+                <input type="hidden" name="lang" value="cn">
+                <!-- RMA Feedback -->
+                <input type="hidden" name="customer_id" value="{$CUSTOMER_ID}"> 
+                <input type="hidden" name="customer_mobile" value="{$CUSTOMER_MOBILE}"> 
+                <!-- SR Feedback -->
+                <input type="hidden" name="srid" value="{$SR_ID}">
+            </div>
+        </form>
+    </body>
+</html>

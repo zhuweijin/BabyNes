@@ -16,7 +16,7 @@
 
 -(LSCustomer*)getTheCustomer;
 -(void)refresh;
-
+-(void)killAllExpanseCell;
 @end
 
 @interface LSMixTableCell : UITableViewCell

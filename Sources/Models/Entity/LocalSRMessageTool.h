@@ -23,5 +23,10 @@
 +(void)saveLocalSRAll;
 +(void)setSRArraytoHaveRead:(NSArray*)srids;
 
++(void)setSRtoHaveReported:(int)srid;
++(void)setSRArraytoHaveReported:(NSArray*)srids;
+
 +(void)killTails;
+
++(SRMessage*)getMessageWithSRID:(NSInteger)srid;
 @end

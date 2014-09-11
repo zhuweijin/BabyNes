@@ -46,7 +46,7 @@
 - (void)loadPage
 {
 	BOOL iPhone5 = UIUtil::IsPhone5();
-	UIImage *image = [UIImage imageNamed:@"Icon"];
+	UIImage *image = UIUtil::ImageNamed(@"Icon");//[UIImage imageNamed:@"Icon"];
 	_logoButton = [UIButton buttonWithImage:image];
 	_logoButton.layer.cornerRadius = 8;
 	_logoButton.clipsToBounds = YES;
@@ -78,7 +78,7 @@
 						   width:56];
 	}
 	
-    if(NO){
+    if(YES){
 	[self spaceWithHeight:kDefaultHeaderHeight];
 	{
 		//[self cellWithName:NSLocalizedString(@"Rate Me", @"给个好评") detail:nil action:@selector(starButtonClicked:)];

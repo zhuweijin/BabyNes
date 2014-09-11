@@ -19,6 +19,7 @@
 #import "NewCustomerYController.h"
 
 #import "RMAFeedbackViewController.h"
+#import "RMAFeedbackHTMLViewController.h"
 
 #import "CartEntity.h"
 

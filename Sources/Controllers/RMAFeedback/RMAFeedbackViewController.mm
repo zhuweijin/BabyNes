@@ -90,30 +90,38 @@
         
         self.navigationItem.title=NSLocalizedString(@"RMA Feedback", @"问题反馈");
         
-        self.feedback_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 60, 520, 20)];
+        UIBarButtonItem * sendButton=[[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"Send", @"发送") style:(UIBarButtonItemStylePlain) target:self action:@selector(onSend:)];
+        self.navigationItem.rightBarButtonItem=sendButton;
+        
+        self.feedback_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 70, 520, 20)];
         [self.feedback_label setText:NSLocalizedString(@"Issue Description:", @"问题描述：")];
         [self.feedback_label setTextColor:[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]];
         [self.view addSubview:self.feedback_label];
         
-        self.feedback_text = [[UITextView alloc]initWithFrame:(CGRectMake(10, 90, 1004, 200))];
+        self.feedback_text = [[UITextView alloc]initWithFrame:(CGRectMake(10, 100, 1004, 200))];
         [self.view addSubview:self.feedback_text];
         
-        self.image_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 300, 1014, 30)];
+        self.image_label=[[UILabel alloc]initWithFrame:CGRectMake(10, 310, 150, 30)];
         [self.image_label setText:NSLocalizedString(@"Add Photos:", @"附图：")];
         [self.image_label setTextColor:[UIColor colorWithRed:157/255.0 green:153/255.0 blue:190/255.0 alpha:1]];
         [self.view addSubview:self.image_label];
         
         self.pickImageButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"Select Images", @"选择图片") width:100];
-        self.pickImageButton.frame=CGRectMake(300, 300, 100, 30);
+        self.pickImageButton.frame=CGRectMake(200, 310, 100, 30);
         [self.pickImageButton addTarget:self action:@selector(onPickImageButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.pickImageButton];
         
         self.takePhotoButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"Take Photos", @"拍摄照片") width:100];
-        self.takePhotoButton.frame=CGRectMake(430, 300, 100, 30);
+        self.takePhotoButton.frame=CGRectMake(350, 310, 100, 30);
         [self.takePhotoButton addTarget:self action:@selector(onTakeImageButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.takePhotoButton];
         
-        self.imagesView = [[ImagePreviewListView alloc]initWithFrame:(CGRectMake(10, 340, 1004, 160))];
+        self.deleteImageButton=[UIButton minorButtonWithTitle:NSLocalizedString(@"Remove Selected Photos", @"移除选中的照片") width:200];
+        self.deleteImageButton.frame=CGRectMake(800, 310, 200, 30);
+        [self.deleteImageButton addTarget:self action:@selector(onDeleteImageButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.deleteImageButton];
+        
+        self.imagesView = [[ImagePreviewListView alloc]initWithFrame:(CGRectMake(10, 350, 1004, 350))];
         [self.view addSubview:self.imagesView];
         
         self.imagesView.layer.borderColor=[UIColor grayColor].CGColor;
@@ -146,11 +154,21 @@
  */
 -(void)setRotatable:(BOOL)able{
     [((SinriUIApplication * )[UIApplication sharedApplication]) setIsNeedRotatable:able];
+    [[UIApplication sharedApplication]setStatusBarOrientation:(UIInterfaceOrientationLandscapeRight) animated:YES];
+    
 }
 -(void)closeView:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
         //
     }];
+}
+
+-(void)onSend:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)onDeleteImageButton:(id)sender{
+    [_imagesView removeSelectedImages];
 }
 -(void)onPickImageButton:(id)sender{
     [self setRotatable:YES];

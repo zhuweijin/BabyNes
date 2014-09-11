@@ -61,11 +61,24 @@
     [_timeLabel setText:stringFromDate];
     [self addSubview:_timeLabel];
     
-    if([_msg read]){
-        [[self imageView]setImage:UIUtil::ImageNamed(@"readMail")];
+    if([_msg reported]){
+        [[self imageView]setImage:UIUtil::ImageNamed(@"mailreported")];
     }else{
-        [[self imageView]setImage:UIUtil::ImageNamed(@"unreadMail")];
+        if([_msg read]){
+            //[_titleLabel setTextColor:[UIColor blackColor]];
+            [[self imageView]setImage:UIUtil::ImageNamed(@"mailopened")];
+        }else{
+            //[_titleLabel setTextColor:[UIColor redColor]];
+            [[self imageView]setImage:UIUtil::ImageNamed(@"mailnew")];
+        }
+        
     }
+    
+//    if([_msg read]){
+//        [_titleLabel setTextColor:[UIColor blackColor]];
+//    }else{
+//        [_titleLabel setTextColor:[UIColor redColor]];
+//    }
     //_Log(@"SRTableCell setSRMessage:%@",text);
 }
 

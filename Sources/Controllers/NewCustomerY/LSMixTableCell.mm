@@ -378,6 +378,10 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 #pragma mark on textField
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [_MTDelegate killAllExpanseCell];
+}
+
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
     if (baby_id==-1) {
@@ -418,9 +422,13 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 -(void)onCustomerSex:(id)sender{
+    //[_MTDelegate killAllExpanseCell];
+    
     _Log(@"onCustomerSex: %d",[optinalButton getSelectedButton]);
     [[_MTDelegate getTheCustomer]setTheTitle:[@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")] objectAtIndex:[optinalButton getSelectedButton]]];
     [_MTDelegate refresh];
+    
+    
 }
 
 -(void)babySexValueChanged:(id)sender{
@@ -432,10 +440,14 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 -(void)onBabySex:(id)sender{
+    //[_MTDelegate killAllExpanseCell];
+    
     _Log(@"onBaby[%d] set Sex: %d",baby_id,[optinalButton getSelectedButton]);
     LSBaby * baby=[[[_MTDelegate getTheCustomer] theBabies] objectAtIndex:baby_id];
     [baby setThe_sex:[@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")] objectAtIndex:[optinalButton getSelectedButton]]];
     [_MTDelegate refresh];
+    
+    
 }
 
 /*
@@ -445,6 +457,8 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
  */
 
 -(void)onDateChanged:(id)sender{
+    //[_MTDelegate killAllExpanseCell];
+    
     _Log(@"onDateChanged for baby[%d] as %@",baby_id,datePicker.date);
     LSBaby * baby=[[[_MTDelegate getTheCustomer] theBabies] objectAtIndex:baby_id];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:datePicker.date];
@@ -459,6 +473,8 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 -(void)pcValueChanged:(id)sender{
+    //[_MTDelegate killAllExpanseCell];
+    
     _Log(@"pcValueChanged: %@-%@",picker.level1Value,picker.level2Value);
     [[_MTDelegate getTheCustomer] setTheProvince:picker.level1Value];
     [[_MTDelegate getTheCustomer] setTheCity:picker.level2Value];

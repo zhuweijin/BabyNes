@@ -412,11 +412,12 @@
         [self tableView:self.mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     }
     for (int i=0; i<[_showingCellInSection count]; i++) {
-        if([[_showingCellInSection[i] objectForKey:@"showingBirthdayPicker"] boolValue] &&
-           ![[_showingCellInSection[i] objectForKey:@"showingSexPicker"] boolValue]){
+        if([[_showingCellInSection[i] objectForKey:@"showingBirthdayPicker"] boolValue]
+           //&& ![[_showingCellInSection[i] objectForKey:@"showingSexPicker"] boolValue]
+           ){
             _LogLine();
-            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:i]];
-            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:i]];
+            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:i+1]];
+            //[self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:i]];
             
         }
     }

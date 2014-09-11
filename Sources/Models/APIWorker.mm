@@ -131,7 +131,7 @@
             }
         }else{//NOT 200
             NSLog(@"registerCustomer: analyze failed... server error maybe... JSON error=%@",error);
-            return @{@"done":@YES,@"data":[NSNull null],@"msg":NSLocalizedString(@"Failed due to some issue in server, BabyNes POS is to store customer info offline.", @"由于服务器原因用户注册不顺利，将离线暂存用户信息。"),@"toOffline":@YES};
+            return @{@"done":@YES,@"data":[NSNull null],@"msg":NSLocalizedString(@"Failed due to some issue in server, BabyNes POS is to store customer info offline.", @"由于目前服务器异常，将离线暂存用户信息。"),@"toOffline":@YES};
         }
     }else{
         return @{@"done":@NO};

@@ -12,6 +12,7 @@
 
 @property int srid;
 @property BOOL read;
+@property BOOL reported;
 @property long time;
 @property NSString * title;
 @property NSString * url;

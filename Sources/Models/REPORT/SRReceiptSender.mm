@@ -11,6 +11,7 @@
 #import "LSNetAPIWorker.h"
 #import "LocalSRMessageTool.h"
 
+
 @implementation SRReceiptSender
 
 +(void)report_have_read:(int)srid{
@@ -24,9 +25,29 @@
     NSString* param=NSUtil::URLQuery(dict);
     LSNetAPIWorker * worker=[[LSNetAPIWorker alloc]init];
     SRReceiptSender * srrs=[[SRReceiptSender alloc]init];
+    srrs.type=0;
     srrs.srids=@[[NSNumber numberWithInt: srid]];
     BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_sr_receipt] withParameterString:param toDelegate:srrs];
     _Log(@"SRReceiptSender report_have_read:%d -> %d",srid,done);
+}
+
++(void)report_have_reported:(int)srid{
+    NSString* AT=DataLoader.accessToken;
+    if(AT==nil)return;
+    NSDictionary* dict=[[NSDictionary alloc]initWithObjectsAndKeys:
+                        [NSString stringWithFormat:@"%d",srid],@"srid",
+                        NSLocalizedString(@"en", @"cn"),@"lang",
+                        AT,@"token",
+                        nil
+                        ];
+    NSString* param=NSUtil::URLQuery(dict);
+    LSNetAPIWorker * worker=[[LSNetAPIWorker alloc]init];
+    SRReceiptSender * srrs=[[SRReceiptSender alloc]init];
+    srrs.type=1;
+    srrs.targetSIRD=srid;
+    srrs.srids=@[[NSNumber numberWithInt: srid]];
+    BOOL done= [worker doAsyncAPIRequestByURL:[[ServerConfig getServerConfig]getURL_sr_feedback] withParameterString:param toDelegate:srrs];
+    _Log(@"SRReceiptSender report_have_feedback:%d -> %d",srid,done);
 }
 
 - (BOOL)connection:(NSURLConnection *)connection
@@ -71,6 +92,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
     _Log(@"SRReceiptSender connectionDidFinishLoading ...");
+    if(_type==0){
     NSDictionary * dict=[NSJSONSerialization JSONObjectWithData:tmp_data options:(NSJSONReadingMutableLeaves) error:nil];
     _Log(@"SRReceiptSender connectionDidFinishLoading to dict=[%@]",dict);
     if([dict isKindOfClass:[NSDictionary class]]){
@@ -87,6 +109,9 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
         }
     }else{
         [self connection:connection didFailWithError:nil];
+    }
+    }else if(_type==1){
+        [LocalSRMessageTool setSRtoHaveReported:_targetSIRD];
     }
 }
 

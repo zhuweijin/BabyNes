@@ -47,6 +47,7 @@
     imageViewArray = [[NSMutableArray alloc]init];
     for (int i=0;i<[imageArray count] ; i++) {
         UIImageView * image=[[UIImageView alloc]initWithImage:[imageArray objectAtIndex:i]];
+        [image setContentMode:UIViewContentModeScaleAspectFit];
         [image setFrame:(CGRectMake(_sep_length+i*(_sep_length+image_height), _sep_length, image_height, image_height))];
         [image setUserInteractionEnabled:NO];
         [self addSubview:image];
@@ -97,6 +98,14 @@
             image.layer.borderWidth=3;
             //image.layer.borderColor=[UIColor redColor].CGColor;
             [selectedDict setObject:@YES forKey:[NSNumber numberWithInteger:index]];
+        }
+    }
+}
+
+-(void)removeSelectedImages{
+    for (NSNumber * key in [selectedDict allKeys]) {
+        if([[selectedDict objectForKey:key]boolValue]){
+            [self removeImageAt:[key integerValue]];
         }
     }
 }

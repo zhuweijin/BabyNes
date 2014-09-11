@@ -121,11 +121,16 @@
 		2F92BBC01977CAA700FBE647 /* SRTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBBF1977CAA700FBE647 /* SRTable.mm */; };
 		2F92BBC31977D1DB00FBE647 /* SRTableCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */; };
 		2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */; };
+		2FA8500219B6FAAC005F96BE /* RMAFeedbackHTMLViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FA8500119B6FAAC005F96BE /* RMAFeedbackHTMLViewController.mm */; };
+		2FA8500519B709DA005F96BE /* feedback_cn.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FA8500319B709DA005F96BE /* feedback_cn.htm */; };
+		2FA8500619B709DA005F96BE /* feedback_en.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FA8500419B709DA005F96BE /* feedback_en.htm */; };
 		2FAD3A7D199A6B8B006A93AB /* LSSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7C199A6B8B006A93AB /* LSSigner.m */; };
 		2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */; };
 		2FAD3A81199A6CA2006A93AB /* sign_en.htm in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD3A7F199A6CA2006A93AB /* sign_en.htm */; };
 		2FB63CCD198352A400F344E9 /* LSDuoPicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */; };
 		2FD2DFB8199A5DF500E0FCF3 /* UISignController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */; };
+		2FD4805319B80B8E00824043 /* SRFeedbackHTMLViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4805219B80B8E00824043 /* SRFeedbackHTMLViewController.mm */; };
+		2FD4805519B8798E00824043 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD4805419B8798E00824043 /* Images.xcassets */; };
 		2FE445E7198CBE5000D07D27 /* LSVersionManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */; };
 		2FE6EDBF198899F700B95A69 /* LSSinglePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE6EDBE198899F700B95A69 /* LSSinglePicker.m */; };
 		2FF0190C198F1C1B0042982C /* PushHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF0190B198F1C1B0042982C /* PushHandler.mm */; };
@@ -374,6 +379,10 @@
 		2F92BBC21977D1DB00FBE647 /* SRTableCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRTableCell.mm; path = MessageView/SRTableCell.mm; sourceTree = "<group>"; };
 		2F984A6F1980AAE9006E2BC1 /* LSOptionalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSOptionalButton.h; sourceTree = "<group>"; };
 		2F984A701980AAE9006E2BC1 /* LSOptionalButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSOptionalButton.mm; sourceTree = "<group>"; };
+		2FA8500019B6FAAC005F96BE /* RMAFeedbackHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMAFeedbackHTMLViewController.h; path = RMAFeedback/RMAFeedbackHTMLViewController.h; sourceTree = "<group>"; };
+		2FA8500119B6FAAC005F96BE /* RMAFeedbackHTMLViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RMAFeedbackHTMLViewController.mm; path = RMAFeedback/RMAFeedbackHTMLViewController.mm; sourceTree = "<group>"; };
+		2FA8500319B709DA005F96BE /* feedback_cn.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = feedback_cn.htm; path = RMAFeedback/feedback_cn.htm; sourceTree = "<group>"; };
+		2FA8500419B709DA005F96BE /* feedback_en.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = feedback_en.htm; path = RMAFeedback/feedback_en.htm; sourceTree = "<group>"; };
 		2FAD3A7B199A6B8B006A93AB /* LSSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSSigner.h; path = NewCustomerY/Sign/LSSigner.h; sourceTree = "<group>"; };
 		2FAD3A7C199A6B8B006A93AB /* LSSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSSigner.m; path = NewCustomerY/Sign/LSSigner.m; sourceTree = "<group>"; };
 		2FAD3A7E199A6CA2006A93AB /* sign_cn.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sign_cn.htm; path = NewCustomerY/Sign/sign_cn.htm; sourceTree = "<group>"; };
@@ -382,6 +391,9 @@
 		2FB63CCC198352A400F344E9 /* LSDuoPicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LSDuoPicker.mm; sourceTree = "<group>"; };
 		2FD2DFB6199A5DF500E0FCF3 /* UISignController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UISignController.h; path = NewCustomerY/UISignController.h; sourceTree = "<group>"; };
 		2FD2DFB7199A5DF500E0FCF3 /* UISignController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UISignController.m; path = NewCustomerY/UISignController.m; sourceTree = "<group>"; };
+		2FD4805119B80B8E00824043 /* SRFeedbackHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRFeedbackHTMLViewController.h; path = RMAFeedback/SRFeedbackHTMLViewController.h; sourceTree = "<group>"; };
+		2FD4805219B80B8E00824043 /* SRFeedbackHTMLViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SRFeedbackHTMLViewController.mm; path = RMAFeedback/SRFeedbackHTMLViewController.mm; sourceTree = "<group>"; };
+		2FD4805419B8798E00824043 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BabyNes/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		2FE445E5198CBE5000D07D27 /* LSVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSVersionManager.h; path = Duty/LSVersionManager.h; sourceTree = "<group>"; };
 		2FE445E6198CBE5000D07D27 /* LSVersionManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LSVersionManager.mm; path = Duty/LSVersionManager.mm; sourceTree = "<group>"; };
 		2FE6EDBD198899F700B95A69 /* LSSinglePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSSinglePicker.h; sourceTree = "<group>"; };
@@ -620,7 +632,7 @@
 		242F9485195C6E7300371697 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2F37640D19B5722100D83A62 /* RMAFeedback */,
+				2F37640D19B5722100D83A62 /* Feedback */,
 				2F6513FB19827AC700F2D1F9 /* NewCustomerY */,
 				2F92BBB719779B6800FBE647 /* MessageView */,
 				2FF644E61965A44D00A802A9 /* IntroduceController.h */,
@@ -778,6 +790,7 @@
 		246A3231186838ED00903EF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FD4805419B8798E00824043 /* Images.xcassets */,
 				246A333E1868394000903EF4 /* Assets */,
 				246A324D186838ED00903EF4 /* Info.plist */,
 				246A3249186838ED00903EF4 /* Icon.png */,
@@ -840,13 +853,19 @@
 			path = REPORT;
 			sourceTree = "<group>";
 		};
-		2F37640D19B5722100D83A62 /* RMAFeedback */ = {
+		2F37640D19B5722100D83A62 /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				2FA8500319B709DA005F96BE /* feedback_cn.htm */,
+				2FA8500419B709DA005F96BE /* feedback_en.htm */,
 				2F37640E19B5725700D83A62 /* RMAFeedbackViewController.h */,
 				2F37640F19B5725700D83A62 /* RMAFeedbackViewController.mm */,
+				2FA8500019B6FAAC005F96BE /* RMAFeedbackHTMLViewController.h */,
+				2FA8500119B6FAAC005F96BE /* RMAFeedbackHTMLViewController.mm */,
+				2FD4805119B80B8E00824043 /* SRFeedbackHTMLViewController.h */,
+				2FD4805219B80B8E00824043 /* SRFeedbackHTMLViewController.mm */,
 			);
-			name = RMAFeedback;
+			name = Feedback;
 			sourceTree = "<group>";
 		};
 		2F54FFFA196176410093028E /* Entity */ = {
@@ -1015,10 +1034,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				24259ECB194AB36B000FF8A9 /* UMContactViewController.xib in Resources */,
+				2FD4805519B8798E00824043 /* Images.xcassets in Resources */,
 				246A3301186838ED00903EF4 /* IconPad.png in Resources */,
 				246A3300186838ED00903EF4 /* Icon@2x.png in Resources */,
 				24259ECD194AB36B000FF8A9 /* UMFeedback.bundle in Resources */,
+				2FA8500619B709DA005F96BE /* feedback_en.htm in Resources */,
 				2FAD3A80199A6CA2006A93AB /* sign_cn.htm in Resources */,
+				2FA8500519B709DA005F96BE /* feedback_cn.htm in Resources */,
 				246A32FF186838ED00903EF4 /* Icon7@2x.png in Resources */,
 				246A333F1868394000903EF4 /* Assets in Resources */,
 				24259ED1194AB36B000FF8A9 /* UMFeedbackViewController.xib in Resources */,
@@ -1168,6 +1190,7 @@
 				242F94DB195C6E7300371697 /* AutoWizardController.mm in Sources */,
 				2FF0190F198F284F0042982C /* LSOfflineTasks.mm in Sources */,
 				24259EE6194AB36B000FF8A9 /* TouchView.mm in Sources */,
+				2FA8500219B6FAAC005F96BE /* RMAFeedbackHTMLViewController.mm in Sources */,
 				24259EC4194AB36B000FF8A9 /* MWTapDetectingView.m in Sources */,
 				242F94E2195C6E7300371697 /* WizardController.mm in Sources */,
 				2FF644DA1964F1F600A802A9 /* LSDeviceRegister.mm in Sources */,
@@ -1182,6 +1205,7 @@
 				2FF644EE19663E9D00A802A9 /* MeterialVideoItemView.mm in Sources */,
 				2F65140219827B1900F2D1F9 /* LSMixTable.mm in Sources */,
 				24259ED2194AB36B000FF8A9 /* HttpUtil.mm in Sources */,
+				2FD4805319B80B8E00824043 /* SRFeedbackHTMLViewController.mm in Sources */,
 				2FF0190C198F1C1B0042982C /* PushHandler.mm in Sources */,
 				2F5DA2D51985F1AC00BBA17A /* LSStack.m in Sources */,
 				2F984A711980AAE9006E2BC1 /* LSOptionalButton.mm in Sources */,

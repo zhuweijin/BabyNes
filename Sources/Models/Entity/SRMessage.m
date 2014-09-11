@@ -23,6 +23,7 @@
     self=[super init];
     _srid=[(NSNumber*)[dict objectForKey:@"srid"] intValue];
     _read=[(NSNumber*)[dict objectForKey:@"have_read"] intValue]==0?NO:YES;
+    _reported=[(NSNumber*)[dict objectForKey:@"have_confirmed"] intValue]==0?NO:YES;
     _time=[(NSNumber*)[dict objectForKey:@"created"] integerValue];
     _title=[dict objectForKey:@"title"];
     _url=[dict objectForKey:@"url"];
@@ -33,6 +34,7 @@
 {
     [coder encodeInt:self.srid forKey:@"srid"];
     [coder encodeBool:self.read forKey:@"read"];
+    [coder encodeBool:self.reported forKey:@"reported"];
     [coder encodeInteger:self.time forKey:@"created"];
     [coder encodeObject:self.title forKey:@"title"];
     [coder encodeObject:self.url forKey:@"url"];
@@ -42,6 +44,7 @@
 {
     _srid = [coder decodeIntForKey:@"srid"];
     _read = [coder decodeBoolForKey:@"read"];
+    _reported = [coder decodeBoolForKey:@"reported"];
     _time = [coder decodeIntegerForKey:@"created"];
     _title = [[coder decodeObjectForKey:@"title"] copy];
     _url = [[coder decodeObjectForKey:@"url"] copy];
@@ -49,7 +52,7 @@
 }
 
 -(NSString*)logAbstract{
-    return [NSString stringWithFormat:@"srid[%d](R=%d):%@ -> %@",_srid,_read,_title,_url];
+    return [NSString stringWithFormat:@"srid[%d](R=%d FB=%d):%@ -> %@",_srid,_read,_reported,_title,_url];
 }
 
 @end

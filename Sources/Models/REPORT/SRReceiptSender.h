@@ -14,8 +14,11 @@
 , NSURLConnectionDataDelegate>
 {
     NSMutableData * tmp_data;
+    
 }
-
+@property int type;
+@property NSInteger targetSIRD;
++(void)report_have_reported:(int)srid;
 +(void)report_have_read:(int)srid;
 @property NSArray * srids;
 

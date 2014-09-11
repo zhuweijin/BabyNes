@@ -136,7 +136,8 @@ static CGFloat reloadHeaderHeight=40;
     
     reloadLabel=[[UILabel alloc]initWithFrame:CGRectMake(0,-reloadHeaderHeight,srTable.frame.size.width,reloadHeaderHeight)];
     [reloadLabel setTextColor:[UIColor grayColor]];
-    [reloadLabel setText:NSLocalizedString(@"Pull down to check new SR message", @"下拉以查收新的业务消息")];
+    [reloadLabel setText:NSLocalizedString(@"Checking new SR messages", @"查收新的业务消息")];
+    //[reloadLabel setText:NSLocalizedString(@"Pull down to check new SR message", @"下拉以查收新的业务消息")];
     [reloadLabel setTextAlignment:(NSTextAlignmentCenter)];
     //[self setReloadLabelHidden:YES];
     [srTable setTableHeaderView:reloadLabel];

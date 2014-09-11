@@ -26,6 +26,7 @@
 @property UILabel * image_label;
 @property UIButton * pickImageButton;
 @property UIButton * takePhotoButton;
+@property UIButton * deleteImageButton;
 
 @property ImagePreviewListView * imagesView;
 

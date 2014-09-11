@@ -64,6 +64,9 @@
 /* Add Buyer */
 "Add Buyer" = "Add Buyer";
 
+/* Add Photos: */
+"Add Photos:" = "Add Photos:";
+
 /* Address */
 "Address" = "Address";
 
@@ -126,6 +129,9 @@
 
 /* Cart is empty */
 "Cart is empty" = "Cart is empty";
+
+/* Checking new SR messages */
+"Checking new SR messages" = "Checking new SR messages";
 
 /* City */
 "City" = "City";
@@ -235,8 +241,8 @@
 /* Failed */
 "Failed" = "Failed";
 
-/* Failed due to some issue in server, please try to search the mobile or register again later. */
-"Failed due to some issue in server, please try to search the mobile or register again later." = "Failed due to some issue in server, please try to search the mobile or register again later.";
+/* Failed due to some issue in server, BabyNes POS is to store customer info offline. */
+"Failed due to some issue in server, BabyNes POS is to store customer info offline." = "Failed due to some issue in server, BabyNes POS is to store customer info offline.";
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "Failed in examine the identification.";
@@ -247,14 +253,26 @@
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "Failed to decode the data of products.";
 
+/* Failed to get SR message. (reason: %@) */
+"Failed to get SR message. (reason: %@)" = "Failed to get SR message. (reason: %@)";
+
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "Failed to load the details of the product.";
+
+/* Failed to post feedback. */
+"Failed to post feedback." = "Failed to post feedback.";
+
+/* Failed to post sr feedback. */
+"Failed to post sr feedback." = "Failed to post sr feedback.";
 
 /* Failed to update */
 "Failed to update" = "Failed to update";
 
 /* Feedback */
 "Feedback" = "Feedback";
+
+/* feedback_en */
+"feedback_en" = "feedback_en";
 
 /* Fill in the Contact1 */
 "Fill in the Contact1" = "Fill in the Contact1";
@@ -300,6 +318,9 @@
 
 /* Introduce */
 "Introduce" = "Introduce";
+
+/* Issue Description: */
+"Issue Description:" = "Issue Description:";
 
 /* Last Updated: %@ */
 "Last Updated: %@" = "Last Updated: %@";
@@ -517,6 +538,9 @@
 /* Reminder */
 "Reminder" = "Reminder";
 
+/* Remove Selected Photos */
+"Remove Selected Photos" = "Remove Selected Photos";
+
 /* Retry */
 "Retry" = "Retry";
 
@@ -525,6 +549,9 @@
 
 /* RMA */
 "RMA" = "RMA";
+
+/* RMA Feedback */
+"RMA Feedback" = "RMA Feedback";
 
 /* RMA: Sum $%.2f Quantity %d */
 "RMA: Sum $%.2f Quantity %d" = "RMA: Sum $%.2f Quantity %d";
@@ -552,6 +579,9 @@
 
 /* Search */
 "Search" = "Search";
+
+/* Select Images */
+"Select Images" = "Select Images";
 
 /* Select the area and input the address of the customer. */
 "Select the area and input the address of the customer." = "Select the area and input the address of the customer.";
@@ -613,6 +643,9 @@
 /* SR Center */
 "SR Center" = "SR Center";
 
+/* SR Feedback */
+"SR Feedback" = "SR Feedback";
+
 /* Subject */
 "Subject" = "Subject";
 
@@ -622,11 +655,20 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "Sum $%.2f     Quantity %d";
 
+/* Take Photos */
+"Take Photos" = "Take Photos";
+
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "The identification information is not correct, please use the correct pair.";
 
 /* The response from server is in incorrect format. */
 "The response from server is in incorrect format." = "The response from server is in incorrect format.";
+
+/* There is no available camera! */
+"There is no available camera!" = "There is no available camera!";
+
+/* There is no available photo library! */
+"There is no available photo library!" = "There is no available photo library!";
 
 /* There is no need to update. */
 "There is no need to update." = "There is no need to update.";

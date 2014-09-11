@@ -64,6 +64,9 @@
 /* Add Buyer */
 "Add Buyer" = "添加顧客";
 
+/* Add Photos: */
+"Add Photos:" = "附圖：";
+
 /* Address */
 "Address" = "地址";
 
@@ -126,6 +129,9 @@
 
 /* Cart is empty */
 "Cart is empty" = "購物車空無一物";
+
+/* Checking new SR messages */
+"Checking new SR messages" = "查收新的業務消息";
 
 /* City */
 "City" = "城市";
@@ -218,7 +224,7 @@
 "EN" = "CN";
 
 /* en */
-"en" = "zh";
+"en" = "cn";
 
 /* Error */
 "Error" = "錯誤";
@@ -235,8 +241,8 @@
 /* Failed */
 "Failed" = "失敗";
 
-/* Failed due to some issue in server, please try to search the mobile or register again later. */
-"Failed due to some issue in server, please try to search the mobile or register again later." = "由於服務器原因用戶註冊不順利，請稍後嘗試搜索或重新註冊。";
+/* Failed due to some issue in server, BabyNes POS is to store customer info offline. */
+"Failed due to some issue in server, BabyNes POS is to store customer info offline." = "由於服務器原因用戶註冊不順利，將離線暫存用戶信息。";
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "身份驗證失敗。";
@@ -247,14 +253,26 @@
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "解析商品數據失敗！";
 
+/* Failed to get SR message. (reason: %@) */
+"Failed to get SR message. (reason: %@)" = "獲取SR消息失敗。（原因：%@）";
+
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "加載產品詳情失敗。";
+
+/* Failed to post feedback. */
+"Failed to post feedback." = "反饋發送失敗。";
+
+/* Failed to post sr feedback. */
+"Failed to post sr feedback." = "反饋發送失敗。";
 
 /* Failed to update */
 "Failed to update" = "更新失敗";
 
 /* Feedback */
 "Feedback" = "用戶反饋";
+
+/* feedback_en */
+"feedback_en" = "feedback_cn";
 
 /* Fill in the Contact1 */
 "Fill in the Contact1" = "填寫聯系信息";
@@ -300,6 +318,9 @@
 
 /* Introduce */
 "Introduce" = "產品介紹";
+
+/* Issue Description: */
+"Issue Description:" = "問題描述：";
 
 /* Last Updated: %@ */
 "Last Updated: %@" = "最近更新：%@";
@@ -517,6 +538,9 @@
 /* Reminder */
 "Reminder" = "提醒";
 
+/* Remove Selected Photos */
+"Remove Selected Photos" = "移除選中的照片";
+
 /* Retry */
 "Retry" = "重試";
 
@@ -525,6 +549,9 @@
 
 /* RMA */
 "RMA" = "退貨";
+
+/* RMA Feedback */
+"RMA Feedback" = "問題反饋";
 
 /* RMA: Sum $%.2f Quantity %d */
 "RMA: Sum $%.2f Quantity %d" = "退回： 總計：￥%.2f 數量：%d";
@@ -552,6 +579,9 @@
 
 /* Search */
 "Search" = "搜索";
+
+/* Select Images */
+"Select Images" = "選擇圖片";
 
 /* Select the area and input the address of the customer. */
 "Select the area and input the address of the customer." = "請填寫顧客的所在地區和住所。";
@@ -613,6 +643,9 @@
 /* SR Center */
 "SR Center" = "消息中心";
 
+/* SR Feedback */
+"SR Feedback" = "業務消息閱讀報告";
+
 /* Subject */
 "Subject" = "消息主題";
 
@@ -622,11 +655,20 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "總計：￥%.2f       數量：%d";
 
+/* Take Photos */
+"Take Photos" = "拍攝照片";
+
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "認證信息錯誤，請重新輸入。";
 
 /* The response from server is in incorrect format. */
 "The response from server is in incorrect format." = "服務器返回格式不正確";
+
+/* There is no available camera! */
+"There is no available camera!" = "沒有可用的攝像頭";
+
+/* There is no available photo library! */
+"There is no available photo library!" = "沒有可用的相冊";
 
 /* There is no need to update. */
 "There is no need to update." = "無需更新";

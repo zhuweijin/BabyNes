@@ -230,7 +230,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_RMA_feedback_button addTarget:self action:@selector(rma_feedback:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_RMA_feedback_button];
 #warning TODO
-    //[self.the_RMA_feedback_button setHidden:YES];
+    [self.the_RMA_feedback_button setHidden:YES];
     
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
     [self.cartTableView setDelegate:self.cartTableView];
@@ -500,10 +500,12 @@ static CGFloat reloadHeaderHeight=30;
              ];
             [self.the_customer_new_button setHidden:YES];
             [self.the_order_confirm_button setHidden:NO];
+            [self.the_RMA_feedback_button setHidden:NO];
         }else{
             [self.the_customer_search_result setText:NSLocalizedString(@"Not found",  @"没有找到该顾客")];
             [self.the_customer_new_button setHidden:NO];
             [self.the_order_confirm_button setHidden:YES];
+            [self.the_RMA_feedback_button setHidden:YES];
         }
     }else{
         //offline
@@ -519,6 +521,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_search_result setText:NSLocalizedString(@"Offline now, please record the information of customer.",  @"目前离线，请登记顾客信息。")];
     [self.the_customer_new_button setHidden:NO];
     [self.the_order_confirm_button setHidden:YES];
+    [self.the_RMA_feedback_button setHidden:YES];
 }
 -(void)seek_customer:(id)sender{
     _Log(@"seek_customer called");
@@ -569,15 +572,15 @@ static CGFloat reloadHeaderHeight=30;
         if([LSDeviceInfo isNetworkOn] && cid && ![cid isEqualToString:@""] ){
             //Online
             [MobClick event:@"SubmitOrder" acc:1];
-            NSString * result=[order create];
+            NSString * returnMsg=NSLocalizedString(@"Uncertained Exception", @"未知的异常");
+            NSString * result=[order createWithReturnMsg:&returnMsg];
             if(result){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
                 [alertView show];
                 [self resetShopView];
                 NSLog(@"订单确认成功 收到了Magento的结果：%@",result);
             }else{
-                
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has failed to be confirmed.", @"您的订单【%@】递交失败。"),result] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat:NSLocalizedString(@"Your order has failed to be confirmed. Reason:%@", @"您的订单递交失败。原因：%@"),returnMsg] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
                 [alertView show];
                 
                 NSLog(@"订单确认失败 收到了Magento的结果：%@",result);
@@ -607,6 +610,12 @@ static CGFloat reloadHeaderHeight=30;
 }
 -(void)order_confirm:(id)sender{
     _Log(@"order_confirm called");
+    
+    //check product number
+    if([[[CartEntity getDefaultCartEntity]cart_array]count]==0){
+        UIUtil::ShowAlert(NSLocalizedString(@"Please book products before confirming your order.", @"请选择商品。"));
+    }
+    
     searchCustomerAI=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [searchCustomerAI setCenter:(CGPointMake(940, 540))];
     [self.view addSubview:searchCustomerAI];
@@ -616,9 +625,10 @@ static CGFloat reloadHeaderHeight=30;
 
 -(void)rma_feedback:(id)sender{
 #warning TODO
-    RMAFeedbackViewController * rmaVC=[[RMAFeedbackViewController alloc]init];
+    //RMAFeedbackViewController * rmaVC=[[RMAFeedbackViewController alloc]init];
+    RMAFeedbackHTMLViewController * rmaVC=[[RMAFeedbackHTMLViewController alloc]init];
     if(NO){
-        [rmaVC setModalPresentationStyle:(UIModalPresentationFormSheet)];
+        [rmaVC setModalPresentationStyle:(UIModalPresentationCurrentContext)];
         [rmaVC setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
         [self presentViewController:rmaVC animated:YES completion:^{
             _Log(@"RMA_VC presented");
@@ -874,6 +884,7 @@ static CGFloat reloadHeaderHeight=30;
       ]];
     [self.the_customer_new_button setHidden:YES];
     [self.the_order_confirm_button setHidden:NO];
+    [self.the_RMA_feedback_button setHidden:NO];
 }
 
 -(void)resetShopView{
@@ -883,6 +894,7 @@ static CGFloat reloadHeaderHeight=30;
     [self.the_customer_mobile_textfield setText:@""];
     [self.the_customer_new_button setHidden:YES];
     [self.the_order_confirm_button setHidden:YES];
+    [self.the_RMA_feedback_button setHidden:YES];
 }
 
 #pragma UIViewScrollerDelegate

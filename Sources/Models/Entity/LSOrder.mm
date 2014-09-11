@@ -62,11 +62,16 @@ static LSOrder * currentOrder=nil;
     }
     return self;
 }
-
 -(NSString*)create{
     return [self createIsAtBack:NO];
 }
+-(NSString*)createWithReturnMsg:(NSString**)returnMsg{
+    return [self createIsAtBack:YES returnMsg:returnMsg];
+}
 -(NSString*)createIsAtBack:(BOOL)isBack{
+    return [self createIsAtBack:isBack returnMsg:nil];
+}
+-(NSString*)createIsAtBack:(BOOL)isBack returnMsg:(NSString**)returnMsg{
     NSString * OrderID=nil;
     NSString*json=nil;
     json=[self toJson];
@@ -116,6 +121,7 @@ static LSOrder * currentOrder=nil;
                     NSLog(@"MAIN->order created %@",OrderID);
                 }else{
                     NSLog(@"MAIN->order(back=%d) created not : %@",isBack,newCustomerDict[@"msg"]);
+                    *returnMsg=[NSString stringWithString: newCustomerDict[@"msg"]];
                     if(!isBack){
                         [[[UIAlertView alloc]initWithTitle:@"FAILED" message:newCustomerDict[@"msg"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
                     }

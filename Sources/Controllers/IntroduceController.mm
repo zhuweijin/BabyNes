@@ -103,7 +103,7 @@ static int MonoNumberInRow=3;
     [contentView addSubview:catePane];
 	
 	NSInteger i = 0;
-	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/4);
+	CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 1 * 3)/[dict[@"category"] count]);
     //CGRect frame = CGRectMake(0, 0, 370, (catePane.frame.size.height - 0.5 * 3)/4);
 	for (NSDictionary *cate in dict[@"category"])
 	{

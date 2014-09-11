@@ -115,6 +115,10 @@ static int max_sr_count=100;
         [srm setRead:YES];
         //[[NSUserDefaults standardUserDefaults]synchronize];
     }
+    NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    [LocalSRMessageTool saveLocalSRAll];
 }
 
 +(void)setSRArraytoHaveRead:(NSArray*)srids{
@@ -124,6 +128,35 @@ static int max_sr_count=100;
         SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:[num intValue]]];
         if(srm){
             [srm setRead:YES];
+            //[[NSUserDefaults standardUserDefaults]synchronize];
+        }
+    }
+    NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    [LocalSRMessageTool saveLocalSRAll];
+}
+
++(void)setSRtoHaveReported:(int)srid{
+    NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
+    SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:srid]];
+    if(srm){
+        [srm setReported:YES];
+        //[[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    NSDictionary * mineReadonly=[[NSDictionary alloc]initWithDictionary:mine];
+    local_sr_all=[LocalSRMessageTool getLocalSRDict_all];
+    [local_sr_all setObject:mineReadonly forKey:[DataLoader accessToken]];
+    [LocalSRMessageTool saveLocalSRAll];
+}
+
++(void)setSRArraytoHaveReported:(NSArray*)srids{
+    _Log(@"LocalSRMessageTool setSRArraytoHaveRead:%@",srids);
+    NSMutableDictionary * mine=[LocalSRMessageTool getLocalSRDict_mine];
+    for (NSNumber * num in srids) {
+        SRMessage* srm=[mine objectForKey:[NSNumber numberWithInt:[num intValue]]];
+        if(srm){
+            [srm setReported:YES];
             //[[NSUserDefaults standardUserDefaults]synchronize];
         }
     }
@@ -198,6 +231,11 @@ static int max_sr_count=100;
     //_Log(@"LocalSRMessageTool LocalSRMessageDictionaryMergedWithArray local all=%@",local_sr_all);
     [LocalSRMessageTool saveLocalSRAll];
     _Log(@"LocalSRMessage killTails done");
+}
+
++(SRMessage*)getMessageWithSRID:(NSInteger)srid{
+    SRMessage * msg=[[LocalSRMessageTool getLocalSRDict_mine] objectForKey:[NSNumber numberWithInt:srid]];
+    return msg;
 }
 
 @end

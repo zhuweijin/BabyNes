@@ -102,7 +102,7 @@
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
      */
 #warning Kill after done
-    [DataLoader setAccessToken:@"NiseMono"];
+    //[DataLoader setAccessToken:@"NiseMono"];
     
     if(DataLoader.accessToken){
         if([LSDeviceInfo currentNetworkType]!=NotReachable){

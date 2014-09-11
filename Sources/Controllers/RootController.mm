@@ -7,6 +7,8 @@
 #import "SRReceiptSender.h"
 #import "PushHandler.h"
 
+#import "SRFeedbackHTMLViewController.h"
+
 @implementation RootController
 
 #pragma mark Generic methods
@@ -234,19 +236,19 @@
         [nc.view.superview setBackgroundColor:[UIColor clearColor]];
     }];
     /*
-    // iOS6まではこれでよかった。
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        nc.view.superview.frame = CGRectMake(0, 0, 810, 610);
-        nc.view.superview.center = CGPointMake(384, 512);
-    }else{ //iOS7ではview.supserViewではなくviewに対して指定する。
-        CGRect superViewFrame = nc.view.superview.frame;
-        nc.view.frame = CGRectMake(0, 0, 810, 610);
-        nc.view.center  = CGPointMake(superViewFrame.size.width/2, superViewFrame.size.height/2);
-        //nc.view.center  = CGPointMake(0,0);
-        nc.view.superview.backgroundColor = [UIColor clearColor];
-        nc.view.superview.bounds = CGRectMake(0, 0, 810, 610);
-    }
-    */
+     // iOS6まではこれでよかった。
+     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+     nc.view.superview.frame = CGRectMake(0, 0, 810, 610);
+     nc.view.superview.center = CGPointMake(384, 512);
+     }else{ //iOS7ではview.supserViewではなくviewに対して指定する。
+     CGRect superViewFrame = nc.view.superview.frame;
+     nc.view.frame = CGRectMake(0, 0, 810, 610);
+     nc.view.center  = CGPointMake(superViewFrame.size.width/2, superViewFrame.size.height/2);
+     //nc.view.center  = CGPointMake(0,0);
+     nc.view.superview.backgroundColor = [UIColor clearColor];
+     nc.view.superview.bounds = CGRectMake(0, 0, 810, 610);
+     }
+     */
     
     CGRect frame=nc.view.frame;
     //_Log(@"PAGE WIDTH=%f",frame.size.width);//768//540
@@ -298,23 +300,56 @@
 -(void)showSRurl:(NSNotification*)notification{
     SRMessage* srm=notification.object;
     _Log(@"MessageController showSRurl : %@",[srm logAbstract]);
-    WebController * controller=[[WebController alloc]initWithUrl:[srm url]];
+    
+    //WebController *
+    sr_controller=[[WebController alloc]initWithHTML:@""];
+    //WebController * sr_controller=[[WebController alloc]initWithUrl:[srm url]];
+    
+    UIBarButtonItem * sr_feedback_btn=[[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"SR Feedback", @"已读报告") style:(UIBarButtonItemStylePlain) target:self action:@selector(onSRFeedbackBtn:)];
+    [sr_feedback_btn setTag:-[srm srid]];
+    sr_controller.navigationItem.rightBarButtonItem=sr_feedback_btn;
     
     [MobClick event:@"OpenMessage" acc:1];
     
-    controller.navigationItem.title = [srm title];
-    [self.navigationController pushViewController:controller animated:YES];
+    sr_controller.navigationItem.title = [srm title];
+    [self.navigationController pushViewController:sr_controller animated:YES];
     
     if(![srm read]){
         [SRReceiptSender report_have_read:[srm srid]];
         _Log(@"已读！ srm=%d",srm.srid);
     }
     
-    /*
-     [self presentViewController:controller animated:YES completion:^{
-     _Log(@"showSRurl over");
-     }];
-     */
+    [self performSelector:@selector(load_SR_HTML:) withObject:srm afterDelay:0.1];
+}
+
+-(void)load_SR_HTML:(SRMessage *)srm{
+    if(sr_controller){
+        NSError * error=nil;
+        NSString*html=[NSString stringWithContentsOfURL:[NSURL URLWithString:[srm url]] encoding:NSUTF8StringEncoding error:&error];
+        NSLog(@"download sr[%d] tpl:%@",[srm srid],[srm url]);
+        if(html){
+            html = [html stringByReplacingOccurrencesOfString:@"nekot_ssecca" withString:[DataLoader accessToken]];
+            html = [html stringByReplacingOccurrencesOfString:@"egaugnal" withString:NSLocalizedString(@"en", @"cn")];
+            [sr_controller setHTML:html];
+        }else {
+            UIUtil::ShowAlert([NSString stringWithFormat:NSLocalizedString(@"Failed to get SR message. (reason: %@)", @"获取SR消息失败。（原因：%@）"),error]);
+        }
+    }
+}
+
+-(void)onSRFeedbackBtn:(id)sender{
+    NSInteger srid=-[sender tag];
+    
+    SRMessage * srm=[LocalSRMessageTool getMessageWithSRID:srid];
+    
+    if(![srm reported]){
+        [SRReceiptSender report_have_reported:[srm srid]];
+        _Log(@"已读！ srm=%d",srm.srid);
+    }
+    
+    SRFeedbackHTMLViewController * vc=[[SRFeedbackHTMLViewController alloc]initWithSRID:srid];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 -(void)onCacheKilled:(NSNotification*)notification{
@@ -335,19 +370,19 @@
         [self.presentingViewController performSelector:@selector(receiveVerisonUpdatePush) withObject:nil];
     }
     /*
-    @try {
-        [_shopVC receiveVerisonUpdatePush];
-        [_intrVC receiveVerisonUpdatePush];
-        [_mateVC receiveVerisonUpdatePush];
-        [_srVC receiveVerisonUpdatePush];
-    }
-    @catch (NSException *exception) {
-        _Log(@"root ReceiveForceUpdateVersionPush exception:%@",exception);
-    }
-    @finally {
-        //
-    }
-    */
+     @try {
+     [_shopVC receiveVerisonUpdatePush];
+     [_intrVC receiveVerisonUpdatePush];
+     [_mateVC receiveVerisonUpdatePush];
+     [_srVC receiveVerisonUpdatePush];
+     }
+     @catch (NSException *exception) {
+     _Log(@"root ReceiveForceUpdateVersionPush exception:%@",exception);
+     }
+     @finally {
+     //
+     }
+     */
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -357,14 +392,14 @@
 
 -(void)onNewsShow:(NSString*)alert{
     /*
-    UIButton * newsBtn=[[UIButton alloc]init];
-    [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
-    [newsBtn setFrame:CGRectMake(0, -20, 1024, 20)];
-    [newsBtn addTarget:self action:@selector(onNewsButton:) forControlEvents:(UIControlEventTouchDown)];
-    newsBtn.titleLabel.adjustsFontSizeToFitWidth=YES;
+     UIButton * newsBtn=[[UIButton alloc]init];
+     [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+     [newsBtn setFrame:CGRectMake(0, -20, 1024, 20)];
+     [newsBtn addTarget:self action:@selector(onNewsButton:) forControlEvents:(UIControlEventTouchDown)];
+     newsBtn.titleLabel.adjustsFontSizeToFitWidth=YES;
      */
     [newsBtn setTitle:alert forState:(UIControlStateNormal)];
-
+    
     [self.view addSubview:newsBtn];
     [UIView animateWithDuration:1 animations:^{
         //[[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
@@ -374,27 +409,27 @@
             [self prefersStatusBarHidden];
             [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
         }
-       [newsBtn setFrame:CGRectMake(0, 0, 1024, 20)];
+        [newsBtn setFrame:CGRectMake(0, 0, 1024, 20)];
     } completion:^(BOOL finished) {
         [self performSelector:@selector(onNewsHide) withObject:nil afterDelay:3];
         /*
-        [UIView animateWithDuration:3 animations:^{
-            //[newsBtn setFrame:CGRectMake(0, 0, 1024, 70)];
-            [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:1 animations:^{
-                [newsBtn setFrame:CGRectMake(0, -20, 1024, 20)];
-            } completion:^(BOOL finished) {
-                //[newsBtn removeFromSuperview];
-                //[[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-                isNeedHideStatusBar=NO;
-                if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-                    // iOS 7
-                    [self prefersStatusBarHidden];
-                    [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-                }
-            }];
-        }];
+         [UIView animateWithDuration:3 animations:^{
+         //[newsBtn setFrame:CGRectMake(0, 0, 1024, 70)];
+         [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]];
+         } completion:^(BOOL finished) {
+         [UIView animateWithDuration:1 animations:^{
+         [newsBtn setFrame:CGRectMake(0, -20, 1024, 20)];
+         } completion:^(BOOL finished) {
+         //[newsBtn removeFromSuperview];
+         //[[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+         isNeedHideStatusBar=NO;
+         if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+         // iOS 7
+         [self prefersStatusBarHidden];
+         [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+         }
+         }];
+         }];
          */
     }];
 }
@@ -429,19 +464,19 @@
         [self onNewsShow:[NSString stringWithFormat:NSLocalizedString(@"A new SR message released: %@!", @"新的业务消息已发布：%@"),title]];
         /*
          //方案2，POPOVER
-        UIViewController * vc=[[UIViewController alloc]init];
-        [vc.view setFrame:(CGRectMake(0, 0, 310, 30))];
-        UIButton * newsBtn=[[UIButton alloc]init];
-        [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
-        [newsBtn setFrame:CGRectMake(5, 5, 300, 20)];
-        [newsBtn setTitle:title forState:(UIControlStateNormal)];
-        [[newsBtn titleLabel] setAdjustsFontSizeToFitWidth:YES];
-        [newsBtn addTarget:self action:@selector(onNewsButton:) forControlEvents:(UIControlEventTouchUpInside)];
-        [vc.view addSubview:newsBtn];
-        UIPopoverController * popVC= [[UIPopoverController alloc]initWithContentViewController:vc];
-        [popVC setPopoverContentSize:(CGSizeMake(310, 30))];
-        [popVC presentPopoverFromRect:(CGRectMake(638, 0, 126, 44)) inView:self.view permittedArrowDirections:(UIPopoverArrowDirectionDown) animated:YES];
-        */
+         UIViewController * vc=[[UIViewController alloc]init];
+         [vc.view setFrame:(CGRectMake(0, 0, 310, 30))];
+         UIButton * newsBtn=[[UIButton alloc]init];
+         [newsBtn setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+         [newsBtn setFrame:CGRectMake(5, 5, 300, 20)];
+         [newsBtn setTitle:title forState:(UIControlStateNormal)];
+         [[newsBtn titleLabel] setAdjustsFontSizeToFitWidth:YES];
+         [newsBtn addTarget:self action:@selector(onNewsButton:) forControlEvents:(UIControlEventTouchUpInside)];
+         [vc.view addSubview:newsBtn];
+         UIPopoverController * popVC= [[UIPopoverController alloc]initWithContentViewController:vc];
+         [popVC setPopoverContentSize:(CGSizeMake(310, 30))];
+         [popVC presentPopoverFromRect:(CGRectMake(638, 0, 126, 44)) inView:self.view permittedArrowDirections:(UIPopoverArrowDirectionDown) animated:YES];
+         */
     }
     @catch (NSException *exception) {
         NSLog(@"RootVC onNewSRNews : %@",notification);

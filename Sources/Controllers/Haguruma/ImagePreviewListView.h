@@ -22,6 +22,7 @@
 -(NSArray*)getImageArray;
 -(void)appendImage:(UIImage*)image;
 -(void)removeImageAt:(NSInteger)index;
+-(void)removeSelectedImages;
 @end
 /*
 @interface LSPreviewImageCell : UIImageView

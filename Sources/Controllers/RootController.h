@@ -17,6 +17,7 @@
 {
     UIButton * newsBtn;
     BOOL isNeedHideStatusBar;
+    WebController * sr_controller;
 }
 
 @property LSShopViewController * shopVC;

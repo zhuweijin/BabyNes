@@ -22,6 +22,7 @@
 -(NSString*)getURL_device_register;
 -(NSString*)getURL_device_report;
 -(NSString*)getURL_idle_video;
+-(NSString*)getURL_sr_feedback;
 -(NSString*)getURL_sr_receipt;
 -(NSString*)getURL_version_check;
 
@@ -29,5 +30,7 @@
 
 -(NSString*)getURL_create_order;
 -(NSString*)getURL_customer_signature;
+
+-(NSString*)getURL_rma_feedback;
 
 @end

@@ -64,6 +64,9 @@
 /* Add Buyer */
 "Add Buyer" = "添加顾客";
 
+/* Add Photos: */
+"Add Photos:" = "附图：";
+
 /* Address */
 "Address" = "地址";
 
@@ -126,6 +129,9 @@
 
 /* Cart is empty */
 "Cart is empty" = "购物车空无一物";
+
+/* Checking new SR messages */
+"Checking new SR messages" = "查收新的业务消息";
 
 /* City */
 "City" = "城市";
@@ -218,7 +224,7 @@
 "EN" = "CN";
 
 /* en */
-"en" = "zh";
+"en" = "cn";
 
 /* Error */
 "Error" = "错误";
@@ -235,8 +241,8 @@
 /* Failed */
 "Failed" = "失败";
 
-/* Failed due to some issue in server, please try to search the mobile or register again later. */
-"Failed due to some issue in server, please try to search the mobile or register again later." = "由于服务器原因用户注册不顺利，请稍后尝试搜索或重新注册。";
+/* Failed due to some issue in server, BabyNes POS is to store customer info offline. */
+"Failed due to some issue in server, BabyNes POS is to store customer info offline." = "由于服务器原因用户注册不顺利，将离线暂存用户信息。";
 
 /* Failed in examine the identification. */
 "Failed in examine the identification." = "身份验证失败。";
@@ -247,14 +253,26 @@
 /* Failed to decode the data of products. */
 "Failed to decode the data of products." = "解析商品数据失败！";
 
+/* Failed to get SR message. (reason: %@) */
+"Failed to get SR message. (reason: %@)" = "获取SR消息失败。（原因：%@）";
+
 /* Failed to load the details of the product. */
 "Failed to load the details of the product." = "加载产品详情失败。";
+
+/* Failed to post feedback. */
+"Failed to post feedback." = "反馈发送失败。";
+
+/* Failed to post sr feedback. */
+"Failed to post sr feedback." = "反馈发送失败。";
 
 /* Failed to update */
 "Failed to update" = "更新失败";
 
 /* Feedback */
 "Feedback" = "用户反馈";
+
+/* feedback_en */
+"feedback_en" = "feedback_cn";
 
 /* Fill in the Contact1 */
 "Fill in the Contact1" = "填写联系信息";
@@ -300,6 +318,9 @@
 
 /* Introduce */
 "Introduce" = "产品介绍";
+
+/* Issue Description: */
+"Issue Description:" = "问题描述：";
 
 /* Last Updated: %@ */
 "Last Updated: %@" = "最近更新：%@";
@@ -517,6 +538,9 @@
 /* Reminder */
 "Reminder" = "提醒";
 
+/* Remove Selected Photos */
+"Remove Selected Photos" = "移除选中的照片";
+
 /* Retry */
 "Retry" = "重试";
 
@@ -525,6 +549,9 @@
 
 /* RMA */
 "RMA" = "退货";
+
+/* RMA Feedback */
+"RMA Feedback" = "问题反馈";
 
 /* RMA: Sum $%.2f Quantity %d */
 "RMA: Sum $%.2f Quantity %d" = "退回： 总计：￥%.2f 数量：%d";
@@ -552,6 +579,9 @@
 
 /* Search */
 "Search" = "搜索";
+
+/* Select Images */
+"Select Images" = "选择图片";
 
 /* Select the area and input the address of the customer. */
 "Select the area and input the address of the customer." = "请填写顾客的所在地区和住所。";
@@ -613,6 +643,9 @@
 /* SR Center */
 "SR Center" = "消息中心";
 
+/* SR Feedback */
+"SR Feedback" = "业务消息阅读报告";
+
 /* Subject */
 "Subject" = "消息主题";
 
@@ -622,11 +655,20 @@
 /* Sum $%.2f     Quantity %d */
 "Sum $%.2f     Quantity %d" = "总计：￥%.2f       数量：%d";
 
+/* Take Photos */
+"Take Photos" = "拍摄照片";
+
 /* The identification information is not correct, please use the correct pair. */
 "The identification information is not correct, please use the correct pair." = "认证信息错误，请重新输入。";
 
 /* The response from server is in incorrect format. */
 "The response from server is in incorrect format." = "服务器返回格式不正确";
+
+/* There is no available camera! */
+"There is no available camera!" = "没有可用的摄像头";
+
+/* There is no available photo library! */
+"There is no available photo library!" = "没有可用的相册";
 
 /* There is no need to update. */
 "There is no need to update." = "无需更新";

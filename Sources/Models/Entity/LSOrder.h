@@ -32,6 +32,7 @@
 +(void)updateCurrentOrderWithCart:(CartEntity*)cart forCustomer:(LSCustomer*)customer;
 
 -(NSString*)create;
+-(NSString*)createWithReturnMsg:(NSString**)returnMsg;
 -(NSString*)createIsAtBack:(BOOL)isBack;
 
 -(NSString*)toJson;

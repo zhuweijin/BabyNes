@@ -24,10 +24,12 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
            @"device_register":@"device_details.php",
            @"device_report":@"device_status.php",
            @"sr_receipt":@"SRReceipt.php",
+           @"sr_feedback":@"SRFeedback.php",
            @"idle_video":@"PR/babynes.mp4",//@"video/video-4.mp4"
            @"version_check":@"check_version.php",
            @"create_order":@"create_order.php",
            @"customer_signature":@"customer_signature.php",
+           @"rma_feedback":@"after_sale_feedback.php",
            };
     return self;
 }
@@ -71,6 +73,10 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
     return [self findURL:@"sr_receipt"];
 }
 
+-(NSString*)getURL_sr_feedback{
+    return [self findURL:@"sr_feedback"];
+}
+
 -(NSString*)getURL_version_check{
     return [self findURL:@"version_check"];
 }
@@ -80,4 +86,8 @@ ServerConfig * defaultServerConfig=nil;//[[ServerConfig alloc]init];
 -(NSString*)getURL_customer_signature{
     return [self findURL:@"customer_signature"];
 }
+-(NSString*)getURL_rma_feedback{
+    return [self findURL:@"rma_feedback"];
+}
+
 @end
