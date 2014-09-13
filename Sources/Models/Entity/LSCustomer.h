@@ -29,6 +29,7 @@
 @property NSString * theSign;
 
 -(void)addOneBaby:(LSBaby *)baby;
+-(void)removeBabyAt:(int)babyNo;
 +(LSCustomer*) getCurrentCustomer;
 +(void)setCurrentCustomer:(LSCustomer*)cutomer;
 +(LSCustomer*) newCustomer;

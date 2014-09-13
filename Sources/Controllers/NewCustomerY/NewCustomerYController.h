@@ -15,6 +15,8 @@
 #import "LSSigner.h"
 #import "UISignController.h"
 
+#define SECTION_REMOVE_BABY_GATE 7632
+
 @interface NewCustomerYController : DataController//UIViewController
 <UITableViewDataSource,UITableViewDelegate,LSMixTableCellDelegate>
 {

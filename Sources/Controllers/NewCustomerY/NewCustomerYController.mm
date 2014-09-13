@@ -344,13 +344,39 @@
         tableViewHeaderFooterView.textLabel.font=[UIFont systemFontOfSize:25];
     }
 }
-
+/*
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section==0){
         return  NSLocalizedString(@"Customer Information", @"顾客信息");
     }else{
         return  NSLocalizedString(@"Baby Information", @"宝宝信息");
     }
+}
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView * view=[[UIView alloc]initWithFrame:(CGRectMake(0, 10, tableView.frame.size.width, 30) )];
+    
+    UILabel * label=[[UILabel alloc]initWithFrame:(CGRectMake(10, 0, 200, 30))];
+    [label setFont:([UIFont systemFontOfSize:25])];
+    if(section==0){
+        [label setText:  NSLocalizedString(@"Customer Information", @"顾客信息")];
+    }else{
+        [label setText:  NSLocalizedString(@"Baby Information", @"宝宝信息")];
+        if(section>1){
+            UIButton * removeBabyBtn=[UIButton minorButtonWithTitle:NSLocalizedString(@"Remove", @"移除")];
+            [removeBabyBtn setFrame:(CGRectMake(420,0 ,100, 30))];
+            [removeBabyBtn addTarget:self action:@selector(onRemoveBaby:) forControlEvents:(UIControlEventTouchUpInside)];
+            [removeBabyBtn setTag:(SECTION_REMOVE_BABY_GATE+section)];
+            [view addSubview:removeBabyBtn];
+        }
+
+    }
+    [view addSubview:label];
+    
+    return view;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -692,6 +718,18 @@
  
  }
  */
+
+-(void)onRemoveBaby:(id)sender{
+    int sec=[sender tag]-SECTION_REMOVE_BABY_GATE;
+    [_NewCustomer removeBabyAt:sec-1];
+    [_showingCellInSection removeObjectAtIndex:sec-1];
+    [[self rowNumberArray] removeObjectAtIndex:sec];
+    [self.mixTable beginUpdates];
+    [self.mixTable deleteSections:([[NSIndexSet alloc]initWithIndex:sec]) withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    [self.mixTable endUpdates];
+    [self.mixTable reloadData];
+    
+}
 
 -(void)addBaby:(id)sender{
     _Log(@"addBaby called");
