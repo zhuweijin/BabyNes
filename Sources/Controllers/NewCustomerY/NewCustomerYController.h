@@ -29,13 +29,13 @@
     
     LSSigner * signer;
     
-    
+    //NSString * searchedMobile;
     
 }
 
 @property (readonly) UIView * honbuView;
 
-@property LSCustomer * NewCustomer;
+@property (atomic) LSCustomer * NewCustomer;
 
 @property UILabel * theTitleLabel;
 //@property UIView * theTopLineView;
@@ -49,5 +49,6 @@
 @property int focusingCellTag;
 
 //-(void)focusToCell:(int)cellTag;
+-(id)initWithSearchedMobile:(NSString*)sm;
 
 @end

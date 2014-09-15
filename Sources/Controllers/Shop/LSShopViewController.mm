@@ -229,7 +229,6 @@ static CGFloat reloadHeaderHeight=30;
     self.the_RMA_feedback_button.frame=CGRectMake(600, 600, 150, 30);
     [self.the_RMA_feedback_button addTarget:self action:@selector(rma_feedback:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_RMA_feedback_button];
-#warning TODO
     [self.the_RMA_feedback_button setHidden:YES];
     
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
@@ -546,7 +545,7 @@ static CGFloat reloadHeaderHeight=30;
     _Log(@"show_new_customer_VC called");
     //NewCustomerController * nc=[[NewCustomerController alloc]init];
     //NewCustomerXController * nc=[[NewCustomerXController alloc]init];
-    NewCustomerYController * nc=[[NewCustomerYController alloc]init];
+    NewCustomerYController * nc=[[NewCustomerYController alloc]initWithSearchedMobile:[_the_customer_mobile_textfield text]];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];

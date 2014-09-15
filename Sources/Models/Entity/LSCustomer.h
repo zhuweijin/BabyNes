@@ -22,7 +22,7 @@
 @property NSString * theRegionCode;
 @property NSString * theAreaCode;
 @property NSString * thePhone;
-@property NSString * theMobile;
+@property (atomic) NSString * theMobile;
 @property NSString * theEmail;
 @property NSMutableArray * theBabies;
 

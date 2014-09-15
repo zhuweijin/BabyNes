@@ -150,7 +150,7 @@
 //
 - (void)loadEnded:(DataLoader *)loader
 {
-	_Log(@"load Ended with Dict [%@]", loader.dict);
+	//_Log(@"load Ended with Dict [%@]", loader.dict);
     _Log(@"DataController loadEnded Error=%d:%@",loader.error,loader.errorString);
 	if (loader.error == DataLoaderNoError)
 	{
