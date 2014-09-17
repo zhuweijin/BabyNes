@@ -40,7 +40,7 @@
 
 - (void)loadEnded:(DataLoader *)loader
 {
-	_Log(@"load Ended with Dict [%@]", loader.dict);
+	//_Log(@"load Ended with Dict [%@]", loader.dict);
 	if (loader.error == DataLoaderNoError)
 	{
 		[self loadProduct:loader.dict];

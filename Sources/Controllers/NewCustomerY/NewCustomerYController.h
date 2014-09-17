@@ -15,6 +15,8 @@
 #import "LSSigner.h"
 #import "UISignController.h"
 
+#define SECTION_REMOVE_BABY_GATE 7632
+
 @interface NewCustomerYController : DataController//UIViewController
 <UITableViewDataSource,UITableViewDelegate,LSMixTableCellDelegate>
 {
@@ -27,13 +29,13 @@
     
     LSSigner * signer;
     
-    
+    //NSString * searchedMobile;
     
 }
 
 @property (readonly) UIView * honbuView;
 
-@property LSCustomer * NewCustomer;
+@property (atomic) LSCustomer * NewCustomer;
 
 @property UILabel * theTitleLabel;
 //@property UIView * theTopLineView;
@@ -47,5 +49,6 @@
 @property int focusingCellTag;
 
 //-(void)focusToCell:(int)cellTag;
+-(id)initWithSearchedMobile:(NSString*)sm;
 
 @end

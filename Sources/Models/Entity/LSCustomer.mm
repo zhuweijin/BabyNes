@@ -20,6 +20,11 @@ static LSCustomer * currentCustomer=nil;
     }
     [self.theBabies addObject:baby];
 }
+-(void)removeBabyAt:(int)babyNo{
+    if(self.theBabies && self.theBabies.count>babyNo){
+        [self.theBabies removeObjectAtIndex:babyNo];
+    }
+}
 
 +(LSCustomer*) getCurrentCustomer{
     if(currentCustomer==nil){
@@ -114,19 +119,21 @@ static LSCustomer * currentCustomer=nil;
         if(!isSlient)UIUtil::ShowAlert(NSLocalizedString(@"Mobile is empty", @"手机号未填写"));
         return NO;
     }else{
-        /*
+        
          NSString *string = self.theMobile;
          NSError  *error  = nil;
          
-         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^[569][\\d]{7}$", @"^1[\\d]{10}$") options:0 error:&error];
+         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:                                      NSLocalizedString(@"^[569][\\d]{7}$", @"^1[3456789][\\d]{9}$") options:0 error:&error];
          
          NSRange range = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];
          if(range.location==NSNotFound){
          //NSString *result = [string substringWithRange:range];
-         UIUtil::ShowAlert(NSLocalizedString(@"Mobile is not correct", @"手机号未填写正确"));
+             if(!isSlient){
+                UIUtil::ShowAlert(NSLocalizedString(@"Mobile is not correct", @"手机号未填写正确"));
+             }
          return NO;
          }
-         */
+        
         _LogLine();
     }
     if(![self.theEmail isEqualToString:@""]){

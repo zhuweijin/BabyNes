@@ -22,13 +22,14 @@
 @property NSString * theRegionCode;
 @property NSString * theAreaCode;
 @property NSString * thePhone;
-@property NSString * theMobile;
+@property (atomic) NSString * theMobile;
 @property NSString * theEmail;
 @property NSMutableArray * theBabies;
 
 @property NSString * theSign;
 
 -(void)addOneBaby:(LSBaby *)baby;
+-(void)removeBabyAt:(int)babyNo;
 +(LSCustomer*) getCurrentCustomer;
 +(void)setCurrentCustomer:(LSCustomer*)cutomer;
 +(LSCustomer*) newCustomer;

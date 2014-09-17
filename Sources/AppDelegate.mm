@@ -101,13 +101,11 @@
      UIViewController *controller = DataLoader.accessToken ? [[RootController alloc] init] : [[LoginController alloc] init];
      UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:controller];
      */
-#warning Kill after done
-    //[DataLoader setAccessToken:@"NiseMono"];
     
     if(DataLoader.accessToken){
         if([LSDeviceInfo currentNetworkType]!=NotReachable){
-            //[DataLoader refreshAccessToken];
-            //_LogLine();
+            [DataLoader refreshAccessToken];
+            _Log(@"refreshAccessToken");
         }
         //_LogLine();
         [((SinriUIApplication *)application) setRootController:[[RootController alloc]init]];

@@ -229,7 +229,6 @@ static CGFloat reloadHeaderHeight=30;
     self.the_RMA_feedback_button.frame=CGRectMake(600, 600, 150, 30);
     [self.the_RMA_feedback_button addTarget:self action:@selector(rma_feedback:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:self.the_RMA_feedback_button];
-#warning TODO
     [self.the_RMA_feedback_button setHidden:YES];
     
     self.cartTableView=[[CartTable alloc]initWithFrame:(CGRectMake(570, 85, 450, 300))  style:(UITableViewStylePlain)];//in view directly CGRectMake(570, 75, 450, 300)
@@ -546,7 +545,7 @@ static CGFloat reloadHeaderHeight=30;
     _Log(@"show_new_customer_VC called");
     //NewCustomerController * nc=[[NewCustomerController alloc]init];
     //NewCustomerXController * nc=[[NewCustomerXController alloc]init];
-    NewCustomerYController * nc=[[NewCustomerYController alloc]init];
+    NewCustomerYController * nc=[[NewCustomerYController alloc]initWithSearchedMobile:[_the_customer_mobile_textfield text]];
     //[nc setModalPresentationStyle:(UIModalPresentationPageSheet)];
     [nc setModalPresentationStyle:(UIModalPresentationFormSheet)];
     [nc setModalTransitionStyle:(UIModalTransitionStyleFlipHorizontal)];
@@ -573,16 +572,18 @@ static CGFloat reloadHeaderHeight=30;
             //Online
             [MobClick event:@"SubmitOrder" acc:1];
             NSString * returnMsg=NSLocalizedString(@"Uncertained Exception", @"未知的异常");
-            NSString * result=[order createWithReturnMsg:&returnMsg];
+            NSString * result=[order create];
+            returnMsg = [returnMsg copy];
             if(result){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat: NSLocalizedString(@"Your order [%@] has been confirmed.", @"您的订单【%@】已经确认。"),result] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
                 [alertView show];
                 [self resetShopView];
                 NSLog(@"订单确认成功 收到了Magento的结果：%@",result);
             }else{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat:NSLocalizedString(@"Your order has failed to be confirmed. Reason:%@", @"您的订单递交失败。原因：%@"),returnMsg] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
-                [alertView show];
-                
+                //INTO LSORDER
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Order Confirmed", @"订单确认")  message:[NSString stringWithFormat:NSLocalizedString(@"Your order has failed to be confirmed. Reason:%@", @"您的订单递交失败。原因：%@"),returnMsg] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"好") otherButtonTitles: nil];
+//                [alertView show];
+//                
                 NSLog(@"订单确认失败 收到了Magento的结果：%@",result);
             }
         }else{

@@ -170,6 +170,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
                 textFieldMain=[[UITextField alloc]initWithFrame:CGRectMake(150, 5, 380, 30)];
                 [textFieldMain setPlaceholder:[titleArray_customer objectAtIndex:ronriRow]];
                 //[textFieldMain setBorderStyle:(UITextBorderStyleRoundedRect)];
+                _Log(@"cell json=%@",[[_MTDelegate getTheCustomer]toJson]);
                 [textFieldMain setText:[[_MTDelegate getTheCustomer]theMobile]];
                 [textFieldMain setKeyboardType:(UIKeyboardTypePhonePad)];
                 [self addSubview:textFieldMain];
@@ -315,7 +316,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    _LogLine();
+    _Log(@"cell touchedEnded in %d-%d",baby_id,valueType);
     if (textFieldMain && ![textFieldMain isExclusiveTouch]) {
         _LogLine();
         [textFieldMain resignFirstResponder];
@@ -378,10 +379,20 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
 }
 
 #pragma mark on textField
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    [_MTDelegate killAllExpanseCell];
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if([_MTDelegate isNoPickerOpen]){
+        return YES;
+    }else{
+        [_MTDelegate wannaWriteBabyId:baby_id valueType:valueType isMain:([textField isEqual:textFieldMain])];
+        return YES;
+    }
 }
-
+/*
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    //[_MTDelegate killAllExpanseCell];
+    [textField becomeFirstResponder];
+}
+*/
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
     if (baby_id==-1) {
@@ -428,7 +439,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
     [[_MTDelegate getTheCustomer]setTheTitle:[@[NSLocalizedString(@"Mr", @"先生"),NSLocalizedString(@"Ms", @"女士")] objectAtIndex:[optinalButton getSelectedButton]]];
     [_MTDelegate refresh];
     
-    
+    [_MTDelegate killAllExpanseCell];
 }
 
 -(void)babySexValueChanged:(id)sender{
@@ -447,7 +458,7 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
     [baby setThe_sex:[@[NSLocalizedString(@"Boy", @"男"),NSLocalizedString(@"Girl", @"女")] objectAtIndex:[optinalButton getSelectedButton]]];
     [_MTDelegate refresh];
     
-    
+    [_MTDelegate killAllExpanseCell];
 }
 
 /*
@@ -485,5 +496,20 @@ static NSArray * titleArray_baby=@[NSLocalizedString(@"Nickname", @"昵称"),
     _Log(@"titleValueChanged: %@",singlePicker.level1Value);
     [[_MTDelegate getTheCustomer] setTheTitle:singlePicker.level1Value];
     [_MTDelegate refresh];
+}
+
+-(void)receiveWannaWriteToBabyId:(NSInteger)babyId valueType:(NSInteger)vt isMain:(BOOL)isMain{
+    if(babyId==baby_id && vt==valueType){
+        _Log(@"Sinri 0915 receiveWannaWrite:%d",isMain);
+        if(isMain){
+            if(textFieldMain){
+                [textFieldMain becomeFirstResponder];
+            }
+        }else{
+            if(textFieldMore){
+                [textFieldMore becomeFirstResponder];
+            }
+        }
+    }
 }
 @end

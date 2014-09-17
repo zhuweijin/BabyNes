@@ -41,6 +41,7 @@
     
     _NewCustomer=[[LSCustomer alloc]init];
     [_NewCustomer setTheTitle:NSLocalizedString(@"Mr", @"先生")];
+    
     //[_NewCustomer addOneBaby:[[LSBaby alloc]init]];
     //[self addBaby:self];
     
@@ -49,8 +50,31 @@
 	return self;
 }
 
+-(id)initWithSearchedMobile:(NSString*)sm{
+    self = [super initWithService:@"ls_location"];
+    self.baby_cells_top=160.0;
+    self.baby_cell_height=180.0;
+    
+    _NewCustomer=[[LSCustomer alloc]init];
+    [_NewCustomer setTheTitle:NSLocalizedString(@"Mr", @"先生")];
+    
+    //[_NewCustomer addOneBaby:[[LSBaby alloc]init]];
+    //[self addBaby:self];
+    
+    //selection=-1;
+    
+    _Log(@"NCY _searchedMobile=%@",sm);
+    if(sm && ![sm isEqualToString:@""]){
+        [_NewCustomer setTheMobile:sm];
+    }
+    
+	return self;
+}
+
 - (void)loadContentView:(UIView *)contentView withDict:(NSDictionary *)dict{
     _Log(@"NewCustomerController loadContentView - -");
+    
+    
     
     //_Log(@"get locations [%@]",dict);
     self.provinces_array=[dict objectForKey:@"provinces"];
@@ -221,9 +245,38 @@
 }
 
 - (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
+    /*
+    CGPoint point=[gestureRecognizer locationInView:_mixTable];
+    _Log(@"tapAnywhereToDismissKeyboard: point in TABLE=(%lf,%lf)",point.x,point.y);
+    
+    UITableViewCell * cell=[_mixTable cellForRowAtIndexPath:([NSIndexPath indexPathForRow:0 inSection:0])];
+    point=[gestureRecognizer locationInView:cell];
+    _Log(@"tapAnywhereToDismissKeyboard: point in CELL 0-0=(%lf,%lf)",point.x,point.y);
+    */
+    
+    //check city
+    UITableViewCell * PCcell=[_mixTable cellForRowAtIndexPath:([NSIndexPath indexPathForRow:2 inSection:0])];
+    CGPoint point=[gestureRecognizer locationInView:PCcell];
+    if(point.x > 0 && point.x<PCcell.frame.size.width && point.y>0 && point.y<PCcell.frame.size.height){
+        _Log(@"tapAnywhereToDismissKeyboard: point in CELL CITY=(%lf,%lf)",point.x,point.y);
+        [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    }
+    
+    for (int i=1; i<=[_showingCellInSection count]; i++) {
+        //section is i
+        UITableViewCell * BDcell=[_mixTable cellForRowAtIndexPath:([NSIndexPath indexPathForRow:1 inSection:i])];
+        CGPoint point=[gestureRecognizer locationInView:BDcell];
+        if(point.x > 0 && point.x<BDcell.frame.size.width && point.y>0 && point.y<BDcell.frame.size.height){
+            _Log(@"tapAnywhereToDismissKeyboard: point in BORN CITY=(%lf,%lf)",point.x,point.y);
+            [self tableView:_mixTable didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:i]];
+        }
+    }
+    
+    
+    _LogLine();
+    
     //此method会将self.view里所有的subview的first responder都resign掉
     [self.view.window endEditing:YES];
-    _LogLine();
 }
 
 
@@ -344,13 +397,39 @@
         tableViewHeaderFooterView.textLabel.font=[UIFont systemFontOfSize:25];
     }
 }
-
+/*
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section==0){
         return  NSLocalizedString(@"Customer Information", @"顾客信息");
     }else{
         return  NSLocalizedString(@"Baby Information", @"宝宝信息");
     }
+}
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView * view=[[UIView alloc]initWithFrame:(CGRectMake(0, 10, tableView.frame.size.width, 30) )];
+    
+    UILabel * label=[[UILabel alloc]initWithFrame:(CGRectMake(10, 0, 200, 30))];
+    [label setFont:([UIFont systemFontOfSize:25])];
+    if(section==0){
+        [label setText:  NSLocalizedString(@"Customer Information", @"顾客信息")];
+    }else{
+        [label setText:  NSLocalizedString(@"Baby Information", @"宝宝信息")];
+        if(section>1){
+            UIButton * removeBabyBtn=[UIButton minorButtonWithTitle:NSLocalizedString(@"Remove", @"移除")];
+            [removeBabyBtn setFrame:(CGRectMake(420,0 ,100, 30))];
+            [removeBabyBtn addTarget:self action:@selector(onRemoveBaby:) forControlEvents:(UIControlEventTouchUpInside)];
+            [removeBabyBtn setTag:(SECTION_REMOVE_BABY_GATE+section)];
+            [view addSubview:removeBabyBtn];
+        }
+
+    }
+    [view addSubview:label];
+    
+    return view;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -376,12 +455,13 @@
     }
     
     int ronriRow=[self getRonriRowTag:indexPath];
-    _Log(@"cellForRowAtIndexPath[%d-%d]=>%d",indexPath.section,indexPath.row,ronriRow);
+    //_Log(@"cellForRowAtIndexPath[%d-%d]=>%d",indexPath.section,indexPath.row,ronriRow);
     //[[cell textLabel]setText:[NSString stringWithFormat:@"Section %d Row %d : %d",indexPath.section,indexPath.row,ronriRow]];
     cell.accessoryType =  UITableViewCellAccessoryNone;
-    
-    [cell setSection:indexPath.section setWithRonriTag:ronriRow];
+    [cell setIndexPath:indexPath];
     [cell setMTDelegate:self];
+    [cell setSection:indexPath.section setWithRonriTag:ronriRow];
+    
     
     return cell;
 }
@@ -693,6 +773,18 @@
  }
  */
 
+-(void)onRemoveBaby:(id)sender{
+    int sec=[sender tag]-SECTION_REMOVE_BABY_GATE;
+    [_NewCustomer removeBabyAt:sec-1];
+    [_showingCellInSection removeObjectAtIndex:sec-1];
+    [[self rowNumberArray] removeObjectAtIndex:sec];
+    [self.mixTable beginUpdates];
+    [self.mixTable deleteSections:([[NSIndexSet alloc]initWithIndex:sec]) withRowAnimation:(UITableViewRowAnimationAutomatic)];
+    [self.mixTable endUpdates];
+    [self.mixTable reloadData];
+    
+}
+
 -(void)addBaby:(id)sender{
     _Log(@"addBaby called");
     /*
@@ -725,6 +817,8 @@
 
 -(void)addCustomer:(id)sender{
     _Log(@"addCustomer called");
+    
+    [self.view endEditing:YES];
     
     _Log(@"testNewCustomer:\nTitle: %@\nName: %@\nProvince: %@\nCity: %@\nAddress: %@\nMobile: %@\nEmail: %@",
          _NewCustomer.theTitle,
@@ -973,8 +1067,6 @@
 -(void)submitToServer{
     [self closeSignPad];
     
-    
-    
     if([LSDeviceInfo isNetworkOn]){
         [MobClick event:@"NewCustomerSubmit" acc:1];
         NSString* result=[_NewCustomer createCustomer];
@@ -1021,5 +1113,27 @@
     if(self!=nil){
         [MobClick event:@"NewCustomerCancel" acc:1];
     }
+}
+
+#pragma mark exinluoji
+-(BOOL)isNoPickerOpen{
+    if(_showingCell04){
+        return NO;
+    }
+    for (int i=0; i<[_showingCellInSection count]; i++) {
+        if([[_showingCellInSection[i] objectForKey:@"showingBirthdayPicker"] boolValue]){
+            return NO;
+        }
+    }
+    return YES;
+}
+-(void)wannaWriteBabyId:(NSInteger)babyId valueType:(NSInteger)vt isMain:(BOOL)isMain{
+    [self killAllExpanseCell];
+    //[[NSNotificationCenter defaultCenter]postNotificationName:WannaWriteCellNotification object:nil userInfo:@{@"section": [NSNumber numberWithInteger:section],@"valueType":[NSNumber numberWithInteger:valueType], @"isMain":(isMain?@YES:@NO)}];
+    for (int r=0; r<[self tableView:_mixTable numberOfRowsInSection:babyId+1]; r++) {
+        //[((LSMixTableCell*)[self tableView:_mixTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:r inSection:babyId+1]]) receiveWannaWriteToBabyId:babyId valueType:vt isMain:isMain];
+        [((LSMixTableCell*)[_mixTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:r inSection:babyId+1]])receiveWannaWriteToBabyId:babyId valueType:vt isMain:isMain];
+    }
+    
 }
 @end

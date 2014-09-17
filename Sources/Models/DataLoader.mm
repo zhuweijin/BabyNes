@@ -507,7 +507,7 @@ static NSString *_password=nil;
 //
 - (void)loadEnded:(NSDictionary *)dict
 {
-    _Log(@"SinriDigin DataLoader loadEnded with dict=%@",dict);
+    //_Log(@"SinriDigin DataLoader loadEnded with dict=%@",dict);
 	_checkChange = YES;
     
 	_loading = NO;

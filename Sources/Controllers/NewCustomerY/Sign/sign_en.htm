@@ -84,7 +84,7 @@
                 <button class="button clear" data-action="clear">清空</button>
                 <button class="button cancel" data-action="cancel">取消</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                请在上方签字
+                <span id="teizi">请在上方签字</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="button save" data-action="save">确认</button>
             </div>
@@ -105,7 +105,9 @@
             signaturePad;
             
             
-            
+            function submit_sign(){
+                window.open(signaturePad.toDataURL());
+            }
             
             // Adjust canvas coordinate space taking into account pixel ratio,
             // to make it look crisp on mobile devices.
@@ -133,7 +135,9 @@
                                     if (signaturePad.isEmpty()) {
                                     //alert("Please provide signature first.");
                                     } else {
-                                        window.open(signaturePad.toDataURL());
+                                        //window.open(signaturePad.toDataURL());
+                                        document.getElementById('teizi').innerText=('请耐心等待信息上传！');
+                                        submit_sign();
                                     }
                                     });
             </script>
